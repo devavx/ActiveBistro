@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
+Route::get('/', 'FrontendController@index')->name('index');
+Route::get('/login', 'FrontendController@login')->name('login');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Backend URLS
