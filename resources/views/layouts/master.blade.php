@@ -19,14 +19,14 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark shadow">
 		<div class="container">
-			<a class="navbar-brand" href="index.html"><img src="image/logo.png"></a>
+			<a class="navbar-brand" href="{{ url('') }}"><img src="{{ asset('uploads/image/logo.png') }}"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#activebistronavbar" aria-controls="activebistronavbar" aria-expanded="false" aria-label="Toggle navigation">
 				<i class="fa fa-bars"></i>
 			</button>
 			<div class="collapse navbar-collapse" id="activebistronavbar">
 				<ul class="navbar-nav mx-auto">
 				    <li class="nav-item">
-					    <a class="nav-link" href="#">Our Menu</a>
+					    <a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
 				    </li>
 
 				    <li class="nav-item">
@@ -44,7 +44,7 @@
 				    </li>
 
 				    <li class="nav-item">
-					    <a class="nav-link" href="signup.html">Signup</a>
+					    <a class="nav-link" href="{{ url('signup') }}">Signup</a>
 				    </li>
 				</ul>
 			</div>
@@ -82,7 +82,7 @@
 
 				<div class="col-lg-4 col-sm-4 col-12">
 					<div class="footer-right text-right">
-						<img src="image/payment-img.png">
+						<img src="{{ asset('uploads/image/payment-img.png') }}">
 					</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<p class="mb-0 text-right">Copyright <i class="fa fa-copyright"></i> by <a href="index.html" class="text-white">ACTIVE BISTRO</a></p>
+					<p class="mb-0 text-right">Copyright <i class="fa fa-copyright"></i> by <a href="{{ url('') }}" class="text-white">ACTIVE BISTRO</a></p>
 				</div>
 			</div>
 		</div>

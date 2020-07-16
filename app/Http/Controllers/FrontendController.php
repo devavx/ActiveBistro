@@ -15,4 +15,14 @@ class FrontendController extends Controller
     {
     	 return view('frontend.login');
     }
+
+    public function signup()
+    {
+    	 return view('frontend.signup');
+    }
+
+    public function ourmenu()
+    {
+    	 return view('frontend.ourmenu');
+    }
 }
