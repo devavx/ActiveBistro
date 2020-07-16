@@ -23,7 +23,7 @@
 						  <div class="carousel-inner" role="listbox">
 						    <!--First slide-->
 						    <div class="carousel-item active">
-						      <img class="d-block w-100" src="image/banner.png"
+						      <img class="d-block w-100" src="{{ asset('uploads/image/banner.png') }}"
 						        alt="First slide">
 						        <div class="top-banner-text">
 									<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
@@ -75,10 +75,10 @@
 
 					<div class="banner-right-side pt-5">
 						<div class="banner-right-text">
-							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="image/c1.png"></a>
-							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="image/c2.png"></a>
-							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="image/c3.png"></a>
-							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="image/c4.png"></a>
+							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c1.png') }}"></a>
+							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c3.png') }}"></a>
+							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c3.png') }}"></a>
+							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c4.png') }}"></a>
 						</div>
 					</div>
 				</div>

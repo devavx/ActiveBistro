@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/login', 'FrontendController@login')->name('login');
+Route::get('/signup', 'FrontendController@signup')->name('signup');
+Route::get('/ourmenu', 'FrontendController@our-menu')->name('ourmenu');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Backend URLS
