@@ -23,6 +23,6 @@ class FrontendController extends Controller
 
     public function ourmenu()
     {
-    	 return view('frontend.ourmenu');
+    	 return view('frontend.our-menu');
     }
 }

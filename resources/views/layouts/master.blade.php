@@ -40,7 +40,7 @@
 				</ul>
 				<ul class="navbar-nav ml-auto">
 				    <li class="nav-item">
-					    <a class="nav-link" href="{{ url('login') }}">Login</a>
+					    <a class="nav-link" href="{{ url('sign-in') }}">Login</a>
 				    </li>
 
 				    <li class="nav-item">
@@ -101,8 +101,8 @@
 
 	
 	<script type="text/javascript" src="{{ asset('assets/js/jquery-3.4.1.min.js') }} "></script>
-  <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }} "></script>
-  <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }} "></script>
+   <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }} "></script>
    <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }} "></script>
 
    

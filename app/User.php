@@ -41,4 +41,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Role');
     }
+
+    public function getProfileImageAttribute(){
+        if (!empty($this->attributes['profile_image'])) { 
+            return asset('uploads/avatars/'.$this->attributes['profile_image']);
+        }
+        return $this->attributes['profile_image'] ;
+    }
 }

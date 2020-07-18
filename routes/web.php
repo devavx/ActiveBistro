@@ -18,13 +18,18 @@
 Auth::routes();
 
 Route::get('/', 'FrontendController@index')->name('index');
-Route::get('/login', 'FrontendController@login')->name('login');
+Route::get('/sign-in', 'FrontendController@login')->name('sign-in');
 Route::get('/signup', 'FrontendController@signup')->name('signup');
-Route::get('/ourmenu', 'FrontendController@our-menu')->name('ourmenu');
+Route::get('/ourmenu', 'FrontendController@ourmenu')->name('ourmenu');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Backend URLS
 Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=>'admin' ], function(){
 	Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
+	Route::get('/profile', 'Admin\AdminController@profile')->name('admin.profile')->middleware(['password.confirm']);
+	Route::post('/profile', 'Admin\AdminController@updateProfile')->name('admin.update.profile');
+	Route::post('/change-password', 'Admin\AdminController@chnagePassword')->name('admin.chnage.password');
+
+	Route::get('/customers', 'Admin\AdminController@customerList')->name('customer.list');
 
 });
