@@ -15,7 +15,15 @@ class CreateMealPlansTable extends Migration
     {
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name')->nullable();
+            $table->string('no_of_days')->nullable();
+            $table->string('rate_per_item')->nullable();
+            $table->string('rate_per_item_three_days')->nullable();
+            $table->string('meal_in_two_days')->nullable();
+            $table->string('meal_in_three_days')->nullable();
+            $table->boolean('active')->nullable();
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

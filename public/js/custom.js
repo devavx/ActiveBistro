@@ -35,9 +35,11 @@ function deleteConfirmMessage(id, url, buttonId) {
             beforeSend:function(){
                 $(buttonId).prop('disabled',true);
                 $(buttonId).html('Deleting...!!'); 
+                $('#cover-spin').show(); 
             },
             success:function(result){  
             $(buttonId).prop('disabled',false); 
+            $('#cover-spin').hide(); 
             switch(result.status){
               case 'success':
                     (function ($) {

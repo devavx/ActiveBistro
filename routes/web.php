@@ -31,5 +31,11 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::post('/change-password', 'Admin\AdminController@chnagePassword')->name('admin.chnage.password');
 
 	Route::get('/customers', 'Admin\AdminController@customerList')->name('customer.list');
+	Route::get('/meals', 'Admin\MealPlanController@index')->name('meal.index');
+	Route::get('/meals/delete/{id}', 'Admin\MealPlanController@delete')->name('meal.delete');
+	Route::get('/meals/create', 'Admin\MealPlanController@create')->name('meal.create');
+
+
+	Route::resource('/meals', 'Admin\MealPlanController');
 
 });
