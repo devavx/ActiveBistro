@@ -158,7 +158,7 @@
     <script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
     <!-- Chart JS -->
     <script src="{{ asset('assets/dist/js/dashboard1.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
+    <script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script> 
     @yield('script')
 </body>
 

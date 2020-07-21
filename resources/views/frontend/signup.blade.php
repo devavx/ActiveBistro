@@ -70,18 +70,13 @@
 			</div>
 		</div>
 	</div>
-
-	
-
-	 @endsection
- @section('script')
-	 
+	@endsection
+ @section('script') 
    <script>
-   	$(function () {
-$('[data-toggle="tooltip"]').tooltip()
-})
+   		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
    </script>
-
     @endsection
   
 </body>
