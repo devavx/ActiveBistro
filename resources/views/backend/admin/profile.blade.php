@@ -111,12 +111,12 @@
                                                     <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="email" id="email" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div> 
-                                            <div class="form-group">
+                                           <!--  <div class="form-group">
                                                 <label class="col-md-12">Phone No</label>
                                                 <div class="col-md-12">
                                                     <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- <div class="form-group">
                                                 <label class="col-md-12">About</label>
                                                 <div class="col-md-12">

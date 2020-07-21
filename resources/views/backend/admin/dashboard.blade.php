@@ -44,10 +44,10 @@
 							<div class="d-flex no-block align-items-center">
 								<div>
 									<h3><i class="icon-screen-desktop"></i></h3>
-									<p class="text-muted">MYNEW CLIENTS</p>
+									<p class="text-muted">MY CUSTOMER</p>
 								</div>
 								<div class="ml-auto">
-									<h2 class="counter text-primary">23</h2>
+									<h2 class="counter text-primary">{{ App\User::count() }}</h2>
 								</div>
 							</div>
 						</div>
@@ -68,10 +68,10 @@
 							<div class="d-flex no-block align-items-center">
 								<div>
 									<h3><i class="icon-note"></i></h3>
-									<p class="text-muted">NEW PROJECTS</p>
+									<p class="text-muted">MY MEALS</p>
 								</div>
 								<div class="ml-auto">
-									<h2 class="counter text-cyan">169</h2>
+									<h2 class="counter text-cyan">{{ App\MealPlan::count() }}</h2>
 								</div>
 							</div>
 						</div>
@@ -92,10 +92,10 @@
 							<div class="d-flex no-block align-items-center">
 								<div>
 									<h3><i class="icon-doc"></i></h3>
-									<p class="text-muted">NEW INVOICES</p>
+									<p class="text-muted">MY ITEM</p>
 								</div>
 								<div class="ml-auto">
-									<h2 class="counter text-purple">157</h2>
+									<h2 class="counter text-purple">{{ App\Item::count() }}</h2>
 								</div>
 							</div>
 						</div>
@@ -116,10 +116,10 @@
 							<div class="d-flex no-block align-items-center">
 								<div>
 									<h3><i class="icon-bag"></i></h3>
-									<p class="text-muted">All PROJECTS</p>
+									<p class="text-muted">All ORDERS</p>
 								</div>
 								<div class="ml-auto">
-									<h2 class="counter text-success">431</h2>
+									<h2 class="counter text-success">3</h2>
 								</div>
 							</div>
 						</div>
