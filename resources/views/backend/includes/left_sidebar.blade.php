@@ -54,13 +54,13 @@
                                 <li><a href="{{ url('/admin/postal_codes') }}">Postal Codes</a></li> 
                                 <li><a href="{{ url('/admin/how_it_works') }}">How It Works</a></li> 
                                 <li><a href="{{ url('/admin/faqs') }}">Faqs</a></li> 
-                                <li><a href="{{ url('/admin/term_conditions') }}">Term & Condition</a></li> 
-                                <li><a href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li> 
+                                <li><a href="{{ url('/admin/term_conditions') }}">Term And Condition</a></li> 
+                                <li><a href="{{ url('/admin/privacy_policy') }}">Privacy And Policy</a></li> 
                                 <li><a href="{{ url('/admin/contact_us') }}">Contact Us</a></li> 
-                                <li><a href="{{ url('/admin/sliders') }}">Slider Setting</a></li> 
+                                <li><a href="sliders">Slider Setting</a></li> 
                             </ul>
                         </li> 
-                        <!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->
+                        <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
