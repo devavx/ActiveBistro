@@ -4,7 +4,9 @@
 
 @section('style')  
 <style type="text/css">
-    
+    .error{
+        color: red;
+    }
 </style>
 @endsection
 @section('content')
@@ -67,7 +69,7 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.meals.store') }}" method="post">
+                                <form action="{{ route('admin.meals.store') }}" method="post" id="add_form">
                                     @csrf
                                     <div class="form-body">
                                        <!--  <h3 class="card-title">Person Info</h3>
@@ -81,13 +83,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" name="name" class="form-control" placeholder="Enter name..">
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name..">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No Of Days</label>
-                                                    <input type="text" name="no_of_days" class="form-control" placeholder="Enter No of Days">
+                                                    <input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="Enter No of Days">
                                                 </div>
                                             </div>
                                         </div>
@@ -95,13 +97,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item</label>
-                                                    <input type="text" name="rate_per_item" class="form-control" placeholder="Rate Per Item..">
+                                                    <input type="text" name="rate_per_item" id="rate_per_item" class="form-control" placeholder="Rate Per Item..">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item Three Days</label>
-                                                    <input type="text" name="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
+                                                    <input type="text" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
                                                 </div>
                                             </div>
                                         </div>
@@ -110,13 +112,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
-                                                    <input type="text" name="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
+                                                    <input type="text" name="meal_in_two_days" id="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
                                                 </div>
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
-                                                    <input type="text" name="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
+                                                    <input type="text" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
                                                 </div>
                                             </div> 
                                         </div>
@@ -135,7 +137,36 @@
          @endsection
     @section('script')
     
-    <script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {      
+
+           $('#add_form').validate({ // initialize the plugin
+                rules: { 
+                    name: {
+                        required: true,               
+                    },no_of_days: {
+                        required: true,               
+                    },rate_per_item: {
+                        required: true,               
+                    },meal_in_three_days: {
+                        required: true,               
+                    },meal_in_two_days: {
+                        required: true,               
+                    },rate_per_item_three_days: {
+                        required: true,               
+                    },
+                }   
+            });
+
+            $(document).on('click', '#edit_profile', function(){
+                if (!$("#add_form").valid()) { // Not Valid
+                    return false;
+                } else {
+                    
+                }
+            }); 
+        });
+    </script>
     @endsection
        

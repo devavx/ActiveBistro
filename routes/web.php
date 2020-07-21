@@ -41,7 +41,23 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::get('/ingredient/delete/{id}', 'Admin\IngredientController@delete')->name('meal.delete');
 
 	// ItemController URI
-	Route::get('/items/delete/{id}', 'Admin\ItemController@delete')->name('items.delete');
+	Route::get('/items/delete/{id}', 'ItemController@delete')->name('items.delete');
+	// ItemController URI
+	Route::get('/orders', 'ItemController@orders')->name('items.orders');
+
+
+	// SettingController URI
+	Route::get('/postal_codes', 'Admin\SettingController@getPostalCodes')->name('setting.postal');
+	Route::get('/postal_codes/create', 'Admin\SettingController@createPostalCodes')->name('setting.postal.create');
+	Route::get('/how_it_works', 'Admin\SettingController@getHowItWorks')->name('setting.how_it_work');
+	Route::get('/how_it_works/create', 'Admin\SettingController@createHowItWorks')->name('setting.how_it_work.create');
+
+
+	Route::get('/faqs', 'Admin\SettingController@faqs')->name('setting.faqs');
+	Route::get('/term_conditions', 'Admin\SettingController@termCondition')->name('setting.term_conditions');
+	Route::get('/privacy_policy', 'Admin\SettingController@privacyPolicy')->name('setting.privacy_policy');
+	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
+
 
 
 	Route::resource('/meals', 'Admin\MealPlanController');

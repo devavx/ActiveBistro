@@ -162,4 +162,15 @@ class ItemController extends Controller
 
         return json_encode($result);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function orders()
+    {
+        $listData = [];
+        return view('backend/admin/orders/index', compact('listData'));
+    }
 }

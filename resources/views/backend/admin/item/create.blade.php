@@ -139,13 +139,9 @@
                                             </div> 
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <!-- <div class="form-group">
-                                                    <label>Carbs</label>
-                                                    <input type="text" name="carbs" id="carbs" class="form-control" placeholder="Enter Carbs..">
-                                                </div> -->
+                                            <div class="col-md-6"> 
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Category </label>
                                                     <select class="form-control" id="category_id" name="category_id" required>

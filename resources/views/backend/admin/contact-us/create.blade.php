@@ -1,35 +1,32 @@
 @extends('backend.master')
 
-@section('title') Admin | Ingredient | Create @endsection
+@section('title') Admin | Contact Us | Create @endsection
 
 @section('style')  
+ <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
 <style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #000 !important;
+    }
     .error{
         color: red;
     }
 </style>
 @endsection
 @section('content')
-<div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
+<div class="page-wrapper"> 
+            <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Create Ingredient</h4>
+                        <h4 class="text-themecolor">Contact Us</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/ingredient') }}">Ingredient</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Contact Us</a></li>
                                 <li class="breadcrumb-item active">Create</li>
-                            </ol>
-                            <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
+                            </ol> 
                         </div>
                     </div>
                 </div> 
@@ -37,7 +34,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Create Ingredient</h4>
+                                <h4 class="m-b-0 text-white">Contact Us</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -69,7 +66,7 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.ingredient.store') }}" method="post" id="add_form">
+                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body"> 
                                         <hr>
@@ -77,14 +74,15 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name..">
+                                                    <textarea type="text" name="name" id="name" class="form-control" placeholder="Enter name..">Contact Us</textarea>
                                                 </div>
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                           
+                                        </div>  
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" id="add_btn" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ route('admin.ingredient.index') }}" class="btn btn-inverse">Cancel</a>
+                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -95,16 +93,36 @@
         </div>
          @endsection
     @section('script')
-     
+    <script type="text/javascript" src="{{ asset('assets/node_modules/tinymce/tinymce.min.js') }}"></script>
+
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-    <script type="text/javascript">
-         $(document).ready(function () {      
+     <script>
+    $(document).ready(function() {
+
+        if ($("#name").length > 0) {
+            tinymce.init({
+                selector: "textarea#name",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                    "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+
+            });
+        }
+    });
+    </script>
+    <script type="text/javascript">         
+        $(document).ready(function () {      
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
                     name: {
                         required: true,               
-                    },
+                    }
                 }   
             });
 
@@ -115,7 +133,7 @@
                     
                 }
             }); 
-        });
+        }); 
     </script>
     @endsection
        
