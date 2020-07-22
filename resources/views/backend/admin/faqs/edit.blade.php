@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Term & Condition | Create @endsection
+@section('title') Admin | Faq | Create @endsection
 
 @section('style')  
  <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
@@ -18,13 +18,13 @@
             <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Term & Condition</h4>
+                        <h4 class="text-themecolor">Faq</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Term & Condition</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Faq</a></li>
                                 <li class="breadcrumb-item active">Create</li>
                             </ol> 
                         </div>
@@ -34,7 +34,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Term & Condition</h4>
+                                <h4 class="m-b-0 text-white">Faq</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -66,23 +66,31 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.term_conditions.store') }}" id="add_form" method="post">
+                                <form action="{{ route('admin.faqs.update',$record->id) }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
+                                     @method('PUT') 
                                     <div class="form-body"> 
                                         <hr>
+                                        <div id="faq_section">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Term & Condition</label>
-                                                   <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">Term And Condition</textarea>
+                                                    <label>Title</label>
+                                                    <input type="text" name="faq_title" id="faq_title" class="form-control" placeholder="Enter Title.." value="{{ $record->faq_title }}" >
                                                 </div>
                                             </div>
-                                           
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label>Deacription</label>
+                                                    <textarea type="text" name="faq_description" id="faq_description" class="form-control" placeholder="Enter Description.." >{{ $record->faq_description }}</textarea>
+                                                </div>
+                                            </div> 
                                         </div>  
+                                    </div>
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/term_conditions') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ url('/admin/faqs') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -92,35 +100,18 @@
                 </div> 
         </div>
          @endsection
-    @section('script')
-    <script type="text/javascript" src="{{ asset('assets/node_modules/tinymce/tinymce.min.js') }}"></script>
+    @section('script') 
 
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-     <script>
-    $(document).ready(function() {
-
-        if ($("#description").length > 0) {
-            tinymce.init({
-                selector: "textarea#description",
-                theme: "modern",
-                height: 300,
-                plugins: [
-                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                    "save table contextmenu directionality emoticons template paste textcolor"
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-
-            });
-        }
-    });
-    </script>
+    
     <script type="text/javascript">         
         $(document).ready(function () {      
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    description: {
+                    faq_title: {
+                        required: true,               
+                    },faq_description:{
                         required: true,               
                     }
                 }   
@@ -133,7 +124,8 @@
                     
                 }
             }); 
-        }); 
-    </script>
-    @endsection
+            
+    });  
+</script>
+@endsection
        

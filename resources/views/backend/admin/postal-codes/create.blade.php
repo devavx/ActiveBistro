@@ -2,12 +2,9 @@
 
 @section('title') Admin | Postal Codes | Create @endsection
 
-@section('style')  
- <link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+@section('style')   
 <style type="text/css">
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #000 !important;
-    }
+     
     .error{
         color: red;
     }
@@ -66,22 +63,32 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.postal_codes.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body"> 
                                         <hr>
+                                        <div id="faq_section">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name..">
+                                                    <input type="text" name="name[]" id="name" class="form-control" placeholder="Enter Name..">
                                                 </div>
                                             </div>
-                                           
+                                            <div class="col-md-5"> 
+                                                <div class="form-group">
+                                                    <label>Deacription</label>
+                                                    <textarea type="text" name="description[]" id="description" class="form-control" placeholder="Enter Description.."></textarea>
+                                                </div>
+                                            </div>
+                                           <div class="col-md-2" style="margin-top: 28px;">
+                                               <button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
+                                           </div>
                                         </div>  
+                                    </div>  
                                     </div>
                                     <div class="form-actions">
-                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
@@ -92,20 +99,18 @@
                 </div> 
         </div>
          @endsection
-    @section('script')
-    <script type="text/javascript" src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
+    @section('script') 
 
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
-        $(".select2").select2({
-            placeholder: "Please select Ingredient",
-            allowClear: true
-        });
+        
         $(document).ready(function () {      
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    name: {
+                    "name[]": {
+                        required: true,               
+                    },"description[]": {
                         required: true,               
                     }
                 }   
@@ -117,8 +122,19 @@
                 } else {
                     
                 }
+            });
+             // Add More Faq faq_section
+        var i=1;
+        $(document).on('click','#faq_section #add_more',function(){
+            i = i+1;
+            var html = '';
+            html +='<div class="row remove_faq_'+ i +'" id="remove_faq_'+ i +'"><div class="col-md-5"><div class="form-group"><label>Name</label><input type="text" name="name[]" id="faq_title" class="form-control" placeholder="Enter name.."></div></div><div class="col-md-5"><div class="form-group"><label>Deacription</label><textarea type="text" name="description[]" id="description" class="form-control" placeholder="Enter Description.."></textarea></div></div><div class="col-md-2" style="margin-top: 28px;"><button type="button" name="add_more" id="add_more" class="btn btn-danger" title="Remove" onclick="removeFaq('+i+')">-</button></div></div>';
+                $('#faq_section').append(html); 
             }); 
-        }); 
+        });
+        function removeFaq(id) { 
+            $('.remove_faq_'+id).remove();
+        } 
     </script>
     @endsection
        

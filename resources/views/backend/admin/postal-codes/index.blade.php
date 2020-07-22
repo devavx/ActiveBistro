@@ -68,27 +68,29 @@
                             <thead>
                                 <tr>
                                     <th>Name</th> 
+                                    <th>Description</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead> 
                             <tbody> 
+                                @if(!empty(@listData))
+                                    @foreach($listData as $rows)
                                 <tr>
-                                    <td> 231#</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
+                                    <td> {{ $rows->name ?? '-'}}</td>
+                                    <td> {{ $rows->description ?? '-'}}</td>
+                                    <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
+                                    <td> 
+                                        <a class="like" href="{{ route('admin.postal_codes.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                    </td>                                   
                                 </tr>  
-                                  <tr>
-                                    <td> 235#</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> 237#</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                                                    
+                                   @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4" class="text-danger">No Record Found !</td>
+                                </tr> 
+                                @endif        
                             </tbody>
                             </table>
                         </div>
@@ -132,7 +134,7 @@
     });
 
     function confirmDelete(id) {
-        url = "{{ url('/admin/items/delete/') }}/"+id; 
+        url = "{{ url('/admin/postal_codes/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
 

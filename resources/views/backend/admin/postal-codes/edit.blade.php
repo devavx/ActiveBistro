@@ -1,13 +1,10 @@
 @extends('backend.master')
 
-@section('title') Admin | Term & Condition | Create @endsection
+@section('title') Admin | Postal Codes | Edit @endsection
 
-@section('style')  
- <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
+@section('style')   
 <style type="text/css">
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #000 !important;
-    }
+     
     .error{
         color: red;
     }
@@ -18,14 +15,14 @@
             <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Term & Condition</h4>
+                        <h4 class="text-themecolor">Create Postal Edit</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Term & Condition</a></li>
-                                <li class="breadcrumb-item active">Create</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/postal_codes') }}">Postal Codes</a></li>
+                                <li class="breadcrumb-item active">Edit</li>
                             </ol> 
                         </div>
                     </div>
@@ -34,7 +31,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Term & Condition</h4>
+                                <h4 class="m-b-0 text-white">Edit Postal Codes</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -66,23 +63,32 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.term_conditions.store') }}" id="add_form" method="post">
+                                <form action="{{ route('admin.postal_codes.update',$record->id) }}" id="add_form" method="post">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-body"> 
                                         <hr>
+                                        <div id="faq_section">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Term & Condition</label>
-                                                   <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">Term And Condition</textarea>
+                                                    <label>Name</label>
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Name.." value="{{ $record->name }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"> 
+                                                <div class="form-group">
+                                                    <label>Deacription</label>
+                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter Description..">{{ $record->description }}</textarea>
                                                 </div>
                                             </div>
                                            
                                         </div>  
+                                    </div>  
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/term_conditions') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -92,37 +98,20 @@
                 </div> 
         </div>
          @endsection
-    @section('script')
-    <script type="text/javascript" src="{{ asset('assets/node_modules/tinymce/tinymce.min.js') }}"></script>
+    @section('script') 
 
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-     <script>
-    $(document).ready(function() {
-
-        if ($("#description").length > 0) {
-            tinymce.init({
-                selector: "textarea#description",
-                theme: "modern",
-                height: 300,
-                plugins: [
-                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                    "save table contextmenu directionality emoticons template paste textcolor"
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-
-            });
-        }
-    });
-    </script>
-    <script type="text/javascript">         
+    <script type="text/javascript">
+        
         $(document).ready(function () {      
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    description: {
+                    name: {
                         required: true,               
-                    }
+                    },description: {
+                        required: true,               
+                    },
                 }   
             });
 
@@ -132,8 +121,10 @@
                 } else {
                     
                 }
-            }); 
-        }); 
+            });
+          
+        });
+         
     </script>
     @endsection
        

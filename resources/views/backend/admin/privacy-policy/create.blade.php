@@ -66,22 +66,22 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.privacy_policy.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body"> 
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <textarea type="text" name="name" id="name" class="form-control" placeholder="Enter name..">Pricay And Policy</textarea>
+                                                    <label>Privacy Policy</label>
+                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">Privacy And Policy</textarea>
                                                 </div>
                                             </div>
                                            
                                         </div>  
                                     </div>
                                     <div class="form-actions">
-                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <a href="{{ url('/admin/privacy_policy') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
@@ -99,9 +99,9 @@
      <script>
     $(document).ready(function() {
 
-        if ($("#name").length > 0) {
+        if ($("#description").length > 0) {
             tinymce.init({
-                selector: "textarea#name",
+                selector: "textarea#description",
                 theme: "modern",
                 height: 300,
                 plugins: [
@@ -120,7 +120,7 @@
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    name: {
+                    description: {
                         required: true,               
                     }
                 }   

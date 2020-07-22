@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Term & Condition | Create @endsection
+@section('title') Admin | How It Work | Edit @endsection
 
 @section('style')  
  <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
@@ -18,14 +18,14 @@
             <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Term & Condition</h4>
+                        <h4 class="text-themecolor">How It Work</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Term & Condition</a></li>
-                                <li class="breadcrumb-item active">Create</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">How It Work</a></li>
+                                <li class="breadcrumb-item active">Edit</li>
                             </ol> 
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Term & Condition</h4>
+                                <h4 class="m-b-0 text-white">How It Work</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -66,15 +66,16 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.term_conditions.store') }}" id="add_form" method="post">
+                                <form action="{{ route('admin.how_it_works.update',$howItWork->id) }}" id="add_form" method="post">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-body"> 
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Term & Condition</label>
-                                                   <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">Term And Condition</textarea>
+                                                    <label>How It Work</label>
+                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description..">{{ $howItWork->description }}</textarea>
                                                 </div>
                                             </div>
                                            
@@ -82,7 +83,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/term_conditions') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>

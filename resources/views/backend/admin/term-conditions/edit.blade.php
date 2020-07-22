@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Term & Condition | Create @endsection
+@section('title') Admin | Term & Condition | Edit @endsection
 
 @section('style')  
  <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
@@ -25,7 +25,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
                                 <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Term & Condition</a></li>
-                                <li class="breadcrumb-item active">Create</li>
+                                <li class="breadcrumb-item active">Edit</li>
                             </ol> 
                         </div>
                     </div>
@@ -66,15 +66,16 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.term_conditions.store') }}" id="add_form" method="post">
+                                <form action="{{ route('admin.term_conditions.update', $termCondition->id) }}" id="add_form" method="post">
                                     @csrf
+                                    @method('PUT')
                                     <div class="form-body"> 
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Term & Condition</label>
-                                                   <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">Term And Condition</textarea>
+                                                   <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">{{ $termCondition->description }}</textarea>
                                                 </div>
                                             </div>
                                            

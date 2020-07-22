@@ -28,11 +28,6 @@ class SettingController extends Controller
     	return view('backend/admin/how-it-works/create');
     }
 
-    public function faqs()
-    {
-    	return view('backend/admin/faqs/create');
-    }
-
     public function termCondition()
     {
     	return view('backend/admin/term-conditions/create');

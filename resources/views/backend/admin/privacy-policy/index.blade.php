@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | How It Work @endsection
+@section('title') Admin |  Privacy & Policy @endsection
 
 @section('style') 
 <link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,15 +27,15 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">How It Work List</h4>
+            <h4 class="text-themecolor"> Privacy & Policy List</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">How It Work</li>
+                    <li class="breadcrumb-item active"> Privacy & Policy</li>
                 </ol>
-                <a href="{{ url('/admin/how_it_works/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+                <a href="{{ url('/admin/privacy_policy/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                     class="fa fa-plus-circle"></i> Create New</a>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">How It Work List</h4>
+                        <h4 class="card-title"> Privacy & Policy List</h4>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -67,28 +67,28 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th> 
+                                    <th>Privacy Policy</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead> 
                             <tbody> 
+                                  @if(!empty(@listData))
+                                    @foreach($listData as $rows)
+                                <tr> 
+                                    <td> {!! $rows->description ?? '-' !!}</td>
+                                    <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
+                                    <td> 
+                                        <a class="like" href="{{ route('admin.privacy_policy.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                    </td>                                  
+                                </tr>  
+                                   @endforeach
+                                @else
                                 <tr>
-                                    <td> HJ</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> KKLLKLJKLL</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> KJHKJHKK</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                                                    
+                                    <td colspan="4" class="text-danger">No Record Found !</td>
+                                </tr> 
+                                @endif                              
                             </tbody>
                             </table>
                         </div>
@@ -132,7 +132,7 @@
     });
 
     function confirmDelete(id) {
-        url = "{{ url('/admin/items/delete/') }}/"+id; 
+        url = "{{ url('/admin/privacy_policy/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
 

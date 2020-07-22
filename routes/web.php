@@ -46,22 +46,29 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::get('/orders', 'ItemController@orders')->name('items.orders');
 
 
-	// SettingController URI
-	Route::get('/postal_codes', 'Admin\SettingController@getPostalCodes')->name('setting.postal');
-	Route::get('/postal_codes/create', 'Admin\SettingController@createPostalCodes')->name('setting.postal.create');
-	Route::get('/how_it_works', 'Admin\SettingController@getHowItWorks')->name('setting.how_it_work');
-	Route::get('/how_it_works/create', 'Admin\SettingController@createHowItWorks')->name('setting.how_it_work.create');
+	// SettingController URI 
+	Route::get('/how_it_works/delete/{id}', 'HowItWorkController@delete')->name('setting.how_it_work.delete');
 
+	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
 
-	Route::get('/faqs', 'Admin\SettingController@faqs')->name('setting.faqs');
-	Route::get('/term_conditions', 'Admin\SettingController@termCondition')->name('setting.term_conditions');
-	Route::get('/privacy_policy', 'Admin\SettingController@privacyPolicy')->name('setting.privacy_policy');
+	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
+ 
+
+	Route::get('/term_conditions/delete/{id}', 'TermConditionController@delete')->name('setting.term_conditions.delete');
+
+	Route::get('/privacy_policy/delete/{id}', 'PrivacyPolicyController@delete')->name('setting.privacy_policy.delete');
+
 	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
 
 
+	Route::resource('/faqs',        'Admin\FaqController');
+	Route::resource('/postal_codes','Admin\PostalCodeController');
+	Route::resource('/meals',       'Admin\MealPlanController');
+	Route::resource('/ingredient',  'Admin\IngredientController');
 
-	Route::resource('/meals', 'Admin\MealPlanController');
-	Route::resource('/ingredient', 'Admin\IngredientController');
-	Route::resource('/items', 'ItemController');
+	Route::resource('/items',          'ItemController');	
+	Route::resource('/how_it_works',   'HowItWorkController');
+	Route::resource('/privacy_policy', 'PrivacyPolicyController');
+	Route::resource('/term_conditions','TermConditionController');
 
 });

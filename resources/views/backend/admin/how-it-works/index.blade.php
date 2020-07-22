@@ -67,28 +67,28 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th> 
+                                    <th>HowItWork</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead> 
                             <tbody> 
+                                  @if(!empty(@listData))
+                                    @foreach($listData as $rows)
+                                <tr> 
+                                    <td> {!! $rows->description ?? '-' !!}</td>
+                                    <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
+                                    <td> 
+                                        <a class="like" href="{{ route('admin.how_it_works.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                    </td>                                  
+                                </tr>  
+                                   @endforeach
+                                @else
                                 <tr>
-                                    <td> HJ</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> KKLLKLJKLL</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> KJHKJHKK</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                                                    
+                                    <td colspan="4" class="text-danger">No Record Found !</td>
+                                </tr> 
+                                @endif                              
                             </tbody>
                             </table>
                         </div>
@@ -132,7 +132,7 @@
     });
 
     function confirmDelete(id) {
-        url = "{{ url('/admin/items/delete/') }}/"+id; 
+        url = "{{ url('/admin/how_it_works/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
 

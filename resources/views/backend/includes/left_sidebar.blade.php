@@ -1,6 +1,7 @@
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
-
+<?php
+ $uri1 = Request::segment(1) ;
+ $uri2 = Request::segment(2) ;
+?>
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
@@ -48,15 +49,21 @@
                                 <li><a href="{{ url('/admin/orders') }}">Orders</a></li> 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ url('/admin/postal_codes') }}">Postal Codes</a></li> 
-                                <li><a href="{{ url('/admin/how_it_works') }}">How It Works</a></li> 
-                                <li><a href="{{ url('/admin/faqs') }}">Faqs</a></li> 
-                                <li><a href="{{ url('/admin/term_conditions') }}">Term & Condition</a></li> 
-                                <li><a href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li> 
-                                <li><a href="{{ url('/admin/contact_us') }}">Contact Us</a></li> 
-                                <li><a href="sliders">Slider Setting</a></li> 
+                        <li> <a class="has-arrow waves-effect waves-dark @if($uri1=='admin' && $uri2 == '')active @endif" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
+                            <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us')in @endif">
+                                <li class="@if($uri2 =='postal_codes')active @endif"><a href="{{ url('/admin/postal_codes') }}" class="@if($uri2 =='postal_codes')active @endif">Postal Codes</a></li>
+
+                                <li class="@if($uri2 =='how_it_works')active @endif"><a class="@if($uri2 =='how_it_works')active @endif" href="{{ url('/admin/how_it_works') }}">How It Works</a></li> 
+
+                                <li class="@if($uri2 =='faqs')active @endif"><a class="@if($uri2 =='faqs')active @endif" href="{{ url('/admin/faqs') }}">Faqs</a></li> 
+
+                                <li class="@if($uri2 =='term_conditions')active @endif"><a class="@if($uri2 =='term_conditions')active @endif" href="{{ url('/admin/term_conditions') }}">Term & Condition</a></li>
+
+                                <li class="@if($uri2 =='privacy_policy')active @endif"><a class="@if($uri2 =='privacy_policy')active @endif" href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li> 
+
+                                <li class="@if($uri2 =='contact_us')active @endif"><a class="@if($uri2 =='contact_us')active @endif" href="{{ url('/admin/contact_us') }}">Contact Us</a></li> 
+                                
+                                <li class="@if($uri2 =='sliders')active @endif"><a class="@if($uri2 =='sliders')active @endif" href="sliders">Slider Setting</a></li> 
                             </ul>
                         </li> 
                         <!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->

@@ -66,23 +66,33 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.faqs.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body"> 
                                         <hr>
+                                        <div id="faq_section">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-5">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <textarea type="text" name="name" id="name" class="form-control" placeholder="Enter name..">Faqs</textarea>
+                                                    <label>Title</label>
+                                                    <input type="text" name="faq_title[]" id="faq_title" class="form-control" placeholder="Enter Title..">
                                                 </div>
                                             </div>
-                                           
+                                            <div class="col-md-5"> 
+                                                <div class="form-group">
+                                                    <label>Deacription</label>
+                                                    <textarea type="text" name="faq_description[]" id="faq_description" class="form-control" placeholder="Enter Description..">Faqs</textarea>
+                                                </div>
+                                            </div>
+                                           <div class="col-md-2" style="margin-top: 28px;">
+                                               <button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
+                                           </div>
                                         </div>  
                                     </div>
+                                    </div>
                                     <div class="form-actions">
-                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <a href="{{ url('/admin/faqs') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -120,7 +130,9 @@
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    name: {
+                    "faq_title[]": {
+                        required: true,               
+                    },"faq_description[]": {
                         required: true,               
                     }
                 }   
@@ -132,8 +144,23 @@
                 } else {
                     
                 }
-            }); 
-        }); 
-    </script>
-    @endsection
+            });
+
+        // Add More Faq faq_section
+        var i=1;
+        $(document).on('click','#faq_section #add_more',function(){
+            i = i+1;
+            var html = '';
+            html +='<div class="row remove_faq_'+ i +'" id="remove_faq_'+ i +'"><div class="col-md-5"><div class="form-group"><label>Title</label><input type="text" name="faq_title[]" id="faq_title" class="form-control" placeholder="Enter Title.."></div></div><div class="col-md-5"><div class="form-group"><label>Deacription</label><textarea type="text" name="faq_description[]" id="faq_description" class="form-control" placeholder="Enter Description..">Faqs</textarea></div></div><div class="col-md-2" style="margin-top: 28px;"><button type="button" name="add_more" id="add_more" class="btn btn-danger" title="Remove" onclick="removeFaq('+i+')">-</button></div></div>';
+            $('#faq_section').append(html); 
+        });
+
+            
+    }); 
+
+    function removeFaq(id) { 
+        $('.remove_faq_'+id).remove();
+    }
+</script>
+@endsection
        
