@@ -26,8 +26,8 @@ class AdminController extends Controller
 
     public function customerList()
     {
-    	$userDate = User::all();
-    	return view('backend/admin/customers', compact($userDate));
+    	$listData = User::all();
+    	return view('backend/admin/customers', compact('listData'));
     }
 
     public function chnagePassword(Request $request)

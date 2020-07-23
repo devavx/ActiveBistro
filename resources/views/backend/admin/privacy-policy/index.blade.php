@@ -73,7 +73,7 @@
                                 </tr>
                             </thead> 
                             <tbody> 
-                                  @if(!empty(@listData))
+                                  @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr> 
                                     <td> {!! $rows->description ?? '-' !!}</td>

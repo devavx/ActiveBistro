@@ -47,11 +47,18 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 
 
 	// SettingController URI 
+
+	Route::get('sliders/fetch', 'SliderSettingController@fetch')->name('sliders.fetch');
+
+	Route::get('/sliders/delete/{id}', 'SliderSettingController@delete')->name('setting.slider.delete');
+	
 	Route::get('/how_it_works/delete/{id}', 'HowItWorkController@delete')->name('setting.how_it_work.delete');
 
 	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
 
 	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
+
+	
  
 
 	Route::get('/term_conditions/delete/{id}', 'TermConditionController@delete')->name('setting.term_conditions.delete');
@@ -70,5 +77,6 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::resource('/how_it_works',   'HowItWorkController');
 	Route::resource('/privacy_policy', 'PrivacyPolicyController');
 	Route::resource('/term_conditions','TermConditionController');
+	Route::resource('/sliders',        'SliderSettingController');
 
 });

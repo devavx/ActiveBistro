@@ -1,13 +1,15 @@
 @extends('backend.master')
 
-@section('title') Admin | How It Work | Create @endsection
+@section('title') Admin | Sliders | Create @endsection
 
 @section('style')  
- <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
-<style type="text/css">
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #000 !important;
-    }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
+<link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert/sweetalert.css') }}"/>
+
+<link rel="stylesheet" href="{{ asset('css/Lobibox.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/loader_spin.css') }}">
+ 
+<style type="text/css">     
     .error{
         color: red;
     }
@@ -18,13 +20,13 @@
             <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">How It Work</h4>
+                        <h4 class="text-themecolor">Sliders</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">How It Work</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/sliders') }}">Sliders</a></li>
                                 <li class="breadcrumb-item active">Create</li>
                             </ol> 
                         </div>
@@ -34,7 +36,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">How It Work</h4>
+                                <h4 class="m-b-0 text-white">Sliders</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -66,74 +68,82 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-body"> 
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <textarea type="text" name="name" id="name" class="form-control" placeholder="Enter name..">HJHJHJJ</textarea>
-                                                </div>
-                                            </div>
-                                           
-                                        </div>  
-                                    </div>
-                                    <div class="form-actions">
-                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
-                                    </div>
+                                <form action="{{ route('admin.sliders.store') }}" class="dropzone" id="dropzoneForm" method="post" enctype="multipart/form-data">
+                                    @csrf                                     
                                 </form>
+
+                                <div class="form-actions" style="margin-top: 20px">
+                                    <button type="button" id="submit-all" class="btn btn-success"> <i class="fa fa-check"></i> Upload</button>
+                                    <a href="{{ url('/admin/sliders') }}" class="btn btn-inverse">Cancel</a>
+                                </div>
                             </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h3 class="panel-title">Uploaded Image</h3>
+                            </div>
+                            <div class="panel-body" id="uploaded_image">
+                              
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div> 
                 </div> 
         </div>
+        <div id="cover-spin" style="display: none;"></div> 
          @endsection
     @section('script')
-    <script type="text/javascript" src="{{ asset('assets/node_modules/tinymce/tinymce.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script> 
+    <script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 
-    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-     <script>
-    $(document).ready(function() {
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/Lobibox.js') }}"></script>
+     <script> 
+        Dropzone.options.dropzoneForm = {
+           autoProcessQueue: false,
+            addRemoveLinks: true, 
+          acceptedFiles:".png,.jpg,.gif,.bmp,.jpeg",
+          init: function(){
+           var submitButton = document.querySelector('#submit-all');
+           myDropzone = this;
+           submitButton.addEventListener("click", function(){
+            myDropzone.processQueue();
+           });
+           this.on("complete", function(){
+            if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+            {
+             var _this = this;
+             _this.removeAllFiles();
+            (function ($) {
+                "use strict";                              
+                    Lobibox.notify('success', {
+                        position: 'top right',
+                        msg: 'File Uploaded Successfully !'
+                    });
+            })(jQuery);
+            }
+             load_images();
+           });
+          },
+        };
 
-        if ($("#name").length > 0) {
-            tinymce.init({
-                selector: "textarea#name",
-                theme: "modern",
-                height: 300,
-                plugins: [
-                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                    "save table contextmenu directionality emoticons template paste textcolor"
-                ],
-                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
-
-            });
-        }
-    });
+    load_images();
+    function load_images(){
+        $.ajax({
+          url:"{{ route('admin.sliders.fetch') }}",
+          success:function(data){
+            $('#uploaded_image').html(data);
+          }
+        })
+      }
     </script>
-    <script type="text/javascript">         
-        $(document).ready(function () {      
-
-           $('#add_form').validate({ // initialize the plugin
-                rules: { 
-                    name: {
-                        required: true,               
-                    }
-                }   
-            });
-
-            $(document).on('click', '#edit_profile', function(){
-                if (!$("#add_form").valid()) { // Not Valid
-                    return false;
-                } else {
-                    
-                }
-            }); 
-        }); 
+    <script type="text/javascript">     
+         $(document).on('click', '.remove_image', function(){
+            var id = $(this).attr('id');
+            url = "{{ url('/admin/sliders/delete/') }}/"+id; 
+            deleteConfirmMessage(id,url,'remove');
+          });
     </script>
     @endsection
        

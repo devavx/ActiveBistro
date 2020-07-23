@@ -30,8 +30,7 @@
                                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                 <li class="breadcrumb-item active">Customer</li>
                             </ol>
-                            <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i
-                                    class="fa fa-plus-circle"></i> Create New</button>
+                            <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
                         </div>
                     </div>
                 </div>
@@ -54,11 +53,11 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Email</th>
+                                                <th>address</th>
+                                                <th>Profile Image</th>
+                                                <th>Create At</th> 
+                                                <th>Action</th> 
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -72,14 +71,23 @@
                                             </tr>
                                         </tfoot> -->
                                         <tbody>
+
+                                          @if(!empty($listData))
+                                            @foreach($listData as $rows)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                            </tr>                                         
+                                                <td>{{ $rows->name ?? '-' }}</td>
+                                                <td>{{ $rows->email ?? '-' }}</td>
+                                                <td>{{ $rows->address ?? '-' }}</td>
+                                                <td> <img src="{{ $rows->profile_image }}" class="img-thumbnail" width="100"></td>
+                                                <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
+                                                <td>'-</td>
+                                            </tr>   
+                                              @endforeach
+                                            @else
+                                            <tr>
+                                                <td colspan="4" class="text-danger">No Record Found !</td>
+                                            </tr> 
+                                            @endif                                       
                                         </tbody>
                                     </table>
                                 </div>

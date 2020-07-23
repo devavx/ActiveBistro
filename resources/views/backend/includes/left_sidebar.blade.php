@@ -62,8 +62,8 @@
                                 <li class="@if($uri2 =='privacy_policy')active @endif"><a class="@if($uri2 =='privacy_policy')active @endif" href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li> 
 
                                 <li class="@if($uri2 =='contact_us')active @endif"><a class="@if($uri2 =='contact_us')active @endif" href="{{ url('/admin/contact_us') }}">Contact Us</a></li> 
-                                
-                                <li class="@if($uri2 =='sliders')active @endif"><a class="@if($uri2 =='sliders')active @endif" href="sliders">Slider Setting</a></li> 
+
+                                <li class="@if($uri2 =='sliders')active @endif"><a class="@if($uri2 =='sliders')active @endif" href="{{ url('/admin/sliders') }}">Slider Setting</a></li> 
                             </ul>
                         </li> 
                         <!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->

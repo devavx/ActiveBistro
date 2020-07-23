@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | How It Work @endsection
+@section('title') Admin | Sliders @endsection
 
 @section('style') 
 <link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -14,28 +14,20 @@
 
 </style>
 @endsection
-@section('content')
-
-<!-- ============================================================== -->
-<div class="page-wrapper">
-<!-- ============================================================== -->
-<!-- Container fluid  -->
-<!-- ============================================================== -->
-<div class="container-fluid">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
+@section('content') 
+<div class="page-wrapper"> 
+<div class="container-fluid"> 
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">How It Work List</h4>
+            <h4 class="text-themecolor">Sliders List</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">How It Work</li>
+                    <li class="breadcrumb-item active">Sliders</li>
                 </ol>
-                <a href="{{ url('/admin/how_it_works/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+                <a href="{{ url('/admin/sliders/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                     class="fa fa-plus-circle"></i> Create New</a>
                 </div>
             </div>
@@ -43,7 +35,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">How It Work List</h4>
+                        <h4 class="card-title">Sliders</h4>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -67,34 +59,32 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th> 
+                                    <th>Images</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead> 
                             <tbody> 
+                                @if(!empty($listData))
+                                    @foreach($listData as $rows)
                                 <tr>
-                                    <td> HJ</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
+                                    <td><img src="{{ $rows->thumbnail }}" class="img-responsive" width="100"> </td>    
+                                    <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
+                                    <td>                                        
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                    </td>                                   
                                 </tr>  
-                                  <tr>
-                                    <td> KKLLKLJKLL</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                  <tr>
-                                    <td> KJHKJHKK</td>                                    
-                                    <td> 2020-12-14</td> 
-                                    <td> -</td>                                   
-                                </tr>  
-                                                                    
+                                @endforeach
+                                @else
+                                <tr>
+                                    <td colspan="4" class="text-danger">No Record Found !</td>
+                                </tr> 
+                                @endif                          
                             </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div> 
     </div> 
@@ -113,26 +103,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-<!-- end - This is for export functionality only -->
- <script src="{{ asset('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+ 
 
 <script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="{{ asset('js/Lobibox.js') }}"></script>
 <script>
-    $(function () {           
-        $('#example23').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-            'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-        $('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-    });
+    // $(function () {           
+    //     $('#example23').DataTable({
+    //         dom: 'Bfrtip',
+    //         buttons: [
+    //         'csv', 'excel', 'pdf', 'print'
+    //         ]
+    //     });
+    //     $('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+    // });
 
     function confirmDelete(id) {
-        url = "{{ url('/admin/items/delete/') }}/"+id; 
+        url = "{{ url('/admin/sliders/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
 
