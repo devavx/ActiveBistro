@@ -24,6 +24,12 @@
     <link href="{{ asset('assets/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
 
     @yield('style') 
+    <style type="text/css">
+        ul#sidebarnav {
+            height: 406px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body class="skin-blue fixed-layout">

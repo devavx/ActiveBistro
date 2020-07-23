@@ -50,7 +50,7 @@
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark @if($uri1=='admin' && $uri2 == '')active @endif" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
-                            <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us')in @endif">
+                            <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us' || $uri2 == 'sliders')in @endif">
                                 <li class="@if($uri2 =='postal_codes')active @endif"><a href="{{ url('/admin/postal_codes') }}" class="@if($uri2 =='postal_codes')active @endif">Postal Codes</a></li>
 
                                 <li class="@if($uri2 =='how_it_works')active @endif"><a class="@if($uri2 =='how_it_works')active @endif" href="{{ url('/admin/how_it_works') }}">How It Works</a></li> 
