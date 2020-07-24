@@ -17,7 +17,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark shadow">
 		<div class="container">
 			<a class="navbar-brand" href="{{ url('') }}"><img src="{{ asset('uploads/image/logo.png') }}"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#activebistronavbar" aria-controls="activebistronavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,11 +26,11 @@
 			<div class="collapse navbar-collapse" id="activebistronavbar">
 				<ul class="navbar-nav mx-auto">
 				    <li class="nav-item">
-					    <a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
+					    <a class="nav-link" href="{{ url('ourmenu') }}">Order Now</a>
 				    </li>
 
 				    <li class="nav-item">
-					    <a class="nav-link" href="#">How it Works</a>
+					    <a class="nav-link" href="{{ url('/how_it_work') }}">How it Works</a>
 				    </li>
 
 				    <li class="nav-item">
@@ -39,13 +39,28 @@
 
 				</ul>
 				<ul class="navbar-nav ml-auto">
-				    <li class="nav-item">
-					    <a class="nav-link" href="{{ url('sign-in') }}">Login</a>
+				@guest
+					<li class="nav-item">
+					    <a class="nav-link" href="{{ url('/sign-in') }}">Login</a>
 				    </li>
 
 				    <li class="nav-item">
-					    <a class="nav-link" href="{{ url('signup') }}">Signup</a>
+					    <a class="nav-link headersignupbtn" href="{{ url('/sign-up') }}" style="color: #fff !important;">Signup</a>
 				    </li>
+				@else
+					<li class="nav-item">
+					    <a class="nav-link text-color" href="#"> <img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ Auth::user()->name }}</span></a>
+				    </li>
+				    <li class="nav-item dropdown mt-2">
+				        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+				          aria-haspopup="true" aria-expanded="false">My Account</a>
+				        <div class="dropdown-menu dropdown-primary pt-0 pb-0" aria-labelledby="navbarDropdownMenuLink">
+				          <a class="dropdown-item" href="my-order.html">My Order</a>
+				          <a class="dropdown-item" href="#">My Profile</a>
+				          <a class="dropdown-item" href="index.html">Log Out</a>
+				        </div>
+				    </li> 
+				 @endguest
 				</ul>
 			</div>
 		</div>
@@ -72,10 +87,11 @@
 						<h4 class="text-white">Quick Link</h4>
 						<hr>
 						<ul>
-							<li><a href="#"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
-							<li><a href="#"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
-							<li><a href="#"><i class="fa fa-chevron-right mr-2"></i>Privacy & Policy</a></li>
-							<li><a href="#"><i class="fa fa-chevron-right mr-2"></i>Term & Use</a></li>
+							<li><a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a></li>
+							<li><a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
+							<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+							<li><a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy & Policy</a></li>
+							<li><a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Term & Use</a></li>
 						</ul>
 					</div>
 				</div>

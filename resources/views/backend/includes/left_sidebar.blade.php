@@ -26,6 +26,12 @@
                         <li> <a class="waves-effect waves-dark" href="{{ url('/admin/customers') }}" aria-expanded="false"><i class="ti-user"></i><span class="hide-menu">Customers <span class="badge badge-pill badge-cyan ml-auto"></span></span></a>
 
                         </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Category</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('/admin/category')}}">Category List</a></li>
+                                <li><a href="{{ url('/admin/category/create')}}">New Category</a></li> 
+                            </ul>
+                        </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Meal Plans</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ url('/admin/meals')}}">Meal Plas List</a></li>
@@ -36,6 +42,12 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{{ url('/admin/items') }}">Item List</a></li>
                                 <li><a href="{{ url('/admin/items/create') }}">New Item</a></li> 
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Item Type</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="{{ url('/admin/item_type') }}">Item Type List</a></li>
+                                <li><a href="{{ url('/admin/item_type/create') }}">New Item Type</a></li> 
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Ingredients</span></a>
@@ -49,7 +61,7 @@
                                 <li><a href="{{ url('/admin/orders') }}">Orders</a></li> 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark @if($uri1=='admin' && $uri2 == '')active @endif" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us' || $uri2 == 'sliders')in @endif">
                                 <li class="@if($uri2 =='postal_codes')active @endif"><a href="{{ url('/admin/postal_codes') }}" class="@if($uri2 =='postal_codes')active @endif">Postal Codes</a></li>
 

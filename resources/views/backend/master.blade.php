@@ -26,7 +26,7 @@
     @yield('style') 
     <style type="text/css">
         ul#sidebarnav {
-            height: 406px;
+            height: 580px;
             overflow-y: auto;
         }
     </style>

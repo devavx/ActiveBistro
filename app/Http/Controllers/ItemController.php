@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\ItemType;
 use App\Ingredient;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddEditItemRule;
 
@@ -27,8 +29,10 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $listData = Ingredient::all();
-        return view('backend/admin/item/create',compact('listData'));
+        $listData     = Ingredient::all();
+        $categoryList = Category::all();
+        $itemTypeList = ItemType::all();
+        return view('backend/admin/item/create',compact(['listData','categoryList','itemTypeList']));
     }
 
     /**
@@ -93,10 +97,12 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $listData = Ingredient::all();  
+        $listData     = Ingredient::all();
+        $categoryList = Category::all();
+        $itemTypeList = ItemType::all();  
         if (!empty($item)) {
             $record=$item;
-            return view('backend/admin/item/edit',compact(['item','listData'])); 
+            return view('backend/admin/item/edit',compact(['item','listData','categoryList','itemTypeList'])); 
         }
         return redirect('admin/items')->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');
     }

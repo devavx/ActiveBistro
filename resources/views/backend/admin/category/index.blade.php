@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin |  Term & Condition @endsection
+@section('title') Admin | Category @endsection
 
 @section('style') 
 <link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,15 +27,15 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">  Term & Condition List</h4>
+            <h4 class="text-themecolor">Category List</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                    <li class="breadcrumb-item active">  Term & Condition</li>
+                    <li class="breadcrumb-item active">Category</li>
                 </ol>
-                <a href="{{ url('/admin/term_conditions/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+                <a href="{{ url('/admin/category/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
                     class="fa fa-plus-circle"></i> Create New</a>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">  Term & Condition List</h4>
+                        <h4 class="card-title">Category List</h4>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -67,28 +67,28 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th data-col-width="100">Term&Condition</th> 
+                                    <th>Name</th>  
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead> 
-                            <tbody> 
-                                  @if(!empty(@listData))
+                            <tbody>
+                                @if(!empty(@listData))
                                     @foreach($listData as $rows)
-                                <tr> 
-                                    <td width="30px"> {!! $rows->description ?? '-' !!}</td>
-                                    <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
-                                    <td> 
-                                        <a class="like" href="{{ route('admin.term_conditions.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
-                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
-                                    </td>                                  
-                                </tr>  
-                                   @endforeach
+                                    <tr>
+                                        <td> {{ $rows->name ?? '-'}}</td> 
+                                        <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
+                                        <td style="text-align: center; ">
+                                            <a class="like" href="{{ route('admin.category.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
+                                            <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                        </td> 
+                                    </tr>  
+                                    @endforeach
                                 @else
                                 <tr>
-                                    <td colspan="4" class="text-danger">No Record Found !</td>
+                                    <td colspan="6" class="text-danger">No Record Found !</td>
                                 </tr> 
-                                @endif                              
+                                @endif                                      
                             </tbody>
                             </table>
                         </div>
@@ -123,7 +123,6 @@
 <script>
     $(function () {           
         $('#example23').DataTable({
-            // responsive: true,
             dom: 'Bfrtip',
             buttons: [
             'csv', 'excel', 'pdf', 'print'
@@ -133,7 +132,7 @@
     });
 
     function confirmDelete(id) {
-        url = "{{ url('/admin/term_conditions/delete/') }}/"+id; 
+        url = "{{ url('/admin/category/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
 

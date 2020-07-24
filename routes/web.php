@@ -19,8 +19,16 @@ Auth::routes();
 
 Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/sign-in', 'FrontendController@login')->name('sign-in');
-Route::get('/signup', 'FrontendController@signup')->name('signup');
+Route::get('/sign-up', 'FrontendController@signup')->name('signup');
 Route::get('/ourmenu', 'FrontendController@ourmenu')->name('ourmenu');
+
+Route::get('/how_it_work', 'FrontendController@howItWork')->name('how_it_work');
+Route::get('/faq', 'FrontendController@getFaq')->name('faq');
+Route::get('/term_condition', 'FrontendController@termCondition')->name('term_condition');
+Route::get('/privacy_policy', 'FrontendController@privacyPolicy')->name('privacy_policy');
+Route::get('/about', 'FrontendController@about')->name('about');
+Route::get('/contact', 'FrontendController@contact')->name('contact');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Backend URLS
@@ -58,6 +66,9 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 
 	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
 
+	Route::get('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
+	Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
+
 	
  
 
@@ -78,5 +89,7 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::resource('/privacy_policy', 'PrivacyPolicyController');
 	Route::resource('/term_conditions','TermConditionController');
 	Route::resource('/sliders',        'SliderSettingController');
+	Route::resource('/category',       'CategoryController');
+	Route::resource('/item_type',      'ItemTypeController');
 
 });

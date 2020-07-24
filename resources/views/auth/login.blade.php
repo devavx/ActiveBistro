@@ -16,6 +16,12 @@
     <link href="{{ asset('assets/dist/css/pages/login-register-lock.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet"> 
+    <style type="text/css">
+        .custom-control-label::after, .custom-control-label::before{
+            width: 0 !important; 
+            height: 0 !important;
+        }
+    </style>
 </head>
 
 <body class="skin-default card-no-border"> 
@@ -57,7 +63,7 @@
                             <div class="col-md-12">
                                 <div class="d-flex no-block align-items-center">
                                     <div class="custom-control custom-checkbox">
-                                        <input class="form-check-input custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <!-- <input type="checkbox" class="custom-control-input" id="customCheck1"> -->
                                         <label class="custom-control-label" for="customCheck1">Remember me</label>
                                     </div> 

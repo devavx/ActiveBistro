@@ -30,7 +30,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/ingredient') }}">Item</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/items') }}">Item</a></li>
                                 <li class="breadcrumb-item active">Edit</li>
                             </ol>
                             <!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
@@ -135,9 +135,11 @@
                                                     <label>Type </label>
                                                     <select class="form-control" id="item_type_id" name="item_type_id">
                                                         <option value="">Select Type</option>
-                                                        <option @if($val=='halal') selected @endif value="halal">Halal Options</option>
-                                                        <option @if($val=='vegan') selected @endif  value="vegan">Vegan Options</option>
-                                                        <option @if($val=='vegetarian') selected @endif  value="vegetarian">Vegetarian Options</option>
+                                                        @if(!empty($itemTypeList))
+                                                            @foreach($itemTypeList as $rows)
+                                                                <option @if($val==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach 
+                                                        @endif 
                                                     </select>
                                                 </div>
                                             </div> 
@@ -153,8 +155,11 @@
                                                     <label>Category </label>
                                                     <select class="form-control" id="category_id" name="category_id" required>
                                                         <option value="">Select Category</option>
-                                                        <option  @if($val==1) selected @endif value="1">Entrees</option>
-                                                        <option  @if($val==2) selected @endif value="2">Protein Bites</option> 
+                                                         @if(!empty($categoryList))
+                                                            @foreach($categoryList as $rows)
+                                                                <option @if($val==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach 
+                                                        @endif 
                                                     </select>
                                                 </div>
                                             </div> 

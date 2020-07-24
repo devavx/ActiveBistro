@@ -131,9 +131,11 @@
                                                     <label>Type </label>
                                                     <select class="form-control" id="item_type_id" name="item_type_id">
                                                         <option value="">Select Type</option>
-                                                        <option value="halal">Halal Options</option>
-                                                        <option value="vegan">Vegan Options</option>
-                                                        <option value="vegetarian">Vegetarian Options</option>
+                                                        @if(!empty($itemTypeList))
+                                                            @foreach($itemTypeList as $rows)
+                                                                <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach 
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div> 
@@ -146,8 +148,11 @@
                                                     <label>Category </label>
                                                     <select class="form-control" id="category_id" name="category_id" required>
                                                         <option value="">Select Category</option>
-                                                        <option value="1">Entrees</option>
-                                                        <option value="2">Protein Bites</option> 
+                                                        @if(!empty($categoryList))
+                                                            @foreach($categoryList as $rows)
+                                                                <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach 
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div> 
@@ -178,7 +183,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ route('admin.ingredient.index') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ route('admin.items.index') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -215,6 +220,8 @@
                         required: true,               
                     },
                     calories: {
+                        required: true,               
+                    },carbs: {
                         required: true,               
                     },
                     "category_id":"required",
