@@ -7,6 +7,9 @@ use App\Faq;
 use App\HowItWork;
 use App\PrivacyPolicy;
 use App\TermCondition;
+use App\Item;
+use App\Category;
+use App\ItemType;
 
 class FrontendController extends Controller
 {
@@ -59,6 +62,18 @@ class FrontendController extends Controller
     public function privacyPolicy()
     {
         $listData = PrivacyPolicy::where('active',1)->get();
-    	return view('frontend.privacy_policy',compact('listData'));
+        return view('frontend.privacy_policy',compact('listData'));
+    }
+    public function getAllItem()
+    {
+        $query = Item::where('active',1);
+        if (!empty(request('type'))) {
+            $query->where('item_type_id',request('type'));
+        }
+        $listData = $query->get();
+
+        $categoryData = Category::where('active',1)->get();
+        $itemTypeData = ItemType::where('active',1)->get();
+    	return view('frontend.all_item',compact(['listData','categoryData','itemTypeData']));
     }
 }

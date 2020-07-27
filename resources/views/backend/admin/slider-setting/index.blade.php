@@ -60,6 +60,7 @@
                             <thead>
                                 <tr>
                                     <th>Images</th> 
+                                    <th>Status</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -68,7 +69,12 @@
                                 @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr>
-                                    <td><img src="{{ $rows->thumbnail }}" class="img-responsive" width="100"> </td>    
+                                    <td><img src="{{ $rows->thumbnail }}" class="img-responsive" width="100"> </td>   
+                                    @if($rows->active)
+                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
+                                    @else
+                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
+                                    @endif 
                                     <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
                                     <td>                                        
                                         <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
@@ -124,6 +130,15 @@
         url = "{{ url('/admin/sliders/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
+
+    $(document).ready(function(){
+        $(document).on('click','.change_status',function(){
+            var id = $(this).attr('id');
+            url = "{{ url('/admin/sliders/change_status/') }}/"+id; 
+            var status_val = $(this).attr('data-id');
+            changeStatusConfirmMessage(id,url,'change_status');
+        });
+    });
 
 </script>
 @endsection

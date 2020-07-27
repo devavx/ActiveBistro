@@ -78,6 +78,69 @@ function deleteConfirmMessage(id, url, buttonId) {
         }
     }); 
 }
+function changeStatusConfirmMessage(id, url, buttonId) {
+    swal({
+        title: "Are you sure?",
+        // text: "This action can not be reserved!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) { 
+            $.ajax({  
+            url: url,  
+            cache:  false,
+            dataType:'json',
+            contentType: false, 
+            processData: false,
+            beforeSend:function(){
+                $(buttonId).prop('disabled',true);
+                $(buttonId).html('Deleting...!!'); 
+                $('#cover-spin').show(); 
+            },
+            success:function(result){  
+            $(buttonId).prop('disabled',false); 
+            $('#cover-spin').hide(); 
+            switch(result.status){
+              case 'success':
+                    (function ($) {
+                     "use strict";                              
+                            Lobibox.notify('success', {
+                                position: 'top right',
+                                msg: result.message
+                            });
+                    })(jQuery);
+
+                    setTimeout(function(){
+                        location.reload();},
+                    2000);
+              break;
+              case 'error':
+                    (function ($) {
+                     "use strict"; 
+                            Lobibox.notify('error', {
+                            position: 'top right',
+                            msg: result.message
+                        });
+                    })(jQuery);                        
+              break;
+              default:
+                alert('Invalid Responce!!!');  
+                $('#cover-spin').hide();  
+              break;   
+            }; 
+                
+            },
+            error:function() { 
+                alert('Something Went Worng!!');
+            }
+        });
+        } else { 
+          // swal("Your imaginary file is safe!");
+        }
+    }); 
+}
 
 function showConfirmMessage(type, id, url) {
     swal({

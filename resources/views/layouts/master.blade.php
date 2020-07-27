@@ -7,7 +7,7 @@
 	<title>@yield('title')</title>
 	<meta name="description" content="">
   	<meta name="keywords" content="">
-  	<link rel="icon" type="image/png" href="image/favicon-icon.png">
+  	<link rel="icon" type="image/png" href="{{ asset('uploads/image/favicon-icon.png') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/mdb.min.css') }}" rel="stylesheet">

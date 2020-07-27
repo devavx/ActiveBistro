@@ -110,4 +110,22 @@ class TermConditionController extends Controller
 
         return json_encode($result);
     } 
+    public function changeStatus($id=''){
+        $result = array();
+        $data =  TermCondition::find($id);
+        if (!empty($data)) {
+            if($data->active == '0') {
+                $data->active=1;
+            }else{
+                $data->active = 0;
+            } 
+            $data->update();
+            $result['status']  = 'success';
+            $result['message'] = 'Stactus Change Sucessfully !';
+        }else{
+            $result['status']  = 'error';
+            $result['message'] = 'OPPS! Something Went Wrong!';
+        }
+        return json_encode($result);
+    }
 }

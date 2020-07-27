@@ -82,13 +82,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $item->name }}">
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $item->name }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Sub Name</label>
-                                                    <input type="text" id="sub_name" name="sub_name" class="form-control" placeholder="Enter Sub name.." value="{{ $item->sub_name }}">
+                                                    <input type="text" id="sub_name" name="sub_name" class="form-control" placeholder="Enter Sub name.." value="{{ $item->sub_name }}" required>
                                                 </div>
                                             </div> 
                                         </div> 
@@ -96,13 +96,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Short Description</label>
-                                                    <input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter Short Description.." value="{{ $item->short_description }}">
+                                                    <input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter Short Description.." value="{{ $item->short_description }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Description </label>
-                                                    <input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter Sub name.."  value="{{ $item->long_description }}">
+                                                    <input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter Sub name.."  value="{{ $item->long_description }}" required>
                                                 </div>
                                             </div> 
                                         </div>
@@ -110,13 +110,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Protein</label>
-                                                    <input type="text" name="protein" id="protein" class="form-control" placeholder="Enter protein.." value="{{ $item->protein }}">
+                                                    <input type="text" name="protein" id="protein" class="form-control" placeholder="Enter protein.." value="{{ $item->protein }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Calories </label>
-                                                    <input type="text" name="calories" id="calories" class="form-control" placeholder="Enter calories.." value="{{ $item->calories }}">
+                                                    <input type="text" name="calories" id="calories" class="form-control" placeholder="Enter calories.." value="{{ $item->calories }}" required>
                                                 </div>
                                             </div> 
                                         </div>
@@ -124,7 +124,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Carbs</label>
-                                                    <input type="text" name="carbs" id="carbs" class="form-control" placeholder="Enter Carbs.."  value="{{ $item->carbs }}">
+                                                    <input type="text" name="carbs" id="carbs" class="form-control" placeholder="Enter Carbs.." value="{{ $item->carbs }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -133,7 +133,7 @@
                                                          $val=$item->item_type_id;
                                                     ?> 
                                                     <label>Type </label>
-                                                    <select class="form-control" id="item_type_id" name="item_type_id">
+                                                    <select class="form-control" id="item_type_id" name="item_type_id" required>
                                                         <option value="">Select Type</option>
                                                         @if(!empty($itemTypeList))
                                                             @foreach($itemTypeList as $rows)
@@ -141,6 +141,20 @@
                                                             @endforeach 
                                                         @endif 
                                                     </select>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Selling Price</label>
+                                                    <input type="number" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price.." value="{{ $item->selling_price }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Regular Price </label>
+                                                    <input type="number" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regual Price.." value="{{ $item->actual_price }}" required>
                                                 </div>
                                             </div> 
                                         </div>
@@ -177,7 +191,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Ingredient</label>
-                                                    <select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]"   style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+                                                    <select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select" required>
                                                         @if(!empty($listData))
                                                             @foreach($listData as $rows)
                                                             <option value="{{ $rows->id }}"

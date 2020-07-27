@@ -73,6 +73,7 @@
                                     <th>Rate For 3 Days</th>
                                     <th>No Of Meal Two Days</th>
                                     <th>No Of Meal Three Days</th>
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -87,6 +88,11 @@
                                     <td> {{ $rows->rate_per_item_three_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_two_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_three_days ?? '-'}}</td>
+                                    @if($rows->active)
+                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
+                                    @else
+                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
+                                    @endif
                                     <td> {{ $rows->created_at ?? '-'}}</td> 
                                     <td style="text-align: center; ">
                                         <a class="like" href="{{ route('admin.meals.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
@@ -145,6 +151,14 @@
         url = "{{ url('/admin/meals/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
+    $(document).ready(function(){
+        $(document).on('click','.change_status',function(){
+            var id = $(this).attr('id');
+            url = "{{ url('/admin/meals/change_status/') }}/"+id; 
+            var status_val = $(this).attr('data-id');
+            changeStatusConfirmMessage(id,url,'change_status');
+        });
+    });
 
 </script>
 @endsection

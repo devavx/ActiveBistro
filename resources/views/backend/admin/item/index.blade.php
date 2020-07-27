@@ -72,6 +72,7 @@
                                     <th>ShortDescription</th> 
                                     <th>Protein</th> 
                                     <th>Calories</th> 
+                                    <th>Status</th>
                                     <th>Thumnail</th> 
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -86,6 +87,11 @@
                                     <td> {{ $rows->short_description ?? '-'}}</td>
                                     <td> {{ $rows->protein ?? '-'}}</td>
                                     <td> {{ $rows->calories ?? '-'}}</td>
+                                    @if($rows->active)
+                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
+                                    @else
+                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
+                                    @endif
                                     <td><img src="{{ $rows->thumnail }}" alt="image" width="100"> </td>
                                     <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
                                     <td style="text-align: center; ">
@@ -145,6 +151,15 @@
         url = "{{ url('/admin/items/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
+
+    $(document).ready(function(){
+        $(document).on('click','.change_status',function(){
+            var id = $(this).attr('id');
+            url = "{{ url('/admin/items/change_status/') }}/"+id; 
+            var status_val = $(this).attr('data-id');
+            changeStatusConfirmMessage(id,url,'change_status');
+        });
+    });
 
 </script>
 @endsection

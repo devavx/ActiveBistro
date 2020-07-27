@@ -28,6 +28,7 @@ Route::get('/term_condition', 'FrontendController@termCondition')->name('term_co
 Route::get('/privacy_policy', 'FrontendController@privacyPolicy')->name('privacy_policy');
 Route::get('/about', 'FrontendController@about')->name('about');
 Route::get('/contact', 'FrontendController@contact')->name('contact');
+Route::get('/items', 'FrontendController@getAllItem')->name('all_items');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -40,16 +41,17 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 
 	Route::get('/customers', 'Admin\AdminController@customerList')->name('customer.list');
 
-	// MealPlanController URI
-	Route::get('/meals', 'Admin\MealPlanController@index')->name('meal.index');
+	// MealPlanController URI 
 	Route::get('/meals/delete/{id}', 'Admin\MealPlanController@delete')->name('meal.delete');
-	Route::get('/meals/create', 'Admin\MealPlanController@create')->name('meal.create');
+	Route::get('/meals/change_status/{id}', 'Admin\MealPlanController@changeStatus')->name('meal.change_status'); 
 
 	// IngredientController URI
 	Route::get('/ingredient/delete/{id}', 'Admin\IngredientController@delete')->name('meal.delete');
+	Route::get('/ingredient/change_status/{id}', 'Admin\IngredientController@changeStatus')->name('ingredient.change_status');
 
 	// ItemController URI
 	Route::get('/items/delete/{id}', 'ItemController@delete')->name('items.delete');
+	Route::get('/items/change_status/{id}', 'ItemController@changeStatus')->name('items.chnage_status');
 	// ItemController URI
 	Route::get('/orders', 'ItemController@orders')->name('items.orders');
 
@@ -59,22 +61,34 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::get('sliders/fetch', 'SliderSettingController@fetch')->name('sliders.fetch');
 
 	Route::get('/sliders/delete/{id}', 'SliderSettingController@delete')->name('setting.slider.delete');
+	Route::get('/sliders/change_status/{id}', 'SliderSettingController@changeStatus')->name('setting.slider.change_status');
 	
 	Route::get('/how_it_works/delete/{id}', 'HowItWorkController@delete')->name('setting.how_it_work.delete');
+	Route::get('/how_it_works/change_status/{id}', 'HowItWorkController@changeStatus')->name('setting.how_it_work.change_status');
 
 	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
+	Route::get('/faqs/chnage_status/{id}', 'Admin\FaqController@changeStatus')->name('setting.faqs.change_status');
+
 
 	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
+	Route::get('/postal_codes/change_status/{id}', 'Admin\PostalCodeController@changeStatus')->name('postal_codes.change_status');
+
 
 	Route::get('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
-	Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
+	Route::get('/category/change_status/{id}', 'CategoryController@changeStatus')->name('category.chnage_status');
 
-	
+
+	Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
+	Route::get('/item_type/change_status/{id}', 'ItemTypeController@changeStatus')->name('item_type.change_status');
  
 
 	Route::get('/term_conditions/delete/{id}', 'TermConditionController@delete')->name('setting.term_conditions.delete');
+	Route::get('/term_conditions/change_status/{id}', 'TermConditionController@changeStatus')->name('setting.term_conditions.change_status');
+
 
 	Route::get('/privacy_policy/delete/{id}', 'PrivacyPolicyController@delete')->name('setting.privacy_policy.delete');
+	Route::get('/privacy_policy/change_status/{id}', 'PrivacyPolicyController@changeStatus')->name('setting.privacy_policy.change_status');
+
 
 	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
 

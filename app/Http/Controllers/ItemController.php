@@ -54,7 +54,7 @@ class ItemController extends Controller
             // $filenameToStore = $filename.'-'.rand().'.'.$ext;
             $storeImage = $request->file('thumbnail')->storeAs('public/items',$newimg);
         }else{
-            $newimg = 'noimage.png';
+            $newimg = 'img.jpg';
         }
          
         $product= Item::create([
@@ -131,6 +131,8 @@ class ItemController extends Controller
         $item->protein = ($request->protein) ? $request->protein:0;
         $item->calories = ($request->calories) ? $request->calories:0; 
         $item->carbs = ($request->carbs) ? $request->carbs:0; 
+        $item->selling_price = ($request->selling_price) ? $request->selling_price:0; 
+        $item->actual_price = ($request->actual_price) ? $request->actual_price:0; 
         $item->item_type_id = ($request->item_type_id) ? $request->item_type_id:0; 
         $item->category_id = ($request->category_id) ? $request->category_id:0; 
         $item->ingredients()->detach();
@@ -161,6 +163,27 @@ class ItemController extends Controller
             $data->delete();
             $result['status']  = 'success';
             $result['message'] = 'Item Deleted Sucessfully !';
+        }else{
+            $result['status']  = 'error';
+            $result['message'] = 'OPPS! Something Went Wrong!';
+        }
+
+        return json_encode($result);
+    }
+    public function changeStatus($id='')
+    {
+        $result = array();
+        $data =  Item::find($id);
+        
+        if (!empty($data)) {
+            if($data->active == '0') {
+                $data->active=1;
+            }else{
+                $data->active = 0;
+            } 
+            $data->update();
+            $result['status']  = 'success';
+            $result['message'] = 'Item Stactus Change Sucessfully !';
         }else{
             $result['status']  = 'error';
             $result['message'] = 'OPPS! Something Went Wrong!';

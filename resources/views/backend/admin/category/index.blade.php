@@ -68,6 +68,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>  
+                                    <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
@@ -77,6 +78,11 @@
                                     @foreach($listData as $rows)
                                     <tr>
                                         <td> {{ $rows->name ?? '-'}}</td> 
+                                        @if($rows->active)
+                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
+                                        @else
+                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
+                                        @endif
                                         <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
                                         <td style="text-align: center; ">
                                             <a class="like" href="{{ route('admin.category.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
@@ -135,6 +141,15 @@
         url = "{{ url('/admin/category/delete/') }}/"+id; 
         deleteConfirmMessage(id,url,'remove');
     }
+    $(document).ready(function(){
+        $(document).on('click','.change_status',function(){
+            var id = $(this).attr('id');
+            url = "{{ url('/admin/category/change_status/') }}/"+id; 
+            var status_val = $(this).attr('data-id');
+            changeStatusConfirmMessage(id,url,'change_status');
+        });
+    });
+
 
 </script>
 @endsection

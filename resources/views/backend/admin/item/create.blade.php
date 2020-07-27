@@ -141,6 +141,20 @@
                                             </div> 
                                         </div>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Selling Price</label>
+                                                    <input type="number" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price..">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Regular Price </label>
+                                                    <input type="number" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regual Price..">
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6"> 
                                             </div>
                                             <div class="col-md-12">
@@ -175,7 +189,6 @@
                                                         @else
                                                             <option value="">Select</option>
                                                         @endif
-
                                                     </select>
                                                 </div>
                                             </div> 
@@ -207,6 +220,10 @@
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
                     name: {
+                        required: true,               
+                    },selling_price: {
+                        required: true,               
+                    },actual_price: {
                         required: true,               
                     },
                     sub_name: {
