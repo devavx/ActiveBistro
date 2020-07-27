@@ -73,7 +73,7 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.update',$item->id) }}" method="post">
+                                <form action="{{ route('admin.items.update',$item->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT') 
                                     <div class="form-body"> 
