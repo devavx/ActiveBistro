@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title') Active Bistro | All Item @endsection
-@section('csss') 
+@section('css') 
  <link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <style type="text/css">
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
