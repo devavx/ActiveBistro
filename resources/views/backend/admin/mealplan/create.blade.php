@@ -3,7 +3,11 @@
 @section('title') Admin | Meal Plan | Create @endsection
 
 @section('style')  
+<link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #000 !important;
+    }
     .error{
         color: red;
     }
@@ -123,6 +127,22 @@
                                             </div> 
                                         </div>
                                     </div>
+                                     <div class="row"> 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Select Item</label>
+                                                    <select class="form-control select2 select2-multiple" id="item_id" name="item_id[]"   style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+                                                        @if(!empty(@listData))
+                                                            @foreach($listData as $rows)
+                                                            <option value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="">Select</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                        </div> 
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <a href="{{ route('admin.meals.index') }}" class="btn btn-inverse">Cancel</button>
@@ -136,9 +156,13 @@
         </div>
          @endsection
     @section('script')
-    
+    <script type="text/javascript" src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
+        $(".select2").select2({
+            placeholder: "Please select Item",
+            allowClear: true
+        });
         $(document).ready(function () {      
 
            $('#add_form').validate({ // initialize the plugin
@@ -156,6 +180,12 @@
                     },rate_per_item_three_days: {
                         required: true,               
                     },
+                    "item_id[]":"required",  
+                },
+                messages: {
+                    "item_id[]": {
+                        required: 'Please select at least one.'
+                    }
                 }   
             });
 

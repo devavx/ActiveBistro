@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\MealPlanRules;
 use App\MealPlan;
+use App\Item;
 
 class MealPlanController extends Controller
 {
@@ -22,8 +23,8 @@ class MealPlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('backend/admin/mealplan/create');
+    {   $listData = Item::where('active',1)->get();
+        return view('backend/admin/mealplan/create',compact('listData'));
     }
 
     /**
@@ -34,8 +35,11 @@ class MealPlanController extends Controller
      */
     public function store(MealPlanRules $request)
     {      
-         $res=MealPlan::create($request->all());
+        $itemId = $request->item_id;
+        unset($request->item_id);
+        $res=MealPlan::create($request->all());
         if ($res) { 
+            $res->items()->attach($itemId);
             return redirect('admin/meals')->with('success','MealPlan Added successfully!');;
         }else{ 
             return redirect()->back('errormsg','Something Went Wrong!'); 
@@ -62,8 +66,9 @@ class MealPlanController extends Controller
     public function edit($id)
     {  
     	$mealplan =MealPlan::where('id',$id)->first(); 
+        $listData = Item::where('active',1)->get();
         if (!empty($mealplan)) {
-        	return view('backend/admin/mealplan/edit',compact('mealplan')); 
+        	return view('backend/admin/mealplan/edit',compact(['mealplan','listData'])); 
         }
         return redirect('admin/meals');
         
@@ -77,21 +82,24 @@ class MealPlanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(MealPlanRules $request,$id)
-    { 
-    	// echo "<pre>";
-    	// print_r($mealplan);die;
-    	$mealplan =MealPlan::where('id',$id)->first(); 
+    {  
+    	$mealplan =MealPlan::where('id',$id)
+                            ->first(); 
     	if (empty($mealplan)) {
     		return back()->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');
-    	}
+    	} 
+         
         $mealplan->name       = $request->name;
         $mealplan->no_of_days = $request->no_of_days;
         $mealplan->rate_per_item   = $request->rate_per_item;
         $mealplan->meal_in_two_days   = $request->meal_in_two_days;
         $mealplan->meal_in_three_days   = $request->meal_in_three_days; 
-        $mealplan->rate_per_item_three_days = $request->rate_per_item_three_days; 
+        $mealplan->rate_per_item_three_days= $request->rate_per_item_three_days; 
+        
         $save = $mealplan->update();
+        $mealplan->items()->detach();
         if ($save) {
+            $mealplan->items()->attach($request->item_id);
             return redirect('admin/meals')->with('success','MealPlan Updated successfully!');
         }else{
             return back()->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');

@@ -3,19 +3,17 @@
 @section('title') Admin | Meal Plan | Edit @endsection
 
 @section('style')  
+<link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 <style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #000 !important;
+    }
     
 </style>
 @endsection
 @section('content')
-<div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
+<div class="page-wrapper"> 
+            <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
                         <h4 class="text-themecolor">Edit Meal Plan</h4>
@@ -122,6 +120,27 @@
                                             </div> 
                                         </div>
                                     </div>
+                                     <div class="row"> 
+                                        @php
+                                            $ids = (isset($mealplan) && $mealplan->items->count() > 0 ) ? array_pluck($mealplan->items->toArray(), 'id') : null;
+                                        @endphp
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Select Item</label>
+                                                    <select class="form-control select2 select2-multiple" id="item_id" name="item_id[]"   style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+                                                        @if(!empty(@listData))
+                                                            @foreach($listData as $rows)
+                                                            <option value="{{ $rows->id }}"  @if(!is_null($ids) && in_array($rows->id, $ids))
+                                                            {{'selected'}}
+                                                            @endif>{{ $rows->name }}</option>
+                                                            @endforeach
+                                                        @else
+                                                            <option value="">Select</option>
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                        </div> 
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <button type="button" class="btn btn-inverse">Cancel</button>
@@ -136,7 +155,12 @@
          @endsection
     @section('script')
     
-    <script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+         $(".select2").select2({
+            placeholder: "Please select Item",
+            allowClear: true
+        });
+    </script>
     @endsection
        
