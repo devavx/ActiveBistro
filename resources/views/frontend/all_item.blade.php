@@ -88,7 +88,7 @@
 
 			<div class="col-lg-4 col-sm-4 col-12">
 				<div class="text-center">
-					<a href="process5.html" class="text-color border p-2 pl-3 pr-3"><u>Edit My Meal Plan</u></a>
+					<a href="{{ url('/meals') }}" class="text-color border p-2 pl-3 pr-3"><u>Edit My Meal Plan</u></a>
 				</div>
 			</div>
 		</div>

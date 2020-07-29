@@ -135,10 +135,10 @@ class MealPlanController extends Controller
         $result = array();
         $data =  MealPlan::find($id);
         if (!empty($data)) {
-            if($data->active == '0') {
-                $data->active=1;
+            if($data->active) {
+                $data->active = 0; 
             }else{
-                $data->active = 0;
+                $data->active=1;
             } 
             $data->update();
             $result['status']  = 'success';

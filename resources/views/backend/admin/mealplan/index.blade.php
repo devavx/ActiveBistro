@@ -68,7 +68,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>No Of Days</th>
+                                    <th>Day</th>
                                     <th>Rate For 2 Days</th>
                                     <th>Rate For 3 Days</th>
                                     <th>No Of Meal Two Days</th>
@@ -79,32 +79,36 @@
                                 </tr>
                             </thead> 
                             <tbody>
-                                @if(!empty(@mealList))
-                                @foreach($mealList as $rows)
+                                <?php 
+                                if(!empty($mealList)){ 
+                                $days = App\MealPlan::AllWeekDays; 
+                                foreach($mealList as $rows){  
+                                $day =  $rows->no_of_days ; 
+                                    ?>
                                 <tr>
                                     <td> {{ $rows->name ?? '-'}}</td>
-                                    <td> {{ $rows->no_of_days ?? '-'}}</td>
+                                    <td> {{ $days[$day] ?? '-' }}</td>
                                     <td> {{ $rows->rate_per_item ?? '-'}}</td>
                                     <td> {{ $rows->rate_per_item_three_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_two_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_three_days ?? '-'}}</td>
                                     @if($rows->active)
-                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
+                                        <td> <button type="button" title="Click for Inactive" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
                                     @else
-                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
+                                        <td> <button type="button" title="Click for Active" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
                                     @endif
-                                    <td> {{ $rows->created_at ?? '-'}}</td> 
+                                    <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
                                     <td style="text-align: center; ">
                                         <a class="like" href="{{ route('admin.meals.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
                                         <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
                                     </td> 
                                 </tr>  
-                                @endforeach
-                                @else
+                                <?php }
+                                }else{ ?>
                                 <tr>
                                     <td colspan="6" class="text-danger">No Record Found !</td>
                                 </tr> 
-                                @endif                                      
+                                <?php } ?>                                      
                             </tbody>
                             </table>
                         </div>

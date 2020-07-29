@@ -83,10 +83,16 @@
                                                     <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $mealplan->name }}">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-6"> 
                                                 <div class="form-group">
-                                                    <label>No Of Days</label>
-                                                    <input type="text" name="no_of_days" class="form-control" placeholder="Enter No of Days" value="{{ $mealplan->no_of_days }}">
+                                                    <label>Select Days</label>
+                                                    <select class="form-control" name="no_of_days" id="no_of_days">
+                                                        <option value="">Select Days</option>
+                                                        @foreach(App\MealPlan::AllWeekDays as $key => $day)
+                                                        <option value="{{ $key }}" <?php if ($mealplan->no_of_days == $key):
+                                                        echo "selected";  endif ?>>{{ $day }}</option>
+                                                        @endforeach
+                                                    </select> 
                                                 </div>
                                             </div>
                                         </div>

@@ -10,6 +10,7 @@ use App\TermCondition;
 use App\Item;
 use App\Category;
 use App\ItemType;
+use App\MealPlan;
 
 class FrontendController extends Controller
 {
@@ -74,6 +75,19 @@ class FrontendController extends Controller
 
         $categoryData = Category::where('active',1)->get();
         $itemTypeData = ItemType::where('active',1)->get();
-    	return view('frontend.all_item',compact(['listData','categoryData','itemTypeData']));
+        return view('frontend.all_item',compact(['listData','categoryData','itemTypeData']));
+    }
+    public function getAllMeal()
+    {
+        $query = MealPlan::with(['items:items.id as itemId,name,selling_price'])
+                        ->where('active',1);
+        if (!empty(request('type'))) {
+            $query->where('item_type_id',request('type'));
+        }
+        $listData = $query->get();
+
+        $categoryData = Category::where('active',1)->get();
+        $itemTypeData = ItemType::where('active',1)->get();
+    	return view('frontend.all_meal',compact(['listData','categoryData','itemTypeData']));
     }
 }

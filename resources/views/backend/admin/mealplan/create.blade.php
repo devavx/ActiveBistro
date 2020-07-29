@@ -91,9 +91,15 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>No Of Days</label>
-                                                    <input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="Enter No of Days">
+                                                <div class="form-group"> 
+                                                    <label>Select Days</label>
+                                                    <select class="form-control" name="no_of_days" id="no_of_days">
+                                                        <option value="">Select Days</option>
+                                                        @foreach(App\MealPlan::AllWeekDays as $key => $day)
+                                                        <option value="{{ $key }}">{{ $day }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <!-- <input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="Enter No of Days"> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -101,13 +107,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item</label>
-                                                    <input type="text" name="rate_per_item" id="rate_per_item" class="form-control" placeholder="Rate Per Item..">
+                                                    <input type="number" name="rate_per_item" id="rate_per_item" class="form-control" placeholder="Rate Per Item..">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item Three Days</label>
-                                                    <input type="text" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
+                                                    <input type="number" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
                                                 </div>
                                             </div>
                                         </div>
@@ -116,13 +122,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
-                                                    <input type="text" name="meal_in_two_days" id="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
+                                                    <input type="number" name="meal_in_two_days" id="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
                                                 </div>
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
-                                                    <input type="text" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
+                                                    <input type="number" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
                                                 </div>
                                             </div> 
                                         </div>

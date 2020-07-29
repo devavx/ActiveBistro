@@ -29,6 +29,7 @@ Route::get('/privacy_policy', 'FrontendController@privacyPolicy')->name('privacy
 Route::get('/about', 'FrontendController@about')->name('about');
 Route::get('/contact', 'FrontendController@contact')->name('contact');
 Route::get('/items', 'FrontendController@getAllItem')->name('all_items');
+Route::get('/meals', 'FrontendController@getAllMeal')->name('all_meals');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

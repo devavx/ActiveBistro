@@ -11,6 +11,16 @@ class MealPlan extends Model
    protected $dates = ['deleted_at'];
    protected $fillable = ['name','no_of_days','rate_per_item','rate_per_item_three_days','meal_in_two_days','meal_in_three_days'];
 
+   	const AllWeekDays = [
+   		'Mon'=>'Monday',
+   		'Tue'=>'Tuesday',
+   		'Wed'=>'Wednesday',
+   		'Thu'=>'Thursday',
+   		'Fri'=>'Friday',
+   		'Sat'=>'Saturday',
+   		'Sun'=>'Sunday'
+   	];
+
    	public function items()
 	{
 		return $this->belongsToMany("App\Item");
