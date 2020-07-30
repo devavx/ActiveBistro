@@ -4,6 +4,15 @@
 <style type="text/css"></style>
  @endsection
 @section('content') 
+	<div class="top-offer bg-color p-2">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h6 class="text-white m-0 text-center">Seen us on <a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.">Click Here to get 50% OFF your first 2 boxes.</a></h6>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12 p-0">
@@ -86,90 +95,54 @@
 		</div>
 	</div>
 
-	<div class="container mt-5  mb-5">
+	<div class="container mt-5 mb-5">
 		<div class="row">
-			<div class="col-12">
-				<h2 class="font-weight-bold text-center text-color">Our Plans</h2>
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-img mt-5">
+					<img src="{{ asset('uploads/image/home1.jpg') }}" class="">
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-text mt-5">
+					<h2 class="text-color font-weight-bold">Choose your meals</h2>
+					<p>Our chef-designed recipes include balanced Mediterranean meals, quick one-pan dinners, and top-rated customer favorites.</p>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="homeplan text-center shadow pb-3 mt-3">
-					<div class="homeplan-header bg-color p-2 mb-3">
-						<h6 class="mb-0 text-white">Meal for 6 days (Mon-Sat)</h6>
-					</div>
 
-					<h5 class="font-weight-bold text-color">From £2.00 Per Meal</h5>
-					<p class="font-weight-bold text-color">12 Meals - 2/Day</p>
-					<p>£29.88</p>
-					<p class="font-weight-bold text-color">18 Meals - 3/Day</p>
-					<p>£36.00</p>
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-text mt-5">
+					<h2 class="text-color font-weight-bold">Unpack your box</h2>
+					<p>We guarantee the freshness of all our ingredients and deliver them in an insulated box right to your door.</p>
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="homeplan text-center shadow pb-3 mt-3">
-					<div class="homeplan-header bg-color p-2 mb-3">
-						<h6 class="mb-0 text-white">Meal for 7 days (Mon-Sun)</h6>
-					</div>
-
-					<h5 class="font-weight-bold text-color">From £1.90 Per Meal</h5>
-					<p class="font-weight-bold text-color">14 Meals - 2/Day</p>
-					<p>£28.70</p>
-					<p class="font-weight-bold text-color">21 Meals - 3/Day</p>
-					<p>£39.90</p>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="homeplan text-center shadow pb-3 mt-3">
-					<div class="homeplan-header bg-color p-2 mb-3">
-						<h6 class="mb-0  text-white">Weekend Meals</h6>
-					</div>
-
-					<h5 class="font-weight-bold text-color">From £2.00 Per Meal</h5>
-					<p class="font-weight-bold text-color">10 Meals - 2/Day</p>
-					<p>£25.00</p>
-					<p class="font-weight-bold text-color">15 Meals - 3/Day</p>
-					<p>£30.00</p>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="homeplan text-center shadow pb-3 mt-3">
-					<div class="homeplan-header bg-color p-2 mb-3">
-						<h6 class="mb-0 text-white">7 Day Meals</h6>
-					</div>
-
-					<h5 class="font-weight-bold text-color">From £2.50 Per Meal</h5>
-					<p class="font-weight-bold text-color">14 Meals - 2/Day</p>
-					<p>£42.00</p>
-					<p class="font-weight-bold text-color">21 Meals - 3/Day</p>
-					<p>£52.50</p>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="homeplan text-center shadow pb-3 mt-3">
-					<div class="homeplan-header bg-color p-2 mb-3">
-						<h6 class="mb-0 text-white">Monday - Friday</h6>
-					</div>
-
-					<h5 class="font-weight-bold text-color">From £2.00 Per Meal</h5>
-					<p class="font-weight-bold text-color">10 Meals - 2/Day</p>
-					<p>£30.00</p>
-					<p class="font-weight-bold text-color">10 Meals - 3/Day</p>
-					<p>£20.00</p>
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-img mt-5">
+					<img src="{{ asset('uploads/image/home2.jpg') }}" class="">
 				</div>
 			</div>
 		</div>
 
-		<div class="row mt-3">
-			<div class="col-12 text-center">
-				<a href="signup.html" class="btn btn-info">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
+		<div class="row">
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-img mt-5">
+					<img src="{{ asset('uploads/image/home3') }}.jpg" class="">
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-12">
+				<div class="home1-text mt-5">
+					<h2 class="text-color font-weight-bold">Create magic</h2>
+					<p>Following our step-by-step instructions you’ll experience the magic of cooking recipes that our chefs create with your family’s tastes in mind.</p>
+				</div>
 			</div>
 		</div>
+
+
 	</div>
  @endsection
  @section('script')

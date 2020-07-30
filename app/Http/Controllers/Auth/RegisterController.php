@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -49,11 +50,21 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+         $message = array(
+            'dob.required' => 'The Date of birth field is required.',
+            'dob.date' => 'The Sex field should be a valid.',
+            'gender.required' => 'The Sex field is required.',
+            
+        );
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:20'],
+            'gender' => ['required', 'string', 'max:20'],
+            'dob' => ['required', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:8'],
+        ], $message);
     }
 
     /**
@@ -64,11 +75,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        if ($data['click_to_verify']=='on') {
+            $data['click_to_verify']=1;
+        }else{
+            $data['click_to_verify']=0;
+        }
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name' => $data['first_name'].' '.$data['last_name'],
+            'phone' => $data['phone'],
+            'gender' => $data['gender'],
+            'dob' => $data['dob'],
+            'gender_info' => $data['gender_info'] ?? $data['first_name'],
+            'click_to_verify' => $data['click_to_verify'] ?? '0',
             'role_id' => 2,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'about' => $data['first_name'],
         ]);
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    { 
+        if (!empty($user->first_name)) {
+            $this->redirectTo='/tailor_plan';
+        } 
     }
 }

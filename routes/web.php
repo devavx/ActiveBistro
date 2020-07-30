@@ -20,6 +20,10 @@ Auth::routes();
 Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/sign-in', 'FrontendController@login')->name('sign-in');
 Route::get('/sign-up', 'FrontendController@signup')->name('signup');
+Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');
+
+
+
 Route::get('/ourmenu', 'FrontendController@ourmenu')->name('ourmenu');
 
 Route::get('/how_it_work', 'FrontendController@howItWork')->name('how_it_work');

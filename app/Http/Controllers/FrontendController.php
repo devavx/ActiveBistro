@@ -26,7 +26,12 @@ class FrontendController extends Controller
 
     public function signup()
     {
-    	return view('frontend.process1');
+        // return view('frontend.process1');
+        return view('frontend.sign_up');
+    }
+    public function tailorPlan()
+    {  
+    	return view('frontend.tailor_plan');
     }
 
     public function ourmenu()
