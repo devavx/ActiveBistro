@@ -15,7 +15,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
-				<form id="msform" class="shadow p-3 mt-5 mb-5">
+				<form id="msform" class="shadow p-3 mt-5 mb-5" action="{{ route('save_tailor_plan') }}" method="post">
+					@csrf
 			        <ul id="progressbar">
 					    <li class="active" id="account"><strong>Welcome</strong></li>
 						<li class="active" id="personal"><strong>Tailor Plan</strong></li>
@@ -35,13 +36,13 @@
 			        			<div class="form-group">
 					        		<br>
 					        		<div class="custom-control custom-radio custom-control-inline">
-									  <input type="radio" class="custom-control-input" id="metric" value="metric" name="weighttotal">
+									  <input type="radio" class="custom-control-input" id="metric" value="metric" name="weight_total">
 									  <label class="custom-control-label" for="metric">Metric (kg/cm)</label>
 									</div>
 
 									<!-- Default inline 2-->
 									<div class="custom-control custom-radio custom-control-inline">
-									  <input type="radio" value="imperial" class="custom-control-input" id="imperial" name="weighttotal">
+									  <input type="radio" value="imperial" class="custom-control-input" id="imperial" name="weight_total">
 									  <label class="custom-control-label" for="imperial">Imperial (lb)</label>
 									</div>
 					        	</div>
@@ -121,7 +122,8 @@
 
 			        	<div class="form-group">
 			        		<!-- <a href="process1.html" type="button" class="btn btn-dark  rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Back</a> -->
-			        		<a href="process3.html" class="btn btn-info  float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></a>
+			        		<!-- <a href="process3.html" class="btn btn-info  float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></a> -->
+			        		<button type="submit" id="register_btn" class="btn btn-info  float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></button>
 			        	</div>
 			        	
 			        </fieldset>
@@ -131,7 +133,28 @@
 	</div>
 @endsection
 @section('script') 
+<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+
 	<script>
+		$(document).ready(function(){
+			 $('#msform').validate({ // initialize the plugin
+                rules: { 
+                    user_height: {required: true, number: true,},
+                    user_weight: { required: true, number: true,},
+                    user_targert_weight: { required: true,number: true,},
+                    activity_lavel: { required: true,},
+                    weight_total: { required: true,}, 
+                },   
+            });
+
+            $(document).on('click', '#register_btn', function(){
+                if (!$("#msform").valid()) { // Not Valid
+                    return false;
+                } else {
+                    
+                }
+            });  
+		})
 	   	$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		}) 

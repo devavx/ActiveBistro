@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TailorPlanRule;
 use App\Faq;
 use App\HowItWork;
 use App\PrivacyPolicy;
@@ -11,6 +12,7 @@ use App\Item;
 use App\Category;
 use App\ItemType;
 use App\MealPlan;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -31,9 +33,27 @@ class FrontendController extends Controller
     }
     public function tailorPlan()
     {  
-    	return view('frontend.tailor_plan');
+        return view('frontend.tailor_plan');
+    }
+    public function saveTailorPlan(TailorPlanRule $request)
+    {   $userData = Auth::user();
+        if (!empty($userData)) {
+            $userData->user_height= $request->user_height;
+            $userData->weight_total= $request->weight_total;
+            $userData->user_weight=$request->user_weight;
+            $userData->user_targert_weight= $request->user_targert_weight;
+            $userData->weight_goal= $request->weight_goal;
+            $userData->activity_lavel= $request->activity_lavel;
+            $userData->save();
+            return redirect('recommended_meal');
+        }
+    	return back();
     }
 
+    public function recommendedMeal()
+    {
+        return view('frontend.recommended_meal');
+    }
     public function ourmenu()
     {
         return view('frontend.our-menu');

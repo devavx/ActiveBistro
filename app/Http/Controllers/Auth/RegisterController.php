@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-         $message = array(
+        $message = array(
             'dob.required' => 'The Date of birth field is required.',
             'dob.date' => 'The Sex field should be a valid.',
             'gender.required' => 'The Sex field is required.',

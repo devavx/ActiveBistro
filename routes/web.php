@@ -21,6 +21,8 @@ Route::get('/', 'FrontendController@index')->name('index');
 Route::get('/sign-in', 'FrontendController@login')->name('sign-in');
 Route::get('/sign-up', 'FrontendController@signup')->name('signup');
 Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');
+Route::post('/tailorplan', 'FrontendController@saveTailorPlan')->name('save_tailor_plan');
+Route::get('/recommended_meal', 'FrontendController@recommendedMeal')->name('recommended_meal');
 
 
 
