@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('title') Active Bistro @endsection
-@section('csss') 
+@section('css') 
 <style type="text/css"></style>
- @endsection
+@endsection
 @section('content') 
 	<div class="top-offer bg-color p-2">
 		<div class="container">
@@ -23,38 +23,58 @@
 						<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
 						  <!--Indicators-->
 						  <ol class="carousel-indicators">
-						    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-						    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-						    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+						  	@if(!empty($listData))
+						    	@foreach($listData as $key => $rows)
+						    	<li data-target="#carousel-example-1z" data-slide-to="{{ $key }}" class=" @if($key==0) active @endif "></li>
+						    @endforeach
+							@else
+						    	<li data-target="#carousel-example-1z" data-slide-to="1"></li>
+						    @endif
+						     
 						  </ol>
 						  <!--/.Indicators-->
 						  <!--Slides-->
 						  <div class="carousel-inner" role="listbox">
 						    <!--First slide-->
-						    <div class="carousel-item active">
-						      <img class="d-block w-100" src="{{ asset('uploads/image/banner.png') }}"
-						        alt="First slide">
-						        <div class="top-banner-text">
-									<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
-									<a href="login.html" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
-								</div>
-						    </div>
+						    @if(!empty($listData))
+						    	@foreach($listData as $key => $rows)
+								    <div class="carousel-item @if($key==0) active @endif" style="height: 502px;">
+								    	@if($rows->thumbnail_type == 'video/mp4')
+                                            <video class="video-fluid" autoplay loop muted  >
+                                            <source src="{{ $rows->thumbnail }}" type="video/mp4" />
+                                      </video>
+                                        @else	
+								      <img class="d-block w-100" src="{{ $rows->thumbnail }}" alt="First slide" style="height: 502px;">
+								      @endif
+								        <div class="top-banner-text">
+											<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
+											@guest
+												<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
+											@else
+												<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
+											@endguest
+										</div>
+								    </div>
+								@endforeach
+							@else
 						    <!--/First slide-->
 						    <!--Second slide-->
-						    <div class="carousel-item">
-						      	<div class="video-height" style="height: 502px;">
-						      		<video class="video-fluid" autoplay loop muted  >
-							        	<source src="https://mdbootstrap.com/img/video/Agua-natural.mp4" type="video/mp4" />
-							      </video>
-						      	</div>
-						        <div class="top-banner-text">
-									<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
-									<a href="login.html" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
-								</div>
-						    </div>
+							    <div class="carousel-item">
+							      	<div class="video-height" style="height: 502px;">
+							      		<video class="video-fluid" autoplay loop muted  >
+								        	<source src="https://mdbootstrap.com/img/video/Agua-natural.mp4" type="video/mp4" />
+								      </video>
+							      	</div>
+							        <div class="top-banner-text">
+										<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
+										<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
+									</div>
+							    </div>
+							@endif
+
 						    <!--/Second slide-->
 						    <!--Third slide-->
-						    <div class="carousel-item">
+						    <!-- <div class="carousel-item">
 						      <div class="video-height" style="height: 502px;">
 						      		<video class="video-fluid" autoplay loop muted  >
 							        	<source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
@@ -64,7 +84,7 @@
 									<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
 									<a href="login.html" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
 								</div>
-						    </div>
+						    </div> -->
 						    <!--/Third slide-->
 						  </div>
 						  <!--/.Slides-->

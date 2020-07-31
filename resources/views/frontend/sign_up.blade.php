@@ -1,12 +1,21 @@
 @extends('layouts.master')
 @section('title') Active Bistro | SignUp @endsection
 @section('css') 
+<!-- Date picker plugins css -->
+ <link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" type="text/css" /> 
 <style type="text/css">
 	.invalid-feedback{
 		display: block !important;
 	}
 	.error{
 		color: red;
+	}
+	
+	.ti-angle-right:before {
+	    content: "<";
+	}
+	.ti-angle-left:before {
+	    content: ">";
 	}
 </style>
 @endsection
@@ -74,18 +83,15 @@
                                     </span>
                                 @enderror 
 			        		</div>
-			        	</div>
-			        	
-			        	
-			        	<div class="form-group">
-
+			        	</div> 
+			        	<div class="form-group"> 
 			        		<div class="row">
 			        			<div class="col-lg-6 col-sm-6 col-12">
 			        				<label>Sex <span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><i class="fa fa-question-circle"></i></span></label>
 			        			</div>
 
 			        			<div class="col-lg-6 col-sm-6 col-12">
-			        				<span class="float-right"><a href="javascript:void(0);" id="addGenderInfo" class="text-color">+ Add gender information</a></span>
+			        				<span class="float-right"><a href="javascript:void(0);" id="addGenderInfo" class="text-color" data-toggle="collapse" data-target="#genderInfo" data-text-alt="- Hide gender information">+ Add gender information</a></span>
 			        			</div>
 			        		</div>
 			        		
@@ -106,22 +112,20 @@
                             @enderror 
 			        	</div>
 
-			        	<div class="form-group"  style="display: none;" id="genderInfo">
+			        	<div class="form-group collapse" id="genderInfo">
 			        		<label class="d-block">Gender information <small>(Optional)</small></label>
 			        		<textarea class="form-control" rows="3" name="gender_info" id="gender_info">{{ old('password') }}</textarea>
 			        	</div>
 
 			        	<div class="form-group">
 			        		<label>Date of Birth</label>
-			        		<input type="date" class="form-control" name="dob" id="dob" value="{{ old('dob') }}">
+			        		<input type="text" class="form-control" name="dob" id="dob" value="{{ old('dob') }}" placeholder="Enter Date Of Birth..">
 			        			@error('dob')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror 
-			        	</div>
-
-
+			        	</div>  
 			        	<div class="form-group">
 			        		<label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
 			        		<div class="custom-control custom-checkbox ">
@@ -140,9 +144,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-			        	</div>
-
-			        	
+			        	</div> 
 			        	<div class="form-group">
 			        		<a href="{{ url('/sign-in') }}" class="btn btn-dark rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Login</a>
 			        		<button type="submit" id="register_btn" class="btn btn-info float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></button>
@@ -157,14 +159,27 @@
 
 @endsection
 @section('script')
+<script src="{{ asset('assets/node_modules/moment/moment.js') }}"></script>
+<script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
    <script>
+
+   	$('#dob').bootstrapMaterialDatePicker({ format: 'MM-DD-YYYY',time:false, maxDate: new Date() });
    	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
-	$(document).on('click','#addGenderInfo', function(){
-		$('#genderInfo').toggle();
-	});
+	// $(document).on('click','#addGenderInfo', function(){
+	// 	$('#genderInfo').toggle();
+	// });
+
+		jQuery(function($){
+		    $('#addGenderInfo[data-toggle="collapse"]').on('click', function(){ 
+		    $(this)
+		    .data('text-original', $(this).text())
+		    .text($(this).data('text-alt') )
+		    .data('text-alt', $(this).data('text-original'));
+		  });
+		});
 	$(document).ready(function () {   
 		$("#msform").on("submit", function(){ 
 		    if($("#click_to_verify").prop('checked') == true){  
@@ -176,8 +191,7 @@
 			    } else { 
 			    	$('#email').after('<span class="error">Sorry,Please enter a valid email I have enabled very strict email validation.</span>');
 			        return false;   // PASS validation otherwise
-			    }; 
-				 
+			    };  
 			} 
 		   return true;
 		})

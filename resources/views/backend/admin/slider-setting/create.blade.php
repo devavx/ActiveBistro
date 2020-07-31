@@ -101,34 +101,42 @@
     <script src="{{ asset('js/Lobibox.js') }}"></script>
      <script> 
         Dropzone.options.dropzoneForm = {
-           autoProcessQueue: false,
-            addRemoveLinks: true, 
-          acceptedFiles:".png,.jpg,.gif,.bmp,.jpeg",
+          autoProcessQueue: false,
+          addRemoveLinks: true, 
+          acceptedFiles:".png,.jpg,.gif,.bmp,.jpeg,.mp4",
           init: function(){
            var submitButton = document.querySelector('#submit-all');
            myDropzone = this;
            submitButton.addEventListener("click", function(){
             myDropzone.processQueue();
            });
+           var messageS='File Uploaded Successfully !';
+           var messageClass='success';
+           this.on("error", function(file, errorMessage) {
+              var messageS=errorMessage;
+              var messageClass='error'; 
+              console.log("error : " + errorMessage );
+          });
            this.on("complete", function(){
             if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
             {
              var _this = this;
              _this.removeAllFiles();
-            (function ($) {
-                "use strict";                              
-                    Lobibox.notify('success', {
-                        position: 'top right',
-                        msg: 'File Uploaded Successfully !'
-                    });
-            })(jQuery);
+              
+              (function ($) {
+                  "use strict";                              
+                      Lobibox.notify(messageClass, {
+                          position: 'top right',
+                          msg: messageS
+                      });
+              })(jQuery);
             }
-             load_images();
+             // load_images();
            });
           },
         };
 
-    load_images();
+    // load_images();
     function load_images(){
         $.ajax({
           url:"{{ route('admin.sliders.fetch') }}",

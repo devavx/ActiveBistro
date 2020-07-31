@@ -36,7 +36,7 @@ class SliderSettingController extends Controller
      */
     public function store(Request $request)
     {
-        $image = $request->file('file');
+        $image = $request->file('file'); 
 
         $imageName = rand() . '.' . $image->extension();
 
@@ -44,6 +44,7 @@ class SliderSettingController extends Controller
         $request->file('file')->storeAs('public/sliders',$imageName);
         $res = SliderSetting::create([
                 'thumbnail' =>$imageName,
+                'thumbnail_type' =>$request->file('file')->getMimeType(),
             ]);
         return response()->json(['success' => $imageName]);
     }

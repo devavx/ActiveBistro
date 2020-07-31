@@ -12,13 +12,15 @@ use App\Item;
 use App\Category;
 use App\ItemType;
 use App\MealPlan;
+use App\SliderSetting;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-    	return view('frontend.index');
+    	$listData = SliderSetting::where('active',1)->get();
+    	return view('frontend.index',compact('listData'));
     }
 
     public function login()

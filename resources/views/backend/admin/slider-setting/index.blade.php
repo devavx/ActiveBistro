@@ -69,7 +69,15 @@
                                 @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr>
-                                    <td><img src="{{ $rows->thumbnail }}" class="img-responsive" width="100"> </td>   
+                                    <td>
+                                        @if($rows->thumbnail_type == 'video/mp4')
+                                            <video class="video-fluid"  width="150" loop muted  >
+                                            <source src="{{ $rows->thumbnail }}" type="video/mp4" />
+                                      </video>
+                                        @else
+                                        <img src="{{ $rows->thumbnail }}" class="img-responsive" width="150"> 
+                                        @endif
+                                    </td>   
                                     @if($rows->active)
                                         <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
                                     @else

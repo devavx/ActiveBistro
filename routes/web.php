@@ -18,11 +18,21 @@
 Auth::routes();
 
 Route::get('/', 'FrontendController@index')->name('index');
-Route::get('/sign-in', 'FrontendController@login')->name('sign-in');
-Route::get('/sign-up', 'FrontendController@signup')->name('signup');
+Route::get('/sign-in', 'FrontendController@login')->middleware('guest')->name('sign-in');
+Route::get('/sign-up', 'FrontendController@signup')->middleware('guest')->name('signup');
 Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');
 Route::post('/tailorplan', 'FrontendController@saveTailorPlan')->name('save_tailor_plan');
 Route::get('/recommended_meal', 'FrontendController@recommendedMeal')->name('recommended_meal');
+
+
+
+	// AUTH USER Route
+Route::group(['middleware'=>['auth'] ], function(){
+	Route::post('/update_user', 'UserProfileController@updateUserDetail')->name('update_user');
+	Route::post('/change_password', 'UserProfileController@updatePassword')->name('update_password');
+	Route::get('/my_order', 'UserProfileController@getAllOrder')->name('my_order');
+});
+
 
 
 
