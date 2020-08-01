@@ -164,7 +164,7 @@
 <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
    <script>
 
-   	$('#dob').bootstrapMaterialDatePicker({ format: 'MM-DD-YYYY',time:false, maxDate: new Date() });
+   	$('#dob').bootstrapMaterialDatePicker({ format: 'YYYY-MM-DD',time:false, maxDate: new Date() });
    	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
@@ -201,7 +201,7 @@
                 rules: { 
                     first_name: {required: true,minlength:4},
                     last_name: { required: true, },
-                    phone: { required: true,number: true,minlength:10,},
+                    phone: { required: true,number: true,minlength:8,maxlength:13,},
                     gender: { required: true,},
                     email: { required: true, email: true, },
                     dob: { required: true,}, 

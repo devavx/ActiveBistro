@@ -76,7 +76,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        if ($data['click_to_verify']=='on') {
+        if (!empty($data['click_to_verify']) && $data['click_to_verify']=='on') {
             $data['click_to_verify']=1;
         }else{
             $data['click_to_verify']=0;

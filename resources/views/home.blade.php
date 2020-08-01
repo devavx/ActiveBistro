@@ -72,18 +72,32 @@
                             <label>Weight</label>
                             <p class="text-color">{{ Auth::user()->user_weight ?? '-'  }}</p>
                         </div>
-                        <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="col-lg-6 col-sm-6 col-12">
                             <label>Target Weight</label>
-                            <p class="text-color">{{ Auth::user()->user_target_weight ?? '-' }}</p>
+                            <p class="text-color">{{ Auth::user()->user_targert_weight ?? '-' }}</p>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-12">
+                            <label>Date Of Birth</label>
+                            @if(!empty(Auth::user()->dob))
+                                <p class="text-color">{{ changeDateFormat(Auth::user()->dob,'M-d-Y') }}( {{ getAge(Auth::user()->dob, date('Y-m-d')) }} Years old)</p>
+                            @else
+                                <p class="text-color">-</p>
+                            @endif
                         </div>
 
 
                         <div class="col-lg-6 col-sm-6 col-12">
                             <h6 class="text-color font-weight-bold">Recommended</h6>
+                            @php
+                                $userGender = Auth::user()->gender ?? 'male';
+                                $weightInKG = Auth::user()->user_weight ?? '1';
+                                $heighIntCM = Auth::user()->user_height ?? '1';
+                                $age = getAge(Auth::user()->dob, date('Y-m-d'))
+                            @endphp
                             <table class="table table-striped table-bordered">
                                 <tr class="text-center">
                                     <th class="p-2 w-50">Calories</th>
-                                    <td class="p-2 w-50" colspan="2">3400 kcal</td>
+                                    <td class="p-2 w-50" colspan="2">{{ getCalories($userGender,$weightInKG,$heighIntCM,$age) }} kcal</td>
                                 </tr>
 
                                 <tr class="text-center">
@@ -187,7 +201,7 @@
                         </div>
                         <div class="form-group">
                             <label>Target Weight</label>
-                            <input type="text" class="form-control" name="user_target_weight" id="user_target_weight" value="{{ Auth::user()->user_target_weight }}">
+                            <input type="text" class="form-control" name="user_targert_weight" id="user_targert_weight" value="{{ Auth::user()->user_targert_weight }}">
                         </div>
                         <div class="form-group">
                             <label>Profile Image</label>

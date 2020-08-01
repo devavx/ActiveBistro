@@ -49,14 +49,18 @@
 				    </li>
 				@else
 					<li class="nav-item">
-					    <a class="nav-link text-color" href="{{ url('/home') }}"> <img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ Auth::user()->name }}</span></a>
+					    <a class="nav-link text-color" href="@if(Auth::user()->role->name =='admin'){{ url('/admin') }} @else {{ url('/home') }} @endif"> <img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ Auth::user()->name }}</span></a>
 				    </li>
 				    <li class="nav-item dropdown mt-2">
 				        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
 				          aria-haspopup="true" aria-expanded="false">My Account</a>
 				        <div class="dropdown-menu dropdown-primary pt-0 pb-0" aria-labelledby="navbarDropdownMenuLink">
-				          <a class="dropdown-item" href="{{ url('my_order') }}">My Order</a>
-				          <a class="dropdown-item" href="{{ url('/home') }}">My Profile</a>
+				        @if(Auth::user()->role->name=='admin')
+				        	<a class="dropdown-item" href="{{ url('admin') }}">My Admin</a>
+				        @else
+				           <a class="dropdown-item" href="{{ url('my_order') }}">My Order</a>
+				           <a class="dropdown-item" href="{{ url('/home') }}">My Profile</a>
+				        @endif
 				          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                  document.getElementById('logout-form1').submit();">Log Out</a>
 				            <form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">

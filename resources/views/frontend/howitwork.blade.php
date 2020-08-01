@@ -3,109 +3,49 @@
 @section('csss') 
 <style type="text/css"></style>
 @endsection
-@section('content') 
+@section('content')  
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="howitworks mt-5 mb-5">
 
-
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="howitworks mt-5 mb-5">
-
-					<h3 class="font-weight-bold text-color text-center">How its Work</h3>
-					<ul class="timeline">
-					    <li>
-					      <div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
+				<h3 class="font-weight-bold text-color text-center">How its Work</h3>
+				<ul class="timeline">
+					@if(!empty($listData))
+					@foreach($listData as $key => $rows)
+					<li @if ($key & 1 ) class="timeline-inverted" @endif >
+						<div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
+						<div class="timeline-panel">
+					        <!-- <div class="timeline-heading">
 					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
 					          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					        </div>
+					      </div> -->
+					      <div class="timeline-body">
+					      	<p>{!! $rows->description !!}</p>
 					      </div>
-					    </li>
-					    <li class="timeline-inverted">
-					      <div class="timeline-badge warning"><i class="fa fa-file"></i></div>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					          <p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere
-					            pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing
-					            elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
-					        </div>
-					      </div>
-					    </li>
-					    <li>
-					      <div class="timeline-badge danger"><i class="fa fa-cog"></i></div>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					        </div>
-					      </div>
-					    </li>
-					    <li class="timeline-inverted">
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					        </div>
-					      </div>
-					    </li>
-					    <li>
-					      <div class="timeline-badge info"><i class="fa fa-home"></i></div>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					          
-					        </div>
-					      </div>
-					    </li>
-					    <li>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					        </div>
-					      </div>
-					    </li>
-					    <li class="timeline-inverted">
-					      <div class="timeline-badge success"><i class="fa fa-thumbs-up"></i></div>
-					      <div class="timeline-panel">
-					        <div class="timeline-heading">
-					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-					        </div>
-					        <div class="timeline-body">
-					          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo.
-					            Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-					        </div>
-					      </div>
-					    </li>
-					  </ul>
-				</div>
+					  </div>
+					</li>
+					@endforeach
+					@else
+					<li class="timeline-inverted">
+						<div class="timeline-badge warning"><i class="fa fa-file"></i></div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4 class="timeline-title text-danger">OPPS! Not available !</h4>
+							</div>
+							<div class="timeline-body">
+								<p></p>
+								<p></p>
+							</div>
+						</div>
+					</li>
+					@endif   
+				</ul>
 			</div>
 		</div>
 	</div>
- @endsection
- @section('script')
-	 <script type="text/javascript"></script>
- @endsection
+</div>
+@endsection
+@section('script')
+<script type="text/javascript"></script>
+@endsection

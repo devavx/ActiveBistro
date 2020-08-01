@@ -33,10 +33,16 @@
 
 					<div class="row">
 						<div class="col-lg-10 col-sm-10 col-12 mx-auto">
+							@php
+                                $userGender = Auth::user()->gender ?? 'male';
+                                $weightInKG = Auth::user()->user_weight ?? '1';
+                                $heighIntCM = Auth::user()->user_height ?? '1';
+                                $age = getAge(Auth::user()->dob, date('Y-m-d'))
+                            @endphp
 							<table class="table table-striped table-bordered">
 								<tr class="text-center">
 									<th class="p-2 w-50">Calories</th>
-									<td class="p-2 w-50" colspan="2">3400 kcal</td>
+									<td class="p-2 w-50" colspan="2">{{ getCalories($userGender,$weightInKG,$heighIntCM,$age) }} kcal</td>
 								</tr>
 
 								<tr class="text-center">
