@@ -56,7 +56,9 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::post('/profile', 'Admin\AdminController@updateProfile')->name('admin.update.profile');
 	Route::post('/change-password', 'Admin\AdminController@chnagePassword')->name('admin.chnage.password');
 
-	Route::get('/customers', 'Admin\AdminController@customerList')->name('customer.list');
+	Route::get('/customers/{id?}', 'Admin\AdminController@customerList')->name('customer.list');
+	Route::get('/customer/delete/{id}', 'Admin\AdminController@customerDelete')->name('customer.list');
+	Route::post('/update_customer', 'Admin\AdminController@updateCustomerDetail')->name('update_customer_details');
 
 	// MealPlanController URI 
 	Route::get('/meals/delete/{id}', 'Admin\MealPlanController@delete')->name('meal.delete');
