@@ -78,14 +78,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
+                          <!-- <div class="panel panel-default">
                             <div class="panel-heading">
                               <h3 class="panel-title">Uploaded Image</h3>
                             </div>
                             <div class="panel-body" id="uploaded_image">
                               
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                     </div>
                 </div> 
