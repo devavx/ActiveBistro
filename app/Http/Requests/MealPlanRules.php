@@ -26,11 +26,11 @@ class MealPlanRules extends FormRequest
     {
         return [
              'name'=>'required',
-             'no_of_days'=>'required',
-             'rate_per_item'=>'required',
-             'rate_per_item_three_days'=>'required',
-             'meal_in_two_days'=>'required',
-             'meal_in_three_days'=>'required',
+             // 'no_of_days'=>'required',
+             // 'rate_per_item'=>'required',
+             // 'rate_per_item_three_days'=>'required',
+             // 'meal_in_two_days'=>'required',
+             // 'meal_in_three_days'=>'required',
         ];
     }
 }

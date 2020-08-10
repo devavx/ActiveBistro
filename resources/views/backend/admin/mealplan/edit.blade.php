@@ -96,7 +96,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row"> 
+                                        <!-- <div class="row"> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item</label>
@@ -109,9 +109,9 @@
                                                     <input type="text" name="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days..." value="{{ $mealplan->rate_per_item_three_days }}">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--/row-->
-                                        <div class="row"> 
+                                        <!-- <div class="row"> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
@@ -124,13 +124,13 @@
                                                     <input type="text" name="meal_in_three_days" class="form-control" placeholder="Meal in three Days..." value="{{ $mealplan->meal_in_three_days }}">
                                                 </div>
                                             </div> 
-                                        </div>
+                                        </div> -->
                                     </div>
                                      <div class="row"> 
                                         @php
                                             $ids = (isset($mealplan) && $mealplan->items->count() > 0 ) ? array_pluck($mealplan->items->toArray(), 'id') : null;
                                         @endphp
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Select Item</label>
                                                     <select class="form-control select2 select2-multiple" id="item_id" name="item_id[]"   style="width: 100%" multiple="multiple" data-placeholder="Please Select">
@@ -146,10 +146,24 @@
                                                     </select>
                                                 </div>
                                             </div> 
+                                            <div class="col-md-6">
+                                                <?php 
+                                                $cheched='';
+                                                if (!empty($mealplan->rate_per_item)) {
+                                                    $cheched='checked';
+                                                }
+                                                 ?>
+                                                <div class="form-group">
+                                                    <label>Coming Soon</label> &nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in comign soon">
+  <lable class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</lable>
+</span><br>
+                                                   <input type="checkbox" name="rate_per_item" name="rate_per_item" <?= $cheched ?>>
+                                                </div>
+                                            </div>
                                         </div> 
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                        <a href="{{ route('admin.meals.index') }}" class="btn btn-inverse">Cancel</button>
                                     </div>
                                 </form>
                             </div>

@@ -103,7 +103,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row"> 
+                                       <!--  <div class="row"> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Rate Per Item</label>
@@ -116,9 +116,9 @@
                                                     <input type="number" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--/row-->
-                                        <div class="row"> 
+                                        <!-- <div class="row"> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No of Meals in Two Days</label>
@@ -131,10 +131,10 @@
                                                     <input type="number" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
                                                 </div>
                                             </div> 
-                                        </div>
+                                        </div> -->
                                     </div>
                                      <div class="row"> 
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Select Item</label>
                                                     <select class="form-control select2 select2-multiple" id="item_id" name="item_id[]"   style="width: 100%" multiple="multiple" data-placeholder="Please Select">
@@ -146,6 +146,14 @@
                                                             <option value="">Select</option>
                                                         @endif
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Coming Soon</label> &nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in comign soon">
+  <lable class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</lable>
+</span><br>
+                                                   <input type="checkbox" name="rate_per_item" name="rate_per_item">
                                                 </div>
                                             </div> 
                                         </div> 
@@ -175,17 +183,18 @@
                 rules: { 
                     name: {
                         required: true,               
-                    },no_of_days: {
-                        required: true,               
-                    },rate_per_item: {
-                        required: true,               
-                    },meal_in_three_days: {
-                        required: true,               
-                    },meal_in_two_days: {
-                        required: true,               
-                    },rate_per_item_three_days: {
-                        required: true,               
                     },
+                    // no_of_days: {
+                    //     required: true,               
+                    // },rate_per_item: {
+                    //     required: true,               
+                    // },meal_in_three_days: {
+                    //     required: true,               
+                    // },meal_in_two_days: {
+                    //     required: true,               
+                    // },rate_per_item_three_days: {
+                    //     required: true,               
+                    // },
                     "item_id[]":"required",  
                 },
                 messages: {

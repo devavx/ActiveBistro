@@ -25,7 +25,7 @@ class AddEditItemRule extends FormRequest
     {
         return [
             'name'=>'required',
-            'sub_name'=>'required',
+            // 'sub_name'=>'required',
             'short_description'=>'required',
             'long_description'=>'required',
             'protein'=>'required',

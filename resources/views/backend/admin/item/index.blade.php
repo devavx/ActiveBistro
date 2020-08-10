@@ -68,7 +68,7 @@
                             <thead>
                                 <tr>
                                     <th>Name</th> 
-                                    <th>SubName</th> 
+                                    <!-- <th>SubName</th>  -->
                                     <th>ShortDescription</th> 
                                     <th>Protein</th> 
                                     <th>Calories</th> 
@@ -83,7 +83,7 @@
                                 @foreach($listData as $rows)
                                 <tr>
                                     <td> {{ $rows->name ?? '-'}}</td>
-                                    <td> {{ $rows->sub_name ?? '-'}}</td>
+                                    <!-- <td> {{ $rows->sub_name ?? '-'}}</td> -->
                                     <td> {{ $rows->short_description ?? '-'}}</td>
                                     <td> {{ $rows->protein ?? '-'}}</td>
                                     <td> {{ $rows->calories ?? '-'}}</td>

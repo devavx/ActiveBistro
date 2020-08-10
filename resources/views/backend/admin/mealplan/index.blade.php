@@ -69,10 +69,10 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Day</th>
-                                    <th>Rate For 2 Days</th>
+                                   <!--  <th>Rate For 2 Days</th>
                                     <th>Rate For 3 Days</th>
                                     <th>No Of Meal Two Days</th>
-                                    <th>No Of Meal Three Days</th>
+                                    <th>No Of Meal Three Days</th> -->
                                     <th>Status</th>
                                     <th>Created At</th>
                                     <th>Action</th>
@@ -88,10 +88,10 @@
                                 <tr>
                                     <td> {{ $rows->name ?? '-'}}</td>
                                     <td> {{ $days[$day] ?? '-' }}</td>
-                                    <td> {{ $rows->rate_per_item ?? '-'}}</td>
+                                    <!-- <td> {{ $rows->rate_per_item ?? '-'}}</td>
                                     <td> {{ $rows->rate_per_item_three_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_two_days ?? '-'}}</td>
-                                    <td> {{ $rows->meal_in_three_days ?? '-'}}</td>
+                                    <td> {{ $rows->meal_in_three_days ?? '-'}}</td> -->
                                     @if($rows->active)
                                         <td> <button type="button" title="Click for Inactive" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
                                     @else

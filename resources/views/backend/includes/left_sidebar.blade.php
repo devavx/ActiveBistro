@@ -34,7 +34,7 @@
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Meal Plans</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ url('/admin/meals')}}">Meal Plas List</a></li>
+                                <li><a href="{{ url('/admin/meals')}}">Meal Plans List</a></li>
                                 <li><a href="{{ url('/admin/meals/create')}}">New Meal Plan</a></li> 
                             </ul>
                         </li>

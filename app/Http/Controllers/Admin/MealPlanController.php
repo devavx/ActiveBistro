@@ -92,9 +92,9 @@ class MealPlanController extends Controller
         $mealplan->name       = $request->name;
         $mealplan->no_of_days = $request->no_of_days;
         $mealplan->rate_per_item   = $request->rate_per_item;
-        $mealplan->meal_in_two_days   = $request->meal_in_two_days;
-        $mealplan->meal_in_three_days   = $request->meal_in_three_days; 
-        $mealplan->rate_per_item_three_days= $request->rate_per_item_three_days; 
+        // $mealplan->meal_in_two_days   = $request->meal_in_two_days;
+        // $mealplan->meal_in_three_days   = $request->meal_in_three_days; 
+        // $mealplan->rate_per_item_three_days= $request->rate_per_item_three_days; 
         
         $save = $mealplan->update();
         $mealplan->items()->detach();

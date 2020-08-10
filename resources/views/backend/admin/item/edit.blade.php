@@ -79,10 +79,26 @@
                                                     <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $item->name }}" required>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Sub Name</label>
                                                     <input type="text" id="sub_name" name="sub_name" class="form-control" placeholder="Enter Sub name.." value="{{ $item->sub_name }}" required>
+                                                </div>
+                                            </div>  -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <?php
+                                                         $val=$item->category_id;
+                                                    ?>
+                                                    <label>Category </label>
+                                                    <select class="form-control" id="category_id" name="category_id" required>
+                                                        <option value="">Select Category</option>
+                                                         @if(!empty($categoryList))
+                                                            @foreach($categoryList as $rows)
+                                                                <option @if($val==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
+                                                            @endforeach 
+                                                        @endif 
+                                                    </select>
                                                 </div>
                                             </div> 
                                         </div> 
@@ -152,7 +168,7 @@
                                                 </div>
                                             </div> 
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6"> 
                                             </div>
                                             <div class="col-md-12">
@@ -171,7 +187,7 @@
                                                     </select>
                                                 </div>
                                             </div> 
-                                        </div>
+                                        </div> -->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">

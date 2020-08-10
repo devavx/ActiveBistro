@@ -59,7 +59,7 @@ class ItemController extends Controller
          
         $product= Item::create([
             'name'=>$request->name,
-            'sub_name'=>$request->sub_name, 
+            // 'sub_name'=>$request->sub_name, 
             'short_description'=>$request->short_description,
             'long_description'=>$request->long_description,
             'protein'=>($request->protein) ? $request->protein:0,
@@ -125,7 +125,7 @@ class ItemController extends Controller
         }          
          
         $item->name = $request->name;
-        $item->sub_name = $request->sub_name; 
+        // $item->sub_name = $request->sub_name; 
         $item->short_description = $request->short_description;
         $item->long_description = $request->long_description;
         $item->protein = ($request->protein) ? $request->protein:0;
