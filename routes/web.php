@@ -74,6 +74,11 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	// ItemController URI
 	Route::get('/orders', 'ItemController@orders')->name('items.orders');
 
+	// HomeSettingController URI
+	Route::get('/home_setting/delete/{id}', 'Admin\HomeSettingController@delete')->name('home_setting.delete');
+	Route::get('/home_setting/change_status/{id}', 'Admin\HomeSettingController@changeStatus')->name('home_setting.change_status');
+
+	// Route::get('/home_setting','HomeSettingController@index')->name('home_setting.index');
 
 	// SettingController URI 
 
@@ -86,7 +91,7 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::get('/how_it_works/change_status/{id}', 'HowItWorkController@changeStatus')->name('setting.how_it_work.change_status');
 
 	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
-	Route::get('/faqs/chnage_status/{id}', 'Admin\FaqController@changeStatus')->name('setting.faqs.change_status');
+	Route::get('/faqs/change_status/{id}', 'Admin\FaqController@changeStatus')->name('setting.faqs.change_status');
 
 
 	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
@@ -94,7 +99,7 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 
 
 	Route::get('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
-	Route::get('/category/change_status/{id}', 'CategoryController@changeStatus')->name('category.chnage_status');
+	Route::get('/category/change_status/{id}', 'CategoryController@changeStatus')->name('category.change_status');
 
 
 	Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
@@ -124,5 +129,6 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 	Route::resource('/sliders',        'SliderSettingController');
 	Route::resource('/category',       'CategoryController');
 	Route::resource('/item_type',      'ItemTypeController');
+	Route::resource('/home_setting',   'Admin\HomeSettingController');
 
 });

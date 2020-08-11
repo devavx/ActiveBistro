@@ -24,7 +24,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Privacy & Policy</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li>
                                 <li class="breadcrumb-item active">Create</li>
                             </ol> 
                         </div>

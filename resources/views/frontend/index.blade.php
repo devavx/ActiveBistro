@@ -36,7 +36,7 @@
 						  <!--Slides-->
 						  <div class="carousel-inner" role="listbox">
 						    <!--First slide-->
-						    @if(!empty($listData))
+						    @if(!empty(count($listData)))
 						    	@foreach($listData as $key => $rows)
 								    <div class="carousel-item @if($key==0) active @endif" style="height: 502px;">
 								    	@if($rows->thumbnail_type == 'video/mp4')
@@ -116,23 +116,33 @@
 	</div>
 
 	<div class="container mt-5 mb-5">
-		<div class="row">
-			<div class="col-lg-6 col-sm-6 col-12">
-				<div class="home1-img mt-5">
-					<img src="{{ asset('uploads/image/home1.jpg') }}" class="">
+		@if(!empty(count($homeData)))
+			@foreach($homeData as $key => $rows) 
+			<div class="row">
+				@if ($key % 2 == 0) 
+					<div class="col-lg-6 col-sm-6 col-12 aa">
+						<div class="home1-img mt-5">
+							<img src="{{ $rows->thumbnail }}" class="">
+						</div>
+					</div>
+				@endif 
+				<div class="col-lg-6 col-sm-6 col-12">
+					<div class="home1-text mt-5">
+						<h2 class="text-color font-weight-bold">{{ $rows->title }}</h2>
+						<p>{!! $rows->description !!}</p>
+					</div>
 				</div>
+				@if ($key % 2 != 0 ) 
+					<div class="col-lg-6 col-sm-6 col-12 xxxxx">
+						<div class="home1-img mt-5">
+							<img src="{{ $rows->thumbnail }}" class="">
+						</div>
+					</div>
+				@endif
 			</div>
-
-			<div class="col-lg-6 col-sm-6 col-12">
-				<div class="home1-text mt-5">
-					<h2 class="text-color font-weight-bold">Choose your meals</h2>
-					<p>Our chef-designed recipes include balanced Mediterranean meals, quick one-pan dinners, and top-rated customer favorites.</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-
+			@endforeach
+		@else
+		<div class="row"> 
 			<div class="col-lg-6 col-sm-6 col-12">
 				<div class="home1-text mt-5">
 					<h2 class="text-color font-weight-bold">Unpack your box</h2>
@@ -146,11 +156,12 @@
 				</div>
 			</div>
 		</div>
+		@endif
 
-		<div class="row">
+		<!-- <div class="row">
 			<div class="col-lg-6 col-sm-6 col-12">
 				<div class="home1-img mt-5">
-					<img src="{{ asset('uploads/image/home3') }}.jpg" class="">
+					<img src="{{ asset('uploads/image/home3.jpg') }}" class="">
 				</div>
 			</div>
 
@@ -160,7 +171,7 @@
 					<p>Following our step-by-step instructions you’ll experience the magic of cooking recipes that our chefs create with your family’s tastes in mind.</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 
 	</div>

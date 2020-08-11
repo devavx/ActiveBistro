@@ -78,4 +78,22 @@ class FaqController extends Controller
 
         return json_encode($result);
     } 
+    public function changeStatus($id=''){
+        $result = array();
+        $data =  Faq::find($id);
+        if (!empty($data)) {
+            if($data->active) {
+                $data->active = 0; 
+            }else{
+                $data->active=1;
+            } 
+            $data->update();
+            $result['status']  = 'success';
+            $result['message'] = 'Stactus Change Sucessfully !';
+        }else{
+            $result['status']  = 'error';
+            $result['message'] = 'OPPS! Something Went Wrong!';
+        }
+        return json_encode($result);
+    }
 }

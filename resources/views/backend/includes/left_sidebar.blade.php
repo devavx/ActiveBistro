@@ -62,7 +62,7 @@
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
-                            <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us' || $uri2 == 'sliders')in @endif">
+                            <ul aria-expanded="false" class="collapse @if($uri2=='faqs' || $uri2 == 'postal_codes' || $uri2 == 'how_it_works' || $uri2 == 'term_conditions' || $uri2 == 'privacy_policy' || $uri2 == 'contact_us' || $uri2 == 'sliders')in @endif" style="margin-bottom: 45px;">
                                 <li class="@if($uri2 =='postal_codes')active @endif"><a href="{{ url('/admin/postal_codes') }}" class="@if($uri2 =='postal_codes')active @endif">Postal Codes</a></li>
 
                                 <li class="@if($uri2 =='how_it_works')active @endif"><a class="@if($uri2 =='how_it_works')active @endif" href="{{ url('/admin/how_it_works') }}">How It Works</a></li> 
@@ -76,6 +76,8 @@
                                 <li class="@if($uri2 =='contact_us')active @endif"><a class="@if($uri2 =='contact_us')active @endif" href="{{ url('/admin/contact_us') }}">Contact Us</a></li> 
 
                                 <li class="@if($uri2 =='sliders')active @endif"><a class="@if($uri2 =='sliders')active @endif" href="{{ url('/admin/sliders') }}">Slider Setting</a></li> 
+                                <li class="@if($uri2 =='home_setting')active @endif"><a class="@if($uri2 =='home_setting')active @endif" href="{{ url('/admin/home_setting') }}">Home Setting</a></li> 
+                                <li class="@if($uri2 =='social_medial')active @endif"><a class="@if($uri2 =='social_medial')active @endif" href="{{ url('/admin/social_medial') }}">Footer Social Meadia</a></li> 
                             </ul>
                         </li> 
                         <!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->

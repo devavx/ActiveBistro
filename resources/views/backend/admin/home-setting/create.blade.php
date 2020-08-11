@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Privacy & Policy | Edit @endsection
+@section('title') Admin | Home Setting | Create @endsection
 
 @section('style')  
  <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
@@ -18,14 +18,14 @@
             <div class="container-fluid"> 
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h4 class="text-themecolor">Privacy & Policy</h4>
+                        <h4 class="text-themecolor">Home Setting</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{ url('/admin/privacy_policy') }}">Privacy & Policy</a></li>
-                                <li class="breadcrumb-item active">Edit</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/admin/home_setting') }}">Home Setting</a></li>
+                                <li class="breadcrumb-item active">Create</li>
                             </ol> 
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h4 class="m-b-0 text-white">Privacy & Policy</h4>
+                                <h4 class="m-b-0 text-white">Home Setting</h4>
                             </div>
                             @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -66,16 +66,30 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.privacy_policy.update',$privacyPolicy->id) }}" id="add_form" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.home_setting.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    @method('PUT')
                                     <div class="form-body"> 
                                         <hr>
                                         <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Title</label>
+                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Enter title..">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Thumbnail</label>
+                                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select file.." accept=".jpg,.png,.jpeg,.gif">
+                                                </div>
+                                            </div>
+                                           
+                                        </div> 
+                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Privacy Policy</label>
-                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">{{ $privacyPolicy->description }}</textarea>
+                                                    <label>Description</label>
+                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description..">Description</textarea>
                                                 </div>
                                             </div>
                                            
@@ -83,7 +97,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/privacy_policy') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ url('/admin/home_setting') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
@@ -121,9 +135,13 @@
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    description: {
+                    title: {
                         required: true,               
-                    }
+                    },description: {
+                        required: true,               
+                    },thumbnail: {
+                        required: true,               
+                    },
                 }   
             });
 

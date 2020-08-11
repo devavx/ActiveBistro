@@ -13,6 +13,7 @@ use App\Category;
 use App\ItemType;
 use App\MealPlan;
 use App\SliderSetting;
+use App\HomeSetting;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -20,7 +21,8 @@ class FrontendController extends Controller
     public function index()
     {
     	$listData = SliderSetting::where('active',1)->get();
-    	return view('frontend.index',compact('listData'));
+        $homeData = HomeSetting::where(['active'=>1,'type'=>'home_content'])->get();
+    	return view('frontend.index',compact(['listData','homeData']));
     }
 
     public function login()
