@@ -68,7 +68,11 @@ class FrontendController extends Controller
     }
     public function contact()
     {
-        return view('frontend.contactus');
+        $data = HomeSetting::where('type','contact_us')
+                                ->select('other_option')
+                                ->first();
+        $recordData= json_decode($data->other_option);
+        return view('frontend.contactus', compact('recordData'));
     }
 
     public function howItWork()

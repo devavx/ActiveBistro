@@ -115,6 +115,7 @@ Route::group(['as'=>'admin.','middleware'=>['auth','admin','verified'],'prefix'=
 
 
 	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
+	Route::post('/contact_us/save', 'Admin\SettingController@saveContactUs')->name('setting.save_contactus');
 
 
 	Route::resource('/faqs',        'Admin\FaqController');

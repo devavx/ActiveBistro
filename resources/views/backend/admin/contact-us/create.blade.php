@@ -66,22 +66,53 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.items.store') }}" id="add_form" method="post" enctype="multipart/form-data">
+                                <form action="{{ url('/admin/contact_us/save') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-body"> 
-                                        <hr>
+                                        <hr> 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="text" name="email" id="email" class="form-control" placeholder="Enter email.." value="{{ @$recordData->email }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone.." value="{{ @$recordData->phone }}">
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Office Number</label>
+                                                    <input type="text" name="office_number" id="office_number" class="form-control" placeholder="Enter office number.." value="{{ @$recordData->office_number }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                     <textarea type="text" name="address" id="address" class="form-control" placeholder="Enter address..">{{ @$recordData->address }}</textarea>
+                                                     <!-- <input type="text" name="address" id="address" class="form-control" placeholder="Enter Address.."> -->
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <textarea type="text" name="name" id="name" class="form-control" placeholder="Enter name..">Contact Us</textarea>
+                                                    <label>Description</label>
+                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">{!! @$recordData->description !!}</textarea>
                                                 </div>
                                             </div>
                                            
                                         </div>  
                                     </div>
                                     <div class="form-actions">
-                                        <button type="button" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
@@ -99,9 +130,9 @@
      <script>
     $(document).ready(function() {
 
-        if ($("#name").length > 0) {
+        if ($("#description").length > 0) {
             tinymce.init({
-                selector: "textarea#name",
+                selector: "textarea#description",
                 theme: "modern",
                 height: 300,
                 plugins: [
@@ -120,9 +151,15 @@
 
            $('#add_form').validate({ // initialize the plugin
                 rules: { 
-                    name: {
+                    email: {
                         required: true,               
-                    }
+                    },phone: {
+                        required: true,               
+                    },office_number: {
+                        required: true,               
+                    },address: {
+                        required: true,               
+                    },
                 }   
             });
 
