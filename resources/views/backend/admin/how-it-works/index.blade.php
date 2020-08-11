@@ -67,6 +67,7 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>Icon</th> 
                                     <th>HowItWork</th> 
                                     <th>Status</th> 
                                     <th>Created At</th>
@@ -77,6 +78,9 @@
                                   @if(!empty(@listData))
                                     @foreach($listData as $rows)
                                 <tr> 
+                                    <td> 
+                                        <div class="timeline-badge"><i class="{{ $rows->title ?? 'fa fa-check-square-o' }}"></i></div>
+                                    </td>
                                     <td> {!! $rows->description ?? '-' !!}</td>
                                     @if($rows->active)
                                     <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>

@@ -73,8 +73,16 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                    <label>Icon</label>&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Enter icon class like 'fa fa-address-book-o' for more details visit: https://fontawesome.com/v4.7.0/icons/">
+  <lable class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</lable>
+</span>
+                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Inter fa fa icon class...">
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
                                                     <label>How It Work</label>
-                                                    <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter How it work..">How It Work</textarea>
+                                                    <textarea name="description" id="description" class="form-control" placeholder="Enter How it work..">How It Work</textarea>
                                                 </div>
                                             </div>
                                            
@@ -82,7 +90,7 @@
                                     </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                        <a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
+                                        <a href="{{ url('/admin/how_it_works') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>

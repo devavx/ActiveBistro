@@ -13,6 +13,7 @@
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>@yield('title')</title>
     <!-- This page CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- chartist CSS -->
     <link href="{{ asset('assets/node_modules/morrisjs/morris.css') }}" rel="stylesheet">
     <!--Toaster Popup message CSS -->
@@ -22,7 +23,8 @@
     <link href="{{ asset('assets/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="{{ asset('assets/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap" rel="stylesheet">
+    
     @yield('style') 
     <style type="text/css">
         ul#sidebarnav {

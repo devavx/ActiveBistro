@@ -14,14 +14,14 @@
 					@if(!empty($listData))
 					@foreach($listData as $key => $rows)
 					<li @if ($key & 1 ) class="timeline-inverted" @endif >
-						<div class="timeline-badge"><i class="fa fa-check-square-o"></i></div>
+						<div class="timeline-badge"><i class="<?= $rows->title ?>"></i></div>
 						<div class="timeline-panel">
 					        <!-- <div class="timeline-heading">
 					          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
 					          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
 					      </div> -->
 					      <div class="timeline-body">
-					      	<p>{!! $rows->description !!}</p>
+					      	<p>{!! $rows->description !!} </p>
 					      </div>
 					  </div>
 					</li>

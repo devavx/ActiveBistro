@@ -65,7 +65,7 @@
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.meals.update',$mealplan->id) }}" method="post">
+                                <form action="{{ route('admin.meals.update',$mealplan->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT') 
                                     <div class="form-body">
@@ -79,8 +79,8 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $mealplan->name }}">
+                                                    <label>Meal Plan</label>
+                                                    <input type="text" name="name" class="form-control" placeholder="Enter Meal Plan name.." value="{{ $mealplan->name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6"> 
@@ -161,6 +161,14 @@
                                                 </div>
                                             </div>
                                         </div> 
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Thumbnail</label>
+                                                    <input type="file" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" title="Select thumbnail..">
+                                                </div>
+                                            </div>
+                                        </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
                                         <a href="{{ route('admin.meals.index') }}" class="btn btn-inverse">Cancel</button>

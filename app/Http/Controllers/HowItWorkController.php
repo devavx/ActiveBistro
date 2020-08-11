@@ -40,7 +40,7 @@ class HowItWorkController extends Controller
         if ($res){ 
             return redirect('admin/how_it_works')->with('success','HowItWork Added successfully!');;
         }else{ 
-                return redirect()->back('errormsg','OPPS!! Something Went Wrong!'); 
+            return redirect()->back('errormsg','OPPS!! Something Went Wrong!'); 
         }
     }
 
@@ -76,6 +76,7 @@ class HowItWorkController extends Controller
     public function update(Request $request, HowItWork $howItWork)
     {          
         $howItWork->description = $request->description;          
+        $howItWork->title = $request->title;          
         $save = $howItWork->save();
         if ($save) {
             return redirect('admin/how_it_works')->with('success','HowItWork Updated successfully!');

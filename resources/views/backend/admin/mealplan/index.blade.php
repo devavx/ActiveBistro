@@ -69,6 +69,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Day</th>
+                                    <th>Thumbnail</th>
                                    <!--  <th>Rate For 2 Days</th>
                                     <th>Rate For 3 Days</th>
                                     <th>No Of Meal Two Days</th>
@@ -88,6 +89,7 @@
                                 <tr>
                                     <td> {{ $rows->name ?? '-'}}</td>
                                     <td> {{ $days[$day] ?? '-' }}</td>
+                                    <td><img src="{{ $rows->rate_per_item_three_days }}" alt="image" width="100"> </td>
                                     <!-- <td> {{ $rows->rate_per_item ?? '-'}}</td>
                                     <td> {{ $rows->rate_per_item_three_days ?? '-'}}</td>
                                     <td> {{ $rows->meal_in_two_days ?? '-'}}</td>

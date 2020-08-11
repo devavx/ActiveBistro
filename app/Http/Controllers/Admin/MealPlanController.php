@@ -37,7 +37,23 @@ class MealPlanController extends Controller
     {      
         $itemId = $request->item_id;
         unset($request->item_id);
-        $res=MealPlan::create($request->all());
+        if($request->hasFile('rate_per_item_three_days')){
+            $rate_per_item_three_days=$request->rate_per_item_three_days;
+            $image=$request->file('rate_per_item_three_days');
+            $newimg=rand().'_'.time().'_'.$image->getClientOriginalname(); 
+            $storeImage = $request->file('rate_per_item_three_days')->storeAs('public/items',$newimg);
+        }else{
+            $newimg = 'img.jpg';
+        } 
+        // echo "<pre>";
+        // print_r($request->all());die;
+        $res= MealPlan::create([
+            'name'=>$request->name, 
+            'no_of_days'=>$request->no_of_days,
+            'rate_per_item'=>$request->rate_per_item,  
+            'rate_per_item_three_days'=>$newimg
+         ]);
+         //MealPlan::create($request->all());
         if ($res) { 
             $res->items()->attach($itemId);
             return redirect('admin/meals')->with('success','MealPlan Added successfully!');;
@@ -83,11 +99,19 @@ class MealPlanController extends Controller
      */
     public function update(MealPlanRules $request,$id)
     {  
-    	$mealplan =MealPlan::where('id',$id)
+        $mealplan =MealPlan::where('id',$id)
                             ->first(); 
     	if (empty($mealplan)) {
     		return back()->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');
     	} 
+        if($request->hasFile('rate_per_item_three_days')){
+            $rate_per_item_three_days=$request->rate_per_item_three_days;
+            $image=$request->file('rate_per_item_three_days');
+            $newimg=rand().'_'.time().'_'.$image->getClientOriginalname(); 
+            $storeImage = $request->file('rate_per_item_three_days')->storeAs('public/items',$newimg);
+            $mealplan->rate_per_item_three_days = $newimg;
+        }
+
          
         $mealplan->name       = $request->name;
         $mealplan->no_of_days = $request->no_of_days;

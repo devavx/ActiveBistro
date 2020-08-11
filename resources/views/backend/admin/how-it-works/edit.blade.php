@@ -74,6 +74,14 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                    <label>Icon</label>&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Enter icon class like 'fa fa-address-book-o' for more details visit: https://fontawesome.com/v4.7.0/icons/">
+                                                    <lable class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</lable>
+                                                    </span>
+                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Inter fa fa icon class..." value="{{ $howItWork->title }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
                                                     <label>How It Work</label>
                                                     <textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description..">{{ $howItWork->description }}</textarea>
                                                 </div>

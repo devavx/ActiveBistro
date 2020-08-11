@@ -29,4 +29,8 @@ class MealPlan extends Model
 	{
 		return $this->belongsToMany(MealPlan::class, 'item_meal_plan','meal_plan_id','item_id');
 	} 
+   public function getRatePerItemThreeDaysAttribute()
+   {  
+      return url('/storage/app/public/items/'.$this->attributes['rate_per_item_three_days']);
+   }
 }
