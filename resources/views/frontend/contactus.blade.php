@@ -67,7 +67,7 @@
 						<p class="text-white"> {{ @$recordData->address ?? 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.' }}</p>
 
 						<hr>
-						<p class="text-white"></p>
+						<!-- <p class="text-white"></p> -->
 						
 						<!-- <h5 class="text-white">Alternatively call our customer service team on--</h5> -->
 

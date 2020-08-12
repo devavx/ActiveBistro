@@ -911,7 +911,7 @@
 
   				// alert(selectedItemId);
   				// alert(selectedItem);
-  				alert(itemElement);
+  				// alert(itemElement);
 	   			$('#'+itemElement).html(selectedItemName);
 	   			$('#price__'+itemElement).html(selectedItemPrice);
 	   		} 
