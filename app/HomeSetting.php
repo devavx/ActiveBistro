@@ -2,14 +2,15 @@
 
 namespace App;
 
+use App\Core\Facades\Uploads;
 use Illuminate\Database\Eloquent\Model;
 
 class HomeSetting extends Model
 {
-    protected $fillable =['title','description','thumbnail','type','other_option','active'];
+    protected $fillable = ['title', 'description', 'thumbnail', 'type', 'other_option', 'active'];
 
     public function getThumbnailAttribute()
-	{  
-		return url('/storage/app/public/home-setting/'.$this->attributes['thumbnail']);
-	}
+    {
+        return Uploads::existsUrl($this->attributes['thumbnail']);
+    }
 }

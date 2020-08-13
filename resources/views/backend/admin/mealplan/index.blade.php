@@ -89,11 +89,12 @@
                                 <tr>
                                     <td> {{ $rows->name ?? '-'}}</td>
                                     <td> {{ $days[$day] ?? '-' }}</td>
-                                    <td><img src="{{ $rows->rate_per_item_three_days }}" alt="image" width="100"> </td>
-                                    <!-- <td> {{ $rows->rate_per_item ?? '-'}}</td>
-                                    <td> {{ $rows->rate_per_item_three_days ?? '-'}}</td>
-                                    <td> {{ $rows->meal_in_two_days ?? '-'}}</td>
-                                    <td> {{ $rows->meal_in_three_days ?? '-'}}</td> -->
+                                    <td>
+                                        @foreach($rows->images as $image)
+                                            <img src="{{ $image->file }}" alt="image" width="100">
+                                        @endforeach
+                                    </td>
+
                                     @if($rows->active)
                                         <td> <button type="button" title="Click for Inactive" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
                                     @else

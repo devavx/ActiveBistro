@@ -1,5 +1,6 @@
 <?php
 
+use App\Core\Enums\Common\DaysOfWeek;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,14 +17,11 @@ class CreateMealPlansTable extends Migration
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->string('no_of_days')->nullable();
-            $table->string('rate_per_item')->nullable();
-            $table->string('rate_per_item_three_days')->nullable();
-            $table->string('meal_in_two_days')->nullable();
-            $table->string('meal_in_three_days')->nullable();
-            $table->boolean('active')->nullable();
+            $table->enum('day', DaysOfWeek::getValues())->nullable();
+            $table->boolean('launched')->default(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
-            $table->SoftDeletes();
+            $table->softDeletes();
         });
     }
 
