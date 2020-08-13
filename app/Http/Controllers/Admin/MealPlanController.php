@@ -17,8 +17,8 @@ class MealPlanController extends Controller
 {
     public function index()
     {
-        $mealList = MealPlan::all();
-        return view('backend.admin.mealplan.index', compact('mealList'));
+        $plans = MealPlan::all();
+        return view('backend.admin.mealplan.index')->with('plans', $plans);
     }
 
     public function create(): Renderable

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
 
 class MealPlanRules extends FormRequest
 {
@@ -25,12 +24,10 @@ class MealPlanRules extends FormRequest
     public function rules()
     {
         return [
-             'name'=>'required',
-             // 'no_of_days'=>'required',
-             // 'rate_per_item'=>'required',
-             // 'rate_per_item_three_days'=>'required',
-             // 'meal_in_two_days'=>'required',
-             // 'meal_in_three_days'=>'required',
+            'name' => 'required',
+            'images.*' => 'bail|required|image|max:2048',
+            'item_id.*' => 'bail|required',
+            'day' => 'bail|required|string'
         ];
     }
 }
