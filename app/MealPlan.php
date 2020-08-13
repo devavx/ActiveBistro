@@ -14,6 +14,9 @@ class MealPlan extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = ['name', 'day', 'launched', 'active'];
+    protected $casts = [
+        'launched' => 'bool', 'active' => 'bool'
+    ];
 
     const AllWeekDays = [
         'Mon' => 'Monday',

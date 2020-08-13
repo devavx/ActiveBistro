@@ -27,13 +27,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Meal Plan List</h4>
+					<h4 class="text-themecolor">Daily Meal Plan List</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item active">Meal Plan</li>
+							<li class="breadcrumb-item active">Daily Meal Plan</li>
 						</ol>
 						<a href="{{ url('/admin/meals/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
@@ -70,11 +70,7 @@
 									<tr>
 										<th>Name</th>
 										<th>Day</th>
-										<th>Thumbnail</th>
-										<!--  <th>Rate For 2 Days</th>
-										 <th>Rate For 3 Days</th>
-										 <th>No Of Meal Two Days</th>
-										 <th>No Of Meal Three Days</th> -->
+										<th>Image(s)</th>
 										<th>Status</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -153,14 +149,14 @@
         });
 
         function confirmDelete(id) {
-            url = "{{ url('/admin/meals/delete/') }}/" + id;
+            url = "{{ url('/admin/daily-meals/delete/') }}/" + id;
             deleteConfirmMessage(id, url, 'remove');
         }
 
         $(document).ready(function () {
             $(document).on('click', '.change_status', function () {
                 var id = $(this).attr('id');
-                url = "{{ url('/admin/meals/change_status/') }}/" + id;
+                url = "{{ url('/admin/daily-meals/change_status/') }}/" + id;
                 var status_val = $(this).attr('data-id');
                 changeStatusConfirmMessage(id, url, 'change_status');
             });
