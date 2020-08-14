@@ -45,7 +45,7 @@ class DailyMealPlanController extends Controller
     {
         $mealplan = MealPlan::query()->where('id', $id)->first();
         $listData = Item::query()->where('active', 1)->get();
-        $bound = $mealplan->mealItems->pluck('id')->toArray();
+        $bound = $mealplan->mealItems->pluck('item_id')->toArray();
         if (!empty($mealplan)) {
             return view('backend.admin.dailymealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound);
         }
@@ -55,14 +55,20 @@ class DailyMealPlanController extends Controller
 
     public function update(UpdateRequest $request, $id)
     {
+        /**
+         * @var MealPlan $plan
+         */
         $plan = MealPlan::query()->whereKey($id)->first();
         if ($plan != null) {
-            $plan->update($request->validated());
+            $validated = $request->validated();
+            $validated['launched'] = $request->has('launched');
+            $plan->update($validated);
             Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
                 $plan->images()->create(['file' => $file]);
             });
+            $plan->mealItems()->delete();
             Collection::make(\request('item_id', []))->each(function ($itemId) use ($plan) {
-                $plan->mealItems()->create(['item_id' => $itemId]);
+                $plan->mealItems()->updateOrCreate(['item_id' => $itemId], ['item_id' => $itemId]);
             });
             return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan updated successfully!');
         } else {
