@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Meal Plan | Create @endsection
+@section('title') Admin | Daily Meal Plan | Create @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -93,46 +93,11 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Day of Week</label>
-												<select class="form-control" name="day" id="no_of_days">
-													<option value="" disabled selected>Choose...</option>
-													@foreach(\App\Core\Enums\Common\DaysOfWeek::getKeys() as $day)
-														<option value="{{ \App\Core\Enums\Common\DaysOfWeek::getValue($day) }}">{{ $day }}</option>
-													@endforeach
-												</select>
-												<!-- <input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="Enter No of Days"> -->
+												<label>Images (multiple allowed)</label>
+												<input type="file" name="images[]" id="rate_per_item_three_days" class="form-control" title="Click to choose files..." multiple accept=".jpg, .jpeg, .png">
 											</div>
 										</div>
 									</div>
-									<!--  <div class="row">
-										 <div class="col-md-6">
-											 <div class="form-group">
-												 <label>Rate Per Item</label>
-												 <input type="number" name="rate_per_item" id="rate_per_item" class="form-control" placeholder="Rate Per Item..">
-											 </div>
-										 </div>
-										 <div class="col-md-6">
-											 <div class="form-group">
-												 <label>Rate Per Item Three Days</label>
-												 <input type="number" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
-											 </div>
-										 </div>
-									 </div> -->
-									<!--/row-->
-									<!-- <div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>No of Meals in Two Days</label>
-												<input type="number" name="meal_in_two_days" id="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>No of Meals in Two Days</label>
-												<input type="number" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
-											</div>
-										</div>
-									</div> -->
 								</div>
 								<div class="row">
 									<div class="col-md-6">
@@ -174,14 +139,6 @@
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span><br>
 											<input type="checkbox" name="launched">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Images (multiple allowed)</label>
-											<input type="file" name="images[]" id="rate_per_item_three_days" class="form-control" title="Click to choose files..." multiple accept=".jpg, .jpeg, .png">
 										</div>
 									</div>
 								</div>

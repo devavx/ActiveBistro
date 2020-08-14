@@ -35,7 +35,7 @@
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
 							<li class="breadcrumb-item active">Daily Meal Plan</li>
 						</ol>
-						<a href="{{ url('/admin/meals/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+						<a href="{{ route('admin.daily-meals.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
 					</div>
 				</div>

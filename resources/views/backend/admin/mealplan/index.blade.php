@@ -35,7 +35,7 @@
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
 							<li class="breadcrumb-item active">Meal Plan</li>
 						</ol>
-						<a href="{{ url('/admin/meals/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+						<a href="{{ route('admin.meals.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
 					</div>
 				</div>
@@ -69,12 +69,7 @@
 									<thead>
 									<tr>
 										<th>Name</th>
-										<th>Day</th>
-										<th>Thumbnail</th>
-										<!--  <th>Rate For 2 Days</th>
-										 <th>Rate For 3 Days</th>
-										 <th>No Of Meal Two Days</th>
-										 <th>No Of Meal Three Days</th> -->
+										<th>Image(s)</th>
 										<th>Status</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -84,7 +79,6 @@
 									@foreach($plans as $plan)
 										<tr>
 											<td> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</td>
-											<td> {{\App\Core\Enums\Common\DaysOfWeek::getKey($plan->day)}}</td>
 											<td>
 												@foreach($plan->images as $image)
 													<img src="{{ $image->file }}" alt="image" width="100">
@@ -105,7 +99,7 @@
 											@endif
 											<td> {{ changeDateFormat($plan->created_at,'M-d-Y') }}</td>
 											<td style="text-align: center; ">
-												<a class="like" href="{{ route('admin.daily-meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+												<a class="like" href="{{ route('admin.meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $plan->id }})" title="Remove"><i class="fas fa-trash"></i></a>
 											</td>
 										</tr>

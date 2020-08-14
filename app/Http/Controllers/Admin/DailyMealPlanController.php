@@ -15,7 +15,7 @@ class DailyMealPlanController extends Controller
 {
     public function index(): Renderable
     {
-        $plans = MealPlan::all();
+        $plans = MealPlan::query()->whereNotNull('day')->get();
         return view('backend.admin.dailymealplan.index')->with('plans', $plans);
     }
 
@@ -35,7 +35,7 @@ class DailyMealPlanController extends Controller
             $plan->mealItems()->create(['item_id' => $itemId]);
         });
         if ($plan != null) {
-            return redirect()->route('admin.daily-meals.index')->with('success', 'MealPlan Added successfully!');
+            return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan added successfully!');
         } else {
             return redirect()->back('errormsg', 'Something Went Wrong!');
         }
@@ -72,13 +72,8 @@ class DailyMealPlanController extends Controller
             });
             return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan updated successfully!');
         } else {
-            return redirect()->back('errormsg', 'Something Went Wrong!');
+            return redirect()->back('errormsg', 'Something went wrong!');
         }
-    }
-
-    public function destroy(City $city)
-    {
-        //
     }
 
     public function delete($id = '')
@@ -88,10 +83,10 @@ class DailyMealPlanController extends Controller
         if (!empty($data)) {
             $data->delete();
             $result['status'] = 'success';
-            $result['message'] = 'MealPlan Deleted Sucessfully !';
+            $result['message'] = 'Meal plan deleted successfully!';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['message'] = 'Something went wrong!';
         }
 
         return json_encode($result);
@@ -109,10 +104,10 @@ class DailyMealPlanController extends Controller
             }
             $data->update();
             $result['status'] = 'success';
-            $result['message'] = 'Stactus Change Sucessfully !';
+            $result['message'] = 'Status changed successfully!';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['message'] = 'Something went wrong!';
         }
         return json_encode($result);
     }

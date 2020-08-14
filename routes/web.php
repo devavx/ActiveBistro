@@ -138,7 +138,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     */
     Route::resource('daily-meals', 'Admin\DailyMealPlanController');
     Route::prefix('daily-meals')->group(static function () {
-        Route::get('delete/{id}', ['Admin\DailyMealPlanController', 'delete'])->name('daily-meals.delete');
+        Route::get('delete/{id}', 'Admin\DailyMealPlanController@delete')->name('daily-meals.delete');
         Route::get('change_status/{id}', 'Admin\DailyMealPlanController@changeStatus')->name('daily-meals.change_status');
     });
 
@@ -150,7 +150,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     */
     Route::resource('meals', 'Admin\MealPlanController');
     Route::prefix('meals')->group(static function () {
-        Route::get('delete/{id}', ['Admin\MealPlanController', 'delete'])->name('meal.delete');
+        Route::get('delete/{id}', 'Admin\MealPlanController@delete')->name('meal.delete');
         Route::get('change_status/{id}', 'Admin\MealPlanController@changeStatus')->name('meal.change_status');
     });
 });

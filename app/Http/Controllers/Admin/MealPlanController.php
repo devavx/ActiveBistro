@@ -3,41 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MealPlanRules;
+use App\Http\Requests\MealPlans\Fixed\StoreRequest;
+use App\Http\Requests\MealPlans\Fixed\UpdateRequest;
 use App\Item;
 use App\MealPlan;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
 class MealPlanController extends Controller
 {
-    public function index()
+    public function index(): Renderable
     {
-        $plans = MealPlan::all();
+        $plans = MealPlan::query()->whereNull('day')->get();
         return view('backend.admin.mealplan.index')->with('plans', $plans);
     }
 
     public function create(): Renderable
     {
-        $listData = Item::where('active', 1)->get();
+        $listData = Item::query()->where('active', 1)->get();
         return view('backend.admin.mealplan.create', compact('listData'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param MealPlanRules $request
-     * @return Response|RedirectResponse
-     */
-    public function store(MealPlanRules $request)
+    public function store(StoreRequest $request)
     {
-        /**
-         * @var MealPlan $plan
-         */
         $plan = MealPlan::query()->create($request->validated());
         Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
             $plan->images()->create(['file' => $file]);
@@ -46,89 +35,42 @@ class MealPlanController extends Controller
             $plan->mealItems()->create(['item_id' => $itemId]);
         });
         if ($plan != null) {
-            return redirect('admin/meals')->with('success', 'MealPlan Added successfully!');
+            return redirect()->route('admin.meals.index')->with('success', 'Meal plan added successfully!');
         } else {
-            return redirect()->back('errormsg', 'Something Went Wrong!');
+            return redirect()->back('errormsg', 'Something went wrong!');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\City $city
-     * @return Response
-     */
-    public function show(MealPlan $MealPlan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\City $city
-     * @return Response
-     */
     public function edit($id)
     {
-        $mealplan = MealPlan::where('id', $id)->first();
-        $listData = Item::where('active', 1)->get();
+        $mealplan = MealPlan::query()->where('id', $id)->first();
+        $listData = Item::query()->where('active', 1)->get();
+        $bound = $mealplan->mealItems->pluck('item_id')->toArray();
         if (!empty($mealplan)) {
-            return view('backend/admin/mealplan/edit', compact(['mealplan', 'listData']));
+            return view('backend.admin.mealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound);
         }
-        return redirect('admin/meals');
+        return redirect()->route('admin.daily-meals.index');
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param \App\City $city
-     * @return Response
-     */
-    public function update(MealPlanRules $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        $mealplan = MealPlan::where('id', $id)
-            ->first();
-        if (empty($mealplan)) {
-            return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
-        }
-        if ($request->hasFile('rate_per_item_three_days')) {
-            $rate_per_item_three_days = $request->rate_per_item_three_days;
-            $image = $request->file('rate_per_item_three_days');
-            $newimg = rand() . '_' . time() . '_' . $image->getClientOriginalname();
-            $storeImage = $request->file('rate_per_item_three_days')->storeAs('public/items', $newimg);
-            $mealplan->rate_per_item_three_days = $newimg;
-        }
-
-
-        $mealplan->name = $request->name;
-        $mealplan->no_of_days = $request->no_of_days;
-        $mealplan->rate_per_item = $request->rate_per_item;
-        // $mealplan->meal_in_two_days   = $request->meal_in_two_days;
-        // $mealplan->meal_in_three_days   = $request->meal_in_three_days; 
-        // $mealplan->rate_per_item_three_days= $request->rate_per_item_three_days; 
-
-        $save = $mealplan->update();
-        $mealplan->items()->detach();
-        if ($save) {
-            $mealplan->items()->attach($request->item_id);
-            return redirect('admin/meals')->with('success', 'MealPlan Updated successfully!');
+        $plan = MealPlan::query()->whereKey($id)->first();
+        if ($plan != null) {
+            $validated = $request->validated();
+            $validated['launched'] = $request->has('launched');
+            $plan->update($validated);
+            Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
+                $plan->images()->create(['file' => $file]);
+            });
+            $plan->mealItems()->delete();
+            Collection::make(\request('item_id', []))->each(function ($itemId) use ($plan) {
+                $plan->mealItems()->updateOrCreate(['item_id' => $itemId], ['item_id' => $itemId]);
+            });
+            return redirect()->route('admin.meals.index')->with('success', 'Meal plan updated successfully!');
         } else {
-            return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+            return redirect()->back('errormsg', 'Something went wrong!');
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\City $city
-     * @return Response
-     */
-    public function destroy(City $city)
-    {
-        //
     }
 
     public function delete($id = '')
@@ -138,10 +80,10 @@ class MealPlanController extends Controller
         if (!empty($data)) {
             $data->delete();
             $result['status'] = 'success';
-            $result['message'] = 'MealPlan Deleted Sucessfully !';
+            $result['message'] = 'Meal plan deleted successfully!';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['message'] = 'Something went wrong!';
         }
 
         return json_encode($result);
@@ -159,10 +101,10 @@ class MealPlanController extends Controller
             }
             $data->update();
             $result['status'] = 'success';
-            $result['message'] = 'Stactus Change Sucessfully !';
+            $result['message'] = 'Status changed successfully!';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['message'] = 'Something went wrong!';
         }
         return json_encode($result);
     }
