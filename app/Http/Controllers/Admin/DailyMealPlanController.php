@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MealPlanRules;
+use App\Http\Requests\MealPlans\Daily\StoreRequest;
+use App\Http\Requests\MealPlans\Daily\UpdateRequest;
 use App\Item;
 use App\MealPlan;
 use Illuminate\Contracts\Support\Renderable;
@@ -24,7 +25,7 @@ class DailyMealPlanController extends Controller
         return view('backend.admin.dailymealplan.create', compact('listData'));
     }
 
-    public function store(MealPlanRules $request)
+    public function store(StoreRequest $request)
     {
         $plan = MealPlan::query()->create($request->validated());
         Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
@@ -52,36 +53,20 @@ class DailyMealPlanController extends Controller
 
     }
 
-    public function update(MealPlanRules $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        $mealplan = MealPlan::where('id', $id)
-            ->first();
-        if (empty($mealplan)) {
-            return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
-        }
-        if ($request->hasFile('rate_per_item_three_days')) {
-            $rate_per_item_three_days = $request->rate_per_item_three_days;
-            $image = $request->file('rate_per_item_three_days');
-            $newimg = rand() . '_' . time() . '_' . $image->getClientOriginalname();
-            $storeImage = $request->file('rate_per_item_three_days')->storeAs('public/items', $newimg);
-            $mealplan->rate_per_item_three_days = $newimg;
-        }
-
-
-        $mealplan->name = $request->name;
-        $mealplan->no_of_days = $request->no_of_days;
-        $mealplan->rate_per_item = $request->rate_per_item;
-        // $mealplan->meal_in_two_days   = $request->meal_in_two_days;
-        // $mealplan->meal_in_three_days   = $request->meal_in_three_days; 
-        // $mealplan->rate_per_item_three_days= $request->rate_per_item_three_days; 
-
-        $save = $mealplan->update();
-        $mealplan->items()->detach();
-        if ($save) {
-            $mealplan->items()->attach($request->item_id);
-            return redirect('admin/daily-meals')->with('success', 'MealPlan Updated successfully!');
+        $plan = MealPlan::query()->whereKey($id)->first();
+        if ($plan != null) {
+            $plan->update($request->validated());
+            Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
+                $plan->images()->create(['file' => $file]);
+            });
+            Collection::make(\request('item_id', []))->each(function ($itemId) use ($plan) {
+                $plan->mealItems()->create(['item_id' => $itemId]);
+            });
+            return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan updated successfully!');
         } else {
-            return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+            return redirect()->back('errormsg', 'Something Went Wrong!');
         }
     }
 
