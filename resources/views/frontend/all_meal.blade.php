@@ -811,7 +811,8 @@
 		<div class="row">
 			<div class="col-lg-6 col-sm-12 col-12">
 				<div class="checktext">
-					<p class="text-color m-0">This is the flexible service. You can edit, pouse or cancel at any time!</p>
+					<p class="text-color m-0">This is the flexible service. You can edit, pause or cancel at any
+						time!</p>
 				</div>
 			</div>
 
