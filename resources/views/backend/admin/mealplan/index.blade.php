@@ -99,6 +99,7 @@
 											@endif
 											<td> {{ changeDateFormat($plan->created_at,'M-d-Y') }}</td>
 											<td style="text-align: center; ">
+												<a class="like" href="javascript:void(0);" onclick="showMealPlan({{$plan->id}});" title="View"><i class="fas fa-search"></i></a>
 												<a class="like" href="{{ route('admin.meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $plan->id }})" title="Remove"><i class="fas fa-trash"></i></a>
 											</td>
@@ -110,6 +111,24 @@
 						</div>
 					</div>
 
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Meal Plan Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-0" id="plan_details">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -159,6 +178,21 @@
                 changeStatusConfirmMessage(id, url, 'change_status');
             });
         });
+
+        showMealPlan = (key) => {
+            setLoading(true, () => {
+                performGet({
+                    url: '/admin/meals/' + key,
+                    success: (message, data) => {
+                        $('#plan_details').html(data);
+                        $('#exampleModal').modal('show');
+                    },
+                    complete: () => {
+                        setLoading(false);
+                    }
+                });
+            });
+        };
 
 	</script>
 @endsection

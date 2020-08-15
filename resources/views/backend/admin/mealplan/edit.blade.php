@@ -77,22 +77,34 @@
 												<input type="text" name="name" class="form-control" placeholder="Enter Meal Plan name.." value="{{ $mealplan->name }}">
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>Image(s)</label>
-												<input type="file" name="images[]" id="rate_per_item_three_days" class="form-control" title="Select thumbnail..">
-											</div>
-										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Select Item</label>
-											<select class="form-control select2 select2-multiple" id="item_id" name="item_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+											<select class="form-control select2 select2-multiple" id="item_id" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
 												@if(!empty(@listData))
 													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound)) selected @endif>{{ $rows->name }}</option>
+														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[0])) selected @endif>{{ $rows->name }}</option>
+													@endforeach
+												@else
+													<option value="">Select</option>
+												@endif
+											</select>
+											<select class="form-control select2 select2-multiple" id="item_id_1" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												@if(!empty(@listData))
+													@foreach($listData as $rows)
+														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[1])) selected @endif>{{ $rows->name }}</option>
+													@endforeach
+												@else
+													<option value="">Select</option>
+												@endif
+											</select>
+											<select class="form-control select2 select2-multiple" id="item_id_2" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												@if(!empty(@listData))
+													@foreach($listData as $rows)
+														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[2])) selected @endif>{{ $rows->name }}</option>
 													@endforeach
 												@else
 													<option value="">Select</option>
@@ -110,6 +122,7 @@
 										</div>
 									</div>
 								</div>
+								@include('backend.fragments.gallery.gallery-view',['images'=>$mealplan->images->toArray()])
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
@@ -130,6 +143,10 @@
         $(".select2").select2({
             placeholder: "Please select Item",
             allowClear: true
+        });
+        $(document).ready(function () {
+			@include('backend.fragments.gallery.gallery-js',['prefix'=>'/admin/daily-meals/images/'.$mealplan->id])
+            $(".select2").addClass('mb-2');
         });
 	</script>
 @endsection

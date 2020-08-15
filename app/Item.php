@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Item extends Model
 {
@@ -21,5 +22,10 @@ class Item extends Model
     public function getThumnailAttribute()
     {
         return url('/storage/app/public/items/' . $this->attributes['thumbnail']);
+    }
+
+    public function meals(): BelongsToMany
+    {
+        return $this->belongsToMany(MealPlan::class, 'meal_plan_items');
     }
 }

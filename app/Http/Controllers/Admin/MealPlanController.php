@@ -7,6 +7,7 @@ use App\Http\Requests\MealPlans\Fixed\StoreRequest;
 use App\Http\Requests\MealPlans\Fixed\UpdateRequest;
 use App\Item;
 use App\MealPlan;
+use App\Models\MealPlanImage;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
@@ -25,32 +26,43 @@ class MealPlanController extends Controller
         return view('backend.admin.mealplan.create', compact('listData'));
     }
 
+    public function edit($id)
+    {
+        $mealplan = MealPlan::query()->where('id', $id)->first();
+        $listData = Item::query()->where('active', 1)->get();
+        $bound = [
+            0 => $mealplan->mealItems->where('slab', 1)->pluck('item_id')->toArray(),
+            1 => $mealplan->mealItems->where('slab', 2)->pluck('item_id')->toArray(),
+            2 => $mealplan->mealItems->where('slab', 3)->pluck('item_id')->toArray(),
+        ];
+        if (!empty($mealplan)) {
+            return view('backend.admin.mealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound);
+        }
+        return redirect()->route('admin.daily-meals.index');
+
+    }
+
     public function store(StoreRequest $request)
     {
+        /**
+         * @var MealPlan $plan
+         */
         $plan = MealPlan::query()->create($request->validated());
         Collection::make(\request('images', []))->each(function (UploadedFile $file) use ($plan) {
             $plan->images()->create(['file' => $file]);
         });
-        Collection::make(\request('item_id', []))->each(function ($itemId) use ($plan) {
-            $plan->mealItems()->create(['item_id' => $itemId]);
+        $slabNumber = 1;
+        Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber) {
+            Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan) {
+                $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
+            });
+            $slabNumber++;
         });
         if ($plan != null) {
             return redirect()->route('admin.meals.index')->with('success', 'Meal plan added successfully!');
         } else {
             return redirect()->back('errormsg', 'Something went wrong!');
         }
-    }
-
-    public function edit($id)
-    {
-        $mealplan = MealPlan::query()->where('id', $id)->first();
-        $listData = Item::query()->where('active', 1)->get();
-        $bound = $mealplan->mealItems->pluck('item_id')->toArray();
-        if (!empty($mealplan)) {
-            return view('backend.admin.mealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound);
-        }
-        return redirect()->route('admin.daily-meals.index');
-
     }
 
     public function update(UpdateRequest $request, $id)
@@ -64,12 +76,29 @@ class MealPlanController extends Controller
                 $plan->images()->create(['file' => $file]);
             });
             $plan->mealItems()->delete();
-            Collection::make(\request('item_id', []))->each(function ($itemId) use ($plan) {
-                $plan->mealItems()->updateOrCreate(['item_id' => $itemId], ['item_id' => $itemId]);
+            $slabNumber = 1;
+            Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber) {
+                Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan) {
+                    $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
+                });
+                $slabNumber++;
             });
             return redirect()->route('admin.meals.index')->with('success', 'Meal plan updated successfully!');
         } else {
             return redirect()->back('errormsg', 'Something went wrong!');
+        }
+    }
+
+    public function show($id)
+    {
+        /**
+         * @var MealPlan $plan
+         */
+        $plan = MealPlan::query()->whereKey($id)->first();
+        if ($plan != null) {
+            return response()->json(['success' => 1, 'message' => '', 'data' => view('backend.admin.mealplan.show')->with('plan', $plan)->render()]);
+        } else {
+            return response()->json(['success' => 0, 'message' => '', 'data' => null]);
         }
     }
 
@@ -107,5 +136,10 @@ class MealPlanController extends Controller
             $result['message'] = 'Something went wrong!';
         }
         return json_encode($result);
+    }
+
+    public function removeImages($id, string $key)
+    {
+        MealPlanImage::query()->whereKey($key)->where('meal_plan_id', $id)->delete();
     }
 }

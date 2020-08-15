@@ -13,7 +13,7 @@ class MealPlanImage extends Model
         'file', 'meal_plan_id'
     ];
     protected $hidden = [
-        'id', 'created_at', 'updated_at'
+        'created_at', 'updated_at'
     ];
 
     public function setFileAttribute($value): void

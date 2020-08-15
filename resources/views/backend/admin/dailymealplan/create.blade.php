@@ -104,66 +104,28 @@
 											</div>
 										</div>
 									</div>
-									<!--  <div class="row">
-										 <div class="col-md-6">
-											 <div class="form-group">
-												 <label>Rate Per Item</label>
-												 <input type="number" name="rate_per_item" id="rate_per_item" class="form-control" placeholder="Rate Per Item..">
-											 </div>
-										 </div>
-										 <div class="col-md-6">
-											 <div class="form-group">
-												 <label>Rate Per Item Three Days</label>
-												 <input type="number" name="rate_per_item_three_days" id="rate_per_item_three_days" class="form-control" placeholder="Enter Rate Per Item Three Days...">
-											 </div>
-										 </div>
-									 </div> -->
-									<!--/row-->
-									<!-- <div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>No of Meals in Two Days</label>
-												<input type="number" name="meal_in_two_days" id="meal_in_two_days" class="form-control" placeholder="Meal in three Days...">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<label>No of Meals in Two Days</label>
-												<input type="number" name="meal_in_three_days" id="meal_in_three_days" class="form-control" placeholder="Meal in three Days...">
-											</div>
-										</div>
-									</div> -->
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Select Item(s)</label>
-											<select class="form-control select2 select2-multiple" id="item_id" name="item_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}">{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
+											<select class="form-control select2 select2-multiple" id="item_id" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<option value="" disabled>Choose...</option>
+												@foreach($listData as $rows)
+													<option value="{{ $rows->id }}">{{ $rows->name }}</option>
+												@endforeach
 											</select>
-											<select class="form-control select2 select2-multiple" id="item_id_1" name="item_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}">{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
+											<select class="form-control select2 select2-multiple" id="item_id_1" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<option value="" disabled>Choose...</option>
+												@foreach($listData as $rows)
+													<option value="{{ $rows->id }}">{{ $rows->name }}</option>
+												@endforeach
 											</select>
-											<select class="form-control select2 select2-multiple" id="item_id_2" name="item_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}">{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
+											<select class="form-control select2 select2-multiple" id="item_id_2" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<option value="" disabled>Choose...</option>
+												@foreach($listData as $rows)
+													<option value="{{ $rows->id }}">{{ $rows->name }}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
@@ -177,14 +139,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label>Images (multiple allowed)</label>
-											<input type="file" name="images[]" id="rate_per_item_three_days" class="form-control" title="Click to choose files..." multiple accept=".jpg, .jpeg, .png">
-										</div>
-									</div>
-								</div>
+								@include('backend.fragments.gallery.gallery-view')
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
@@ -207,6 +162,7 @@
             allowClear: true
         });
         $(document).ready(function () {
+			@include('backend.fragments.gallery.gallery-js')
             $(".select2").addClass('mb-2');
             $('#add_form').validate({ // initialize the plugin
                 rules: {

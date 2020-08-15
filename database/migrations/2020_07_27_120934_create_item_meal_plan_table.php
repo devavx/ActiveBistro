@@ -13,10 +13,11 @@ class CreateItemMealPlanTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_meal_plan', function (Blueprint $table) {
+        Schema::create('meal_plan_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('meal_plan_id')->nullable();
             $table->unsignedInteger('item_id')->nullable();
+            $table->tinyInteger('slab')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateItemMealPlanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_meal_plan');
+        Schema::dropIfExists('meal_plan_items');
     }
 }

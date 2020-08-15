@@ -5,6 +5,7 @@ namespace App;
 use App\Models\MealPlanImage;
 use App\Models\MealPlanItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,9 +29,9 @@ class MealPlan extends Model
         'Sun' => 'Sunday'
     ];
 
-    public function items(): HasMany
+    public function items(): BelongsToMany
     {
-        return $this->hasMany(Item::class);
+        return $this->belongsToMany(Item::class, 'meal_plan_items');
     }
 
     public function mealItems(): HasMany
