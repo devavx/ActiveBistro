@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Daily Meal Plan | Create @endsection
+@section('title') Admin | Daily Meals | Create @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -25,13 +25,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Create Daily Meal Plan</h4>
+					<h4 class="text-themecolor">Create Daily Meal</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/meals') }}">Daily Meal Plan</a></li>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/meals') }}">Daily Meals</a></li>
 							<li class="breadcrumb-item active">Create</li>
 						</ol>
 						<!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
@@ -42,7 +42,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Create Daily Meal Plan</h4>
+							<h4 class="m-b-0 text-white">Create Daily Meal</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -91,7 +91,7 @@
 												<input type="text" name="name" id="name" class="form-control" placeholder="Enter meal plan name...">
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-3">
 											<div class="form-group">
 												<label>Day of Week</label>
 												<select class="form-control" name="day" id="no_of_days">
@@ -100,7 +100,17 @@
 														<option value="{{ \App\Core\Enums\Common\DaysOfWeek::getValue($day) }}">{{ $day }}</option>
 													@endforeach
 												</select>
-												<!-- <input type="text" name="no_of_days" id="no_of_days" class="form-control" placeholder="Enter No of Days"> -->
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Type</label>
+												<select class="form-control" name="type" id="no_of_days">
+													<option value="" disabled selected>Choose...</option>
+													@foreach(\App\Core\Enums\Common\MealTypes::getKeys() as $type)
+														<option value="{{ \App\Core\Enums\Common\MealTypes::getValue($type) }}">{{ $type }}</option>
+													@endforeach
+												</select>
 											</div>
 										</div>
 									</div>

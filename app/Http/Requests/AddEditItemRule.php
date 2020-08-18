@@ -24,18 +24,18 @@ class AddEditItemRule extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name' => 'required',
             // 'sub_name'=>'required',
-            'short_description'=>'required',
-            'long_description'=>'required',
-            'protein'=>'required',
-            'protein'=>'required',
-            'calories'=>'required',
-            'carbs'=>'required',
-            'item_type_id'=>'required',
-            'category_id'=>'required',
-            'ingredient_id'=>'required',
-            'thumbnail'=>'image',
+            'short_description' => 'required',
+            'long_description' => 'required',
+            'protein' => 'required',
+            'calories' => 'required',
+            'carbs' => 'required',
+            'fat' => 'required',
+            'item_type_id' => 'required',
+            'category_id' => 'required',
+            'ingredient_id' => 'required',
+            'thumbnail' => 'image',
         ];
     }
 }

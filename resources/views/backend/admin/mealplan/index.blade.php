@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Meal Plan @endsection
+@section('title') Admin | Meals @endsection
 
 @section('style')
 	<link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,13 +27,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Meal Plan List</h4>
+					<h4 class="text-themecolor">Meal Plans</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item active">Meal Plan</li>
+							<li class="breadcrumb-item active">Meal Plans</li>
 						</ol>
 						<a href="{{ route('admin.meals.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
@@ -69,6 +69,7 @@
 									<thead>
 									<tr>
 										<th>Name</th>
+										<th>Type</th>
 										<th>Image(s)</th>
 										<th>Status</th>
 										<th>Created At</th>
@@ -79,6 +80,7 @@
 									@foreach($plans as $plan)
 										<tr>
 											<td> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</td>
+											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
 												@foreach($plan->images as $image)
 													<img src="{{ $image->file }}" alt="image" width="100">

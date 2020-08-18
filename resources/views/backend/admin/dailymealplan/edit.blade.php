@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Meal Plan | Edit @endsection
+@section('title') Admin | Daily Meals | Edit @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -16,13 +16,13 @@
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Edit Daily Meal Plan</h4>
+					<h4 class="text-themecolor">Edit Daily Meal</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/daily-meals') }}">Daily Meal Plan</a>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/daily-meals') }}">Daily Meals</a>
 							</li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ol>
@@ -33,7 +33,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Edit Daily Meal Plan</h4>
+							<h4 class="m-b-0 text-white">Edit Daily Meal</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -77,13 +77,24 @@
 												<input type="text" name="name" class="form-control" placeholder="Enter Meal Plan name.." value="{{ $mealplan->name }}">
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-3">
 											<div class="form-group">
-												<label>Select Days</label>
+												<label>Day of Week</label>
 												<select class="form-control" name="day" id="no_of_days" required>
-													<option value="" disabled selected>Select Days</option>
+													<option value="" disabled selected>Choose...</option>
 													@foreach(\App\Core\Enums\Common\DaysOfWeek::getValues() as $day)
 														<option value="{{$day}}" @if($mealplan->day==$day) selected @endif>{{\App\Core\Enums\Common\DaysOfWeek::getKey($day)}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Type</label>
+												<select class="form-control" name="type" id="no_of_days" required>
+													<option value="" disabled selected>Choose...</option>
+													@foreach(\App\Core\Enums\Common\MealTypes::getValues() as $type)
+														<option value="{{$type}}" @if($mealplan->type==$type) selected @endif>{{\App\Core\Enums\Common\MealTypes::getKey($type)}}</option>
 													@endforeach
 												</select>
 											</div>
@@ -126,7 +137,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Coming Soon</label>
-											&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in comign soon">
+											&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in coming soon">
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span><br>
 											<input type="checkbox" name="launched" @if($mealplan->launched==true) checked @endif/>

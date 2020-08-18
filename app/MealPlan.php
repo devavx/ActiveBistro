@@ -14,7 +14,7 @@ class MealPlan extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name', 'day', 'launched', 'active'];
+    protected $fillable = ['name', 'day', 'launched', 'active', 'type'];
     protected $casts = [
         'launched' => 'bool', 'active' => 'bool'
     ];

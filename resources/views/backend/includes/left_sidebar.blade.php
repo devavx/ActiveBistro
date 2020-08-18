@@ -37,17 +37,17 @@ $uri2 = Request::segment(2);
 					</ul>
 				</li>
 				<li>
-					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Daily Meal Plans</span></a>
+					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Daily Meals</span></a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="{{ url('/admin/daily-meals')}}">Daily Meal Plans List</a></li>
-						<li><a href="{{ url('/admin/daily-meals/create')}}">Daily New Meal Plan</a></li>
+						<li><a href="{{ url('/admin/daily-meals')}}">Daily Meals</a></li>
+						<li><a href="{{ url('/admin/daily-meals/create')}}">Create New</a></li>
 					</ul>
 				</li>
 				<li>
-					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Meal Plans</span></a>
+					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-layout-grid2"></i><span class="hide-menu">Meals</span></a>
 					<ul aria-expanded="false" class="collapse">
-						<li><a href="{{ url('/admin/meals')}}">Meal Plans List</a></li>
-						<li><a href="{{ url('/admin/meals/create')}}">New Meal Plan</a></li>
+						<li><a href="{{ url('/admin/meals')}}">Meals</a></li>
+						<li><a href="{{ url('/admin/meals/create')}}">Create New</a></li>
 					</ul>
 				</li>
 				<li>

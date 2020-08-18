@@ -27,6 +27,7 @@ class StoreRequest extends FormRequest
             'name' => 'required|unique:meal_plans',
             'images.*' => 'bail|required|image|max:2048',
             'item_id.*' => 'bail|required',
+            'type' => 'bail|required|string',
         ];
     }
 }

@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             'name' => 'required',
             'images.*' => 'bail|sometimes|image|max:2048',
             'item_id.*' => 'bail|required',
+            'type' => 'bail|required|string',
         ];
     }
 }

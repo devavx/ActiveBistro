@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Meal Plan @endsection
+@section('title') Admin | Daily Meals @endsection
 
 @section('style')
 	<link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,13 +27,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Daily Meal Plan List</h4>
+					<h4 class="text-themecolor">Daily Meals</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item active">Daily Meal Plan</li>
+							<li class="breadcrumb-item active">Daily Meals</li>
 						</ol>
 						<a href="{{ route('admin.daily-meals.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
@@ -44,7 +44,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Meal List</h4>
+							<h4 class="card-title">Daily Meals List</h4>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
 									<strong> {{$message}}</strong>
@@ -70,6 +70,7 @@
 									<tr>
 										<th>Name</th>
 										<th>Day</th>
+										<th>Type</th>
 										<th>Image(s)</th>
 										<th>Status</th>
 										<th>Created At</th>
@@ -81,6 +82,7 @@
 										<tr>
 											<td> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</td>
 											<td> {{\App\Core\Enums\Common\DaysOfWeek::getKey($plan->day)}}</td>
+											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
 												@foreach($plan->images as $image)
 													<img src="{{ $image->file }}" alt="image" width="100">

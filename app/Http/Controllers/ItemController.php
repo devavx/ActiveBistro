@@ -58,17 +58,18 @@ class ItemController extends Controller
         }
          
         $product= Item::create([
-            'name'=>$request->name,
+            'name' => $request->name,
             // 'sub_name'=>$request->sub_name, 
-            'short_description'=>$request->short_description,
-            'long_description'=>$request->long_description,
-            'protein'=>($request->protein) ? $request->protein:0,
-            'calories'=>($request->calories) ? $request->calories:0,
-            'thumbnail'=>$newimg,
-            'carbs'=>($request->carbs) ? $request->carbs:0, 
-            'item_type_id'=>($request->item_type_id) ? $request->item_type_id:0, 
-            'category_id'=>($request->category_id) ? $request->category_id:0 
-         ]);
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+            'protein' => ($request->protein) ? $request->protein : 0,
+            'calories' => ($request->calories) ? $request->calories : 0,
+            'thumbnail' => $newimg,
+            'carbs' => ($request->carbs) ? $request->carbs : 0,
+            'fat' => ($request->fat) ? $request->fat : 0,
+            'item_type_id' => ($request->item_type_id) ? $request->item_type_id : 0,
+            'category_id' => ($request->category_id) ? $request->category_id : 0
+        ]);
         if($product) {
             $product->ingredients()->attach($request->ingredient_id);
             return  redirect('admin/items')->with('success','Item Added Successfully');
@@ -122,25 +123,26 @@ class ItemController extends Controller
             $newimg=rand().'_'.$image->getClientOriginalname(); 
             $storeImage = $request->file('thumbnail')->storeAs('public/items',$newimg);
             $item->thumbnail = $newimg;
-        }          
-         
+        }
+
         $item->name = $request->name;
         // $item->sub_name = $request->sub_name; 
         $item->short_description = $request->short_description;
         $item->long_description = $request->long_description;
-        $item->protein = ($request->protein) ? $request->protein:0;
-        $item->calories = ($request->calories) ? $request->calories:0; 
-        $item->carbs = ($request->carbs) ? $request->carbs:0; 
-        $item->selling_price = ($request->selling_price) ? $request->selling_price:0; 
-        $item->actual_price = ($request->actual_price) ? $request->actual_price:0; 
-        $item->item_type_id = ($request->item_type_id) ? $request->item_type_id:0; 
-        $item->category_id = ($request->category_id) ? $request->category_id:0; 
+        $item->protein = ($request->protein) ? $request->protein : 0;
+        $item->calories = ($request->calories) ? $request->calories : 0;
+        $item->carbs = ($request->carbs) ? $request->carbs : 0;
+        $item->fat = ($request->fat) ? $request->fat : 0;
+        $item->selling_price = ($request->selling_price) ? $request->selling_price : 0;
+        $item->actual_price = ($request->actual_price) ? $request->actual_price : 0;
+        $item->item_type_id = ($request->item_type_id) ? $request->item_type_id : 0;
+        $item->category_id = ($request->category_id) ? $request->category_id : 0;
         $item->ingredients()->detach();
-        if($item->save()) {
+        if ($item->save()) {
             $item->ingredients()->attach($request->ingredient_id);
-            return  redirect('admin/items')->with('success','Item Updated Successfully');
-        }else{
-            return back()->with('errormsg','Whoops!! Somthing Went Wrong! Try Again!!');
+            return redirect('admin/items')->with('success', 'Item Updated Successfully');
+        } else {
+            return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
         }
     }
 
