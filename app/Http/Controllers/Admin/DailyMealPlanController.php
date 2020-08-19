@@ -53,9 +53,12 @@ class DailyMealPlanController extends Controller
             $plan->images()->create(['file' => $file]);
         });
         $slabNumber = 1;
-        Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber) {
-            Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan) {
-                $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
+        Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber, $request) {
+            Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan, $request) {
+                if ($request->get('default_slab_' . $slabNumber, -1) == $itemId)
+                    $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber, 'default' => true]);
+                else
+                    $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
             });
             $slabNumber++;
         });
@@ -81,9 +84,12 @@ class DailyMealPlanController extends Controller
             });
             $plan->mealItems()->delete();
             $slabNumber = 1;
-            Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber) {
-                Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan) {
-                    $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
+            Collection::make(\request('item_id', []))->each(function ($slab) use ($plan, &$slabNumber, $request) {
+                Collection::make($slab)->each(function ($itemId) use (&$slabNumber, $plan, $request) {
+                    if ($request->get('default_slab_' . $slabNumber, -1) == $itemId)
+                        $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber, 'default' => true]);
+                    else
+                        $plan->mealItems()->create(['item_id' => $itemId, 'slab' => $slabNumber]);
                 });
                 $slabNumber++;
             });
@@ -109,7 +115,7 @@ class DailyMealPlanController extends Controller
     public function delete($id = '')
     {
         $result = array();
-        $data = MealPlan::find($id);
+        $data = MealPlan::query()->find($id);
         if (!empty($data)) {
             $data->delete();
             $result['status'] = 'success';
@@ -125,7 +131,7 @@ class DailyMealPlanController extends Controller
     public function changeStatus($id = '')
     {
         $result = array();
-        $data = MealPlan::find($id);
+        $data = MealPlan::query()->find($id);
         if (!empty($data)) {
             if ($data->active) {
                 $data->active = 0;

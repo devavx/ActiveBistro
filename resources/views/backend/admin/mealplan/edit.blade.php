@@ -73,8 +73,8 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Meal Plan</label>
-												<input type="text" name="name" class="form-control" placeholder="Enter Meal Plan name.." value="{{ $mealplan->name }}">
+												<label>Name</label>
+												<input type="text" name="name" class="form-control" placeholder="Enter meal name.." value="{{ $mealplan->name }}">
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -92,35 +92,77 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<div class="form-group">
-											<label>Select Item</label>
-											<select class="form-control select2 select2-multiple" id="item_id" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[0])) selected @endif>{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
-											</select>
-											<select class="form-control select2 select2-multiple" id="item_id_1" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[1])) selected @endif>{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
-											</select>
-											<select class="form-control select2 select2-multiple" id="item_id_2" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-												@if(!empty(@listData))
-													@foreach($listData as $rows)
-														<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[2])) selected @endif>{{ $rows->name }}</option>
-													@endforeach
-												@else
-													<option value="">Select</option>
-												@endif
-											</select>
+										<div class="row">
+											<div class="col-md-9">
+												<div class="form-group">
+													<label>Item(s)</label>
+													<select class="form-control select2 select2-multiple" id="items_slab_1" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[0])) selected @endif>{{ $rows->name }}</option>
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+													<select class="form-control select2 select2-multiple" id="items_slab_2" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[1])) selected @endif>{{ $rows->name }}</option>
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+													<select class="form-control select2 select2-multiple" id="items_slab_3" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																<option value="{{ $rows->id }}" @if(in_array($rows->id,$bound[2])) selected @endif>{{ $rows->name }}</option>
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div class="form-group">
+													<label>Default Item(s)</label>
+													<select class="form-control single-dd" name="default_slab_1" id="item_slab_1" style="width: 100%">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																@if(in_array($rows->id,$bound[0]))
+																	<option value="{{ $rows->id }}" @if($rows->default==true) selected @endif>{{ $rows->name }}</option>
+																@endif
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+													<select class="form-control single-dd" name="default_slab_2" id="item_slab_2" style="width: 100%">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																@if(in_array($rows->id,$bound[1]))
+																	<option value="{{ $rows->id }}" @if($rows->default==true) selected @endif>{{ $rows->name }}</option>
+																@endif
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+													<select class="form-control single-dd" name="default_slab_3" id="item_slab_3" style="width: 100%">
+														@if(!empty(@listData))
+															@foreach($listData as $rows)
+																@if(in_array($rows->id,$bound[2]))
+																	<option value="{{ $rows->id }}" @if($rows->default==true) selected @endif>{{ $rows->name }}</option>
+																@endif
+															@endforeach
+														@else
+															<option value="">Select</option>
+														@endif
+													</select>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -151,13 +193,41 @@
 
 	<script type="text/javascript" src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
 	<script type="text/javascript">
-        $(".select2").select2({
-            placeholder: "Please select Item",
-            allowClear: true
-        });
+        let itemsFirstSlab = null;
+        let itemsSecondSlab = null;
+        let itemsThirdSlab = null;
+        let itemFirstSlab = null;
+        let itemSecondSlab = null;
+        let itemThirdSlab = null;
         $(document).ready(function () {
 			@include('backend.fragments.gallery.gallery-js',['prefix'=>'/admin/daily-meals/images/'.$mealplan->id])
+            const base = {
+                placeholder: "Choose...",
+                allowClear: true
+            };
+            const baseNoPlaceHolder = {
+                allowClear: false
+            };
+            itemsFirstSlab = $('#items_slab_1').select2(base);
+            itemsSecondSlab = $('#items_slab_2').select2(base);
+            itemsThirdSlab = $('#items_slab_3').select2(base);
+            itemFirstSlab = $('#item_slab_1').select2(baseNoPlaceHolder);
+            itemSecondSlab = $('#item_slab_2').select2(baseNoPlaceHolder);
+            itemThirdSlab = $('#item_slab_3').select2(baseNoPlaceHolder);
+            itemsFirstSlab.on('change', function (e) {
+                itemFirstSlab.html('').select2({data: [{id: '', text: ''}]});
+                itemFirstSlab.select2({data: itemsFirstSlab.select2('data')});
+            });
+            itemsSecondSlab.on('change', function (e) {
+                itemSecondSlab.html('').select2({data: [{id: '', text: ''}]});
+                itemSecondSlab.select2({data: itemsSecondSlab.select2('data')});
+            });
+            itemsThirdSlab.on('change', function (e) {
+                itemThirdSlab.html('').select2({data: [{id: '', text: ''}]});
+                itemThirdSlab.select2({data: itemsThirdSlab.select2('data')});
+            });
             $(".select2").addClass('mb-2');
+            $(".single-dd").addClass('mb-1');
         });
 	</script>
 @endsection

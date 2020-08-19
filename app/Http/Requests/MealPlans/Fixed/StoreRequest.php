@@ -28,6 +28,9 @@ class StoreRequest extends FormRequest
             'images.*' => 'bail|required|image|max:2048',
             'item_id.*' => 'bail|required',
             'type' => 'bail|required|string',
+            'default_slab_1' => 'bail|required',
+            'default_slab_2' => 'bail|required',
+            'default_slab_3' => 'bail|required',
         ];
     }
 }

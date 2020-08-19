@@ -29,6 +29,9 @@ class StoreRequest extends FormRequest
             'item_id.*' => 'bail|required',
             'day' => 'bail|required|string',
             'type' => 'bail|required|string',
+            'default_slab_1' => 'bail|required',
+            'default_slab_2' => 'bail|required',
+            'default_slab_3' => 'bail|required',
         ];
     }
 }
