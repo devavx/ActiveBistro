@@ -130,7 +130,12 @@ class FrontendController extends Controller
         $listData->transform(function (MealPlan $mealPlan) use (&$items) {
             $items[$mealPlan->day][] = (object)[
                 'meal' => $mealPlan,
-                'items' => $mealPlan->items
+                'items' => $mealPlan->items,
+                'slabs' => [
+                    0 => $mealPlan->mealItems()->where('slab', 1)->get(),
+                    1 => $mealPlan->mealItems()->where('slab', 2)->get(),
+                    2 => $mealPlan->mealItems()->where('slab', 3)->get(),
+                ]
             ];
         });
         $categoryData = Category::where('active', 1)->get();

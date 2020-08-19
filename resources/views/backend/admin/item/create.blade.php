@@ -166,13 +166,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Selling Price</label>
-												<input type="number" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price..">
+												<input type="text" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price..">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Regular Price </label>
-												<input type="number" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regual Price..">
+												<input type="text" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regual Price..">
 											</div>
 										</div>
 									</div>

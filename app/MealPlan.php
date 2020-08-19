@@ -31,7 +31,7 @@ class MealPlan extends Model
 
     public function items(): BelongsToMany
     {
-        return $this->belongsToMany(Item::class, 'meal_plan_items');
+        return $this->belongsToMany(Item::class, 'meal_plan_items')->withPivot('meal_plan_id', 'item_id', 'slab', 'default');
     }
 
     public function mealItems(): HasMany

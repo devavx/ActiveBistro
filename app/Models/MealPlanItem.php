@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Item;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MealPlanItem extends Model
 {
@@ -12,4 +14,12 @@ class MealPlanItem extends Model
     protected $hidden = [
         'id', 'created_at', 'updated_at'
     ];
+    protected $casts = [
+        'default' => 'bool'
+    ];
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
 }

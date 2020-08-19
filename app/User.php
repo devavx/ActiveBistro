@@ -2,7 +2,9 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Cart;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name','first_name','last_name','dob','gender','phone','gender_info','role_id', 'email', 'password','click_to_verify','about','user_targert_weight','user_weight','user_height','address','profile_image'
+        'name', 'first_name', 'last_name', 'dob', 'gender', 'phone', 'gender_info', 'role_id', 'email', 'password', 'click_to_verify', 'about', 'user_targert_weight', 'user_weight', 'user_height', 'address', 'profile_image'
     ];
 
     /**
@@ -37,15 +39,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo('App\Role');
     }
 
-    public function getProfileImageAttribute(){
-        if (!empty($this->attributes['profile_image'])) { 
-            return asset('uploads/avatars/'.$this->attributes['profile_image']);
+    public function cart(): HasOne
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    public function getProfileImageAttribute()
+    {
+        if (!empty($this->attributes['profile_image'])) {
+            return asset('uploads/avatars/' . $this->attributes['profile_image']);
         }
-        return $this->attributes['profile_image'] ;
+        return $this->attributes['profile_image'];
     }
 }

@@ -118,7 +118,7 @@
 						<div class="row">
 							<div class="owl-carousel owl-carousel1 owl-theme item_meal_section">
 								@foreach($items as $key=>$value)
-									@include('frontend.meal-item',['item'=>$value,'key'=>$key])
+									@include('frontend.meal_item',['item'=>$value,'key'=>$key])
 								@endforeach
 							</div>
 						</div>
