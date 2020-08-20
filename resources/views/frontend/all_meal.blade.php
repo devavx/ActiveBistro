@@ -159,16 +159,17 @@
 @section('script')
 
 	<script type="text/javascript" src="{{ asset('assets/js/owl.carousel.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/Cart.js') }}"></script>
 	<script type="text/javascript">
-        function editdata(id) {
-            $("#mealcol__" + id).hide();
-            $("#meal-form__" + id).show();
-        }
+		function editdata(id) {
+			$("#mealcol__" + id).hide();
+			$("#meal-form__" + id).show();
+		}
 
-        function saveData(id) {
-            $("#meal-form__" + id).hide();
-            $("#mealcol__" + id).show();
-        }
+		function saveData(id) {
+			$("#meal-form__" + id).hide();
+			$("#mealcol__" + id).show();
+		}
 
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

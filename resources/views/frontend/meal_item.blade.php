@@ -12,10 +12,9 @@
 							@if($item->pivot->default==true)
 								<p class="mb-1 item__price" data-price="{{ $item->selling_price }}" data-id="{{ $item->itemId }}">
 									<a href="javascript:void(0)">
-										<u id="monday__item__{{ $key }}">{{ $item->name }}</u>
+										<u id="target_{{$plan->meal->id}}_{{$item->pivot->slab}}_name">{{ $item->name }}</u>
 									</a>
-									<span class="text-color font-weight-bold ml-2">£ <span id="price__monday__item__{{ $key }}"> {{ $item->selling_price }} </span>
-								            	                                </span>
+									<span class="text-color font-weight-bold ml-2">£ <span id="target_{{$plan->meal->id}}_{{$item->pivot->slab}}_price"> {{ $item->selling_price }} </span></span>
 								</p>
 							@endif
 						@endforeach
@@ -37,29 +36,29 @@
 					<div class="rowform">
 						<div class="mealform-left">
 							<form>
-								<select class="form-control">
+								<select class="form-control" onchange="handleItemChanged('{{$plan->meal->id}}',1,this.value,this.selectedOptions[0].getAttribute('data-price'),this.selectedOptions[0].getAttribute('data-name'));">
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==1)
 											<div class="form-group">
-												<option value="{{$item->id}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
 								</select>
-								<select class="form-control">
+								<select class="form-control" onchange="handleItemChanged('{{$plan->meal->id}}',2,this.value,this.selectedOptions[0].getAttribute('data-price'),this.selectedOptions[0].getAttribute('data-name'));">
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==2)
 											<div class="form-group">
-												<option value="{{$item->id}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
 								</select>
-								<select class="form-control">
+								<select class="form-control" onchange="handleItemChanged('{{$plan->meal->id}}',3,this.value,this.selectedOptions[0].getAttribute('data-price'),this.selectedOptions[0].getAttribute('data-name'));">
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==3)
 											<div class="form-group">
-												<option value="{{$item->id}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
