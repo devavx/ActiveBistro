@@ -91,8 +91,8 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Type</label>
-												<select class="form-control" name="type" id="no_of_days" required>
-													<option value="" disabled selected>Choose...</option>
+												<select class="form-control" name="type" id="no_of_days">
+													<option value="" selected>Choose...</option>
 													@foreach(\App\Core\Enums\Common\MealTypes::getValues() as $type)
 														<option value="{{$type}}" @if($mealplan->type==$type) selected @endif>{{\App\Core\Enums\Common\MealTypes::getKey($type)}}</option>
 													@endforeach

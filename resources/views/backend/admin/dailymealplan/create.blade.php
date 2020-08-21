@@ -106,7 +106,7 @@
 											<div class="form-group">
 												<label>Type</label>
 												<select class="form-control" name="type" id="no_of_days">
-													<option value="" disabled selected>Choose...</option>
+													<option value="" selected>Choose...</option>
 													@foreach(\App\Core\Enums\Common\MealTypes::getKeys() as $type)
 														<option value="{{ \App\Core\Enums\Common\MealTypes::getValue($type) }}">{{ $type }}</option>
 													@endforeach
