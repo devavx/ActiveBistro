@@ -11,10 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+use App\Core\Primitives\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +45,16 @@ Route::get('/items', 'FrontendController@getAllItem')->name('all_items');
 Route::get('/meals', 'FrontendController@getAllMeal')->name('all_meals');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| Cart Namespace Route(s)
+|--------------------------------------------------------------------------
+|
+*/
+Route::prefix('cart')->group(static function () {
+    Route::get(Str::Root, [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+});
 
 //Backend URLS
 Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], 'prefix' => 'admin'], function () {

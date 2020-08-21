@@ -56,4 +56,52 @@ class User extends Authenticatable
         }
         return $this->attributes['profile_image'];
     }
+
+    public function age(): int
+    {
+        return 1;
+    }
+
+    /**
+     * Will always be in centimetres;
+     * @return float
+     */
+    public function height(): float
+    {
+        return 163;
+    }
+
+    /**
+     * Will always be in kilograms;
+     * @return float
+     */
+    public function weight(): float
+    {
+        return 163;
+    }
+
+    public function calories(): ?string
+    {
+        $additive = $this->gender == 'male' ? +5 : -161;
+        try {
+            return round((99.99 * $this->weight()) + (6.25 * $this->height()) - (4.92 * $this->age() + $additive), 2);
+        } catch (\Throwable $e) {
+            return 0;
+        }
+    }
+
+    public function proteins(): ?string
+    {
+        return 40;
+    }
+
+    public function carbohydrates(): ?string
+    {
+        return 24;
+    }
+
+    public function fats(): ?string
+    {
+        return 17;
+    }
 }

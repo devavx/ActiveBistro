@@ -11,6 +11,7 @@ use App\Http\Requests\TailorPlanRule;
 use App\Item;
 use App\ItemType;
 use App\MealPlan;
+use App\Models\Cart;
 use App\PrivacyPolicy;
 use App\SliderSetting;
 use App\TermCondition;
@@ -32,7 +33,6 @@ class FrontendController extends Controller
 
     public function signup()
     {
-        // return view('frontend.process1');
         return view('frontend.sign_up');
     }
 
@@ -45,10 +45,16 @@ class FrontendController extends Controller
     {
         $userData = Auth::user();
         if (!empty($userData)) {
-            $userData->user_height = $request->user_height;
             $userData->weight_total = $request->weight_total;
-            $userData->user_weight = $request->user_weight;
-            $userData->user_targert_weight = $request->user_targert_weight;
+            if ($request->get('weight_total', 'metric') == 'metric') {
+                $userData->user_height = $request->user_height;
+                $userData->user_weight = $request->user_weight;
+                $userData->user_targert_weight = $request->user_targert_weight;
+            } else {
+                $userData->user_height = $this->imperialToMetricLength($request->user_height);
+                $userData->user_weight = $this->imperialToMetricWeight($request->user_weight);
+                $userData->user_targert_weight = $this->imperialToMetricWeight($request->user_targert_weight);
+            }
             $userData->weight_goal = $request->weight_goal;
             $userData->activity_lavel = $request->activity_lavel;
             $userData->save();
@@ -131,15 +137,31 @@ class FrontendController extends Controller
             $items[$mealPlan->day][] = (object)[
                 'meal' => $mealPlan,
                 'items' => $mealPlan->items,
-                'slabs' => [
-                    0 => $mealPlan->mealItems()->where('slab', 1)->get(),
-                    1 => $mealPlan->mealItems()->where('slab', 2)->get(),
-                    2 => $mealPlan->mealItems()->where('slab', 3)->get(),
-                ]
             ];
         });
+        if (!auth()->user()->cart()->exists()) {
+            \auth()->user()->cart()->create();
+        }
+        /**
+         * @var Cart $cart
+         */
+        $cart = \auth()->user()->cart;
+        $state = new \App\Resources\Cart\Cart($cart);
+        $cart->update([
+            'items' => $state
+        ]);
         $categoryData = Category::where('active', 1)->get();
         $itemTypeData = ItemType::where('active', 1)->get();
         return view('frontend.all_meal', compact(['listData', 'categoryData', 'itemTypeData']))->with('items', $items);
+    }
+
+    protected function imperialToMetricLength($value)
+    {
+        return round($value * 30.48, 2);
+    }
+
+    protected function imperialToMetricWeight($value)
+    {
+        return round($value / 2.20462, 2);
     }
 }

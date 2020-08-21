@@ -18,6 +18,9 @@ class MealPlan extends Model
     protected $casts = [
         'launched' => 'bool', 'active' => 'bool'
     ];
+    protected $hidden = [
+        'created_at', 'updated_at', 'deleted_at'
+    ];
 
     const AllWeekDays = [
         'Mon' => 'Monday',
