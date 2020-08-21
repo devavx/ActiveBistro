@@ -116,8 +116,8 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="owl-carousel owl-carousel1 owl-theme item_meal_section">
-								@foreach($state->cards() as $key=>$value)
-									@include('frontend.meal_item',['item'=>$value,'key'=>$key])
+								@foreach(\App\Core\Enums\Common\DaysOfWeek::sequence() as $key)
+									@include('frontend.meal_item',['plans'=>$state->card($key),'key'=>$key])
 								@endforeach
 							</div>
 						</div>
@@ -140,7 +140,8 @@
 				<div class="row">
 					<div class="col-lg-5 col-sm-6 col-12">
 						<div class="checktext-btn">
-							<h5 class="m-0 font-weight-bold">£ <span id="total_weekly_amout">245.35</span> per week</h5>
+							<h5 class="m-0 font-weight-bold">£ <span id="total_weekly_amout">{{$state->total()}}</span>
+								per week</h5>
 							<p class="text-color m-0"><i class="fa fa-truck mr-2"></i>Free Delivery, Always</p>
 						</div>
 					</div>
@@ -156,7 +157,7 @@
 	</div>
 @endsection
 @section('script')
-
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/owl.carousel.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/Cart.js') }}"></script>
 	<script type="text/javascript">
@@ -215,16 +216,16 @@
 		countTotalAmount()
 
 		function countTotalAmount() {
-			var totalAmount = 0;
-			// alert($('p.item__price').length);
-			$('.item_meal_section .meal__item__count p').each(function () {
-				// $(this).parent().attr('data-lity','');
-				totalAmount += parseFloat($(this).attr('data-price'));
-				// alert($(this).attr('data-price'));
-			});
-			// alert(totalAmount);
-
-			$('#total_weekly_amout').html(totalAmount);
+			// var totalAmount = 0;
+			// // alert($('p.item__price').length);
+			// $('.item_meal_section .meal__item__count p').each(function () {
+			// 	// $(this).parent().attr('data-lity','');
+			// 	totalAmount += parseFloat($(this).attr('data-price'));
+			// 	// alert($(this).attr('data-price'));
+			// });
+			// // alert(totalAmount);
+			//
+			// $('#total_weekly_amout').html(totalAmount);
 		}
 
 		function changeItem(mealId, itemElement, element) {

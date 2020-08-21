@@ -54,6 +54,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 Route::prefix('cart')->group(static function () {
     Route::get(Str::Root, [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
+    Route::get('replace/{day}/{slab}/{mealId}/{itemId}', [\App\Http\Controllers\CartController::class, 'replaceItem']);
+    Route::prefix('quantity/{day}/{mealId}')->group(static function () {
+        Route::get('increase', [\App\Http\Controllers\CartController::class, 'increase'])->name('cart.quantity.increase');
+        Route::get('decrease', [\App\Http\Controllers\CartController::class, 'decrease'])->name('cart.quantity.increase');
+    });
 });
 
 //Backend URLS

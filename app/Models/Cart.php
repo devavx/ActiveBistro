@@ -15,7 +15,7 @@ class Cart extends Model
         'id', 'created_at', 'updated_at'
     ];
     protected $casts = [
-        'items' => 'array'
+        'items' => 'object'
     ];
 
     protected static function boot()
