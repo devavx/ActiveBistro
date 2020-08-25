@@ -16,10 +16,10 @@ handleItemChanged = (mealId, slab, itemId, price, name, day) => {
 	});
 };
 
-increaseQuantity = (day, mealId) => {
+cloneMeal = (day, mealId) => {
 	setLoading(true, () => {
 		performGet({
-			url: '/cart/quantity/' + day + '/' + mealId + '/increase',
+			url: '/cart/quantity/' + day + '/' + mealId + '/clone',
 			success: (message, data) => {
 				notyf.success(message);
 				$('#main_container').fadeTo('fast', 0.0, function () {
@@ -60,10 +60,10 @@ increaseQuantity = (day, mealId) => {
 	});
 };
 
-decreaseQuantity = (day, mealId) => {
+deleteMeal = (day, mealId) => {
 	setLoading(true, () => {
 		performGet({
-			url: '/cart/quantity/' + day + '/' + mealId + '/decrease',
+			url: '/cart/quantity/' + day + '/' + mealId + '/delete',
 			success: (message, data) => {
 				notyf.success(message);
 				$('#main_container').fadeTo('fast', 0.0, function () {

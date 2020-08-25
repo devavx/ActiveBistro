@@ -20,11 +20,11 @@
 						@endforeach
 					</div>
 					<div class="meal-mealright text-right">
-						<a href="javascript:void(0);" onclick="decreaseQuantity('{{$key}}','{{$plan->uuid}}');"><span><i class="fa fa-minus text-color"></i></span></a>
+						<a href="javascript:void(0);" onclick="deleteMeal('{{$key}}','{{$plan->uuid}}');"><span><i class="fa fa-minus text-color"></i></span></a>
 
 						<span class="countnum ml-2 mr-2 font-weight-bold" data-quantity="{{$plan->quantity}}">{{$plan->quantity}}</span>
 
-						<a href="javascript:void(0);" onclick="increaseQuantity('{{$key}}','{{$plan->uuid}}');" class="float-right"><span><i class="fa fa-plus text-color"></i></span></a>
+						<a href="javascript:void(0);" onclick="cloneMeal('{{$key}}','{{$plan->uuid}}');" class="float-right"><span><i class="fa fa-plus text-color"></i></span></a>
 						<hr class="mt-1 mb-1">
 						<div class="text-right">
 							<a href="javascript:void(0)" class="text-color editdata" onclick="editdata('{{ $plan->uuid }}')"><i class="fa fa-pencil"></i></a>
@@ -86,14 +86,14 @@
 						</p>
 					</div>
 					<div class="meal-mealright text-right">
-						<a href="javascript:void(0);" onclick="removeItem('{{$key}}','{{$item->uuid}}');"><span><i class="fa fa-minus text-color"></i></span></a>
+						<a href="javascript:void(0);" onclick="removeItem('{{$key}}',{{$item->id}});"><span><i class="fa fa-minus text-color"></i></span></a>
 
 						<span class="countnum ml-2 mr-2 font-weight-bold" data-quantity="{{$item->quantity}}" id="target_quantity_{{$item->id}}">{{$item->quantity}}</span>
 
-						<a href="javascript:void(0);" onclick="addItem('{{$key}}','{{$item->uuid}}');" class="float-right"><span><i class="fa fa-plus text-color"></i></span></a>
+						<a href="javascript:void(0);" onclick="addItem('{{$key}}',{{$item->id}});" class="float-right"><span><i class="fa fa-plus text-color"></i></span></a>
 						<hr class="mt-1 mb-1">
 						<div class="text-right">
-							<a href="javascript:void(0)" onclick="deleteItem('{{$key}}',{{$item->uuid}});" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
+							<a href="javascript:void(0)" onclick="deleteItem('{{$key}}',{{$item->id}});" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
 						</div>
 					</div>
 				</div>

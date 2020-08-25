@@ -46,7 +46,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function increase(string $day, string $mealId): JsonResponse
+    public function cloneMealPlan(string $day, string $mealId): JsonResponse
     {
         $state = new State(auth()->user());
         $state->cloneMealPlan($day, $mealId);
@@ -55,7 +55,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function decrease(string $day, string $mealId): JsonResponse
+    public function deleteMealPlan(string $day, string $mealId): JsonResponse
     {
         $state = new State(auth()->user());
         $state->deleteMealPlan($day, $mealId);

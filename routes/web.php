@@ -60,8 +60,8 @@ Route::prefix('cart')->middleware('auth')->group(static function () {
     Route::get('items/delete/{day}/{itemId}', [\App\Http\Controllers\CartController::class, 'deleteItem'])->name('cart.items.list.delete');
     Route::get('replace/{day}/{slab}/{mealId}/{itemId}', [\App\Http\Controllers\CartController::class, 'replaceItem']);
     Route::prefix('quantity/{day}/{mealId}')->group(static function () {
-        Route::get('increase', [\App\Http\Controllers\CartController::class, 'increase'])->name('cart.quantity.increase');
-        Route::get('decrease', [\App\Http\Controllers\CartController::class, 'decrease'])->name('cart.quantity.increase');
+        Route::get('clone', [\App\Http\Controllers\CartController::class, 'cloneMealPlan'])->name('cart.meals.clone');
+        Route::get('delete', [\App\Http\Controllers\CartController::class, 'deleteMealPlan'])->name('cart.meals.delete');
     });
 });
 
