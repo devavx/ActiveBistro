@@ -29,7 +29,7 @@
 						<div class="text-right">
 							<a href="javascript:void(0)" class="text-color editdata" onclick="editdata('{{ $plan->uuid }}')"><i class="fa fa-pencil"></i></a>
 							<span class="countnum font-weight-bold ml-2 mr-2">/</span>
-							<a href="javascript:void(0)" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
+							<a href="javascript:void(0)" onclick="deleteMeal('{{$key}}','{{$plan->uuid}}');" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
 						</div>
 					</div>
 				</div>

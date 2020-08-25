@@ -42,7 +42,7 @@ class CartController extends Controller
         $state = new State(auth()->user());
         $state->replaceItem($day, $mealId, $slab, $itemId);
         return response()->json([
-            'success' => 1, 'message' => 'Meal quantity increased!', 'data' => []
+            'success' => 1, 'message' => 'Meal plan updated successfully!', 'data' => []
         ]);
     }
 
@@ -51,7 +51,7 @@ class CartController extends Controller
         $state = new State(auth()->user());
         $state->cloneMealPlan($day, $mealId);
         return response()->json([
-            'success' => 1, 'message' => 'Meal quantity increased!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
+            'success' => 1, 'message' => 'Duplicated meal plan for customization!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
         ]);
     }
 
@@ -60,7 +60,7 @@ class CartController extends Controller
         $state = new State(auth()->user());
         $state->deleteMealPlan($day, $mealId);
         return response()->json([
-            'success' => 1, 'message' => 'Meal quantity decreased!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
+            'success' => 1, 'message' => 'Meal removed from cart successfully!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
         ]);
     }
 
