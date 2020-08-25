@@ -439,9 +439,7 @@ class State
             }
         }
         $item = Item::find($itemId);
-        $item->quantity = 1;
-        $item->total = $item->selling_price;
-        $item->uuid = Str::uuid()->toString();
+        $item->prepare();
         $items[] = $item;
         $this->items->$day = $items;
         $this->recalculateStats();
