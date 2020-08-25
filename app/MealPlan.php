@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Core\Primitives\Str;
 use App\Models\MealPlanImage;
 use App\Models\MealPlanItem;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -55,5 +57,17 @@ class MealPlan extends Model
     public function images(): HasMany
     {
         return $this->hasMany(MealPlanImage::class);
+    }
+
+    public function prepare(): void
+    {
+        $this->quantity = 1;
+        $this->total = 0;
+        $this->uuid = Str::uuid()->toString();
+    }
+
+    public static function classifyCards(): Builder
+    {
+        return self::query()->with('items')->whereNotNull('day')->where('active', 1);
     }
 }

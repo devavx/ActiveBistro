@@ -4,7 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Category;
 use App\Core\Cart\State;
+use App\ItemType;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 
@@ -16,7 +18,26 @@ class CartController extends Controller
         return view('frontend.all_meal')->with('state', $state);
     }
 
-    public function replaceItem(string $day, int $slab, int $mealId, int $itemId): JsonResponse
+    public function items($day): Renderable
+    {
+        $state = new State(auth()->user());
+        $categories = Category::query()->where('active', 1)->get();
+        $types = ItemType::query()->where('active', 1)->get();
+        return view('frontend.all_item')->with('state', $state)
+            ->with('categories', $categories)->with('day', $day)
+            ->with('types', $types)->with('chosen', request('type', 'none'));
+    }
+
+    public function addItem(string $day, int $itemId): JsonResponse
+    {
+        $state = new State(auth()->user());
+        $state->addItem($day, $itemId);
+        return response()->json([
+            'success' => 1, 'message' => 'Added/updated item successfully!', 'data' => []
+        ]);
+    }
+
+    public function replaceItem(string $day, int $slab, string $mealId, int $itemId): JsonResponse
     {
         $state = new State(auth()->user());
         $state->replaceItem($day, $mealId, $slab, $itemId);
@@ -25,21 +46,48 @@ class CartController extends Controller
         ]);
     }
 
-    public function increase(string $day, int $mealId): JsonResponse
+    public function increase(string $day, string $mealId): JsonResponse
     {
         $state = new State(auth()->user());
-        $state->increaseQuantity($day, $mealId);
+        $state->cloneMealPlan($day, $mealId);
         return response()->json([
-            'success' => 1, 'message' => 'Meal quantity increased!', 'data' => []
+            'success' => 1, 'message' => 'Meal quantity increased!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
         ]);
     }
 
-    public function decrease(string $day, int $mealId): JsonResponse
+    public function decrease(string $day, string $mealId): JsonResponse
     {
         $state = new State(auth()->user());
-        $state->decreaseQuantity($day, $mealId);
+        $state->deleteMealPlan($day, $mealId);
         return response()->json([
-            'success' => 1, 'message' => 'Meal quantity increased!', 'data' => []
+            'success' => 1, 'message' => 'Meal quantity decreased!', 'data' => view('frontend.main_container')->with('state', $state)->toHtml()
+        ]);
+    }
+
+    public function increaseItem(string $day, int $itemId): JsonResponse
+    {
+        $state = new State(auth()->user());
+        $state->addItem($day, $itemId);
+        return response()->json([
+            'success' => 1, 'message' => 'Item quantity increased!', 'data' => []
+        ]);
+    }
+
+    public function decreaseItem(string $day, int $itemId): JsonResponse
+    {
+        $state = new State(auth()->user());
+        $state->removeItem($day, $itemId);
+        return response()->json([
+            'success' => 1, 'message' => 'Item quantity decreased!', 'data' => []
+        ]);
+    }
+
+    public function deleteItem(string $day, int $itemId): JsonResponse
+    {
+        $state = new State(auth()->user());
+        $state->deleteItem($day, $itemId);
+        return response()->json([
+            'success' => 1, 'message' => 'Item deleted successfully!', 'data' => []
         ]);
     }
 }

@@ -4,9 +4,12 @@ namespace App\Core\Cart;
 
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Primitives\Arrays;
+use App\Core\Primitives\Str;
+use App\Item;
 use App\MealPlan;
 use App\Models\Cart;
 use App\User;
+use DeepCopy\DeepCopy;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class State
@@ -29,6 +32,11 @@ class State
     /**
      * @var \stdClass
      */
+    private $items;
+
+    /**
+     * @var \stdClass
+     */
     private $stats;
 
     /**
@@ -42,6 +50,11 @@ class State
     private $cart;
 
     /**
+     * @var DeepCopy|null
+     */
+    private $cloner;
+
+    /**
      * State constructor.
      * @param $user Authenticatable|User
      */
@@ -50,27 +63,28 @@ class State
         $exists = $this->createCartIfNotExists($user);
         if (!$exists) {
             $this->createBlankCards();
+            $this->createBlankItems();
             $this->createBlankStats();
             $this->createDefaultOptions();
             $this->createSnapshot();
         } else {
             $this->loadSnapshot();
         }
+        $this->cloner = new DeepCopy();
     }
 
     protected function createSnapshot(): void
     {
-        $meals = MealPlan::with('items')->whereNotNull('day')->where('active', 1)->get();
-        $meals->each(function (MealPlan $meal) {
-            $meal->quantity = 1;
-            $meal->total = 0;
+        MealPlan::classifyCards()->each(function (MealPlan $meal) {
             $day = $meal->day;
+            $meal->prepare();
             $this->cards->$day[] = $meal;
         });
         foreach ($this->cards as $key => $value) {
             foreach ($value as $plan) {
                 foreach ($plan->items as $item) {
-                    $item->chosen = $item->pivot->default;
+                    $item->prepare();
+                    $item->chosen = $item->pivot->default == 1 || $item->pivot->default == true;
                     $item->slab = $item->pivot->slab;
                     if ($item->pivot->default == true) {
                         $this->setCarbohydrates($this->carbohydrates() + $item->carbs);
@@ -87,7 +101,8 @@ class State
         $state = [
             'options' => $this->options,
             'stats' => $this->stats,
-            'cards' => $this->cards
+            'cards' => $this->cards,
+            'items' => $this->items
         ];
         $this->cart->update([
             'items' => $state
@@ -100,12 +115,14 @@ class State
         $this->options = $state->options ?? $this->createDefaultOptions();
         $this->cards = $state->cards ?? $this->createBlankCards();
         $this->stats = $state->stats ?? $this->createBlankStats();
+        $this->items = $state->items ?? $this->createBlankItems();
         $this->resetStats();
         $this->calculateStats();
         $state = [
             'options' => $this->options,
             'stats' => $this->stats,
-            'cards' => $this->cards
+            'cards' => $this->cards,
+            'items' => $this->items
         ];
         $this->cart->update([
             'items' => $state
@@ -130,6 +147,15 @@ class State
             $this->cards[$value] = [];
         }
         $this->cards = (object)$this->cards;
+    }
+
+    protected function createBlankItems(): void
+    {
+        $this->items = [];
+        foreach (DaysOfWeek::getValues() as $value) {
+            $this->items[$value] = [];
+        }
+        $this->items = (object)$this->items;
     }
 
     protected function createBlankStats(): void
@@ -179,44 +205,19 @@ class State
         return $this->cards ?? new \stdClass();
     }
 
+    public function items(): object
+    {
+        return $this->items ?? new \stdClass();
+    }
+
     public function card(string $day): array
     {
         return $this->cards->$day ?? [];
     }
 
-    public function sunday(): array
+    public function item(string $day): array
     {
-        return $this->cards[DaysOfWeek::Sunday] ?? [];
-    }
-
-    public function monday(): array
-    {
-        return $this->cards[DaysOfWeek::Monday] ?? [];
-    }
-
-    public function tuesday(): array
-    {
-        return $this->cards[DaysOfWeek::Tuesday] ?? [];
-    }
-
-    public function wednesday(): array
-    {
-        return $this->cards[DaysOfWeek::Wednesday] ?? [];
-    }
-
-    public function thursday(): array
-    {
-        return $this->cards[DaysOfWeek::Thursday] ?? [];
-    }
-
-    public function friday(): array
-    {
-        return $this->cards[DaysOfWeek::Friday] ?? [];
-    }
-
-    public function saturday(): array
-    {
-        return $this->cards[DaysOfWeek::Saturday] ?? [];
+        return $this->items->$day ?? [];
     }
 
     public function calories(): float
@@ -297,6 +298,17 @@ class State
                 $this->setTotal($this->total() + $plan->total);
             }
         }
+        foreach ($this->items as $key => $value) {
+            foreach ($value as $item) {
+                $item->total = 0;
+                $this->setCarbohydrates($this->carbohydrates() + ($item->carbs * $item->quantity ?? 1));
+                $this->setCalories($this->calories() + ($item->calories * $item->quantity ?? 1));
+                $this->setProteins($this->proteins() + ($item->protein * $item->quantity ?? 1));
+                $this->setFats($this->fats() + ($item->fat * $item->quantity ?? 1));
+                $item->total = floatval($item->selling_price) * $item->quantity;
+                $this->setTotal($this->total() + $item->total);
+            }
+        }
     }
 
     public function recalculateStats()
@@ -310,18 +322,19 @@ class State
         $state = [
             'options' => $this->options,
             'stats' => $this->stats,
-            'cards' => $this->cards
+            'cards' => $this->cards,
+            'items' => $this->items
         ];
         $this->cart->update([
             'items' => $state
         ]);
     }
 
-    public function increaseQuantity(string $day, int $mealPlanKey)
+    public function increaseQuantity(string $day, string $mealPlanKey)
     {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
-            if ($meal->id == $mealPlanKey) {
+            if ($meal->uuid == $mealPlanKey) {
                 if ($meal->quantity < self::MaxQuantity) {
                     $meal->quantity += 1;
                     $this->recalculateStats();
@@ -332,11 +345,59 @@ class State
         }
     }
 
-    public function decreaseQuantity(string $day, int $mealPlanKey)
+    public function cloneMealPlan(string $day, string $mealPlanKey)
     {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
-            if ($meal->id == $mealPlanKey) {
+            if ($meal->uuid == $mealPlanKey) {
+                $clone = $this->cloner->copy($meal);
+                $clone->uuid = Str::uuid()->toString();
+                $meals[] = $clone;
+                $this->cards->$day = $meals;
+                $this->recalculateStats();
+                $this->update();
+                break;
+            }
+        }
+    }
+
+    public function deleteMealPlan(string $day, string $mealPlanKey)
+    {
+        $meals = $this->card($day);
+        $index = 0;
+        foreach ($meals as $meal) {
+            if ($meal->uuid == $mealPlanKey) {
+                unset($meals[$index]);
+                $meals = array_values($meals);
+                $this->cards->$day = $meals;
+                $this->recalculateStats();
+                $this->update();
+                break;
+            }
+            $index++;
+        }
+    }
+
+    public function duplicatePlan(string $day, string $mealPlanKey)
+    {
+        $meals = $this->card($day);
+        foreach ($meals as $meal) {
+            if ($meal->uuid == $mealPlanKey) {
+                if ($meal->quantity < self::MaxQuantity) {
+                    $meal->quantity += 1;
+                    $this->recalculateStats();
+                    $this->update();
+                    break;
+                }
+            }
+        }
+    }
+
+    public function decreaseQuantity(string $day, string $mealPlanKey)
+    {
+        $meals = $this->card($day);
+        foreach ($meals as $meal) {
+            if ($meal->uuid == $mealPlanKey) {
                 if ($meal->quantity >= self::MinQuantity) {
                     $meal->quantity -= 1;
                     $this->recalculateStats();
@@ -347,11 +408,11 @@ class State
         }
     }
 
-    public function replaceItem(string $day, int $mealPlanKey, int $slab, int $itemId)
+    public function replaceItem(string $day, string $mealPlanKey, int $slab, int $itemId)
     {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
-            if ($meal->id == $mealPlanKey) {
+            if ($meal->uuid == $mealPlanKey) {
                 foreach ($meal->items as $item) {
                     if ($item->slab == $slab && $item->chosen == true) {
                         $item->chosen = false;
@@ -363,6 +424,64 @@ class State
                 $this->update();
                 break;
             }
+        }
+    }
+
+    public function addItem(string $day, int $itemId)
+    {
+        $items = $this->item($day);
+        foreach ($items as $item) {
+            if ($item->id == $itemId) {
+                $item->quantity += 1;
+                $this->recalculateStats();
+                $this->update();
+                return;
+            }
+        }
+        $item = Item::find($itemId);
+        $item->quantity = 1;
+        $item->total = $item->selling_price;
+        $items[] = $item;
+        $this->items->$day = $items;
+        $this->recalculateStats();
+        $this->update();
+    }
+
+    public function removeItem(string $day, int $itemId)
+    {
+        $items = $this->item($day);
+        $index = 0;
+        foreach ($items as $item) {
+            if ($item->id == $itemId) {
+                if ($item->quantity <= 1) {
+                    unset($items[$index]);
+                    $items = array_values($items);
+                    $this->items->$day = $items;
+                } else {
+                    $item->quantity -= 1;
+                }
+                $this->recalculateStats();
+                $this->update();
+                return;
+            }
+            $index++;
+        }
+    }
+
+    public function deleteItem(string $day, int $itemId)
+    {
+        $items = $this->item($day);
+        $index = 0;
+        foreach ($items as $item) {
+            if ($item->id == $itemId) {
+                unset($items[$index]);
+                $items = array_values($items);
+                $this->items->$day = $items;
+                $this->recalculateStats();
+                $this->update();
+                return;
+            }
+            $index++;
         }
     }
 }

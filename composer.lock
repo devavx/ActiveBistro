@@ -1,20 +1,20 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "c8408962f132889a8193435f7ad926a0",
-    "packages": [
-        {
-            "name": "bensampo/laravel-enum",
-            "version": "v1.38.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BenSampo/laravel-enum.git",
-                "reference": "e3b6120602e6e98584cdee938dca71a8c6b8fab0"
-            },
-            "dist": {
+  "_readme" : [
+	"This file locks the dependencies of your project to a known state",
+	"Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+	"This file is @generated automatically"
+  ],
+  "content-hash" : "952fd3001260bea0707c401d628a9292",
+  "packages" : [
+	{
+	  "name" : "bensampo/laravel-enum",
+	  "version" : "v1.38.0",
+	  "source" : {
+		"type" : "git",
+		"url" : "https://github.com/BenSampo/laravel-enum.git",
+		"reference" : "e3b6120602e6e98584cdee938dca71a8c6b8fab0"
+	  },
+	  "dist" : {
                 "type": "zip",
                 "url": "https://api.github.com/repos/BenSampo/laravel-enum/zipball/e3b6120602e6e98584cdee938dca71a8c6b8fab0",
                 "reference": "e3b6120602e6e98584cdee938dca71a8c6b8fab0",
@@ -1127,26 +1127,74 @@
                     "homepage": "http://seld.be"
                 }
             ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-            "homepage": "http://github.com/Seldaek/monolog",
-            "keywords": [
-                "log",
-                "logging",
-                "psr-3"
-            ],
-            "time": "2020-05-22T08:12:19+00:00"
-        },
-        {
-            "name": "nesbot/carbon",
-            "version": "2.36.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ee7378a36cc62952100e718bcc58be4c7210e55f",
+		  "description" : "Sends your logs to files, sockets, inboxes, databases and various web services",
+		  "homepage" : "http://github.com/Seldaek/monolog",
+		  "keywords" : [
+			"log",
+			"logging",
+			"psr-3"
+		  ],
+		  "time" : "2020-05-22T08:12:19+00:00"
+		},
+	{
+	  "name" : "myclabs/deep-copy",
+	  "version" : "1.10.1",
+	  "source" : {
+		"type" : "git",
+		"url" : "https://github.com/myclabs/DeepCopy.git",
+		"reference" : "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
+	  },
+	  "dist" : {
+		"type" : "zip",
+		"url" : "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+		"reference" : "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
+		"shasum" : ""
+	  },
+	  "require" : {
+		"php" : "^7.1 || ^8.0"
+	  },
+	  "replace" : {
+		"myclabs/deep-copy" : "self.version"
+	  },
+	  "require-dev" : {
+		"doctrine/collections" : "^1.0",
+		"doctrine/common" : "^2.6",
+		"phpunit/phpunit" : "^7.1"
+	  },
+	  "type" : "library",
+	  "autoload" : {
+		"psr-4" : {
+		  "DeepCopy\\" : "src/DeepCopy/"
+		},
+		"files" : [
+		  "src/DeepCopy/deep_copy.php"
+		]
+	  },
+	  "notification-url" : "https://packagist.org/downloads/",
+	  "license" : [
+		"MIT"
+	  ],
+	  "description" : "Create deep copies (clones) of your objects",
+	  "keywords" : [
+		"clone",
+		"copy",
+		"duplicate",
+		"object",
+		"object graph"
+	  ],
+	  "time" : "2020-06-29T13:22:24+00:00"
+	},
+	{
+	  "name" : "nesbot/carbon",
+	  "version" : "2.36.1",
+	  "source" : {
+		"type" : "git",
+		"url" : "https://github.com/briannesbitt/Carbon.git",
+		"reference" : "ee7378a36cc62952100e718bcc58be4c7210e55f"
+	  },
+	  "dist" : {
+		"type" : "zip",
+		"url" : "https://api.github.com/repos/briannesbitt/Carbon/zipball/ee7378a36cc62952100e718bcc58be4c7210e55f",
                 "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f",
                 "shasum": ""
             },
@@ -3986,54 +4034,6 @@
             "time": "2020-07-09T08:31:54+00:00"
         },
         {
-            "name": "myclabs/deep-copy",
-            "version": "1.10.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
-                "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.0",
-                "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                },
-                "files": [
-                    "src/DeepCopy/deep_copy.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Create deep copies (clones) of your objects",
-            "keywords": [
-                "clone",
-                "copy",
-                "duplicate",
-                "object",
-                "object graph"
-            ],
-            "time": "2020-06-29T13:22:24+00:00"
-        },
-        {
             "name": "nunomaduro/collision",
             "version": "v3.0.1",
             "source": {
@@ -4649,18 +4649,19 @@
                 "BSD-3-Clause"
             ],
             "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de"
-                }
-            ],
-            "description": "Wrapper around PHP's tokenizer extension.",
-            "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
-            "keywords": [
-                "tokenizer"
-            ],
-            "time": "2019-09-17T06:23:10+00:00"
-        },
+			  {
+				"name" : "Sebastian Bergmann",
+				"email" : "sebastian@phpunit.de"
+			  }
+			],
+		  "description" : "Wrapper around PHP's tokenizer extension.",
+		  "homepage" : "https://github.com/sebastianbergmann/php-token-stream/",
+		  "keywords" : [
+			"tokenizer"
+		  ],
+		  "abandoned" : true,
+		  "time" : "2019-09-17T06:23:10+00:00"
+		},
         {
             "name": "phpunit/phpunit",
             "version": "8.5.8",
@@ -5524,8 +5525,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
-    },
+	  "php" : "^7.2",
+	  "ext-json" : "*"
+	},
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
 }

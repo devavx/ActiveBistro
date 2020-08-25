@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\MealPlan;
+use App\Category;
+use App\Core\Primitives\Str;
 use Illuminate\Console\Command;
 
 class UnitTest extends Command
@@ -38,6 +39,7 @@ class UnitTest extends Command
      */
     public function handle()
     {
-        dd(MealPlan::find(2)->items->pluck()->toArray());
+        $category = new Category();
+
     }
 }

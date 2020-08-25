@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Core\Primitives\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -32,5 +33,12 @@ class Item extends Model
     public function meals(): BelongsToMany
     {
         return $this->belongsToMany(MealPlan::class, 'meal_plan_items');
+    }
+
+    public function prepare(): void
+    {
+        $this->quantity = 1;
+        $this->total = $this->selling_price;
+        $this->uuid = Str::uuid()->toString();
     }
 }
