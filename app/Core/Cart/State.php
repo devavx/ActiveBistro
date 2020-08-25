@@ -414,9 +414,12 @@ class State
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
                 foreach ($meal->items as $item) {
-                    if ($item->slab == $slab && $item->chosen == true) {
+                    if ($item->slab == $slab) {
                         $item->chosen = false;
-                    } elseif ($item->slab == $slab && $item->id == $itemId) {
+                    }
+                }
+                foreach ($meal->items as $item) {
+                    if ($item->id == $itemId) {
                         $item->chosen = true;
                     }
                 }
