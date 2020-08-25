@@ -9,7 +9,7 @@
 				<div class="mealcol" id="mealcol__{{ $plan->uuid }}">
 					<div class="meal-left meal__price">
 						@foreach($plan->items as $item)
-							@if($item->pivot->default==true)
+							@if($item->chosen==true)
 								<p class="mb-1 item__price">
 									<a href="javascript:void(0)">
 										<u>{{ $item->name }}</u>
@@ -41,7 +41,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==1)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
@@ -50,7 +50,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==2)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
@@ -59,7 +59,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==3)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->pivot->default==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
 											</div>
 										@endif
 									@endforeach
