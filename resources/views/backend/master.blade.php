@@ -162,6 +162,7 @@
 <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 <!--Custom JavaScript -->
 <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 {{--<!-- ============================================================== -->--}}
 <!-- This page plugins -->
 <!-- ============================================================== -->
