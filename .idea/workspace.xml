@@ -3,29 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2467f509-1700-479b-be72-3507a9b5052c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DailyMealPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DailyMealPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/IngredientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/IngredientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MealPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MealPlanController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemTypeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/public/web.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/category/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/customers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/dailymealplan/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/dailymealplan/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/ingredient/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/ingredient/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item-type/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item-type/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/mealplan/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/mealplan/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/fragments/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/fragments/scripts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/includes/left_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/includes/left_sidebar.blade.php" afterDir="false" />
     </list>
     <list id="425eed0b-6d36-49b3-8531-ae6944b040e0" name="Don't Commit" comment="All the files that I wanna ignore will go here.">
+      <change beforePath="$PROJECT_DIR$/.idea/ActiveBistro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ActiveBistro.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +42,29 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.html" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="3" end1="27" start2="3" end2="4" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="28" end1="28" start2="5" end2="7" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="182" end1="183" start2="161" end2="167" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="229" end1="230" start2="213" end2="214" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="434" end1="435" start2="418" end2="447" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="463" end1="463" start2="475" end2="479" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="467" end1="467" start2="483" end2="487" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="487" end1="488" start2="507" end2="508" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="490" end1="491" start2="510" end2="511" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="495" end1="496" start2="515" end2="516" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="498" end1="499" start2="518" end2="519" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="575" end1="576" start2="595" end2="596" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="578" end1="580" start2="598" end2="600" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="582" end1="583" start2="602" end2="607" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
+        <range start1="600" end1="600" start2="624" end2="628" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="604" end1="605" start2="632" end2="633" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+        <range start1="608" end1="609" start2="636" end2="637" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
+      </ranges>
+    </file>
   </component>
   <component name="PhpDebugGeneral" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false" />
   <component name="PhpServers">
@@ -180,7 +185,12 @@
     <property name="Constants" value="false" />
     <property name="DatabaseDriversLRU" value="mariadb&#10;mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;HTML" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -227,7 +237,7 @@
       <workItem from="1598083042502" duration="3064000" />
       <workItem from="1598246668610" duration="25392000" />
       <workItem from="1598332753434" duration="20764000" />
-      <workItem from="1598419762935" duration="13452000" />
+      <workItem from="1598419762935" duration="20505000" />
     </task>
     <task id="LOCAL-00001" summary="Changes in MealPlan">
       <created>1597302245264</created>
@@ -432,7 +442,35 @@
       <option name="project" value="LOCAL" />
       <updated>1598425017901</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Updates">
+      <created>1598437091311</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1598437091311</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Updates">
+      <created>1598446422586</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1598446422586</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Updates">
+      <created>1598447109398</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1598447109398</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Updates">
+      <created>1598447725236</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1598447725236</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,10 +499,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="803" y="429" key="#DBGp_Proxy/0.0.1920.1050@0.0.1920.1050" timestamp="1597752823915" />
+    <state x="552" y="183" key="#Deployment" timestamp="1598437570228">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="183" key="#Deployment/0.0.1920.1050@0.0.1920.1050" timestamp="1598437570228" />
     <state x="667" y="167" key="#PHP" timestamp="1597507657392">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="667" y="167" key="#PHP/0.0.1920.1050@0.0.1920.1050" timestamp="1597507657392" />
+    <state x="536" y="170" key="#SSH_Configurations" timestamp="1598437367359">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="536" y="170" key="#SSH_Configurations/0.0.1920.1050@0.0.1920.1050" timestamp="1598437367359" />
     <state x="678" y="195" key="#Servers" timestamp="1597512866597">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -485,18 +531,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="560" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1597942781864" />
-    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598436898209">
+    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598447444523">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598436898209" />
+    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598447444523" />
     <state x="675" y="346" width="570" height="392" key="#com.jetbrains.php.debug.validation.PhpWebServerValidationDialog#" timestamp="1597762524226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="675" y="346" width="570" height="392" key="#com.jetbrains.php.debug.validation.PhpWebServerValidationDialog#/0.0.1920.1050@0.0.1920.1050" timestamp="1597762524226" />
-    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598425016607">
+    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598447724274">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598425016607" />
+    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598447724274" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1597302657448">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -573,14 +619,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="502" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1598434603227" />
-    <state x="807" y="438" key="VCS.ChangelistChooser" timestamp="1597841727715">
+    <state x="807" y="438" key="VCS.ChangelistChooser" timestamp="1598447717816">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="807" y="438" key="VCS.ChangelistChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1597841727715" />
-    <state x="552" y="257" key="Vcs.Push.Dialog.v2" timestamp="1598341659320">
+    <state x="807" y="438" key="VCS.ChangelistChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1598447717816" />
+    <state x="552" y="257" key="Vcs.Push.Dialog.v2" timestamp="1598447726696">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="257" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1598341659320" />
+    <state x="552" y="257" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1598447726696" />
+    <state x="816" y="423" key="WebDeployment.AddServerDialog.v.1" timestamp="1598437433571">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="816" y="423" key="WebDeployment.AddServerDialog.v.1/0.0.1920.1050@0.0.1920.1050" timestamp="1598437433571" />
     <state x="798" y="409" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1597818377753">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -598,15 +648,19 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="512" y="253" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1050@0.0.1920.1050" timestamp="1597512892853" />
+    <state x="845" y="255" width="427" height="664" key="ftp.server.browser" timestamp="1598437562497">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="845" y="255" width="427" height="664" key="ftp.server.browser/0.0.1920.1050@0.0.1920.1050" timestamp="1598437562497" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1598266227018">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598266227018" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1598436759132">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1598448260597">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="623" y="227" width="672" height="677" key="search.everywhere.popup/0.0.1920.1048@0.0.1920.1048" timestamp="1597478608562" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598436759132" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598448260597" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

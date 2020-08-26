@@ -89,7 +89,7 @@ $uri2 = Request::segment(2);
 								It Works</a></li>
 
 						<li class="@if($uri2 =='faqs')active @endif">
-							<a class="@if($uri2 =='faqs')active @endif" href="{{ url('/admin/faqs') }}">Faqs</a></li>
+							<a class="@if($uri2 =='faqs')active @endif" href="{{ url('/admin/faqs') }}">FAQ's</a></li>
 
 						<li class="@if($uri2 =='term_conditions')active @endif">
 							<a class="@if($uri2 =='term_conditions')active @endif" href="{{ url('/admin/term_conditions') }}">Term
