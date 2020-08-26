@@ -44,6 +44,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">  Term & Condition List</h4>
+<div class="text-right">
+				<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+			</div>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -67,6 +70,8 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th>Sr. No.</th>
+				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
                                     <th data-col-width="100">Term&Condition</th> 
                                     <th data-col-width="100">Status</th> 
                                     <th>Created At</th>
@@ -77,6 +82,9 @@
                                   @if(!empty(@listData))
                                     @foreach($listData as $rows)
                                 <tr> 
+
+<td>1</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td width="30px"> {!! $rows->description ?? '-' !!}</td>
                                     @if($rows->active)
                                         <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
@@ -85,8 +93,8 @@
                                     @endif
                                     <td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
                                     <td> 
-                                        <a class="like" href="{{ route('admin.term_conditions.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
-                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                        <a class="like" href="{{ route('admin.term_conditions.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a> /   
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
                                     </td>                                  
                                 </tr>  
                                    @endforeach

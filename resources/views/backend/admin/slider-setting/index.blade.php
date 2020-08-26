@@ -36,6 +36,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Sliders</h4>
+<div class="text-right">
+				<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+			</div>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -59,6 +62,8 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th>Sr. No.</th>
+				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
                                     <th>Images</th> 
                                     <th>Status</th> 
                                     <th>Created At</th>
@@ -69,6 +74,8 @@
                                 @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr>
+<td>1</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td>
                                         @if($rows->thumbnail_type == 'video/mp4')
                                             <video class="video-fluid"  width="150" loop muted  >
@@ -85,7 +92,7 @@
                                     @endif 
                                     <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
                                     <td>                                        
-                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
                                     </td>                                   
                                 </tr>  
                                 @endforeach

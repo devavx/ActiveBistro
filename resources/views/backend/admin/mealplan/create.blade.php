@@ -108,48 +108,66 @@
 									<div class="col-md-6">
 										<div class="row">
 											<div class="col-md-9">
-												<div class="form-group">
+												<div class="form-group row">
 													<label>Item(s)</label>
-													<select class="form-control select2 select2-multiple" id="items_slab_1" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+													<div class="col-12">
+<select class="form-control select2 select2-multiple" id="items_slab_1" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+														<option value="" disabled>Choose...</option>
+														@foreach($listData as $rows)
+															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
+														@endforeach
+													</select></div>
+
+<div class="col-12">
+<select class="form-control select2 select2-multiple" id="items_slab_2" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
 														<option value="" disabled>Choose...</option>
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													</select>
-													<select class="form-control select2 select2-multiple" id="items_slab_2" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+</div>
+													
+
+<div class="col-12">
+<select class="form-control select2 select2-multiple" id="items_slab_3" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
 														<option value="" disabled>Choose...</option>
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													</select>
-													<select class="form-control select2 select2-multiple" id="items_slab_3" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
-														<option value="" disabled>Choose...</option>
-														@foreach($listData as $rows)
-															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
-														@endforeach
-													</select>
+</div>
+													
 												</div>
 											</div>
 											<div class="col-md-3">
-												<div class="form-group">
+												<div class="form-group row">
 													<label>Default Item(s)</label>
-													<select class="form-control single-dd" name="default_slab_1" id="item_slab_1" style="width: 100%">
+<div class="col-12">
+<select class="form-control single-dd" name="default_slab_1" id="item_slab_1" style="width: 100%">
 													</select>
-													<select class="form-control single-dd" name="default_slab_2" id="item_slab_2" style="width: 100%">
+</div>
+													
+<div class="col-12">
+<select class="form-control single-dd" name="default_slab_2" id="item_slab_2" style="width: 100%">
 													</select>
-													<select class="form-control single-dd" name="default_slab_3" id="item_slab_3" style="width: 100%">
+</div>
+													
+<div class="col-12">
+<select class="form-control single-dd" name="default_slab_3" id="item_slab_3" style="width: 100%">
 													</select>
+</div>
+													
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Coming soon (not launched yet)?</label>
+											<label><input type="checkbox" name="launched" class="mr-2">Coming soon (not launched yet)?</label>
 											&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in coming soon">
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span><br>
-											<input type="checkbox" name="launched">
+											
 										</div>
 									</div>
 								</div>
