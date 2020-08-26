@@ -2,82 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2467f509-1700-479b-be72-3507a9b5052c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DailyMealPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DailyMealPlanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/IngredientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/IngredientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MealPlanController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MealPlanController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemTypeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemTypeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/public/web.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/customers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/customers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/dailymealplan/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/dailymealplan/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/ingredient/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/ingredient/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item-type/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item-type/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/item/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/item/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/mealplan/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/mealplan/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/backend/fragments/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/fragments/scripts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/backend/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <list id="425eed0b-6d36-49b3-8531-ae6944b040e0" name="Don't Commit" comment="All the files that I wanna ignore will go here.">
-      <change afterPath="$PROJECT_DIR$/.idea/ActiveBistro.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/31ea0364-045a-4073-9e13-adaf3b3fceb9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/31ea0364-045a-4073-9e13-adaf3b3fceb9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/Document/Cosmetic Feedback.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/Document/Favicon White.ai" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/Document/UpWork Guarav Brief.pptx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/aboutus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/alertmessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/checkout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/checkoutprocess.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/conference.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/confrence_call.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/contactus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/css/mdb.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/css/owl.carousel.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/css/owl.theme.default.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/faqs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/howitwork.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/about1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/agent.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/banner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/c1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/c2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/c3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/c4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/favicon-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/favicon-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/home1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/home2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/home3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/homehow.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/logo2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/image/payment-img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/mdb.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/owl.carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/my-order.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/my-profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/order-now.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/our-menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/pricing.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/privacy-policy.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/process6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/product-menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/registrationp1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/reset-password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/shamma.rar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/signup.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/successmessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/term-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/shammaweb/twilio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,7 +227,7 @@
       <workItem from="1598083042502" duration="3064000" />
       <workItem from="1598246668610" duration="25392000" />
       <workItem from="1598332753434" duration="20764000" />
-      <workItem from="1598419762935" duration="3772000" />
+      <workItem from="1598419762935" duration="13452000" />
     </task>
     <task id="LOCAL-00001" summary="Changes in MealPlan">
       <created>1597302245264</created>
@@ -456,7 +404,35 @@
       <option name="project" value="LOCAL" />
       <updated>1598420614850</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="All the files that I wanna ignore will go here.">
+      <created>1598424896648</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1598424896648</updated>
+    </task>
+    <task id="LOCAL-00027" summary="All the files that I wanna ignore will go here.">
+      <created>1598424969950</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1598424969950</updated>
+    </task>
+    <task id="LOCAL-00028" summary="All the files that I wanna ignore will go here.">
+      <created>1598424998050</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1598424998050</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Updates">
+      <created>1598425017901</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1598425017901</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,6 +447,7 @@
     <MESSAGE value="Creating Daily Mean Plan Module" />
     <MESSAGE value="Upgrading Daily Mean Plan Module" />
     <MESSAGE value="Random changes" />
+    <MESSAGE value="All the files that I wanna ignore will go here." />
     <MESSAGE value="Updates" />
     <option name="LAST_COMMIT_MESSAGE" value="Updates" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
@@ -508,18 +485,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="560" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1597942781864" />
-    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598275693079">
+    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598436898209">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598275693079" />
+    <state x="690" y="279" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598436898209" />
     <state x="675" y="346" width="570" height="392" key="#com.jetbrains.php.debug.validation.PhpWebServerValidationDialog#" timestamp="1597762524226">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="675" y="346" width="570" height="392" key="#com.jetbrains.php.debug.validation.PhpWebServerValidationDialog#/0.0.1920.1050@0.0.1920.1050" timestamp="1597762524226" />
-    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598420607318">
+    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598425016607">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598420607318" />
+    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598425016607" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1597302657448">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -576,6 +553,14 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="353" key="GridCell.Tab.2.right/0.0.1920.1050@0.0.1920.1050" timestamp="1597762344651" />
+    <state x="-63" y="74" width="1735" height="877" key="MergeDialog" timestamp="1598425239386">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="-63" y="74" width="1735" height="877" key="MergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598425239386" />
+    <state x="598" y="286" key="MultipleFileMergeDialog" timestamp="1598425239395">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="598" y="286" key="MultipleFileMergeDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1598425239395" />
     <state x="718" y="247" key="NewPhpClassDialog" timestamp="1597935305258">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -584,10 +569,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="169" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1597853048060" />
-    <state width="502" height="446" key="SwitcherDM" timestamp="1597854581636">
+    <state width="502" height="446" key="SwitcherDM" timestamp="1598434603227">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="502" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1597854581636" />
+    <state width="502" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1598434603227" />
     <state x="807" y="438" key="VCS.ChangelistChooser" timestamp="1597841727715">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -617,11 +602,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598266227018" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1598423879255">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1598436759132">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="623" y="227" width="672" height="677" key="search.everywhere.popup/0.0.1920.1048@0.0.1920.1048" timestamp="1597478608562" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598423879255" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598436759132" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

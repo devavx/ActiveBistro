@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\ItemType;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class ItemTypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
         return view('backend/admin/item-type/create');
     }
 
@@ -36,11 +37,11 @@ class ItemTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $res=ItemType::create($request->all());        
-        if ($res){ 
+        $res=ItemType::create($request->all());
+        if ($res){
             return redirect('admin/item_type')->with('success','ItemType Added successfully!');;
-        }else{ 
-            return redirect()->back('errormsg','OPPS!! Something Went Wrong!'); 
+        }else{
+            return redirect()->back('errormsg','OPPS!! Something Went Wrong!');
         }
     }
 
@@ -75,7 +76,7 @@ class ItemTypeController extends Controller
      */
     public function update(Request $request, ItemType $itemType)
     {
-        $itemType->name = $request->name;          
+        $itemType->name = $request->name;
         $save = $itemType->save();
         if ($save) {
             return redirect('admin/item_type')->with('success','ItemType Updated successfully!');
@@ -101,24 +102,36 @@ class ItemTypeController extends Controller
         $data =  ItemType::find($id);
         if (!empty($data)) {
             $data->delete();
-            $result['status']  = 'success';
+            $result['status'] = 'success';
             $result['message'] = 'ItemType Deleted Sucessfully !';
-        }else{
-            $result['status']  = 'error';
+        } else {
+            $result['status'] = 'error';
             $result['message'] = 'OPPS! Something Went Wrong!';
         }
 
         return json_encode($result);
     }
-    public function changeStatus($id=''){
+
+    public function deleteBulk()
+    {
         $result = array();
-        $data =  ItemType::find($id);
+        $result['success'] = 1;
+        $result['message'] = 'Item(s) deleted successfully!';
+        $result['data'] = [];
+        ItemType::query()->whereIn('id', request('items', []))->delete();
+        return response()->json($result);
+    }
+
+    public function changeStatus($id = '')
+    {
+        $result = array();
+        $data = ItemType::find($id);
         if (!empty($data)) {
-            if($data->active == '0') {
-                $data->active=1;
-            }else{
+            if ($data->active == '0') {
+                $data->active = 1;
+            } else {
                 $data->active = 0;
-            } 
+            }
             $data->update();
             $result['status']  = 'success';
             $result['message'] = 'Stactus Change Sucessfully !';

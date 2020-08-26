@@ -74,6 +74,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 
     Route::get('/customers/{id?}', 'Admin\AdminController@customerList')->name('customer.list');
     Route::get('/customer/delete/{id}', 'Admin\AdminController@customerDelete')->name('customer.list');
+    Route::delete('/customer/delete', 'Admin\AdminController@customerDeleteBulk')->name('customer.bulk_delete');
     Route::post('/update_customer', 'Admin\AdminController@updateCustomerDetail')->name('update_customer_details');
 
     // DailyMealPlanController URI
@@ -81,10 +82,12 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 
     // IngredientController URI
     Route::get('/ingredient/delete/{id}', 'Admin\IngredientController@delete')->name('meal.delete');
+    Route::delete('/ingredient/delete', 'Admin\IngredientController@deleteBulk')->name('meal.delete');
     Route::get('/ingredient/change_status/{id}', 'Admin\IngredientController@changeStatus')->name('ingredient.change_status');
 
     // ItemController URI
     Route::get('/items/delete/{id}', 'ItemController@delete')->name('items.delete');
+    Route::delete('/items/delete', 'ItemController@deleteBulk')->name('items.delete');
     Route::get('/items/change_status/{id}', 'ItemController@changeStatus')->name('items.chnage_status');
     // ItemController URI
     Route::get('/orders', 'ItemController@orders')->name('items.orders');
@@ -114,10 +117,12 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 
 
     Route::get('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
+    Route::delete('/category/delete', 'CategoryController@deleteBulk')->name('category.delete');
     Route::get('/category/change_status/{id}', 'CategoryController@changeStatus')->name('category.change_status');
 
 
     Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
+    Route::delete('/item_type/delete', 'ItemTypeController@delete')->name('item_type.delete');
     Route::get('/item_type/change_status/{id}', 'ItemTypeController@changeStatus')->name('item_type.change_status');
 
 
@@ -152,13 +157,14 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     |--------------------------------------------------------------------------
     |
     */
-    Route::resource('daily-meals', 'Admin\DailyMealPlanController');
     Route::prefix('daily-meals')->group(static function () {
         Route::get('delete/{id}', 'Admin\DailyMealPlanController@delete')->name('daily-meals.delete');
+        Route::delete('delete', 'Admin\DailyMealPlanController@deleteBulk')->name('daily-meals.delete');
         Route::get('change_status/{id}', 'Admin\DailyMealPlanController@changeStatus')->name('daily-meals.change_status');
         Route::get('images/{id}/{field}', 'Admin\DailyMealPlanController@removeImages');
         Route::get('{id}', 'Admin\DailyMealPlanController@show');
     });
+    Route::resource('daily-meals', 'Admin\DailyMealPlanController');
 
     /*
     |--------------------------------------------------------------------------
@@ -166,11 +172,12 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     |--------------------------------------------------------------------------
     |
     */
-    Route::resource('meals', 'Admin\MealPlanController');
     Route::prefix('meals')->group(static function () {
         Route::get('delete/{id}', 'Admin\MealPlanController@delete')->name('meal.delete');
+        Route::delete('delete', 'Admin\MealPlanController@deleteBulk')->name('meal.delete');
         Route::get('change_status/{id}', 'Admin\MealPlanController@changeStatus')->name('meal.change_status');
         Route::get('images/{id}/{field}', 'Admin\MealPlanController@removeImages');
         Route::get('{id}', 'Admin\MealPlanController@show');
     });
+    Route::resource('meals', 'Admin\MealPlanController');
 });

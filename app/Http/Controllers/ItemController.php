@@ -7,6 +7,7 @@ use App\Http\Requests\AddEditItemRule;
 use App\Ingredient;
 use App\Item;
 use App\ItemType;
+use App\MealPlan;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -158,6 +159,16 @@ class ItemController extends Controller
         return json_encode($result);
     }
 
+    public function deleteBulk()
+    {
+        $result = array();
+        $result['success'] = 1;
+        $result['message'] = 'Item(s) deleted successfully!';
+        $result['data'] = [];
+        Item::query()->whereIn('id', request('items', []))->delete();
+        return response()->json($result);
+    }
+
     public function changeStatus($id = '')
     {
         $result = array();
@@ -171,10 +182,10 @@ class ItemController extends Controller
             }
             $data->update();
             $result['status'] = 'success';
-            $result['message'] = 'Item Stactus Change Sucessfully !';
+            $result['message'] = 'Item Status Change Successfully !';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['message'] = 'Oops! Something Went Wrong!';
         }
 
         return json_encode($result);

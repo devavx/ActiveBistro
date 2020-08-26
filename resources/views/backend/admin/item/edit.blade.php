@@ -188,14 +188,14 @@
                                                 </div>
                                             </div> 
                                         </div> -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Avatar</label>
-                                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
-                                                </div>
-                                            </div>
-                                            @php
+	                                    <div class="row">
+		                                    <div class="col-md-6">
+			                                    <div class="form-group">
+				                                    <label>Thumbnail</label>
+				                                    <input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
+			                                    </div>
+		                                    </div>
+		                                    @php
                                                 $ids = (isset($item) && $item->ingredients->count() > 0 ) ? array_pluck($item->ingredients->toArray(), 'id') : null;
                                             @endphp
                                             <div class="col-md-6">

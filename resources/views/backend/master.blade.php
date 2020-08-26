@@ -163,7 +163,6 @@
 <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 <!--Custom JavaScript -->
 <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
 {{--<!-- ============================================================== -->--}}
 <!-- This page plugins -->
 <!-- ============================================================== -->
@@ -181,6 +180,7 @@
 {{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
+<script src="{{ asset('js/custom.js') }}"></script>
 @yield('script')
 </body>
 
