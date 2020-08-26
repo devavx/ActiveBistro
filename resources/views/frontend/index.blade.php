@@ -1,4 +1,4 @@
-@extends('layouts.master')
+﻿@extends('layouts.master')
 @section('title') Active Bistro @endsection
 @section('css') 
 <style type="text/css"></style>
@@ -116,6 +116,11 @@
 	</div>
 
 	<div class="container mt-5 mb-5">
+<div class="row">
+			<div class="col-12">
+				<h3 class="text-center text-color font-weight-bold">How it Work</h3>
+			</div>
+		</div>
 		@if(!empty(count($homeData)))
 			@foreach($homeData as $key => $rows) 
 			<div class="row">
@@ -174,6 +179,30 @@
 		</div> -->
 
 
+	</div>
+
+<div class="container mb-5 mt-2">
+		
+		<div class="row">
+			<div class="col-lg-6 col-sm-12 col-12">
+				<div class="homehowtext mt-3 pt-3">
+					<small class="text-color">QUICKER MEAL PREP</small>
+					<h4 class="font-weight-bold text-color mb-1">Save 37 Hours</h4>
+					<h5 class="font-weight-bold mb-1">and take back your week.</h5>
+					<small><i>The Ultimate time-saving meal.</i></small>
+
+					<p><b class="text-color">No traffic. No checkouts. No. cooking. No clear up.</b> average person spends 37 hours a month on food. That is pritty much a full work week in 37 hours, you could drive fron La to New York or sleep for nearly 5 nights. You could even just have 30 minutes extra in bed every day. More time More freedom.</p>
+
+					<a href="{{ url('ourmenu') }}" class="btn btn-info ml-0">Explore weekly menu <i class="fa fa-chevron-right ml-2"></i></a>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-12 col-12">
+				<div class="homehowimg mt-3">
+					<img src="{{ asset('uploads/image/homehow.jpg') }}" class="img-fluid rounded w-100">
+				</div>
+			</div>
+		</div>
 	</div>
  @endsection
  @section('script')

@@ -32,6 +32,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Customer List</h4>
+			<div class="text-right">
+				<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+			</div>
                         <!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
                         <div class="table-responsive m-t-40">
                             <table id="example23"
@@ -39,6 +42,8 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th>Sr. No.</th>
+				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>address</th>
@@ -52,6 +57,8 @@
                               @if(!empty($listData))
                                   @foreach($listData as $rows)
                                   <tr>
+<td>1</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td>{{ $rows->name ?? '-' }}</td>
                                     <td>{{ $rows->email ?? '-' }}</td>
                                     <td>{{ $rows->address ?? '-' }}</td>
@@ -61,9 +68,9 @@
                                         @if(!empty($rows->role->name) && $rows->role->name=='admin')
                                         {{ 'Admin' }}
                                         @else
-                                        <!-- <a class="like" href="{{ url('/admin/customer'.'/'.$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>   -->
-                                        <a class="like" href="{{ url('/admin/customers'.'/'.$rows->id) }}" title="View details"><i class="fas fa-eye"></i></a>  
-                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+                                        <!-- <a class="like" href="{{ url('/admin/customer'.'/'.$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a> /    -->
+                                        <a class="like" href="{{ url('/admin/customers'.'/'.$rows->id) }}" title="View details"><i class="fas fa-eye text-success"></i></a>  /
+                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
                                         @endif
                                     </td> 
                                 </tr>   

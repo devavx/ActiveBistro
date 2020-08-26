@@ -28,6 +28,7 @@
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h4 class="text-themecolor">Orders List</h4>
+
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
@@ -44,6 +45,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Orders List</h4>
+<div class="text-right">
+				<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+			</div>
                          @if($message=Session::get('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong> {{$message}}</strong>
@@ -67,6 +71,8 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th>Sr. No.</th>
+				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
                                     <th>OrderId</th> 
                                     <th>Customer Name</th> 
                                     <th>Status</th> 
@@ -79,6 +85,8 @@
                             </thead> 
                             <tbody> 
                                 <tr>
+<td>1</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td> #123 </td>
                                     <td> David </td>
                                     <td> Open</td>
@@ -89,6 +97,8 @@
                                     
                                     <td>-</td>
                                 </tr><tr>
+<td>2</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td> #124 </td>
                                     <td> David Jonsan </td>
                                     <td> Compelted</td>
@@ -98,6 +108,8 @@
                                     <td> 2020-12-14</td> 
                                     <td>-</td>
                                 </tr><tr>
+<td>3</td>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td> #125 </td>
                                     <td> John Deo </td>
                                     <td> Pending</td>

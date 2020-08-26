@@ -7,7 +7,7 @@
 	<title>@yield('title')</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-	<link rel="icon" type="image/png" href="{{ asset('uploads/image/favicon-icon.png') }}">
+	<link rel="icon" type="image/png" href="{{ asset('uploads/image/favicon-white.png') }}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/mdb.min.css') }}" rel="stylesheet">
@@ -82,7 +82,7 @@
 <div class="footer pt-5 pb-5 bg-color">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-sm-4 col-12">
+			<div class="col-lg-3 col-sm-3 col-12">
 				<div class="footer-left">
 					<ul>
 						<li><a href="#"><i class="fa fa-facebook facebook-icon"></i></a></li>
@@ -92,23 +92,40 @@
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="footer-middel">
-					<h4 class="text-white">Quick Link</h4>
+			<div class="col-lg-6 col-sm-6 col-12">
+<div class="row">
+<div class="col-lg-6 col-sm-6 col-12">
+<div class="footer-middel">
+					<h5 class="text-white mb-0">Company</h5>
 					<hr>
 					<ul>
 						<li><a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a></li>
-						<li><a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
-						<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+						
 						<li><a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy &
 								Policy</a></li>
 						<li><a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Term &
 								Use</a></li>
 					</ul>
 				</div>
+</div>
+
+<div class="col-lg-6 col-sm-6 col-12">
+<div class="footer-middel">
+					<h5 class="text-white mb-0">Support</h5>
+					<hr>
+					<ul>
+					
+						<li><a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
+						<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+
+					</ul>
+				</div>
+</div>
+</div>
+				
 			</div>
 
-			<div class="col-lg-4 col-sm-4 col-12">
+			<div class="col-lg-3 col-sm-3 col-12">
 				<div class="footer-right text-right">
 					<img src="{{ asset('uploads/image/payment-img.png') }}">
 				</div>

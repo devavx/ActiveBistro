@@ -156,11 +156,11 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Coming soon (not launched yet)?</label>
+											<label><input type="checkbox" name="launched" class="mr-2">Coming soon (not launched yet)?</label>
 											&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in coming soon">
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span><br>
-											<input type="checkbox" name="launched">
+											
 										</div>
 									</div>
 								</div>
