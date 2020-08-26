@@ -82,27 +82,35 @@
                                 @if(!empty(@listData))
                                 @foreach($listData as $rows)
                                 <tr>
-                                    <td> {{ $rows->name ?? '-'}}</td>
-                                    <!-- <td> {{ $rows->sub_name ?? '-'}}</td> -->
-                                    <td> {{ $rows->short_description ?? '-'}}</td>
-                                    <td> {{ $rows->protein ?? '-'}}</td>
-                                    <td> {{ $rows->calories ?? '-'}}</td>
-                                    @if($rows->active)
-                                        <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
-                                    @else
-                                        <td> <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Inactive</button> </td>
-                                    @endif
-                                    <td><img src="{{ $rows->thumnail }}" alt="image" width="100"> </td>
-                                    <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td> 
-                                    <td style="text-align: center; ">
-                                        <a class="like" href="{{ route('admin.items.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>  
-                                        <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
-                                    </td> 
-                                </tr>  
+	                                <td> {{ $rows->name ?? '-'}}</td>
+                                <!-- <td> {{ $rows->sub_name ?? '-'}}</td> -->
+	                                <td> {{ $rows->short_description ?? '-'}}</td>
+	                                <td> {{ $rows->protein ?? '-'}}</td>
+	                                <td> {{ $rows->calories ?? '-'}}</td>
+	                                @if($rows->active)
+		                                <td>
+			                                <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
+				                                Active
+			                                </button>
+		                                </td>
+	                                @else
+		                                <td>
+			                                <button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
+				                                Inactive
+			                                </button>
+		                                </td>
+	                                @endif
+	                                <td><img src="{{ $rows->thumbnail }}" alt="image" width="100"></td>
+	                                <td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
+	                                <td style="text-align: center; ">
+		                                <a class="like" href="{{ route('admin.items.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+		                                <a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash"></i></a>
+	                                </td>
+                                </tr>
                                 @endforeach
                                 @else
-                                <tr>
-                                    <td colspan="6" class="text-danger">No Record Found !</td>
+	                                <tr>
+		                                <td colspan="6" class="text-danger">No Record Found !</td>
                                 </tr> 
                                 @endif                                      
                             </tbody>
