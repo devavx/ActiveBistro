@@ -91,7 +91,7 @@
 												<td>
 													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
-												<td> {{ $rows->name ?? '-'}}</td>
+												<td><a href data-target="#detailmodal" data-toggle="modal"> {{ $rows->name ?? '-'}}</a></td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
@@ -134,7 +134,7 @@
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Detail</h4>
+					<h4 class="modal-title">Category Detail</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -145,7 +145,7 @@
 							<div class="form-group row">
 								<label class="col-lg-3 col-sm-3 col-12">Name</label>
 								<div class="col-lg-9 col-sm-9 col-12">
-									<p>Ravi Kant</p>
+									<p>Entrees</p>
 								</div>
 							</div>
 						</div>

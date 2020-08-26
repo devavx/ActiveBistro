@@ -88,7 +88,7 @@
 <td>1</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
                                     <td> #123 </td>
-                                    <td> David </td>
+                                    <td> <a href data-toggle="modal" data-target="#detailmodal"> David </a> </td>
                                     <td> Open</td>
                                     <td> Noida KL</td>
                                     <td> 1000</td>
@@ -131,6 +131,88 @@
     </div> 
 </div> 
 <div id="cover-spin" style="display: none;"></div> 
+
+<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
+	  	<div class="modal-dialog modal-xl" role="document">
+	     	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<h4 class="modal-title">Order Detail</h4>
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          			<span aria-hidden="true">&times;</span>
+	       			</button>
+	      		</div>
+	      		<div class="modal-body">
+	        		<div class="row">
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Order ID</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>#123</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+					<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Customer Name</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>David</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+					<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Status</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p class="text-success">Open</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Address</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>A-113 Sector 12 Noida Uttar Pradesh 110012</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Total</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>1000</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">No. of Meal</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>12</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Created</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>14/12/2020</p>
+	        					</div>
+	        				</div>
+	        			</div>
+	        		</div>
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	  	</div>
+	</div>
 
 @endsection
 @section('script')

@@ -98,7 +98,7 @@
 												<td>
 													<label><input type="checkbox" name="delete_target"><span class="sr-only"> Select Row </span></label>
 												</td>
-												<td> {{ $rows->name ?? '-'}}</td>
+												<td><a href data-toggle="modal" data-target="#detailmodal"> {{ $rows->name ?? '-'}}</a></td>
 											<!-- <td> {{ $rows->sub_name ?? '-'}}</td> -->
 												<td> {{ $rows->short_description ?? '-'}}</td>
 												<td> {{ $rows->protein ?? '-'}}</td>
@@ -143,6 +143,143 @@
 		</div>
 	</div>
 	<div id="cover-spin" style="display: none;"></div>
+
+
+<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
+	  	<div class="modal-dialog modal-xl" role="document">
+	     	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<h4 class="modal-title">Item Detail</h4>
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          			<span aria-hidden="true">&times;</span>
+	       			</button>
+	      		</div>
+	      		<div class="modal-body">
+	        		<div class="row">
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Name</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>Item2</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+					<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Short Description</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>HJGHJGJ</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Protein</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>67</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Calories</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>67</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Carbohydrates</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>5</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Fat</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>50</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Type</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>Vegan</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Selling Price</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>500</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Regular Price</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>550</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">ingredient</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p>
+	        							<span class="border rounded pl-2 pr-2 pt-1 pb-1 mr-2">Feta Cheese</span>
+	        							<span class="border rounded pl-2 pr-2 pt-1 pb-1 mr-2">Gouda</span>
+	        							<span class="border rounded pl-2 pr-2 pt-1 pb-1 mr-2">Flour</span>
+	        						</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+					<div class="col-lg-6 col-sm-6 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-3 col-sm-3 col-12">Status</label>
+	        					<div class="col-lg-9 col-sm-9 col-12">
+	        						<p class="text-success">Active</p>
+	        					</div>
+	        				</div>
+	        			</div>
+
+	        			<div class="col-lg-12 col-sm-12 col-12">
+	        				<div class="form-group row">
+	        					<label class="col-lg-12 col-sm-12 col-12">Thumbnail</label>
+
+	        					<div class="col-12">
+	        						<div class="row">
+	        							<div class="col-lg-3 col-sm-4 col-12">
+	        								<img src="image/homehow.jpg" class="img-fluid d-block w-100">
+	        							</div>
+	        						</div>
+	        					</div>
+	        				</div>
+	        			</div>
+	        		</div>
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	  	</div>
+	</div>
 
 @endsection
 @section('script')
