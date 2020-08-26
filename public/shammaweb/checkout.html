@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Active Bistro</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="icon" type="image/png" href="image/favicon-white.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/mdb.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="mdblock">
+				<li class="nav-item">
+					<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+				</li>
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow">
+	<div class="container">
+		<a class="navbar-brand" href="index.html"><img src="image/logo2.png"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#activebistronavbar" aria-controls="activebistronavbar" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fa fa-bars"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="activebistronavbar">
+			<div class="offcanvas-header mt-3">
+
+				<button class="btn p-2 btn-close float-right"><i class="fa fa-times"></i></button>
+
+				<h5 class="py-2 text-white"><img src="image/logo2.png" class="toggle-brand"></h5>
+			</div>
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="order-now.html">Order Now</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="howitwork.html">How it Works</a>
+				</li>
+
+				<li class="nav-item">
+					<span class="border md-none p-2 rounded header-time-slot nav-link text-color"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+				</li>
+
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link text-color" href="#">
+						<img src="image/agent.jpg" class="rounded-circle userprofile-img"><span class="ml-2">Mark Jaimes</span></a>
+				</li>
+				<li class="nav-item dropdown mt-2">
+					<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+					   aria-haspopup="true" aria-expanded="false">My Account</a>
+					<div class="dropdown-menu dropdown-primary pt-0 pb-0" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="my-order.html">My Order</a>
+						<a class="dropdown-item" href="my-profile.html">My Profile</a>
+						<a class="dropdown-item" href="index.html">Log Out</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class="container mt-5 mb-5">
+	<div class="row">
+		<div class="col-lg-10 col-sm-12 col-12 mx-auto">
+			<div class="check-out-top">
+				<h5 class="font-weight-bold text-color">Secure Checkout
+					<small class="float-right"><a href="our-menu.html" class="font-weight-bold text-color">Continue
+						Order</a></small></h5>
+			</div>
+			<hr>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-10 col-sm-12 col-12 mx-auto">
+			<div class="row">
+				<div class="col-lg-7 col-sm-7 col-12">
+					<div class="checkoutdetail mt-3 border-bottom pb-3">
+						<h6 class="font-weight-bold"><i class="fa fa-check mr-2"></i>Shipping Details
+							<small class="float-right"><a href data-toggle="modal" data-target="#editshippingdetail" class="font-weight-bold text-color">Edit</a></small>
+						</h6>
+						<p class="mb-0">Mark jaimes</p>
+						<p class="mb-0">example@gmail.com</p>
+						<p class="mb-0">London, UK, london, England, 1234567, United Kingdom</p>
+						<p class="mb-0">1234567890</p>
+					</div>
+
+					<div class="checkoutdetail mt-3 border-bottom pb-3">
+						<h6 class="font-weight-bold"><i class="fa fa-check mr-2"></i>Delivery
+							<small class="float-right"><a href data-toggle="modal" data-target="#editdeliverytime" class="font-weight-bold text-color">Edit</a></small>
+						</h6>
+						<p class="mb-0">UK flate rate (5-6)</p>
+					</div>
+
+					<div class="checkoutdetail mt-3 border-bottom pb-3">
+						<h6 class="font-weight-bold"><i class="fa fa-check mr-2"></i>Payment <i class="fa fa-lock"></i>
+						</h6>
+						<form role="form">
+							<div class="form-group">
+								<label for="cardNumber">
+									CARD NUMBER</label>
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="0000-0000-0000-0000"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-7 col-md-7">
+									<div class="form-group row">
+										<div class="col-12">
+											<label for="expityMonth">
+												EXPIRY DATE</label>
+										</div>
+										<div class="col-xs-6 col-lg-6">
+											<input type="text" class="form-control" id="expityMonth" placeholder="MM"/>
+										</div>
+										<div class="col-xs-6 col-lg-6">
+											<input type="text" class="form-control" id="expityYear" placeholder="YY"/>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-5 col-md-5 pull-right">
+									<div class="form-group">
+										<label for="cvCode">CV CODE</label>
+										<input type="password" class="form-control" id="cvCode" placeholder="CVV"/>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="checkoutdetail mt-3 pb-3">
+						<h6 class="font-weight-bold">Review & Place Order </h6>
+						<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="materialUnchecked">
+							<label class="form-check-label" for="materialUnchecked">I agree to the
+								<a href="term-use.html" class="text-color">Term & Conditions</a></label>
+						</div>
+					</div>
+
+					<div class="checkoutdetail mt-3 pb-3">
+						<button class="btn btn-info">Place Order <i class="fa fa-chevron-right ml-2"></i></button>
+					</div>
+				</div>
+
+				<div class="col-lg-5 col-sm-5 col-12">
+					<div class="checkout-right mt-3 bg-color p-3 rounded">
+						<h6 class="font-weight-bold text-white">Order Summary (1)
+							<small class="float-right"><a href="our-menu.html" class="font-weight-bold text-white">Edit
+								Cart</a></small></h6>
+
+						<img src="http://bmms.maavan.com/test/bistro/uploads/black-pepper-and-sea-salt.jpg" class="img-fluid rounded w-100 d-block mb-3">
+
+						<p class="text-white mb-1">Subtotal <span class="float-right">$30.00</span></p>
+						<p class="text-white mb-1">Shipping <span class="float-right">$35.00</span></p>
+						<p class="text-white mb-1">Sales Tax <span class="float-right">$0.15</span></p>
+
+						<hr>
+
+						<h6 class="text-white font-weight-bold">Total <span class="float-right">$65.15</span></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="footer pt-3 pb-0 bg-color">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-sm-3 col-12">
+				<div class="footer-left mt-2">
+					<ul>
+						<li><a href="#"><i class="fa fa-facebook facebook-icon"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter twitter-icon"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram insta-icon"></i></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-12">
+
+				<div class="row">
+					<div class="col-lg-6 col-sm-6 col-12">
+						<div class="footer-middel mt-2">
+							<h5 class="text-white mb-0">Company</h5>
+							<hr class="mt-1 mb-1">
+							<ul>
+								<li><a href="aboutus.html"><i class="fa fa-chevron-right mr-2"></i>About Us</a></li>
+								<li><a href="privacy-policy.html"><i class="fa fa-chevron-right mr-2"></i>Privacy Policy</a>
+								</li>
+								<li><a href="term-use.html"><i class="fa fa-chevron-right mr-2"></i>Terms & Use</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-6 col-sm-6 col-12">
+						<div class="footer-middel mt-2">
+							<h5 class="text-white mb-0">Support</h5>
+							<hr class="mt-1 mb-1">
+							<ul>
+
+								<li><a href="contactus.html"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
+
+								<li><a href="faqs.html"><i class="fa fa-chevron-right mr-2"></i>FAQs</a></li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-3 col-sm-3 col-12">
+				<div class="footer-right text-right mt-2">
+					<img src="image/payment-img.png">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="footer-copy bg-color pt-2 pb-2">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<p class="mb-0 text-right">Copyright <i class="fa fa-copyright"></i> by
+					<a href="index.html" class="text-white">ACTIVE BISTRO</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade right shadow" id="editshippingdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	<div class="modal-dialog  modal-full-height modal-right" role="document">
+
+
+		<div class="modal-content">
+			<div class="modal-header bg-color ">
+				<h5 class="modal-title w-100 text-white">Edit Delivery Slot</h5>
+				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="text-white">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<form>
+
+					<div class="form-group">
+						<label>Name</label>
+						<input type="text" class="form-control" value="Mark Jaimes">
+					</div>
+
+					<div class="form-group">
+						<label>Email ID</label>
+						<input type="text" class="form-control" value="example@gmail.com">
+					</div>
+
+					<div class="form-group">
+						<label>Phone</label>
+						<input type="text" class="form-control" value="1234567890">
+					</div>
+
+					<div class="form-group">
+						<label>Address</label>
+						<textarea class="form-control" rows="3">London, UK, london, England, 1234567, United Kingdom</textarea>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-info">Change <i class="fa fa-chevron-right ml-2"></i></button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade right shadow" id="editdeliverytime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	<div class="modal-dialog  modal-full-height modal-right" role="document">
+
+
+		<div class="modal-content">
+			<div class="modal-header bg-color ">
+				<h5 class="modal-title w-100 text-white">Edit Shipping Detail</h5>
+				<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true" class="text-white">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<form>
+
+					<div class="form-group">
+						<label>Delivery Slot</label>
+						<select class="form-control">
+							<option>1pm - 2pm</option>
+							<option>2pm - 3pm</option>
+							<option>3pm - 4pm</option>
+							<option>4pm - 5pm</option>
+							<option>5pm - 6pm</option>
+							<option>6pm - 7pm</option>
+							<option>7pm - 8pm</option>
+							<option>8pm - 9pm</option>
+							<option>9pm - 10pm</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<button class="btn btn-info">Change <i class="fa fa-chevron-right ml-2"></i></button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+<script>
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
+
+</body>
+</html>

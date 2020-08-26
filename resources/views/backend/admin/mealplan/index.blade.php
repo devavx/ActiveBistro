@@ -45,9 +45,11 @@
 					<div class="card">
 						<div class="card-body">
 							<h4 class="card-title">Meal List</h4>
-<div class="text-right">
-				<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
-			</div>
+							<div class="text-right">
+								<button class="btn btn-primary mr-4" type="button" onclick="confirmDeleteBulk();">
+									<i class="fa fa-trash mr-2"></i>Delete
+								</button>
+							</div>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
 									<strong> {{$message}}</strong>
@@ -71,8 +73,10 @@
 								       cellspacing="0" width="100%">
 									<thead>
 									<tr>
-<th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+										<th>Sr. No.</th>
+										<th scope="col" class="border">
+											<label><input type="checkbox" id="check_all" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
+										</th>
 										<th>Name</th>
 										<th>Type</th>
 										<th>Image(s)</th>
@@ -84,8 +88,10 @@
 									<tbody>
 									@foreach($plans as $plan)
 										<tr>
-<td>1</td>
-<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+											<td>{{$loop->index+1}}</td>
+											<td>
+												<label><input type="checkbox" name="delete_target" value="{{$plan->id}}"><span class="sr-only"> Select Row </span></label>
+											</td>
 											<td> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
@@ -108,8 +114,10 @@
 											@endif
 											<td> {{ changeDateFormat($plan->created_at,'M-d-Y') }}</td>
 											<td style="text-align: center; ">
-												<a class="like" href="javascript:void(0);" onclick="showMealPlan({{$plan->id}});" title="View"><i class="fas fa-search text-primary"></i></a> / 
-												<a class="like" href="{{ route('admin.meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a> / 
+												<a class="like" href="javascript:void(0);" onclick="showMealPlan({{$plan->id}});" title="View"><i class="fas fa-search text-primary"></i></a>
+												/
+												<a class="like" href="{{ route('admin.meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a>
+												/
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $plan->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 											</td>
 										</tr>
@@ -164,44 +172,58 @@
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script>
-        $(function () {
-            $('#example23').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'csv', 'excel', 'pdf', 'print'
-                ]
-            });
-            $('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-        });
+		$(function () {
+			$('#example23').DataTable({
+				dom: 'Bfrtip',
+				buttons: [
+					'csv', 'excel', 'pdf', 'print'
+				]
+			});
+			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+		});
 
-        function confirmDelete(id) {
-            url = "{{ url('/admin/meals/delete/') }}/" + id;
-            deleteConfirmMessage(id, url, 'remove');
-        }
+		function confirmDelete(id) {
+			url = "{{ url('/admin/meals/delete/') }}/" + id;
+			deleteConfirmMessage(id, url, 'remove');
+		}
 
-        $(document).ready(function () {
-            $(document).on('click', '.change_status', function () {
-                var id = $(this).attr('id');
-                url = "{{ url('/admin/meals/change_status/') }}/" + id;
-                var status_val = $(this).attr('data-id');
-                changeStatusConfirmMessage(id, url, 'change_status');
-            });
-        });
+		$(document).ready(function () {
+			$(document).on('click', '.change_status', function () {
+				var id = $(this).attr('id');
+				url = "{{ url('/admin/meals/change_status/') }}/" + id;
+				var status_val = $(this).attr('data-id');
+				changeStatusConfirmMessage(id, url, 'change_status');
+			});
+			$('#check_all').change(function () {
+				$("input:checkbox[name=delete_target]").prop('checked', this.checked);
+			})
+		});
 
-        showMealPlan = (key) => {
-            setLoading(true, () => {
-                performGet({
-                    url: '/admin/meals/' + key,
-                    success: (message, data) => {
-                        $('#plan_details').html(data);
-                        $('#exampleModal').modal('show');
-                    },
-                    complete: () => {
-                        setLoading(false);
-                    }
-                });
-            });
-        };
+		showMealPlan = (key) => {
+			setLoading(true, () => {
+				performGet({
+					url: '/admin/meals/' + key,
+					success: (message, data) => {
+						$('#plan_details').html(data);
+						$('#exampleModal').modal('show');
+					},
+					complete: () => {
+						setLoading(false);
+					}
+				});
+			});
+		};
+
+		function confirmDeleteBulk() {
+			const url = "{{ url('/admin/meals/delete') }}";
+			const items = [];
+			$("input:checkbox[name=delete_target]:checked").each(function () {
+				const parsed = Number.parseInt($(this).val());
+				if (parsed !== 0)
+					items.push(parsed);
+			});
+			deleteConfirmMessageBulk(url, items);
+		}
 
 	</script>
 @endsection

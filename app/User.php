@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Core\Enums\Common\Directories;
+use App\Core\Facades\Uploads;
 use App\Models\Cart;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -49,12 +52,18 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function getProfileImageAttribute()
+    public function setProfileImageAttribute($value): void
     {
-        if (!empty($this->attributes['profile_image'])) {
-            return asset('uploads/avatars/' . $this->attributes['profile_image']);
+        if ($value instanceof UploadedFile) {
+            $this->attributes['profile_image'] = Uploads::instance()->putFile(Directories::UserProfileImages, $value);
+        } else {
+            $this->attributes['profile_image'] = $value;
         }
-        return $this->attributes['profile_image'];
+    }
+
+    public function getProfileImageAttribute($value): ?string
+    {
+        return Uploads::existsUrl($this->attributes['profile_image']);
     }
 
     public function age(): int
@@ -68,7 +77,7 @@ class User extends Authenticatable
      */
     public function height(): float
     {
-        return 163;
+        return $this->height;
     }
 
     /**
@@ -77,7 +86,7 @@ class User extends Authenticatable
      */
     public function weight(): float
     {
-        return 163;
+        return $this->weight;
     }
 
     public function calories(): ?string

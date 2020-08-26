@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Core\Enums\Common\Directories;
+use App\Core\Facades\Uploads;
 use App\Core\Primitives\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\UploadedFile;
 
 class Item extends Model
 {
@@ -25,9 +28,18 @@ class Item extends Model
         return $this->belongsToMany(Item::class, 'ingredient_items', 'item_id', 'ingredient_id');
     }
 
-    public function getThumnailAttribute()
+    public function setThumbnailAttribute($value): void
     {
-        return url('/storage/app/public/items/' . $this->attributes['thumbnail']);
+        if ($value instanceof UploadedFile) {
+            $this->attributes['thumbnail'] = Uploads::instance()->putFile(Directories::ItemImages, $value);
+        } else {
+            $this->attributes['thumbnail'] = $value;
+        }
+    }
+
+    public function getThumbnailAttribute($value): ?string
+    {
+        return Uploads::existsUrl($value);
     }
 
     public function meals(): BelongsToMany

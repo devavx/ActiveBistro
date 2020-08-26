@@ -77,6 +77,36 @@
 		});
 	};
 
+	window.performDeleteBulk = (config) => {
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': '{{csrf_token()}}'
+			},
+			url: config.url,
+			type: 'DELETE',
+			data: config.data,
+			success: (response) => {
+				if (config.hasOwnProperty('success')) {
+					if (response.success === 1) {
+						config.success(response.message);
+					} else {
+						config.failed(response.message);
+					}
+				}
+			},
+			beforeSend: (xhr, settings) => {
+				if (config.hasOwnProperty('before')) {
+					config.before();
+				}
+			},
+			complete: (xhr, status) => {
+				if (config.hasOwnProperty('complete')) {
+					config.complete();
+				}
+			}
+		});
+	};
+
 	window.performGet = (config) => {
 		$.ajax({
 			headers: {

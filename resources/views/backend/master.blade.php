@@ -25,6 +25,7 @@
 	<!-- Dashboard 1 Page CSS -->
 	<link href="{{ asset('assets/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/node_modules/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap" rel="stylesheet">
 
 	@yield('style')
@@ -42,8 +43,8 @@
 <!-- ============================================================== -->
 <div class="preloader">
 	<div class="loader">
-		<div class="loader__figure"></div>
-		<p class="loader__label">Welcome admin</p>
+		{{--		<div class="loader__figure"></div>--}}
+		<p class="loader__label"><i class="fa fa-spinner fa-spin" style="font-size: 48px; color: #03a9f3;"></i></p>
 	</div>
 </div>
 <!-- ============================================================== -->
@@ -138,7 +139,7 @@
 <!-- footer -->
 	<!-- ============================================================== -->
 	<footer class="footer">
-		© 2020 Developed & Designed by Younggees.in
+		© 2020 Developed & Designed by YoungGeeks Technologies
 	</footer>
 	<!-- ============================================================== -->
 	<!-- End footer -->
@@ -162,22 +163,24 @@
 <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 <!--Custom JavaScript -->
 <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
-<!-- ============================================================== -->
+{{--<!-- ============================================================== -->--}}
 <!-- This page plugins -->
 <!-- ============================================================== -->
 <!--morris JavaScript -->
-<!-- <script src="{{ asset('assets/node_modules/raphael/raphael-min.js') }}"></script> -->
-<!-- <script src="{{ asset('assets/node_modules/morrisjs/morris.min.js') }}"></script> -->
-<script src="{{ asset('assets/node_modules/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+{{--<!-- <script src="{{ asset('assets/node_modules/raphael/raphael-min.js') }}"></script> -->--}}
+{{--<!-- <script src="{{ asset('assets/node_modules/morrisjs/morris.min.js') }}"></script> -->--}}
+{{--<script src="{{ asset('assets/node_modules/jquery-sparkline/jquery.sparkline.min.js') }}"></script>--}}
 <!-- Popup message jquery -->
-<script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
+{{--<script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>--}}
 <!-- Chart JS -->
-<script src="{{ asset('assets/dist/js/dashboard1.js') }}"></script>
-<script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
+{{--<script src="{{ asset('assets/dist/js/dashboard1.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>--}}
 <script src="{{ asset('assets/node_modules/dropify/dist/js/dropify.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>--}}
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
+<script src="{{ asset('js/custom.js') }}"></script>
 @yield('script')
 </body>
 

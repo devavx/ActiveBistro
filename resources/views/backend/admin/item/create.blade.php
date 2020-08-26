@@ -196,7 +196,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Avatar</label>
+												<label>Thumbnail</label>
 												<input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
 											</div>
 										</div>
@@ -234,57 +234,62 @@
 
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript">
-        $(".select2").select2({
-            placeholder: "Please select Ingredient",
-            allowClear: true
-        });
-        $(document).ready(function () {
+		$(".select2").select2({
+			placeholder: "Please select Ingredient",
+			allowClear: true
+		});
+		$(document).ready(function () {
 
-            $('#add_form').validate({ // initialize the plugin
-                rules: {
-                    name: {
-                        required: true,
-                    }, selling_price: {
-                        required: true,
-                    }, actual_price: {
-                        required: true,
-                    },
-                    sub_name: {
-                        required: true,
-                    }, short_description: {
-                        required: true,
-                    }, long_description: {
-                        required: true,
-                    },
-                    protein: {
-                        required: true,
-                    },
-                    calories: {
-                        required: true,
-                    }, carbs: {
-                        required: true,
-                    },
-                    "category_id": "required",
-                    "item_type_id": {
-                        required: true,
-                    },
-                    "ingredient_id[]": "required",
-                },
-                messages: {
-                    "ingredient_id[]": {
-                        required: 'Please select at least one.'
-                    }
-                }
-            });
+			$('#add_form').validate({ // initialize the plugin
+				rules: {
+					name: {
+						required: true,
+					},
+					selling_price: {
+						required: true,
+					},
+					actual_price: {
+						required: true,
+					},
+					sub_name: {
+						required: true,
+					},
+					short_description: {
+						required: true,
+					},
+					long_description: {
+						required: true,
+					},
+					protein: {
+						required: true,
+					},
+					calories: {
+						required: true,
+					},
+					carbs: {
+						required: true,
+					},
+					"category_id": "required",
+					"item_type_id": {
+						required: true,
+					},
+					"ingredient_id[]": "required",
+				},
+				messages: {
+					"ingredient_id[]": {
+						required: 'Please select at least one.'
+					}
+				}
+			});
 
-            $(document).on('click', '#edit_profile', function () {
-                if (!$("#add_form").valid()) { // Not Valid
-                    return false;
-                } else {
+			$(document).on('click', '#edit_profile', function () {
+				if (!$("#add_form").valid()) { // Not Valid
+					return false;
+				} else {
 
-                }
-            });
-        });
+				}
+			});
+		});
 	</script>
 @endsection
        

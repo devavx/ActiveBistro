@@ -2,88 +2,80 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Http\Requests\AddEditItemRule;
+use App\Ingredient;
 use App\Item;
 use App\ItemType;
-use App\Ingredient;
-use App\Category;
+use App\MealPlan;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests\AddEditItemRule;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 
 class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
         $listData = Item::all();
-        return view('backend/admin/item/index', compact('listData'));
+        return view('backend.admin.item.index', compact('listData'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function create()
     {
-        $listData     = Ingredient::all();
+        $listData = Ingredient::all();
         $categoryList = Category::all();
         $itemTypeList = ItemType::all();
-        return view('backend/admin/item/create',compact(['listData','categoryList','itemTypeList']));
+        return view('backend/admin/item/create', compact(['listData', 'categoryList', 'itemTypeList']));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AddEditItemRule $request
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function store(AddEditItemRule $request)
     {
-        if($request->hasFile('thumbnail')){
-            $thumbnail=$request->thumbnail;
-            $image=$request->file('thumbnail');
-            $newimg=rand().'_'.$image->getClientOriginalname();
-            // $image->move(public_path('images'), $newimg); 
-            // $fileNameWithExt = $request->file('thumbnail')->getClientOriginalImage();
-            // $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            // $ext = $request->file('thumbnail')->getClientOriginalExtension();
-            // $filenameToStore = $filename.'-'.rand().'.'.$ext;
-            $storeImage = $request->file('thumbnail')->storeAs('public/items',$newimg);
-        }else{
-            $newimg = 'img.jpg';
-        }
-         
-        $product= Item::create([
+        $product = Item::query()->create([
             'name' => $request->name,
-            // 'sub_name'=>$request->sub_name, 
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
             'protein' => ($request->protein) ? $request->protein : 0,
             'calories' => ($request->calories) ? $request->calories : 0,
-            'thumbnail' => $newimg,
+            'thumbnail' => $request->thumbnail,
             'carbs' => ($request->carbs) ? $request->carbs : 0,
             'fat' => ($request->fat) ? $request->fat : 0,
             'item_type_id' => ($request->item_type_id) ? $request->item_type_id : 0,
             'category_id' => ($request->category_id) ? $request->category_id : 0
         ]);
-        if($product) {
+        if ($product) {
             $product->ingredients()->attach($request->ingredient_id);
-            return  redirect('admin/items')->with('success','Item Added Successfully');
-        }else{
-            return back()->with('errormsg','Whoops!! Somthing Went Wrong! Try Again!!');
+            return redirect('admin/items')->with('success', 'Item Added Successfully');
+        } else {
+            return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
         }
-         
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Item $item
+     * @return void
      */
     public function show(Item $item)
     {
@@ -93,40 +85,34 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Item $item
+     * @return Application|Factory|Response|View
      */
     public function edit(Item $item)
     {
-        $listData     = Ingredient::all();
+        $listData = Ingredient::all();
         $categoryList = Category::all();
-        $itemTypeList = ItemType::all();  
+        $itemTypeList = ItemType::all();
         if (!empty($item)) {
-            $record=$item;
-            return view('backend/admin/item/edit',compact(['item','listData','categoryList','itemTypeList'])); 
+            $record = $item;
+            return view('backend/admin/item/edit', compact(['item', 'listData', 'categoryList', 'itemTypeList']));
         }
-        return redirect('admin/items')->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');
+        return redirect('admin/items')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Item $item
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function update(Request $request, Item $item)
     {
-        if($request->hasFile('thumbnail')){
-            $thumbnail=$request->thumbnail;
-            $image=$request->file('thumbnail');
-            $newimg=rand().'_'.$image->getClientOriginalname(); 
-            $storeImage = $request->file('thumbnail')->storeAs('public/items',$newimg);
-            $item->thumbnail = $newimg;
-        }
-
         $item->name = $request->name;
-        // $item->sub_name = $request->sub_name; 
+        if ($request->hasFile('thumbnail')) {
+            $item->thumbnail = $request->file('thumbnail');
+        }
         $item->short_description = $request->short_description;
         $item->long_description = $request->long_description;
         $item->protein = ($request->protein) ? $request->protein : 0;
@@ -149,46 +135,57 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Item $item
+     * @return Response
      */
     public function destroy(Item $item)
     {
         //
     }
 
-    public function delete($id='')
+    public function delete($id = '')
     {
         $result = array();
-        $data =  Item::find($id);
+        $data = Item::find($id);
         if (!empty($data)) {
             $data->delete();
-            $result['status']  = 'success';
+            $result['status'] = 'success';
             $result['message'] = 'Item Deleted Sucessfully !';
-        }else{
-            $result['status']  = 'error';
+        } else {
+            $result['status'] = 'error';
             $result['message'] = 'OPPS! Something Went Wrong!';
         }
 
         return json_encode($result);
     }
-    public function changeStatus($id='')
+
+    public function deleteBulk()
     {
         $result = array();
-        $data =  Item::find($id);
-        
+        $result['success'] = 1;
+        $result['message'] = 'Item(s) deleted successfully!';
+        $result['data'] = [];
+        Item::query()->whereIn('id', request('items', []))->delete();
+        return response()->json($result);
+    }
+
+    public function changeStatus($id = '')
+    {
+        $result = array();
+        $data = Item::find($id);
+
         if (!empty($data)) {
-            if($data->active == '0') {
-                $data->active=1;
-            }else{
+            if ($data->active == '0') {
+                $data->active = 1;
+            } else {
                 $data->active = 0;
-            } 
+            }
             $data->update();
-            $result['status']  = 'success';
-            $result['message'] = 'Item Stactus Change Sucessfully !';
-        }else{
-            $result['status']  = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+            $result['status'] = 'success';
+            $result['message'] = 'Item Status Change Successfully !';
+        } else {
+            $result['status'] = 'error';
+            $result['message'] = 'Oops! Something Went Wrong!';
         }
 
         return json_encode($result);
@@ -197,7 +194,7 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function orders()
     {

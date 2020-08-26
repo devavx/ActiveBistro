@@ -1,3 +1,25 @@
+ask = (message = 'Are you sure?', callback = null) => {
+	bootbox.confirm({
+		message: message,
+		centerVertical: true,
+		buttons: {
+			confirm: {
+				label: 'Yes',
+				className: 'btn btn-outline-muted'
+			},
+			cancel: {
+				label: 'No',
+				className: 'btn btn-outline-muted'
+			}
+		},
+		callback: function (result) {
+			if (result && callback != null) {
+				callback();
+			}
+		}
+	});
+};
+
 handleItemChanged = (mealId, slab, itemId, price, name, day) => {
 	setLoading(true, () => {
 		performGet({
@@ -22,33 +44,7 @@ cloneMeal = (day, mealId) => {
 			url: '/cart/quantity/' + day + '/' + mealId + '/clone',
 			success: (message, data) => {
 				notyf.success(message);
-				$('#main_container').fadeTo('fast', 0.0, function () {
-					$('#main_container').html(data);
-					$(".owl-carousel1").owlCarousel({
-						// loop: true,
-						center: true,
-						margin: 0,
-
-						responsiveClass: true,
-						nav: false,
-						responsive: {
-							0: {
-								items: 1,
-								nav: false
-							},
-							680: {
-								items: 2,
-								nav: false,
-								loop: false
-							},
-							1000: {
-								items: 3,
-								nav: true
-							}
-						}
-					});
-					$('#main_container').fadeTo('slow', 1.0);
-				});
+				fadeAndRerender(data);
 			},
 			failed: (message) => {
 
@@ -61,45 +57,21 @@ cloneMeal = (day, mealId) => {
 };
 
 deleteMeal = (day, mealId) => {
-	setLoading(true, () => {
-		performGet({
-			url: '/cart/quantity/' + day + '/' + mealId + '/delete',
-			success: (message, data) => {
-				notyf.success(message);
-				$('#main_container').fadeTo('fast', 0.0, function () {
-					$('#main_container').html(data);
-					$(".owl-carousel1").owlCarousel({
-						// loop: true,
-						center: true,
-						margin: 0,
+	ask('Remove item from cart entirely?', () => {
+		setLoading(true, () => {
+			performGet({
+				url: '/cart/quantity/' + day + '/' + mealId + '/delete',
+				success: (message, data) => {
+					notyf.success(message);
 
-						responsiveClass: true,
-						nav: false,
-						responsive: {
-							0: {
-								items: 1,
-								nav: false
-							},
-							680: {
-								items: 2,
-								nav: false,
-								loop: false
-							},
-							1000: {
-								items: 3,
-								nav: true
-							}
-						}
-					});
-					$('#main_container').fadeTo('slow', 1.0);
-				});
-			},
-			failed: (message) => {
+				},
+				failed: message => {
 
-			},
-			complete: () => {
-				setLoading(false);
-			}
+				},
+				complete: () => {
+					setLoading(false);
+				}
+			});
 		});
 	});
 };
@@ -141,44 +113,57 @@ removeItem = (day, itemId) => {
 };
 
 deleteItem = (day, itemId) => {
-	bootbox.confirm({
-		message: "Remove item from cart entirely?",
-		centerVertical: true,
-		buttons: {
-			confirm: {
-				label: 'Yes',
-				className: 'btn btn-outline-muted'
+	ask('Remove item from cart entirely?', () => {
+		setLoading(true, () => {
+			performGet({
+				url: '/cart/items/delete/' + day + '/' + itemId,
+				success: (message, data) => {
+					reload();
+					notyf.success(message);
+				},
+				failed: (message) => {
+					notyf.error(message);
+				},
+				complete: () => {
+					setLoading(false);
+				}
+			});
+		});
+	});
+};
+
+rebuildCarousel = () => {
+	$(".owl-carousel1").owlCarousel({
+		center: true,
+		margin: 0,
+		responsiveClass: true,
+		nav: false,
+		responsive: {
+			0: {
+				items: 1,
+				nav: false
 			},
-			cancel: {
-				label: 'No',
-				className: 'btn btn-outline-muted'
-			}
-		},
-		callback: function (result) {
-			if (result) {
-				setLoading(true, () => {
-					performGet({
-						url: '/cart/items/delete/' + day + '/' + itemId,
-						success: (message, data) => {
-							reload();
-							notyf.success(message);
-						},
-						failed: (message) => {
-							notyf.error(message);
-						},
-						complete: () => {
-							setLoading(false);
-						}
-					});
-				});
+			680: {
+				items: 2,
+				nav: false,
+				loop: false
+			},
+			1000: {
+				items: 3,
+				nav: true
 			}
 		}
 	});
 };
 
-rebuildCarousel = () => {
-
-};
+fadeAndRerender = (data) => {
+	const element = $('#main_container');
+	element.fadeTo('fast', 0.0, function () {
+		element.html(data);
+		rebuildCarousel();
+		element.fadeTo('slow', 1.0);
+	});
+}
 
 initialized = () => {
 
