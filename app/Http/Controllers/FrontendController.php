@@ -68,6 +68,11 @@ class FrontendController extends Controller
         return view('frontend.recommended_meal');
     }
 
+    public function options()
+    {
+
+    }
+
     public function ourmenu()
     {
         return view('frontend.our-menu');

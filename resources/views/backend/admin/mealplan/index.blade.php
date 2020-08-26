@@ -202,7 +202,7 @@
 		showMealPlan = (key) => {
 			setLoading(true, () => {
 				performGet({
-					url: '/admin/meals/' + key,
+					url: '/admin/meals/show/' + key,
 					success: (message, data) => {
 						$('#plan_details').html(data);
 						$('#exampleModal').modal('show');

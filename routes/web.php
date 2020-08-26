@@ -162,7 +162,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
         Route::delete('delete', 'Admin\DailyMealPlanController@deleteBulk')->name('daily-meals.delete');
         Route::get('change_status/{id}', 'Admin\DailyMealPlanController@changeStatus')->name('daily-meals.change_status');
         Route::get('images/{id}/{field}', 'Admin\DailyMealPlanController@removeImages');
-        Route::get('{id}', 'Admin\DailyMealPlanController@show');
+        Route::get('show/{id}', 'Admin\DailyMealPlanController@show');
     });
     Route::resource('daily-meals', 'Admin\DailyMealPlanController');
 
@@ -177,7 +177,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
         Route::delete('delete', 'Admin\MealPlanController@deleteBulk')->name('meal.delete');
         Route::get('change_status/{id}', 'Admin\MealPlanController@changeStatus')->name('meal.change_status');
         Route::get('images/{id}/{field}', 'Admin\MealPlanController@removeImages');
-        Route::get('{id}', 'Admin\MealPlanController@show');
+        Route::get('show/{id}', 'Admin\MealPlanController@show');
     });
     Route::resource('meals', 'Admin\MealPlanController');
 });

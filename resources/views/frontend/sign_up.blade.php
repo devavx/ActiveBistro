@@ -83,29 +83,30 @@
                                     </span>
                                 @enderror 
 			        		</div>
-			        	</div> 
-			        	<div class="form-group"> 
-			        		<div class="row">
-			        			<div class="col-lg-6 col-sm-6 col-12">
-			        				<label>Sex <span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><i class="fa fa-question-circle"></i></span></label>
-			        			</div>
+				        </div>
+				        <div class="form-group">
+					        <div class="row">
+						        <div class="col-lg-6 col-sm-6 col-12">
+							        <label>Sex
+								        <span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="Refers to your gender."><i class="fa fa-question-circle"></i></span></label>
+						        </div>
 
-			        			<div class="col-lg-6 col-sm-6 col-12">
-			        				<span class="float-right"><a href="javascript:void(0);" id="addGenderInfo" class="text-color" data-toggle="collapse" data-target="#genderInfo" data-text-alt="- Hide gender information">+ Add gender information</a></span>
-			        			</div>
-			        		</div>
-			        		
-			        		<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" value="male" class="custom-control-input" id="male" name="gender">
-							  <label class="custom-control-label" for="male">Male</label>
-							</div>
+						        <div class="col-lg-6 col-sm-6 col-12">
+							        <span class="float-right"><a href="javascript:void(0);" id="addGenderInfo" class="text-color" data-toggle="collapse" data-target="#genderInfo" data-text-alt="- Hide gender information">+ Add gender information</a></span>
+						        </div>
+					        </div>
 
-							<!-- Default inline 2-->
-							<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" value="female" class="custom-control-input" id="female" name="gender">
-							  <label class="custom-control-label" for="femal">Female</label>
-							</div>
-							@error('gender')
+					        <div class="custom-control custom-radio custom-control-inline">
+						        <input type="radio" value="male" class="custom-control-input" id="male" name="gender" checked>
+						        <label class="custom-control-label" for="male">Male</label>
+					        </div>
+
+					        <!-- Default inline 2-->
+					        <div class="custom-control custom-radio custom-control-inline">
+						        <input type="radio" value="female" class="custom-control-input" id="female" name="gender">
+						        <label class="custom-control-label" for="female">Female</label>
+					        </div>
+					        @error('gender')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
