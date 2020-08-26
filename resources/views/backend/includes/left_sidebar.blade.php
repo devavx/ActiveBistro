@@ -92,7 +92,7 @@ $uri2 = Request::segment(2);
 							<a class="@if($uri2 =='faqs')active @endif" href="{{ url('/admin/faqs') }}">FAQ's</a></li>
 
 						<li class="@if($uri2 =='term_conditions')active @endif">
-							<a class="@if($uri2 =='term_conditions')active @endif" href="{{ url('/admin/term_conditions') }}">Term
+							<a class="@if($uri2 =='term_conditions')active @endif" href="{{ url('/admin/term_conditions') }}">Terms
 								& Condition</a></li>
 
 						<li class="@if($uri2 =='privacy_policy')active @endif">
@@ -111,7 +111,7 @@ $uri2 = Request::segment(2);
 								Setting</a></li>
 						<li class="@if($uri2 =='social_medial')active @endif">
 							<a class="@if($uri2 =='social_medial')active @endif" href="{{ url('/admin/social_medial') }}">Footer
-								Social Meadia</a></li>
+								Social Media</a></li>
 					</ul>
 				</li>
 				<!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->

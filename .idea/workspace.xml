@@ -7,7 +7,6 @@
     </list>
     <list id="425eed0b-6d36-49b3-8531-ae6944b040e0" name="Don't Commit" comment="All the files that I wanna ignore will go here.">
       <change beforePath="$PROJECT_DIR$/.idea/ActiveBistro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ActiveBistro.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,29 +41,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.html" root0="SKIP_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="3" end1="27" start2="3" end2="4" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="28" end1="28" start2="5" end2="7" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="182" end1="183" start2="161" end2="167" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="229" end1="230" start2="213" end2="214" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="434" end1="435" start2="418" end2="447" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="463" end1="463" start2="475" end2="479" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="467" end1="467" start2="483" end2="487" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="487" end1="488" start2="507" end2="508" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="490" end1="491" start2="510" end2="511" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="495" end1="496" start2="515" end2="516" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="498" end1="499" start2="518" end2="519" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="575" end1="576" start2="595" end2="596" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="578" end1="580" start2="598" end2="600" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="582" end1="583" start2="602" end2="607" changelist="2467f509-1700-479b-be72-3507a9b5052c" />
-        <range start1="600" end1="600" start2="624" end2="628" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="604" end1="605" start2="632" end2="633" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-        <range start1="608" end1="609" start2="636" end2="637" changelist="425eed0b-6d36-49b3-8531-ae6944b040e0" />
-      </ranges>
-    </file>
   </component>
   <component name="PhpDebugGeneral" xdebug_force_break_when_no_path_mapping="false" xdebug_force_break_when_outside_project="false" />
   <component name="PhpServers">
@@ -237,7 +213,7 @@
       <workItem from="1598083042502" duration="3064000" />
       <workItem from="1598246668610" duration="25392000" />
       <workItem from="1598332753434" duration="20764000" />
-      <workItem from="1598419762935" duration="20505000" />
+      <workItem from="1598419762935" duration="20591000" />
     </task>
     <task id="LOCAL-00001" summary="Changes in MealPlan">
       <created>1597302245264</created>
@@ -470,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598447725236</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Updates">
+      <created>1598448292724</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1598448292724</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,10 +522,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="675" y="346" width="570" height="392" key="#com.jetbrains.php.debug.validation.PhpWebServerValidationDialog#/0.0.1920.1050@0.0.1920.1050" timestamp="1597762524226" />
-    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598447724274">
+    <state x="436" y="69" key="CommitChangelistDialog2" timestamp="1598448291713">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598447724274" />
+    <state x="436" y="69" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1598448291713" />
     <state width="254" height="195" key="DatabaseViewActions_Filter" timestamp="1597302657448">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -623,10 +606,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="807" y="438" key="VCS.ChangelistChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1598447717816" />
-    <state x="552" y="257" key="Vcs.Push.Dialog.v2" timestamp="1598447726696">
+    <state x="552" y="257" key="Vcs.Push.Dialog.v2" timestamp="1598448303201">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="257" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1598447726696" />
+    <state x="552" y="257" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1598448303201" />
     <state x="816" y="423" key="WebDeployment.AddServerDialog.v.1" timestamp="1598437433571">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
