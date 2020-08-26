@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ActiveBistro Local" uuid="31ea0364-045a-4073-9e13-adaf3b3fceb9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/active_bistro</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PamCard Local" uuid="798479ee-dfe2-4b78-b6aa-286b24f395f9">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/pamcard</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="AmVirgin Local" uuid="c893caf1-fd9a-42d9-88d6-42a5e04e11e1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/amvirgin</jdbc-url>
+    </data-source>
+  </component>
+</project>
