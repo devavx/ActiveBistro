@@ -8,23 +8,23 @@ $uri2 = Request::segment(2);
 		<!-- Sidebar navigation-->
 		<nav class="sidebar-nav">
 			<ul id="sidebarnav">
-				<li class="user-pro">
-					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('assets/images/users/1.jpg') }} @endif" alt="user-img" class="img-circle"><span class="hide-menu">{{ Auth::user()->name }}</span></a>
-					<ul aria-expanded="false" class="collapse">
-						<li><a href="{{ url('/admin/profile') }}"><i class="ti-user"></i> My Profile</a></li>
-						<!--  <li><a href="javascript:void(0)"><i class="ti-wallet"></i> My Balance</a></li>
-						 <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li> -->
-						<!-- <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li> -->
-						<li><a href="{{ route('logout') }}"
-						       onclick="event.preventDefault();
-                                 document.getElementById('logout-form1').submit();"><i class="fa fa-power-off"></i>
-								Logout</a></li>
-						<form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">
-							@csrf
-						</form>
-					</ul>
-				</li>
-				<!-- <li class="nav-small-cap">--- PERSONAL</li> -->
+			{{--				<li class="user-pro">--}}
+			{{--					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('assets/images/users/1.jpg') }} @endif" alt="user-img" class="img-circle"><span class="hide-menu">{{ Auth::user()->name }}</span></a>--}}
+			{{--					<ul aria-expanded="false" class="collapse">--}}
+			{{--						<li><a href="{{ url('/admin/profile') }}"><i class="ti-user"></i> My Profile</a></li>--}}
+			{{--						<!--  <li><a href="javascript:void(0)"><i class="ti-wallet"></i> My Balance</a></li>--}}
+			{{--						 <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li> -->--}}
+			{{--						<!-- <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li> -->--}}
+			{{--						<li><a href="{{ route('logout') }}"--}}
+			{{--						       onclick="event.preventDefault();--}}
+			{{--                                 document.getElementById('logout-form1').submit();"><i class="fa fa-power-off"></i>--}}
+			{{--								Logout</a></li>--}}
+			{{--						<form id="logout-form1" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
+			{{--							@csrf--}}
+			{{--						</form>--}}
+			{{--					</ul>--}}
+			{{--				</li>--}}
+			<!-- <li class="nav-small-cap">--- PERSONAL</li> -->
 				<li>
 					<a class="waves-effect waves-dark" href="{{ url('/admin/customers') }}" aria-expanded="false"><i class="ti-user"></i><span class="hide-menu">Customers <span class="badge badge-pill badge-cyan ml-auto"></span></span></a>
 

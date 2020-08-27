@@ -3,6 +3,7 @@
 namespace App\Core\Cart;
 
 use App\Core\Enums\Common\DaysOfWeek;
+use App\Core\Enums\Common\DietaryRequirement;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
 use App\Item;
@@ -12,8 +13,7 @@ use App\User;
 use DeepCopy\DeepCopy;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class State
-{
+class State {
     /**
      * Maximum quantity of a meal plan in the cart.
      */
@@ -58,8 +58,7 @@ class State
      * State constructor.
      * @param $user Authenticatable|User
      */
-    public function __construct($user)
-    {
+    public function __construct ($user) {
         $exists = $this->createCartIfNotExists($user);
         if (!$exists) {
             $this->createBlankCards();
@@ -73,8 +72,7 @@ class State
         $this->cloner = new DeepCopy();
     }
 
-    protected function createSnapshot(): void
-    {
+    protected function createSnapshot (): void {
         MealPlan::classifyCards()->each(function (MealPlan $meal) {
             $day = $meal->day;
             $meal->prepare();
@@ -109,8 +107,7 @@ class State
         ]);
     }
 
-    protected function loadSnapshot(): void
-    {
+    protected function loadSnapshot (): void {
         $state = $this->cart->items;
         $this->options = $state->options ?? $this->createDefaultOptions();
         $this->cards = $state->cards ?? $this->createBlankCards();
@@ -129,8 +126,7 @@ class State
         ]);
     }
 
-    protected function createCartIfNotExists(User $user): bool
-    {
+    protected function createCartIfNotExists (User $user): bool {
         $exists = $user->cart()->exists();
         if (!$exists) {
             $this->cart = $user->cart()->create();
@@ -140,8 +136,7 @@ class State
         return $exists;
     }
 
-    protected function createBlankCards(): void
-    {
+    protected function createBlankCards (): void {
         $this->cards = [];
         foreach (DaysOfWeek::getValues() as $value) {
             $this->cards[$value] = [];
@@ -149,8 +144,7 @@ class State
         $this->cards = (object)$this->cards;
     }
 
-    protected function createBlankItems(): void
-    {
+    protected function createBlankItems (): void {
         $this->items = [];
         foreach (DaysOfWeek::getValues() as $value) {
             $this->items[$value] = [];
@@ -158,8 +152,7 @@ class State
         $this->items = (object)$this->items;
     }
 
-    protected function createBlankStats(): void
-    {
+    protected function createBlankStats (): void {
         $this->stats = (object)[
             'carbohydrates' => 0,
             'fats' => 0,
@@ -169,119 +162,101 @@ class State
         ];
     }
 
-    protected function createDefaultOptions(): void
-    {
+    protected function createDefaultOptions (): void {
         $this->options = (object)[
             'allergies' => [],
-            'weekends' => ['saturday' => false, 'sunday' => false],
+            'weekends' => (object)['saturday' => false, 'sunday' => false],
             'breakfast' => false,
-            'snacks' => false
+            'snacks' => false,
+            'mealsPerDay' => 0,
+            'dietary_requirement' => DietaryRequirement::None
         ];
     }
 
-    public function addAllergy($allergy): int
-    {
-        if (!Arrays::contains($this->options['allergies'], $allergy)) {
-            Arrays::push($this->options['allergies'], $allergy);
+    public function addAllergy ($allergy): int {
+        if (!Arrays::contains($this->options->allergies, $allergy)) {
+            Arrays::push($this->options->allergies, $allergy);
+        }
+        return count($this->options->allergies);
+    }
+
+    public function removeAllergy ($allergy): int {
+        if (!Arrays::contains($this->options->allergies, $allergy)) {
+            Arrays::remove($this->options->allergies, $allergy);
         }
         return count($this->options['allergies']);
     }
 
-    public function removeAllergy($allergy): int
-    {
-        if (!Arrays::contains($this->options['allergies'], $allergy)) {
-            Arrays::remove($this->options['allergies'], $allergy);
-        }
-        return count($this->options['allergies']);
-    }
-
-    public function allergies(): array
-    {
+    public function allergies (): array {
         return $this->options['allergies'] ?? [];
     }
 
-    public function cards(): object
-    {
+    public function cards (): object {
         return $this->cards ?? new \stdClass();
     }
 
-    public function items(): object
-    {
+    public function items (): object {
         return $this->items ?? new \stdClass();
     }
 
-    public function card(string $day): array
-    {
+    public function card (string $day): array {
         return $this->cards->$day ?? [];
     }
 
-    public function item(string $day): array
-    {
+    public function item (string $day): array {
         return $this->items->$day ?? [];
     }
 
-    public function calories(): float
-    {
+    public function calories (): float {
         return $this->stats->calories ?? 0;
     }
 
-    public function carbohydrates(): float
-    {
+    public function carbohydrates (): float {
         return $this->stats->carbohydrates ?? 0;
     }
 
-    public function proteins(): float
-    {
+    public function proteins (): float {
         return $this->stats->proteins ?? 0;
     }
 
-    public function fats(): float
-    {
+    public function fats (): float {
         return $this->stats->fats ?? 0;
     }
 
-    public function total(): float
-    {
+    public function total (): float {
         return $this->stats->total ?? 0;
     }
 
-    public function setCalories(float $calories): float
-    {
+    public function setCalories (float $calories): float {
         $this->stats->calories = $calories;
         return $this->stats->calories;
     }
 
-    public function setCarbohydrates(float $carbohydrates): float
-    {
+    public function setCarbohydrates (float $carbohydrates): float {
         $this->stats->carbohydrates = $carbohydrates;
         return $this->stats->carbohydrates;
     }
 
-    public function setProteins(float $proteins): float
-    {
+    public function setProteins (float $proteins): float {
         $this->stats->proteins = $proteins;
         return $this->stats->proteins;
     }
 
-    public function setFats(float $fats): float
-    {
+    public function setFats (float $fats): float {
         $this->stats->fats = $fats;
         return $this->stats->fats;
     }
 
-    public function setTotal(float $total): float
-    {
+    public function setTotal (float $total): float {
         $this->stats->total = $total;
         return $this->stats->total;
     }
 
-    public function resetStats(): void
-    {
+    public function resetStats (): void {
         $this->createBlankStats();
     }
 
-    public function calculateStats()
-    {
+    public function calculateStats () {
         foreach ($this->cards as $key => $value) {
             foreach ($value as $plan) {
                 $plan->total = 0;
@@ -311,14 +286,12 @@ class State
         }
     }
 
-    public function recalculateStats()
-    {
+    public function recalculateStats () {
         $this->resetStats();
         $this->calculateStats();
     }
 
-    public function update()
-    {
+    public function update () {
         $state = [
             'options' => $this->options,
             'stats' => $this->stats,
@@ -330,8 +303,7 @@ class State
         ]);
     }
 
-    public function increaseQuantity(string $day, string $mealPlanKey)
-    {
+    public function increaseQuantity (string $day, string $mealPlanKey) {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
@@ -345,8 +317,7 @@ class State
         }
     }
 
-    public function cloneMealPlan(string $day, string $mealPlanKey)
-    {
+    public function cloneMealPlan (string $day, string $mealPlanKey) {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
@@ -361,8 +332,7 @@ class State
         }
     }
 
-    public function deleteMealPlan(string $day, string $mealPlanKey)
-    {
+    public function deleteMealPlan (string $day, string $mealPlanKey) {
         $meals = $this->card($day);
         $index = 0;
         foreach ($meals as $meal) {
@@ -378,8 +348,7 @@ class State
         }
     }
 
-    public function duplicatePlan(string $day, string $mealPlanKey)
-    {
+    public function duplicatePlan (string $day, string $mealPlanKey) {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
@@ -393,8 +362,7 @@ class State
         }
     }
 
-    public function decreaseQuantity(string $day, string $mealPlanKey)
-    {
+    public function decreaseQuantity (string $day, string $mealPlanKey) {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
@@ -408,8 +376,7 @@ class State
         }
     }
 
-    public function replaceItem(string $day, string $mealPlanKey, int $slab, int $itemId)
-    {
+    public function replaceItem (string $day, string $mealPlanKey, int $slab, int $itemId) {
         $meals = $this->card($day);
         foreach ($meals as $meal) {
             if ($meal->uuid == $mealPlanKey) {
@@ -430,8 +397,7 @@ class State
         }
     }
 
-    public function addItem(string $day, int $itemId)
-    {
+    public function addItem (string $day, int $itemId) {
         $items = $this->item($day);
         foreach ($items as $item) {
             if ($item->id == $itemId) {
@@ -449,8 +415,7 @@ class State
         $this->update();
     }
 
-    public function removeItem(string $day, int $itemId)
-    {
+    public function removeItem (string $day, int $itemId) {
         $items = $this->item($day);
         $index = 0;
         foreach ($items as $item) {
@@ -470,8 +435,7 @@ class State
         }
     }
 
-    public function deleteItem(string $day, int $itemId)
-    {
+    public function deleteItem (string $day, int $itemId) {
         $items = $this->item($day);
         $index = 0;
         foreach ($items as $item) {
@@ -485,5 +449,38 @@ class State
             }
             $index++;
         }
+    }
+
+    public function setMealsPerDay (int $mealsPerDay): void {
+        $this->options->mealsPerDay = $mealsPerDay;
+    }
+
+    public function getMealsPerDay (): int {
+        return $this->options->mealsPerDay ?? 1;
+    }
+
+    public function setMealsAtWeekends (bool $enable): void {
+        $this->options->weekends->sunday = $enable;
+        $this->options->weekends->saturday = $enable;
+    }
+
+    public function getMealsAtSunday (): bool {
+        return $this->options->weekends->sunday ?? false;
+    }
+
+    public function getMealsAtSaturday (): bool {
+        return $this->options->weekends->saturday ?? false;
+    }
+
+    public function setDietaryRequirement (string $dietaryRequirement): void {
+        $this->options->dietary_requirement = $dietaryRequirement;
+    }
+
+    public function getDietaryRequirement (): string {
+        return $this->options->dietary_requirement ?? DietaryRequirement::None;
+    }
+
+    public function destroy () {
+
     }
 }

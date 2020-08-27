@@ -10,16 +10,13 @@ use App\ItemType;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 
-class CartController extends Controller
-{
-    public function index(): Renderable
-    {
+class CartController extends Controller {
+    public function index (): Renderable {
         $state = new State(auth()->user());
         return view('frontend.all_meal')->with('state', $state);
     }
 
-    public function items($day): Renderable
-    {
+    public function items ($day): Renderable {
         $state = new State(auth()->user());
         $categories = Category::query()->where('active', 1)->get();
         $types = ItemType::query()->where('active', 1)->get();
@@ -28,8 +25,7 @@ class CartController extends Controller
             ->with('types', $types)->with('chosen', request('type', 'none'));
     }
 
-    public function addItem(string $day, int $itemId): JsonResponse
-    {
+    public function addItem (string $day, int $itemId): JsonResponse {
         $state = new State(auth()->user());
         $state->addItem($day, $itemId);
         return response()->json([
@@ -37,8 +33,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function replaceItem(string $day, int $slab, string $mealId, int $itemId): JsonResponse
-    {
+    public function replaceItem (string $day, int $slab, string $mealId, int $itemId): JsonResponse {
         $state = new State(auth()->user());
         $state->replaceItem($day, $mealId, $slab, $itemId);
         return response()->json([
@@ -46,8 +41,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function cloneMealPlan(string $day, string $mealId): JsonResponse
-    {
+    public function cloneMealPlan (string $day, string $mealId): JsonResponse {
         $state = new State(auth()->user());
         $state->cloneMealPlan($day, $mealId);
         return response()->json([
@@ -55,8 +49,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteMealPlan(string $day, string $mealId): JsonResponse
-    {
+    public function deleteMealPlan (string $day, string $mealId): JsonResponse {
         $state = new State(auth()->user());
         $state->deleteMealPlan($day, $mealId);
         return response()->json([
@@ -64,8 +57,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function increaseItem(string $day, int $itemId): JsonResponse
-    {
+    public function increaseItem (string $day, int $itemId): JsonResponse {
         $state = new State(auth()->user());
         $state->addItem($day, $itemId);
         return response()->json([
@@ -73,8 +65,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function decreaseItem(string $day, int $itemId): JsonResponse
-    {
+    public function decreaseItem (string $day, int $itemId): JsonResponse {
         $state = new State(auth()->user());
         $state->removeItem($day, $itemId);
         return response()->json([
@@ -82,8 +73,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function deleteItem(string $day, int $itemId): JsonResponse
-    {
+    public function deleteItem (string $day, int $itemId): JsonResponse {
         $state = new State(auth()->user());
         $state->deleteItem($day, $itemId);
         return response()->json([

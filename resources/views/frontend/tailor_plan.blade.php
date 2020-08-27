@@ -97,19 +97,19 @@
 									<label>What is your activity level?<sup class="text-danger">*</sup></label>
 									<select class="form-control" name="activity_lavel" id="activity_lavel">
 										<option>Select</option>
-										<option value="little_or_no_exercise">1 - Sedentary - Little or no exercise -
+										<option value="1">1 - Sedentary - Little or no exercise -
 											(Desk job)
 										</option>
-										<option value="light_exercise">2 - Lightly Active - Light exercise (Only Light
+										<option value="2">2 - Lightly Active - Light exercise (Only Light
 											Jogs or Yoga, 1-3 days a week)
 										</option>
-										<option value="moderate_exercise">3 - Moderately Active - Moderate exercise
+										<option value="3">3 - Moderately Active - Moderate exercise
 											(Fast Jogs, 3-5 days a week)
 										</option>
-										<option value="hard_exercise">4 - Very Active - Hard exercise (Gym or Sports
+										<option value="4">4 - Very Active - Hard exercise (Gym or Sports
 											(Football etc), 6-7 days a week)
 										</option>
-										<option value="extra_active">5 - Extra Active - Very Hard, Regular
+										<option value="5">5 - Extra Active - Very Hard, Regular
 											Exercise/Training (Or physically demanding job)
 										</option>
 										<option value="professional_athlete">6 - Professional Athlete</option>

@@ -95,7 +95,12 @@
 
 				<div class="col-lg-7 col-sm-6 col-12">
 					<div class="checktextbtn">
-						<a href="checkoutprocess.html" class="btn btn-info btn-lg">Securely checkout</a>
+						<form action="{{route('cart.checkout.index')}}" method="post">
+							@csrf
+							<button type="submit" class="btn btn-info btn-lg">Securely
+								checkout
+							</button>
+						</form>
 					</div>
 				</div>
 			</div>

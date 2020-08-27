@@ -23,6 +23,8 @@ Route::get('/sign-up', 'FrontendController@signup')->middleware('guest')->name('
 Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');
 Route::post('/tailorplan', 'FrontendController@saveTailorPlan')->name('save_tailor_plan');
 Route::get('/recommended_meal', 'FrontendController@recommendedMeal')->name('recommended_meal');
+Route::get('options', 'FrontendController@options')->name('profile_options');
+Route::post('options/save', 'FrontendController@saveOptions')->name('profile_options.save');
 
 
 // AUTH USER Route
@@ -62,6 +64,11 @@ Route::prefix('cart')->middleware('auth')->group(static function () {
     Route::prefix('quantity/{day}/{mealId}')->group(static function () {
         Route::get('clone', [\App\Http\Controllers\CartController::class, 'cloneMealPlan'])->name('cart.meals.clone');
         Route::get('delete', [\App\Http\Controllers\CartController::class, 'deleteMealPlan'])->name('cart.meals.delete');
+    });
+
+    Route::prefix('checkout')->group(static function () {
+        Route::post(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'index'])->name('cart.checkout.index');
+        Route::post('store', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('cart.checkout.store');
     });
 });
 
