@@ -62,8 +62,9 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
 <th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+				
                                     <th>Images</th> 
                                     <th>Status</th> 
                                     <th>Created At</th>
@@ -74,8 +75,9 @@
                                 @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr>
-<td>1</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+<td>1</td>
+
                                     <td>
                                         @if($rows->thumbnail_type == 'video/mp4')
                                             <video class="video-fluid"  width="150" loop muted  >

@@ -73,10 +73,11 @@
 								       cellspacing="0" width="100%">
 									<thead>
 									<tr>
-										<th>Sr. No.</th>
-										<th scope="col" class="border">
+<th scope="col" class="border">
 											<label><input type="checkbox" id="check_all" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
 										</th>
+										<th>Sr. No.</th>
+										
 										<th>Name</th>
 										<th>Type</th>
 										<th>Image(s)</th>
@@ -88,10 +89,11 @@
 									<tbody>
 									@foreach($plans as $plan)
 										<tr>
-											<td>{{$loop->index+1}}</td>
-											<td>
+<td>
 												<label><input type="checkbox" name="delete_target" value="{{$plan->id}}"><span class="sr-only"> Select Row </span></label>
 											</td>
+											<td>{{$loop->index+1}}</td>
+											
 											<td><a href data-toggle="modal" data-target="#detailmodal"> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</a></td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>

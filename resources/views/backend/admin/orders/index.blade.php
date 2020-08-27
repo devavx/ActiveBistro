@@ -71,8 +71,9 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
 <th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+				
                                     <th>OrderId</th> 
                                     <th>Customer Name</th> 
                                     <th>Status</th> 
@@ -85,8 +86,9 @@
                             </thead> 
                             <tbody> 
                                 <tr>
-<td>1</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+<td>1</td>
+
                                     <td> #123 </td>
                                     <td> <a href data-toggle="modal" data-target="#detailmodal"> David </a> </td>
                                     <td> Open</td>
@@ -97,8 +99,9 @@
                                     
                                     <td>-</td>
                                 </tr><tr>
-<td>2</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+<td>2</td>
+
                                     <td> #124 </td>
                                     <td> David Jonsan </td>
                                     <td> Compelted</td>
@@ -108,8 +111,9 @@
                                     <td> 2020-12-14</td> 
                                     <td>-</td>
                                 </tr><tr>
-<td>3</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+<td>3</td>
+
                                     <td> #125 </td>
                                     <td> John Deo </td>
                                     <td> Pending</td>

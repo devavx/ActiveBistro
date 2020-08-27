@@ -70,8 +70,9 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
 <th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+				
                                     <th>Title</th> 
                                     <th>Description</th> 
                                     <th>Thumbnail</th> 
@@ -85,8 +86,9 @@
                                   @if(!empty($listData))
                                     @foreach($listData as $rows)
                                 <tr> 
-<td>1</td>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+<td>1</td>
+
                                     <td> {{ $rows->title ?? '-' }}</td>
                                     <td> {!! $rows->description ?? '-' !!}</td>
                                     <td><img src="{{ $rows->thumbnail }}" alt="image" width="100"> </td>

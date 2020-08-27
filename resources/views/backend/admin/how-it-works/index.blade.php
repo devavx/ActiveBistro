@@ -70,8 +70,9 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
 <th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+				
                                     <th>Icon</th> 
                                     <th>HowItWork</th> 
                                     <th>Status</th> 
@@ -82,9 +83,10 @@
                             <tbody> 
                                   @if(!empty(@listData))
                                     @foreach($listData as $rows)
-                                <tr> 
+                                <tr>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td> 
 <td>1</td>
-<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+
                                     <td> 
                                         <div class="timeline-badge"><i class="{{ $rows->title ?? 'fa fa-check-square-o' }}"></i></div>
                                     </td>

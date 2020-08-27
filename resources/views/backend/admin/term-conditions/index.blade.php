@@ -70,8 +70,9 @@
                             cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
 <th>Sr. No.</th>
-				<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
+				
                                     <th data-col-width="100">Term&Condition</th> 
                                     <th data-col-width="100">Status</th> 
                                     <th>Created At</th>
@@ -81,10 +82,11 @@
                             <tbody> 
                                   @if(!empty(@listData))
                                     @foreach($listData as $rows)
-                                <tr> 
+                                <tr>
+<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td> 
 
 <td>1</td>
-<td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td>
+
                                     <td width="30px"> {!! $rows->description ?? '-' !!}</td>
                                     @if($rows->active)
                                         <td> <button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button> </td>
