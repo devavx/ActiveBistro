@@ -72,6 +72,18 @@ Route::prefix('cart')->middleware('auth')->group(static function () {
     });
 });
 
+/*
+|--------------------------------------------------------------------------
+| Payments Namespace Route(s)
+|--------------------------------------------------------------------------
+|
+*/
+Route::prefix('cart')->middleware('auth')->group(static function () {
+    Route::get('initiate', [\App\Http\Controllers\PaymentController::class, 'initiate'])->name('payments.initiate');
+    Route::get('success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payments.success');
+    Route::get('cancelled', [\App\Http\Controllers\PaymentController::class, 'cancelled'])->name('payments.cancelled');
+});
+
 //Backend URLS
 Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], 'prefix' => 'admin'], function () {
     Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');

@@ -107,33 +107,33 @@
 						<div id="sunday_address">
 							<div class="form-group">
 								<label>Address Line 1</label>
-								<input type="text" class="form-control" name="address[sunday][address_first_line]">
+								<input type="text" class="form-control" name="address[sunday][address_first_line]" data-parsley-group='["sunday_address","address"]' required minlength="2" maxlength="100">
 							</div>
 
 							<div class="form-group">
 								<label>Address Line 2</label>
-								<input type="text" class="form-control" name="address[sunday][address_second_line]">
+								<input type="text" class="form-control" name="address[sunday][address_second_line]" data-parsley-group='["sunday_address","address"]' minlength="2" maxlength="100">
 							</div>
 
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Town / City</label>
-										<input type="text" class="form-control" name="address[sunday][city]" minlength="1">
+										<input type="text" class="form-control" name="address[sunday][city]" minlength="1" data-parsley-group='["sunday_address","address"]' maxlength="50" required>
 									</div>
 								</div>
 
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="number" class="form-control" name="address[sunday][postcode]" min="1000" max="9999999" step="1">
+										<input type="number" class="form-control" name="address[sunday][postcode]" min="1000" max="9999999" step="1" data-parsley-group='["sunday_address","address"]' required>
 									</div>
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label>Delivery Notes</label>
-								<textarea class="form-control" rows="3" name="address[sunday][delivery_notes]"></textarea>
+								<textarea class="form-control" rows="3" name="address[sunday][delivery_notes]" data-parsley-group='["sunday_address","address"]'></textarea>
 							</div>
 						</div>
 						<div id="wednesday_address">
@@ -142,62 +142,30 @@
 							</div>
 							<div class="form-group">
 								<label>Address Line 1</label>
-								<input type="text" class="form-control" name="address[wednesday][address_first_line]" value="Wednesday">
+								<input type="text" class="form-control" name="address[wednesday][address_first_line]" value="Wednesday" data-parsley-group="address" minlength="2" maxlength="100">
 							</div>
 
 							<div class="form-group">
 								<label>Address Line 2</label>
-								<input type="text" class="form-control" name="address[wednesday][address_second_line]">
+								<input type="text" class="form-control" name="address[wednesday][address_second_line]" data-parsley-group="address" minlength="2" maxlength="100">
 							</div>
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Town / City</label>
-										<input type="text" class="form-control" name="address[wednesday][city]" minlength="1">
+										<input type="text" class="form-control" name="address[wednesday][city]" minlength="1" data-parsley-group="address" maxlength="50">
 									</div>
 								</div>
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="text" class="form-control" name="address[wednesday][postcode]" min="1000" max="9999999" step="1">
+										<input type="text" class="form-control" name="address[wednesday][postcode]" min="1000" max="9999999" step="1" data-parsley-group="address">
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<label>Delivery Notes</label>
-								<textarea class="form-control" rows="3" name="address[wednesday][delivery_notes]"></textarea>
-							</div>
-						</div>
-						<div id="common_address">
-							<div class="form-group">
-								<label>Address Line 1</label>
-								<input type="text" class="form-control" name="address[common][address_first_line]" value="Common">
-							</div>
-
-							<div class="form-group">
-								<label>Address Line 2</label>
-								<input type="text" class="form-control" name="address[common][address_second_line]">
-							</div>
-
-							<div class="row">
-								<div class="col-lg-6 col-sm-6 col-12">
-									<div class="form-group">
-										<label>Town / City</label>
-										<input type="text" class="form-control" name="address[common][city]" minlength="1">
-									</div>
-								</div>
-
-								<div class="col-lg-6 col-sm-6 col-12">
-									<div class="form-group">
-										<label>Postcode</label>
-										<input type="text" class="form-control" name="address[common][postcode]" min="1000" max="9999999" step="1">
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label>Delivery Notes</label>
-								<textarea class="form-control" rows="3" name="address[common][delivery_notes]"></textarea>
+								<textarea class="form-control" rows="3" name="address[wednesday][delivery_notes]" data-parsley-group="address"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -207,7 +175,7 @@
 							</div>
 						</div>
 
-						<button type="button" class="btn btn-info btn-block ml-0 next rounded">Checkout</button>
+						<button type="button" class="btn btn-info btn-block ml-0 next rounded" data-group="address">Checkout</button>
 
 					</fieldset>
 
@@ -280,71 +248,78 @@
 
 @endsection
 @section('script')
+	<script src="{{asset("js/parsley.js")}}"></script>
 	<script>
+		let current_fs, next_fs, previous_fs, opacity;
+
 		$(document).ready(function () {
-			let current_fs, next_fs, previous_fs, opacity;
-			$(".next").click(function () {
-				current_fs = $(this).parent();
-				next_fs = $(this).parent().next();
-				$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-				next_fs.show();
-				current_fs.animate({opacity: 0}, {
-					step: function (now) {
-						opacity = 1 - now;
-						current_fs.css({
-							'display': 'none',
-							'position': 'relative'
-						});
-						next_fs.css({'opacity': opacity});
-					},
-					duration: 600
-				});
-			});
-			$(".previous").click(function () {
-				current_fs = $(this).parent();
-				previous_fs = $(this).parent().prev();
-				$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-				previous_fs.show();
-				current_fs.animate({opacity: 0}, {
-					step: function (now) {
-						opacity = 1 - now;
-						current_fs.css({
-							'display': 'none',
-							'position': 'relative'
-						});
-						previous_fs.css({'opacity': opacity});
-					},
-					duration: 600
-				});
-			});
-			$(".submit").click(function () {
-				return false;
-			})
+
+			// $(".submit").click(function () {
+			// 	return false;
+			// })
 
 			// Since in our case, as of now, I believe the user will
 			// always be registered before he's at this point,
 			// we skip the initial details page.
 			$(".next:first").trigger('click');
 
-			$('#sunday_address').hide();
 			$('#wednesday_address').hide();
 			$('#differentAddresses').change(function () {
 				if (this.checked) {
-					$('#sunday_address').show(400);
-					$('#sunday_address :input').prop('required', true);
 					$('#wednesday_address').show(600);
 					$('#wednesday_address :input').prop('required', true);
-					$('#common_address').hide(800);
-					$('#common_address :input').prop('required', false);
 				} else {
-					$('#sunday_address').hide(800);
-					$('#sunday_address :input').prop('required', false);
 					$('#wednesday_address').hide(600);
 					$('#wednesday_address :input').prop('required', false);
-					$('#common_address').show(400);
-					$('#common_address :input').prop('required', true);
 				}
 			});
 		});
+
+		$(".next").click(function (e) {
+			const ref = this;
+			const group = e.currentTarget.getAttribute('data-group');
+			console.log(group);
+			switch (group) {
+				case 'address':
+					if ($('#differentAddresses:checked').length > 0) {
+						$('#msform').parsley().whenValidate({
+							group: 'address'
+						}).done(function () {
+							console.log('Is valid when not checked');
+							moveToNext(ref);
+						});
+					} else {
+						$('#msform').parsley().whenValidate({
+							group: 'sunday_address'
+						}).done(function () {
+							console.log('Is valid when checked');
+							moveToNext(ref);
+						});
+					}
+					break;
+
+				default:
+					moveToNext(ref);
+					break;
+			}
+		});
+
+		moveToNext = (e) => {
+			current_fs = $(e).parent();
+			next_fs = $(e).parent().next();
+			$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+			next_fs.show();
+			current_fs.animate({opacity: 0}, {
+				step: function (now) {
+					opacity = 1 - now;
+					current_fs.css({
+						'display': 'none',
+						'position': 'relative'
+					});
+					next_fs.css({'opacity': opacity});
+				},
+				duration: 600
+			});
+		}
 	</script>
 @endsection

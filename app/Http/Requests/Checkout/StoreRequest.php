@@ -26,6 +26,6 @@ class StoreRequest extends FormRequest {
     }
 
     public function address (): array {
-        return ($this->get('address'))['common'];
+        return ($this->get('address'))['sunday'];
     }
 }
