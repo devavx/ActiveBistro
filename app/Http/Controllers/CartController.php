@@ -19,7 +19,7 @@ class CartController extends Controller {
 	public function items ($day): Renderable {
 		$state = new State(auth()->user());
 		$categories = Category::query()->where('active', 1)->get();
-		$types = MealPlan::query()->where('active', 1)->whereNull('day')->get();
+		$types = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day')->get();
 		return view('frontend.all_item')->with('state', $state)
 			->with('categories', $categories)->with('day', $day)
 			->with('types', $types)->with('chosen', request('type', 'none'));

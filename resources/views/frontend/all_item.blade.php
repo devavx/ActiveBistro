@@ -109,10 +109,10 @@
 													<div class="menucoltextprice">
 														<div class="d-flex">
 															<p class="m-0">
-																<del>$ {{ $item->actual_price }}</del>
+																<del>$ {{ $item->items()->sum('selling_price') }}</del>
 															</p>
 															<h5 class="font-weight-bold m-0 text-color ml-2">
-																$ {{ $item->selling_price }}</h5>
+																$ {{ $item->items()->sum('selling_price') }}</h5>
 														</div>
 													</div>
 													<div class="menucoltextbtn">
