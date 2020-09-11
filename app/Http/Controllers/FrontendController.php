@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Allergy;
 use App\Category;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
@@ -14,6 +13,7 @@ use App\Http\Requests\TailorPlanRule;
 use App\Item;
 use App\ItemType;
 use App\MealPlan;
+use App\Models\Allergy;
 use App\Models\Cart;
 use App\PrivacyPolicy;
 use App\SliderSetting;

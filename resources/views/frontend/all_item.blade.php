@@ -96,89 +96,37 @@
 					<div class="tab-content pt-3">
 						@foreach($categories as $category)
 							<div class="tab-pane @if($loop->index==0) active @endif" id="category_{{$category->id}}" role="tabpanel">
-								<div class="row">
-									@if($chosen!=='none')
-										@if($category->items()->where('item_type_id',$chosen)->where('active',1)->count()>0)
-											@foreach($category->items()->where('active',1)->where('item_type_id',$chosen)->get() as $item)
-												<div class="col-lg-3 col-sm-4 col-12">
-													<div class="menucol rounded mt-3 shadow pb-3">
-														<div class="menuimgcol">
-															<img src="{{ $item->thumbnail }}" class="img-fluid rounded w-100 d-block">
-															<div class="menu-col-text rounded">
-															</div>
-														</div>
-														<div class="menucoltext p-2">
-															<div class="menucoltextpricebtn">
-																<div class="menucoltextprice">
-																	<div class="d-flex">
-																		<p class="m-0">
-																			<del>$ {{ $item->actual_price }}</del>
-																		</p>
-																		<h5 class="font-weight-bold m-0 text-color ml-2">
-																			$ {{ $item->selling_price }}</h5>
-																	</div>
-																</div>
-																<div class="menucoltextbtn">
-																	<button type="button" onclick="addItem('{{$day}}',{{$item->id}});" class="btn btn-info btn-md float-right">
-																		Add
-																	</button>
-																</div>
-															</div>
-															<h5 class="mb-1 text-color text-center">{{ $item->name }}</h5>
-															<p class="m-0 text-center">{{ $item->sub_name }}</p>
-														</div>
-													</div>
-												</div>
-											@endforeach
-										@else
-											<div style="text-align: center;">
-												<img src="{{ asset('uploads/image/not-found.jpg') }}" class="img-fluid rounded w-100 d-block">
+								@foreach($types as $item)
+									<div class="col-lg-3 col-sm-4 col-12">
+										<div class="menucol rounded mt-3 shadow pb-3">
+											<div class="menuimgcol">
+												<img src="{{ $item->images->first() }}" class="img-fluid rounded w-100 d-block">
 												<div class="menu-col-text rounded">
 												</div>
 											</div>
-										@endif
-									@else
-										@if($category->items()->where('active',1)->count()>0)
-											@foreach($category->items()->where('active',1)->get() as $item)
-												<div class="col-lg-3 col-sm-4 col-12">
-													<div class="menucol rounded mt-3 shadow pb-3">
-														<div class="menuimgcol">
-															<img src="{{ $item->thumbnail }}" class="img-fluid rounded w-100 d-block">
-															<div class="menu-col-text rounded">
-															</div>
-														</div>
-														<div class="menucoltext p-2">
-															<div class="menucoltextpricebtn">
-																<div class="menucoltextprice">
-																	<div class="d-flex">
-																		<p class="m-0">
-																			<del>$ {{ $item->actual_price }}</del>
-																		</p>
-																		<h5 class="font-weight-bold m-0 text-color ml-2">
-																			$ {{ $item->selling_price }}</h5>
-																	</div>
-																</div>
-																<div class="menucoltextbtn">
-																	<button type="button" onclick="addItem('{{$day}}',{{$item->id}});" class="btn btn-info btn-md float-right">
-																		Add
-																	</button>
-																</div>
-															</div>
-															<h5 class="mb-1 text-color text-center">{{ $item->name }}</h5>
-															<p class="m-0 text-center">{{ $item->sub_name }}</p>
+											<div class="menucoltext p-2">
+												<div class="menucoltextpricebtn">
+													<div class="menucoltextprice">
+														<div class="d-flex">
+															<p class="m-0">
+																<del>$ {{ $item->actual_price }}</del>
+															</p>
+															<h5 class="font-weight-bold m-0 text-color ml-2">
+																$ {{ $item->selling_price }}</h5>
 														</div>
 													</div>
+													<div class="menucoltextbtn">
+														<button type="button" onclick="addItem('{{$day}}',{{$item->id}});" class="btn btn-info btn-md float-right">
+															Add
+														</button>
+													</div>
 												</div>
-											@endforeach
-										@else
-											<div style="text-align: center;">
-												<img src="{{ asset('uploads/image/not-found.jpg') }}" class="img-fluid rounded w-100 d-block">
-												<div class="menu-col-text rounded">
-												</div>
+												<h5 class="mb-1 text-color text-center">{{ $item->name }}</h5>
+												<p class="m-0 text-center">{{ $item->name }}</p>
 											</div>
-										@endif
-									@endif
-								</div>
+										</div>
+									</div>
+								@endforeach
 							</div>
 						@endforeach
 

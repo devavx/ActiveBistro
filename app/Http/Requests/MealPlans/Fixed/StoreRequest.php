@@ -24,13 +24,14 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:meal_plans',
-            'images.*' => 'bail|required|image|max:2048',
-            'item_id.*' => 'bail|required',
-            'type' => 'bail|nullable|string',
-            'default_slab_1' => 'bail|required',
-            'default_slab_2' => 'bail|required',
-            'default_slab_3' => 'bail|required',
+	        'name' => 'required|unique:meal_plans',
+	        'images.*' => 'bail|required|image|max:2048',
+	        'item_id.*' => 'bail|required',
+	        'allergy_id.*' => 'bail|required',
+	        'type' => 'bail|nullable|string',
+	        'default_slab_1' => 'bail|required',
+	        'default_slab_2' => 'bail|required',
+	        'default_slab_3' => 'bail|required',
         ];
     }
 }

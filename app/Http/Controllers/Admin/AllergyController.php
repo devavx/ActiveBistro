@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Allergy;
 use App\Http\Controllers\Controller;
+use App\Models\Allergy;
 use Illuminate\Http\Request;
 
 class AllergyController extends Controller
@@ -45,23 +45,23 @@ class AllergyController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Allergy  $allergy
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param \App\Models\Allergy $allergy
+	 * @return \Illuminate\Http\Response
+	 */
     public function show(Allergy $allergy)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Allergy  $allergy
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param \App\Models\Allergy $allergy
+	 * @return \Illuminate\Http\Response
+	 */
     public function edit(Allergy $allergy)
     {
         $record = $allergy;
@@ -71,13 +71,13 @@ class AllergyController extends Controller
         return redirect('admin/allergy')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Allergy  $allergy
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param \Illuminate\Http\Request $request
+	 * @param \App\Models\Allergy $allergy
+	 * @return \Illuminate\Http\Response
+	 */
     public function update(Request $request, Allergy $allergy)
     { 
         $allergy->name = $request->name;
@@ -90,12 +90,12 @@ class AllergyController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Allergy  $allergy
-     * @return \Illuminate\Http\Response
-     */
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param \App\Models\Allergy $allergy
+	 * @return \Illuminate\Http\Response
+	 */
     public function destroy(Allergy $allergy)
     {
         //

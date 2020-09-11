@@ -160,7 +160,16 @@
 											&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Check this box if you want to add meal in coming soon">
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span><br>
-											
+
+										</div>
+										<div class="form-group">
+											<label>Allergy(s)</label>
+											<select class="form-control select2 select2-multiple" id="items_allergy" name="allergy_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<option value="" disabled>Choose...</option>
+												@foreach($allergies as $allergy)
+													<option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
+												@endforeach
+											</select>
 										</div>
 									</div>
 								</div>
@@ -182,75 +191,92 @@
 	<script type="text/javascript" src="{{ asset('assets/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript">
-        let itemsFirstSlab = null;
-        let itemsSecondSlab = null;
-        let itemsThirdSlab = null;
-        let itemFirstSlab = null;
-        let itemSecondSlab = null;
-        let itemThirdSlab = null;
-        $(document).ready(function () {
+		let itemsFirstSlab = null;
+		let itemsSecondSlab = null;
+		let itemsThirdSlab = null;
+		let itemFirstSlab = null;
+		let itemSecondSlab = null;
+		let itemThirdSlab = null;
+		let itemsAllergy = null;
+		$(document).ready(function () {
 			@include('backend.fragments.gallery.gallery-js')
-            const base = {
-                placeholder: "Choose...",
-                allowClear: true
-            };
-            const baseNoPlaceHolder = {
-                allowClear: true
-            };
-            itemsFirstSlab = $('#items_slab_1').select2(base);
-            itemsSecondSlab = $('#items_slab_2').select2(base);
-            itemsThirdSlab = $('#items_slab_3').select2(base);
-            itemFirstSlab = $('#item_slab_1').select2(baseNoPlaceHolder);
-            itemSecondSlab = $('#item_slab_2').select2(baseNoPlaceHolder);
-            itemThirdSlab = $('#item_slab_3').select2(baseNoPlaceHolder);
-            itemsFirstSlab.on('change', function (e) {
-                itemFirstSlab.html('').select2({data: [{id: '', text: ''}]});
-                itemFirstSlab.select2({data: itemsFirstSlab.select2('data')});
-            });
-            itemsSecondSlab.on('change', function (e) {
-                itemSecondSlab.html('').select2({data: [{id: '', text: ''}]});
-                itemSecondSlab.select2({data: itemsSecondSlab.select2('data')});
-            });
-            itemsThirdSlab.on('change', function (e) {
-                itemThirdSlab.html('').select2({data: [{id: '', text: ''}]});
-                itemThirdSlab.select2({data: itemsThirdSlab.select2('data')});
-            });
-            $(".select2").addClass('mb-2');
-            $(".single-dd").addClass('mb-1');
+			const base = {
+				placeholder: "Choose...",
+				allowClear: true
+			};
+			const baseNoPlaceHolder = {
+				allowClear: true
+			};
+			itemsFirstSlab = $('#items_slab_1').select2(base);
+			itemsSecondSlab = $('#items_slab_2').select2(base);
+			itemsThirdSlab = $('#items_slab_3').select2(base);
+			itemsAllergy = $('#items_allergy').select2(base);
+			itemFirstSlab = $('#item_slab_1').select2(baseNoPlaceHolder);
+			itemSecondSlab = $('#item_slab_2').select2(baseNoPlaceHolder);
+			itemThirdSlab = $('#item_slab_3').select2(baseNoPlaceHolder);
+			itemsFirstSlab.on('change', function (e) {
+				itemFirstSlab.html('').select2({
+					data: [{
+						id: '',
+						text: ''
+					}]
+				});
+				itemFirstSlab.select2({data: itemsFirstSlab.select2('data')});
+			});
+			itemsSecondSlab.on('change', function (e) {
+				itemSecondSlab.html('').select2({
+					data: [{
+						id: '',
+						text: ''
+					}]
+				});
+				itemSecondSlab.select2({data: itemsSecondSlab.select2('data')});
+			});
+			itemsThirdSlab.on('change', function (e) {
+				itemThirdSlab.html('').select2({
+					data: [{
+						id: '',
+						text: ''
+					}]
+				});
+				itemThirdSlab.select2({data: itemsThirdSlab.select2('data')});
+			});
+			$(".select2").addClass('mb-2');
+			$(".single-dd").addClass('mb-1');
 
-            $('#add_form').validate({ // initialize the plugin
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    // no_of_days: {
-                    //     required: true,               
-                    // },rate_per_item: {
-                    //     required: true,               
-                    // },meal_in_three_days: {
-                    //     required: true,               
-                    // },meal_in_two_days: {
-                    //     required: true,               
-                    // },rate_per_item_three_days: {
-                    //     required: true,               
-                    // },
-                    "item_id[]": "required",
-                },
-                messages: {
-                    "item_id[]": {
-                        required: 'Please select at least one.'
-                    }
-                }
-            });
+			$('#add_form').validate({ // initialize the plugin
+				rules: {
+					name: {
+						required: true,
+					},
+					// no_of_days: {
+					//     required: true,
+					// },rate_per_item: {
+					//     required: true,
+					// },meal_in_three_days: {
+					//     required: true,
+					// },meal_in_two_days: {
+					//     required: true,
+					// },rate_per_item_three_days: {
+					//     required: true,
+					// },
+					"item_id[]": "required",
+				},
+				messages: {
+					"item_id[]": {
+						required: 'Please select at least one.'
+					}
+				}
+			});
 
-            $(document).on('click', '#edit_profile', function () {
-                if (!$("#add_form").valid()) { // Not Valid
-                    return false;
-                } else {
+			$(document).on('click', '#edit_profile', function () {
+				if (!$("#add_form").valid()) { // Not Valid
+					return false;
+				} else {
 
-                }
-            });
-        });
+				}
+			});
+		});
 	</script>
 @endsection
        
