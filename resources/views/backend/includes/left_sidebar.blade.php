@@ -72,6 +72,13 @@ $uri2 = Request::segment(2);
 					</ul>
 				</li>
 				<li>
+					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Allergies</span></a>
+					<ul aria-expanded="false" class="collapse">
+						<li><a href="{{ url('/admin/allergy') }}">Allergies List</a></li>
+						<li><a href="{{ url('/admin/allergy/create') }}">New allergy</a></li>
+					</ul>
+				</li>
+				<li>
 					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Orders</span></a>
 					<ul aria-expanded="false" class="collapse">
 						<li><a href="{{ url('/admin/orders') }}">Orders</a></li>

@@ -99,6 +99,13 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     // DailyMealPlanController URI
 
 
+    // AllergyController URI
+    Route::get('/allergy/delete/{id}', 'Admin\AllergyController@delete')->name('allergy.delete');
+    Route::delete('/allergy/delete', 'Admin\AllergyController@deleteBulk')->name('allergy.delete');
+    Route::get('/allergy/change_status/{id}', 'Admin\AllergyController@changeStatus')->name('allergy.change_status');
+    Route::get('/allergy/details/', 'Admin\AllergyController@getAllergyDetails')->name('allergy.allergy_details');
+
+
     // IngredientController URI
     Route::get('/ingredient/delete/{id}', 'Admin\IngredientController@delete')->name('meal.delete');
     Route::delete('/ingredient/delete', 'Admin\IngredientController@deleteBulk')->name('meal.delete');
@@ -160,6 +167,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
     Route::resource('/faqs', 'Admin\FaqController');
     Route::resource('/postal_codes', 'Admin\PostalCodeController');
     Route::resource('/ingredient', 'Admin\IngredientController');
+    Route::resource('/allergy', 'Admin\AllergyController');
 
     Route::resource('/items', 'ItemController');
     Route::resource('/how_it_works', 'HowItWorkController');
