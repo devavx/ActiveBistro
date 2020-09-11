@@ -398,7 +398,7 @@ class State {
     }
 
     public function addItem (string $day, int $itemId) {
-        $items = $this->item($day);
+        $items = $this->card($day);
         foreach ($items as $item) {
             if ($item->id == $itemId) {
                 $item->quantity += 1;
@@ -407,11 +407,11 @@ class State {
                 return;
             }
         }
-        $item = Item::find($itemId);
-        $item->prepare();
-        $items[] = $item;
-        $this->items->$day = $items;
-        $this->recalculateStats();
+	    $item = MealPlan::find($itemId);
+	    $item->prepare();
+	    $items[] = $item;
+	    $this->cards->$day = $items;
+	    $this->recalculateStats();
         $this->update();
     }
 

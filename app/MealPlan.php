@@ -39,7 +39,7 @@ class MealPlan extends Model {
 	}
 
 	public function allergies (): BelongsToMany {
-		return $this->belongsToMany(Allergy::class, 'meal_plan_allergies')->withPivot(['meal_plan_id', 'allergy_id']);
+		return $this->belongsToMany(Allergy::class, 'meal_plan_allergies');
 	}
 
 	public function mealItems (): HasMany {

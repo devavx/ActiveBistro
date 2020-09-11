@@ -40,7 +40,6 @@ class DailyMealPlanController extends Controller {
 			return view('backend.admin.dailymealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound)->with('allergies', $allergies)->with('boundAllergies', $boundAllergies);
 		}
 		return redirect()->route('admin.daily-meals.index');
-
 	}
 
 	public function store (StoreRequest $request) {
@@ -62,7 +61,7 @@ class DailyMealPlanController extends Controller {
 			$slabNumber++;
 		});
 		Collection::make(\request('allergy_id', []))->each(function ($allergyId) use ($plan, $request) {
-			$plan->allergies()->create(['allergy_id' => $allergyId]);
+			$plan->allergies()->withTimestamps()->attach($allergyId);
 		});
 		if ($plan != null) {
 			return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan added successfully!');
@@ -94,9 +93,9 @@ class DailyMealPlanController extends Controller {
 				});
 				$slabNumber++;
 			});
-			$plan->allergies()->delete();
+			$plan->allergies()->detach();
 			Collection::make(\request('allergy_id', []))->each(function ($allergyId) use ($plan, $request) {
-				$plan->allergies()->create(['allergy_id' => $allergyId]);
+				$plan->allergies()->withTimestamps()->attach($allergyId);
 			});
 			return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan updated successfully!');
 		} else {

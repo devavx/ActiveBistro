@@ -7,6 +7,7 @@ use App\Http\Requests\MealPlans\Fixed\StoreRequest;
 use App\Http\Requests\MealPlans\Fixed\UpdateRequest;
 use App\Item;
 use App\MealPlan;
+use App\Models\Allergy;
 use App\Models\MealPlanImage;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\UploadedFile;
@@ -20,7 +21,8 @@ class MealPlanController extends Controller {
 
 	public function create (): Renderable {
 		$listData = Item::query()->where('active', 1)->get();
-		return view('backend.admin.mealplan.create', compact('listData'));
+		$allergies = Allergy::query()->where('active', true)->get();
+		return view('backend.admin.mealplan.create', compact('listData'))->with('allergies', $allergies);
 	}
 
 	public function edit ($id) {
@@ -31,8 +33,10 @@ class MealPlanController extends Controller {
 			1 => $mealplan->mealItems->where('slab', 2)->pluck('item_id')->toArray(),
 			2 => $mealplan->mealItems->where('slab', 3)->pluck('item_id')->toArray(),
 		];
+		$boundAllergies = $mealplan->allergies->pluck('id')->toArray();
+		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get();
 		if (!empty($mealplan)) {
-			return view('backend.admin.mealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound);
+			return view('backend.admin.mealplan.edit', compact(['mealplan', 'listData']))->with('bound', $bound)->with('allergies', $allergies)->with('boundAllergies', $boundAllergies);
 		}
 		return redirect()->route('admin.daily-meals.index');
 
@@ -57,7 +61,7 @@ class MealPlanController extends Controller {
 			$slabNumber++;
 		});
 		Collection::make(\request('allergy_id', []))->each(function ($allergyId) use ($plan, $request) {
-			$plan->mealItems()->create(['allergy_id' => $allergyId]);
+			$plan->allergies()->withTimestamps()->attach($allergyId);
 		});
 		if ($plan != null) {
 			return redirect()->route('admin.meals.index')->with('success', 'Meal plan added successfully!');
@@ -86,9 +90,9 @@ class MealPlanController extends Controller {
 				});
 				$slabNumber++;
 			});
-			$plan->allergies()->delete();
+			$plan->allergies()->detach();
 			Collection::make(\request('allergy_id', []))->each(function ($allergyId) use ($plan, $request) {
-				$plan->mealItems()->create(['allergy_id' => $allergyId]);
+				$plan->allergies()->withTimestamps()->attach($allergyId);
 			});
 			return redirect()->route('admin.meals.index')->with('success', 'Meal plan updated successfully!');
 		} else {

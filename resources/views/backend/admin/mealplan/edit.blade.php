@@ -173,6 +173,15 @@
 </span><br>
 											<input type="checkbox" name="launched" @if($mealplan->launched==true) checked @endif/>
 										</div>
+										<div class="form-group">
+											<label>Allergy(s)</label>
+											<select class="form-control select2 select2-multiple" id="items_allergy" name="allergy_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<option value="" disabled>Choose...</option>
+												@foreach($allergies as $allergy)
+													<option value="{{ $allergy->id }}" @if(in_array($allergy->id,$boundAllergies)) selected @endif>{{ $allergy->name }}</option>
+												@endforeach
+											</select>
+										</div>
 									</div>
 								</div>
 								@include('backend.fragments.gallery.gallery-view',['images'=>$mealplan->images->toArray()])
@@ -205,25 +214,41 @@
                 placeholder: "Choose...",
                 allowClear: true
             };
-            const baseNoPlaceHolder = {
-                allowClear: false
-            };
-            itemsFirstSlab = $('#items_slab_1').select2(base);
-            itemsSecondSlab = $('#items_slab_2').select2(base);
-            itemsThirdSlab = $('#items_slab_3').select2(base);
-            itemFirstSlab = $('#item_slab_1').select2(baseNoPlaceHolder);
-            itemSecondSlab = $('#item_slab_2').select2(baseNoPlaceHolder);
-            itemThirdSlab = $('#item_slab_3').select2(baseNoPlaceHolder);
-            itemsFirstSlab.on('change', function (e) {
-                itemFirstSlab.html('').select2({data: [{id: '', text: ''}]});
-                itemFirstSlab.select2({data: itemsFirstSlab.select2('data')});
-            });
-            itemsSecondSlab.on('change', function (e) {
-                itemSecondSlab.html('').select2({data: [{id: '', text: ''}]});
-                itemSecondSlab.select2({data: itemsSecondSlab.select2('data')});
-            });
-            itemsThirdSlab.on('change', function (e) {
-                itemThirdSlab.html('').select2({data: [{id: '', text: ''}]});
+	        const baseNoPlaceHolder = {
+		        allowClear: false
+	        };
+	        itemsFirstSlab = $('#items_slab_1').select2(base);
+	        itemsSecondSlab = $('#items_slab_2').select2(base);
+	        itemsThirdSlab = $('#items_slab_3').select2(base);
+	        itemFirstSlab = $('#item_slab_1').select2(baseNoPlaceHolder);
+	        itemSecondSlab = $('#item_slab_2').select2(baseNoPlaceHolder);
+	        itemThirdSlab = $('#item_slab_3').select2(baseNoPlaceHolder);
+	        $('#items_allergy').select2(base);
+	        itemsFirstSlab.on('change', function (e) {
+		        itemFirstSlab.html('').select2({
+			        data: [{
+				        id: '',
+				        text: ''
+			        }]
+		        });
+		        itemFirstSlab.select2({data: itemsFirstSlab.select2('data')});
+	        });
+	        itemsSecondSlab.on('change', function (e) {
+		        itemSecondSlab.html('').select2({
+			        data: [{
+				        id: '',
+				        text: ''
+			        }]
+		        });
+		        itemSecondSlab.select2({data: itemsSecondSlab.select2('data')});
+	        });
+	        itemsThirdSlab.on('change', function (e) {
+		        itemThirdSlab.html('').select2({
+			        data: [{
+				        id: '',
+				        text: ''
+			        }]
+		        });
                 itemThirdSlab.select2({data: itemsThirdSlab.select2('data')});
             });
             $(".select2").addClass('mb-2');
