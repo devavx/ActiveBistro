@@ -93,28 +93,15 @@
 										</div>
 									</div>
 
-									<div class="btn-group btn-group-toggle d-none allergiesBox mb-2" data-toggle="buttons">
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="eggs">Eggs
-										</label>
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="crustaceans">Crustaceans
-										</label>
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="fish">Fish
-										</label>
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="molluscs">Molluscs
-										</label>
-									</div>
-									<div class="btn-group btn-group-toggle d-none allergiesBox" data-toggle="buttons">
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="milk">Milk
-										</label>
-										<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-											<input type="checkbox" name="allergies[]" id="option1" value="peanuts">Peanuts
-										</label>
-									</div>
+									@foreach($allergies as $set)
+										<div class="btn-group btn-group-toggle d-none allergiesBox mb-2" data-toggle="buttons">
+											@foreach($set as $allergy)
+												<label class="btn btn-info m-0 text-capitalize rounded mr-2">
+													<input type="checkbox" name="allergies[]" id="option1" value="{{$allergy->id}}">{{$allergy->name}}
+												</label>
+											@endforeach
+										</div>
+									@endforeach
 								</div>
 							</div>
 						</div>

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Core\Cart\State;
 use App\Http\Requests\Checkout\StoreRequest;
