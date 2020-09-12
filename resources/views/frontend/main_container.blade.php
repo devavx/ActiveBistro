@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class="owl-carousel owl-carousel1 owl-theme item_meal_section">
 							@foreach(\App\Core\Enums\Common\DaysOfWeek::sequence() as $key)
-								@include('frontend.meal_item',['plans'=>$state->card($key),'items'=>$state->item($key),'key'=>$key])
+								@include('frontend.meal_item',['plans'=>$state->card($key),'key'=>$key])
 							@endforeach
 						</div>
 					</div>

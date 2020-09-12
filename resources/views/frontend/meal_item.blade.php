@@ -74,30 +74,6 @@
 					</div>
 				</div>
 			@endforeach
-			@foreach($items as $item)
-				<h6 class="mt-2" style="">{{ $item->name }}</h6>
-				<div class="mealcol" id="mealcol__{{ $item->uuid }}">
-					<div class="meal-left meal__price">
-						<p class="mb-1 item__price">
-							<a href="javascript:void(0)">
-								<u>{{ $item->name }}</u>
-							</a>
-							<span class="text-color font-weight-bold ml-2">£ <span> {{ $item->selling_price }} </span></span>
-						</p>
-					</div>
-					<div class="meal-mealright text-right">
-						<a href="javascript:void(0);" onclick="removeItem('{{$key}}',{{$item->id}});"><span><i class="fa fa-minus text-color"></i></span></a>
-
-						<span class="countnum ml-2 mr-2 font-weight-bold" data-quantity="{{$item->quantity}}" id="target_quantity_{{$item->id}}">{{$item->quantity}}</span>
-
-						<a href="javascript:void(0);" onclick="addItem('{{$key}}',{{$item->id}});" class="float-right"><span><i class="fa fa-plus text-color"></i></span></a>
-						<hr class="mt-1 mb-1">
-						<div class="text-right">
-							<a href="javascript:void(0)" onclick="deleteItem('{{$key}}',{{$item->id}});" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
-						</div>
-					</div>
-				</div>
-			@endforeach
 			<div class="text-center mt-3 card-btn">
 				<a href="{{ route('cart.items.list',['day'=>$key]) }}" class="btn btn-info btn-md">Add Item</a>
 			</div>
