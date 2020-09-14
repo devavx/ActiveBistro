@@ -34,6 +34,7 @@ class PaymentController extends Controller
 	public function completed ()
 	{
 		$response = $this->provider->getExpressCheckoutDetails(request('token'));
+		dd($response);
 		if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 			return redirect()->route('payments.completed')->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
 		} else {
