@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Cart\State;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
 class PaymentController extends Controller
@@ -19,22 +20,14 @@ class PaymentController extends Controller
 
 	public function initiate ()
 	{
-		$product = [];
-		$product['items'] = [
-			[
-				'name' => 'Nike Joyride 2',
-				'price' => 112,
-				'desc' => 'Running shoes for Men',
-				'qty' => 2
-			]
-		];
-
-		$product['invoice_id'] = 1;
-		$product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-		$product['return_url'] = route('payments.success');
-		$product['cancel_url'] = route('payments.success');
-		$product['total'] = 224;
-		$res = $this->provider->setExpressCheckout($product);
+		$state = new State(auth()->user());
+		$payload['items'] = $state->items();
+		$payload['invoice_id'] = $state->invoiceId();
+		$payload['invoice_description'] = "Order #{$payload['invoice_id']} Bill";
+		$payload['return_url'] = route('payments.success');
+		$payload['cancel_url'] = route('payments.success');
+		$payload['total'] = $state->total();
+		$res = $this->provider->setExpressCheckout($payload);
 		return redirect($res['paypal_link']);
 	}
 

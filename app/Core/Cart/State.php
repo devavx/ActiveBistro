@@ -216,6 +216,11 @@ class State
 		return $this->cards->$day ?? [];
 	}
 
+	public function cart (): Cart
+	{
+		return $this->cart;
+	}
+
 	public function calories (): float
 	{
 		return $this->stats->calories ?? 0;
@@ -485,5 +490,39 @@ class State
 	public function getDietaryRequirement (): string
 	{
 		return $this->options->dietary_requirement ?? DietaryRequirement::None;
+	}
+
+	public function items (callable $callback = null): array
+	{
+		$items = [];
+		foreach ($this->cards() as $key => $value) {
+			foreach ($value as $item) {
+				$items[] = $this->transformItem($item, $callback);
+			}
+		}
+		return $items;
+	}
+
+	protected function transformItem (\stdClass $item, callable $callback = null): array
+	{
+		if ($callback != null) {
+			return call_user_func($callback, $item);
+		}
+		$subItems = ['Items: '];
+		foreach ($item->items as $subItem) {
+			$subItems[] = $subItem->name;
+		}
+		$subItems = implode(", ", $subItems);
+		return [
+			'name' => $item->name,
+			'price' => $item->total,
+			'desc' => $subItems,
+			'qty' => $item->quantity
+		];
+	}
+
+	public function invoiceId (): string
+	{
+		return substr(md5($this->cart()->getKey()), 0, 10);
 	}
 }
