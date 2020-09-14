@@ -82,8 +82,8 @@ Route::prefix('payment')->middleware('auth')->group(static function () {
 	Route::get('initiate', [\App\Http\Controllers\PaymentController::class, 'initiate'])->name('payments.initiate');
 	Route::get('completed', [\App\Http\Controllers\PaymentController::class, 'completed'])->name('payments.completed');
 	Route::get('cancelled', [\App\Http\Controllers\PaymentController::class, 'cancelled'])->name('payments.cancelled');
-	Route::post('confirmed', [\App\Http\Controllers\PaymentController::class, 'confirmed'])->name('payments.confirmed');
-	Route::post('failed', [\App\Http\Controllers\PaymentController::class, 'failed'])->name('payments.failed');
+	Route::get('confirmed', [\App\Http\Controllers\PaymentController::class, 'confirmed'])->name('payments.confirmed');
+	Route::get('failed', [\App\Http\Controllers\PaymentController::class, 'failed'])->name('payments.failed');
 });
 
 //Backend URLS
