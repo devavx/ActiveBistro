@@ -3,10 +3,10 @@ return [
 	'mode' => 'sandbox',
 	'sandbox' => [
 		'username' => "sb-xtoh53190706_api1.business.example.com",
-		'password' => "NVYGHEEA9AU93F7U",
-		'secret' => "AuxBvL.bePIvUhjC7s4xjkDfd2GrAe.93EljHotUO32w73mqkHcwfyVt",
-		'certificate' => storage_path("storage/app/api.sandbox.paypal.com.pem"),
-		'app_id' => 'ActiveBistro_ZZYYXXS',
+		'password' => "Y254KMHR7YVMUSAR",
+		'secret' => "AQgZci6y7P6ovJ.PjpC2gjudKlMvAq1OMljHKSmhzgI.QeyPK5pA2hOT",
+		'certificate' => '',
+		'app_id' => 'ActiveBistro',
 	],
 	'live' => [
 		'username' => env('PAYPAL_LIVE_API_USERNAME', ''),
