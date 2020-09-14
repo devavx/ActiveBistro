@@ -100,7 +100,7 @@
 									<div class="col-lg-3 col-sm-4 col-12">
 										<div class="menucol rounded mt-3 shadow pb-3">
 											<div class="menuimgcol">
-												<img src="{{ $item->images->first() }}" class="img-fluid rounded w-100 d-block">
+												<img src="{{ $item->images->first()->file }}" class="img-fluid rounded w-100 d-block">
 												<div class="menu-col-text rounded">
 												</div>
 											</div>
