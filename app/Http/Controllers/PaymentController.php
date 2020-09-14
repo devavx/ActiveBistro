@@ -23,7 +23,7 @@ class PaymentController extends Controller
 		$state = new State(auth()->user());
 		$payload['items'] = $state->items();
 		$payload['invoice_id'] = $state->invoiceId();
-		$payload['invoice_description'] = "Order_#{$payload['invoice_id']}_Bill";
+		$payload['invoice_description'] = "Order_{$payload['invoice_id']}";
 		$payload['return_url'] = route('payments.success');
 		$payload['cancel_url'] = route('payments.cancelled');
 		$payload['total'] = $state->total();
