@@ -508,11 +508,12 @@ class State
 		if ($callback != null) {
 			return call_user_func($callback, $item);
 		}
-		$subItems = ['Items: '];
+		$subItems = [];
 		foreach ($item->items as $subItem) {
 			$subItems[] = $subItem->name;
 		}
 		$subItems = implode(", ", $subItems);
+		$subItems = 'Items: ' . $subItems;
 		return [
 			'name' => $item->name,
 			'price' => $item->total,

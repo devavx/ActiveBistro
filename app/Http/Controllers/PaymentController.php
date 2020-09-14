@@ -23,12 +23,12 @@ class PaymentController extends Controller
 		$state = new State(auth()->user());
 		$payload['items'] = $state->items();
 		$payload['invoice_id'] = $state->invoiceId();
-		$payload['invoice_description'] = "Order #{$payload['invoice_id']} Bill";
+		$payload['invoice_description'] = "Order_#{$payload['invoice_id']}_Bill";
 		$payload['return_url'] = route('payments.success');
 		$payload['cancel_url'] = route('payments.success');
 		$payload['total'] = $state->total();
-		$res = $this->provider->setExpressCheckout($payload);
-		return redirect($res['paypal_link']);
+		$response = $this->provider->setExpressCheckout($payload);
+		redirect($response['paypal_link']);
 	}
 
 	public function success ()

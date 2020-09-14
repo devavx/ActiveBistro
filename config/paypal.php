@@ -1,24 +1,25 @@
 <?php
 return [
-    'mode' => env('PAYPAL_MODE', 'sandbox'),
-    'sandbox' => [
-        'username' => env('PAYPAL_SANDBOX_API_USERNAME', ''),
-        'password' => env('PAYPAL_SANDBOX_API_PASSWORD', ''),
-        'secret' => env('PAYPAL_SANDBOX_API_SECRET', ''),
-        'certificate' => env('PAYPAL_SANDBOX_API_CERTIFICATE', ''),
-        'app_id' => 'APP-80W284485P519543T',    // Used for testing Adaptive Payments API in sandbox mode
-    ],
-    'live' => [
-        'username' => env('PAYPAL_LIVE_API_USERNAME', ''),
-        'password' => env('PAYPAL_LIVE_API_PASSWORD', ''),
-        'secret' => env('PAYPAL_LIVE_API_SECRET', ''),
-        'certificate' => env('PAYPAL_LIVE_API_CERTIFICATE', ''),
-        'app_id' => '',         // Used for Adaptive Payments API
-    ],
+	'mode' => 'sandbox',
+	'sandbox' => [
+		'username' => "sb-xtoh53190706_api1.business.example.com",
+		'password' => "NVYGHEEA9AU93F7U",
+		'secret' => "EPW7x1GiEraWcAQaQjz7BDBHh6YL-BbEquFIu9dOfzXNAphfgJS7EW7SoQGMPnTr0MXopx59CkDXYEDb",
+		'certificate' => storage_path("storage/app/api.sandbox.paypal.com.pem"),
+		'client_id' => "AYPBAioKS19l7bbmqa5Uizkyam_FDYJGB-TiK9ajByLZlQ18tGsSIjvPO38PW0A2mv_LMUVMhvKB-oXN",
+		'app_id' => 'ActiveBistro',
+	],
+	'live' => [
+		'username' => env('PAYPAL_LIVE_API_USERNAME', ''),
+		'password' => env('PAYPAL_LIVE_API_PASSWORD', ''),
+		'secret' => env('PAYPAL_LIVE_API_SECRET', ''),
+		'certificate' => env('PAYPAL_LIVE_API_CERTIFICATE', ''),
+		'app_id' => '',         // Used for Adaptive Payments API
+	],
 
-    'payment_action' => env('PAYPAL_PAYMENT_ACTION', 'Sale'), // Can only be 'Sale', 'Authorization' or 'Order'
-    'currency' => env('PAYPAL_CURRENCY', 'GBP'),
-    'notify_url' => env('PAYPAL_NOTIFY_URL', ''), // Change this accordingly for your application.
-    'locale' => env('PAYPAL_LOCALE', 'en_US'), // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
-    'validate_ssl' => env('PAYPAL_VALIDATE_SSL', false), // Validate SSL when creating api client.
+	'payment_action' => 'Sale', // Can Only Be 'Sale', 'Authorization', 'Order'
+	'currency' => 'USD',
+	'notify_url' => '', // Change this accordingly for your application.
+	'locale' => '', // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
+	'invoice_prefix' => env('PAYPAL_INVOICE_PREFIX', 'PAYPALDEMOAPP'),
 ];
