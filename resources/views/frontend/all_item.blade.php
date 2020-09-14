@@ -6,6 +6,19 @@
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             background-color: #000 !important;
         }
+
+        .menuimgcol .carousel-control-prev, .menuimgcol .carousel-control-next {
+            display: none;
+            background-color: unset;
+        }
+
+        .menuimgcol:hover .carousel-control-prev, .menuimgcol:hover .carousel-control-next {
+            display: block;
+        }
+
+        .menuimgcol .carousel .carousel-item img {
+            height: 307px;
+        }
 	</style>
 @endsection
 @section('content')
@@ -96,12 +109,36 @@
 					<div class="tab-content pt-3">
 						@foreach($categories as $category)
 							<div class="tab-pane @if($loop->index==0) active @endif" id="category_{{$category->id}}" role="tabpanel">
-								@foreach($types as $item)
+								@foreach($meals as $meal)
 									<div class="col-lg-3 col-sm-4 col-12">
 										<div class="menucol rounded mt-3 shadow pb-3">
 											<div class="menuimgcol">
-												<img src="{{ $item->images->first()->file }}" class="img-fluid rounded w-100 d-block">
-												<div class="menu-col-text rounded">
+												<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+													<div class="carousel-inner" role="listbox">
+														<div class="carousel-item active">
+															<img class="img-fluid rounded w-100 d-block" src="http://bmms.maavan.com/test/bistro/uploads/black-pepper-and-sea-salt.jpg"
+																	alt="First slide">
+														</div>
+
+														<div class="carousel-item">
+															<img class="img-fluid rounded w-100 d-block" src="image/banner.png"
+																	alt="First slide">
+														</div>
+
+														<div class="carousel-item">
+															<img class="img-fluid rounded w-100 d-block" src="http://bmms.maavan.com/test/bistro/uploads/black-pepper-and-sea-salt.jpg"
+																	alt="First slide">
+														</div>
+													</div>
+
+													<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+														<i class="fa fa-chevron-left"></i>
+														<span class="sr-only">Previous</span>
+													</a>
+													<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+														<i class="fa fa-chevron-right"></i>
+														<span class="sr-only">Next</span>
+													</a>
 												</div>
 											</div>
 											<div class="menucoltext p-2">
@@ -109,20 +146,20 @@
 													<div class="menucoltextprice">
 														<div class="d-flex">
 															<p class="m-0">
-																<del>$ {{ $item->items()->sum('selling_price') }}</del>
+																<del>$ {{ $meal->items()->sum('selling_price') }}</del>
 															</p>
 															<h5 class="font-weight-bold m-0 text-color ml-2">
-																$ {{ $item->items()->sum('selling_price') }}</h5>
+																$ {{ $meal->items()->sum('selling_price') }}</h5>
 														</div>
 													</div>
 													<div class="menucoltextbtn">
-														<button type="button" onclick="addItem('{{$day}}',{{$item->id}});" class="btn btn-info btn-md float-right">
+														<button type="button" onclick="addItem('{{$day}}',{{$meal->id}});" class="btn btn-info btn-md float-right">
 															Add
 														</button>
 													</div>
 												</div>
-												<h5 class="mb-1 text-color text-center">{{ $item->name }}</h5>
-												<p class="m-0 text-center">{{ $item->name }}</p>
+												<h5 class="mb-1 text-color text-center">{{ $meal->name }}</h5>
+												<p class="m-0 text-center">{{ $meal->name }}</p>
 											</div>
 										</div>
 									</div>

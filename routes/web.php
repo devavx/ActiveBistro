@@ -56,8 +56,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 */
 Route::prefix('cart')->middleware('auth')->group(static function () {
     Route::get(Str::Root, [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
-    Route::get('items/{day}', [\App\Http\Controllers\CartController::class, 'items'])->name('cart.items.list');
-    Route::get('items/add/{day}/{itemId}', [\App\Http\Controllers\CartController::class, 'addItem'])->name('cart.items.list.add');
+	Route::get('items/{day?}', [\App\Http\Controllers\CartController::class, 'items'])->name('cart.items.list');
+	Route::get('items/add/{day}/{itemId}', [\App\Http\Controllers\CartController::class, 'addItem'])->name('cart.items.list.add');
     Route::get('items/remove/{day}/{itemId}', [\App\Http\Controllers\CartController::class, 'decreaseItem'])->name('cart.items.list.remove');
     Route::get('items/delete/{day}/{itemId}', [\App\Http\Controllers\CartController::class, 'deleteItem'])->name('cart.items.list.delete');
     Route::get('replace/{day}/{slab}/{mealId}/{itemId}', [\App\Http\Controllers\CartController::class, 'replaceItem']);

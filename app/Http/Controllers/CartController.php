@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Core\Cart\State;
+use App\ItemType;
 use App\MealPlan;
 use App\Models\Allergy;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 
 class CartController extends Controller
@@ -20,14 +22,19 @@ class CartController extends Controller
 		return view('frontend.all_meal')->with('state', $state)->with('allergies', $allergies);
 	}
 
-	public function items ($day): Renderable
+	public function items ($day = null): Renderable
 	{
 		$state = new State(auth()->user());
 		$categories = Category::query()->where('active', 1)->get();
-		$types = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day')->get();
-		return view('frontend.all_item')->with('state', $state)
-			->with('categories', $categories)->with('day', $day)
-			->with('types', $types)->with('chosen', request('type', 'none'));
+		$types = ItemType::query()->where('active', 1)->get();
+		$meals = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day');
+		$type = request('type', 'none');
+//		if ($type != 'none')) {
+//			$meals->whereHas('items', function (Builder $query) {
+//				$query->where('id',$type)
+//			});
+//		}
+		return view('frontend.all_item')->with('state', $state)->with('categories', $categories)->with('day', $day)->with('types', $types)->with('chosen', request('type', 'none'))->with('meals', $meals);
 	}
 
 	public function addItem (string $day, int $itemId): JsonResponse

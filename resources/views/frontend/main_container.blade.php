@@ -28,7 +28,7 @@
 
 		<div class="col-lg-4 col-sm-4 col-12">
 			<div class="text-center">
-				<a href="{{ url('/items') }}" class="text-color border p-2 pl-3 pr-3"><u>View Menu</u></a>
+				<a href="{{ route('cart.items.list') }}" class="text-color border p-2 pl-3 pr-3"><u>View Menu</u></a>
 			</div>
 		</div>
 
