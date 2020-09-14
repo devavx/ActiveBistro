@@ -524,6 +524,6 @@ class State
 
 	public function invoiceId (): string
 	{
-		return substr(md5($this->cart()->getKey()), 0, 10);
+		return strtoupper(substr(md5($this->cart()->getKey()), 0, 10));
 	}
 }

@@ -25,7 +25,7 @@ class PaymentController extends Controller
 		$payload['invoice_id'] = $state->invoiceId();
 		$payload['invoice_description'] = "Order_#{$payload['invoice_id']}_Bill";
 		$payload['return_url'] = route('payments.success');
-		$payload['cancel_url'] = route('payments.success');
+		$payload['cancel_url'] = route('payments.cancelled');
 		$payload['total'] = $state->total();
 		dd($payload);
 		$response = $this->provider->setExpressCheckout($payload);
