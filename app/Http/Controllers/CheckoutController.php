@@ -41,9 +41,12 @@ class CheckoutController extends Controller
 			$user->addresses()->createMany($request->addresses());
 		} else {
 			$address = $request->address();
-			$sunday = $address['day'] = DaysOfWeek::Sunday;
-			$wednesday = $address['day'] = DaysOfWeek::Wednesday;
-			$user->addresses()->createMany([$sunday, $wednesday]);
+			$address['day'] = DaysOfWeek::Sunday;
+			$sunday = $address;
+			$address['day'] = DaysOfWeek::Wednesday;
+			$wednesday = $address;
+			$user->addresses()->create($sunday);
+			$user->addresses()->create($wednesday);
 		}
 		return redirect()->route('payments.initiate');
 	}
