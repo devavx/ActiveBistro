@@ -116,7 +116,7 @@
 												<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 													<div class="carousel-inner" role="listbox">
 														@foreach($meal->images as $image)
-															<div class="carousel-item" @if($loop->index==0) active @endif>
+															<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
 																<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
 															</div>
 														@endforeach
