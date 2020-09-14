@@ -30,8 +30,8 @@ class CartController extends Controller
 		$meals = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day');
 		$type = request('type', 'none');
 		if ($type != 'none') {
-			$meals->whereHas('items', function (Builder $query) {
-
+			$meals->whereHas('items', function (Builder $query) use ($type) {
+				$query->whereKey($type);
 			});
 		}
 		$meals = $meals->get();
