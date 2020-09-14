@@ -33,11 +33,16 @@ class PaymentController extends Controller
 
 	public function success ()
 	{
-
+		$response = $this->provider->getExpressCheckoutDetails(request('token'));
+		if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+			return view('frontend.checkout_success');
+		} else {
+			return view('frontend.checkout_failed');
+		}
 	}
 
 	public function cancelled ()
 	{
-
+		return redirect()->route('cart.index')->with('errormsg', 'Your transaction was cancelled successfully!');
 	}
 }
