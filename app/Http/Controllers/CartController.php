@@ -29,11 +29,12 @@ class CartController extends Controller
 		$types = ItemType::query()->where('active', 1)->get();
 		$meals = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day');
 		$type = request('type', 'none');
-//		if ($type != 'none')) {
-//			$meals->whereHas('items', function (Builder $query) {
-//				$query->where('id',$type)
-//			});
-//		}
+		if ($type != 'none') {
+			$meals->whereHas('items', function (Builder $query) {
+
+			});
+		}
+		$meals = $meals->get();
 		return view('frontend.all_item')->with('state', $state)->with('categories', $categories)->with('day', $day)->with('types', $types)->with('chosen', request('type', 'none'))->with('meals', $meals);
 	}
 
