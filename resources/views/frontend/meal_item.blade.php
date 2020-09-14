@@ -64,6 +64,7 @@
 										@endif
 									@endforeach
 								</select>
+								<span class="text-danger text-right">*Contains Eggs.</span>
 							</form>
 						</div>
 						<div class="mealform-right text-right">
