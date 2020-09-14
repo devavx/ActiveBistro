@@ -115,20 +115,11 @@
 											<div class="menuimgcol">
 												<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 													<div class="carousel-inner" role="listbox">
-														<div class="carousel-item active">
-															<img class="img-fluid rounded w-100 d-block" src="http://bmms.maavan.com/test/bistro/uploads/black-pepper-and-sea-salt.jpg"
-																	alt="First slide">
-														</div>
-
-														<div class="carousel-item">
-															<img class="img-fluid rounded w-100 d-block" src="image/banner.png"
-																	alt="First slide">
-														</div>
-
-														<div class="carousel-item">
-															<img class="img-fluid rounded w-100 d-block" src="http://bmms.maavan.com/test/bistro/uploads/black-pepper-and-sea-salt.jpg"
-																	alt="First slide">
-														</div>
+														@foreach($meal->images as $image)
+															<div class="carousel-item" @if($loop->index==0) active @endif>
+																<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
+															</div>
+														@endforeach
 													</div>
 
 													<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
