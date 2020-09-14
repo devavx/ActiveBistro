@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
+use App\Core\Enums\Common\DaysOfWeek;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
@@ -39,7 +40,10 @@ class CheckoutController extends Controller
 		if ($request->hasSeparateAddresses()) {
 			$user->addresses()->createMany($request->addresses());
 		} else {
-			$user->addresses()->create($request->address());
+			$address = $request->address();
+			$sunday = $address['day'] = DaysOfWeek::Sunday;
+			$wednesday = $address['day'] = DaysOfWeek::Wednesday;
+			$user->addresses()->createMany([$sunday, $wednesday]);
 		}
 		return redirect()->route('payments.initiate');
 	}
