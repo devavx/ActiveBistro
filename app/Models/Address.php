@@ -16,4 +16,9 @@ class Address extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
+	public function stringify ()
+	{
+		return sprintf("%s, %s, %s, %s", $this->address_first_line, $this->address_second_line, $this->city, $this->postcode);
+	}
 }

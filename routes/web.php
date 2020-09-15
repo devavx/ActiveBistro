@@ -107,7 +107,6 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/allergy/change_status/{id}', 'Admin\AllergyController@changeStatus')->name('allergy.change_status');
 	Route::get('/allergy/details/', 'Admin\AllergyController@getAllergyDetails')->name('allergy.allergy_details');
 
-
 	// IngredientController URI
 	Route::get('/ingredient/delete/{id}', 'Admin\IngredientController@delete')->name('meal.delete');
 	Route::delete('/ingredient/delete', 'Admin\IngredientController@deleteBulk')->name('meal.delete');
@@ -118,7 +117,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::delete('/items/delete', 'ItemController@deleteBulk')->name('items.delete');
 	Route::get('/items/change_status/{id}', 'ItemController@changeStatus')->name('items.chnage_status');
 	// ItemController URI
-	Route::get('/orders', 'ItemController@orders')->name('items.orders');
+	Route::get('/orders', 'Admin\OrderController@index')->name('items.orders');
 
 	// HomeSettingController URI
 	Route::get('/home_setting/delete/{id}', 'Admin\HomeSettingController@delete')->name('home_setting.delete');

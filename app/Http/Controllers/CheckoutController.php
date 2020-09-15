@@ -27,11 +27,6 @@ class CheckoutController extends Controller
 	public function __construct ()
 	{
 		$this->provider = new ExpressCheckout();
-		$this->rules = [
-			'store' => [
-
-			]
-		];
 	}
 
 	public function index (): Renderable
