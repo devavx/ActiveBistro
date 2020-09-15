@@ -115,8 +115,6 @@
 														</div>
 													</div>
 												</div>
-												<!--/span-->
-												<!--/span-->
 											</div>
 											<h4 class="box-title">Customer Details</h4>
 											<hr class="m-t-0 m-b-40">

@@ -103,7 +103,7 @@
 											<td> {{$order->quantity}}</td>
 											<td> {{$order->created_at}}</td>
 											<td style="text-align: center; ">
-												<a class="like" href="{{route('admin.orders.show',$order->id)}}" title="View"><i class="fa fa-search text-info"></i></a>&nbsp;/
+{{--												<a class="like" href="{{route('admin.orders.show',$order->id)}}" title="View"><i class="fa fa-search text-info"></i></a>&nbsp;/--}}
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $order->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 											</td>
 										@endforeach
