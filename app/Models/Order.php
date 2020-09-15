@@ -13,6 +13,14 @@ class Order extends Model
 		'user_id', 'address_id', 'second_address_id', 'invoice_id', 'payment_slab', 'quantity', 'sub_total', 'total', 'status'
 	];
 
+	protected static function boot ()
+	{
+		parent::boot();
+		self::deleting(function (Order $order) {
+			$order->items()->delete();
+		});
+	}
+
 	public function user (): BelongsTo
 	{
 		return $this->belongsTo(User::class);

@@ -47,7 +47,9 @@
 						<div class="card-body">
 							<h4 class="card-title">Orders List</h4>
 							<div class="text-right">
-								<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+								<button class="btn btn-primary mr-4" type="button" onclick="confirmDeleteBulk();">
+									<i class="fa fa-trash mr-2"></i>Delete
+								</button>
 							</div>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -71,7 +73,7 @@
 									<thead>
 									<tr>
 										<th scope="col" class="border">
-											<label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
+											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
 										<th>OrderId</th>
@@ -89,21 +91,21 @@
 									<tr>
 										@foreach($orders as $order)
 											<td>
-												<label><input type="checkbox"><span class="sr-only"> Select Row </span></label>
+												<label><input type="checkbox" name="delete_target"><span class="sr-only"> Select Row </span></label>
 											</td>
 											<td>{{$loop->index+1}}</td>
-
 											<td> #{{$order->id}}</td>
-											<td>
-												<a href data-toggle="modal" data-target="#detailmodal"> {{$order->user->name}} </a>
-											</td>
+											<td>{{$order->user->name}}</td>
 											<td> {{ucfirst($order->status)}}</td>
 											<td> {{$order->address->stringify()}}</td>
 											<td> {{$order->total}}</td>
 											<td> {{ucfirst($order->payment_slab)}}</td>
 											<td> {{$order->quantity}}</td>
 											<td> {{$order->created_at}}</td>
-											<td>-</td>
+											<td style="text-align: center; ">
+												<a class="like" href="{{route('admin.orders.show',$order->id)}}" title="View"><i class="fa fa-search text-info"></i></a>&nbsp;/
+												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $order->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
+											</td>
 										@endforeach
 									</tr>
 									</tbody>
@@ -229,9 +231,26 @@
 			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 		});
 
+		initialized = () => {
+			$('#check_all').change(function () {
+				$("input:checkbox[name=delete_target]").prop('checked', this.checked);
+			})
+		}
+
 		function confirmDelete(id) {
-			url = "{{ url('/admin/items/delete/') }}/" + id;
+			url = "{{ url('/admin/orders/delete/') }}/" + id;
 			deleteConfirmMessage(id, url, 'remove');
+		}
+
+		function confirmDeleteBulk() {
+			const url = "{{ url('/admin/orders/delete') }}";
+			const items = [];
+			$("input:checkbox[name=delete_target]:checked").each(function () {
+				const parsed = Number.parseInt($(this).val());
+				if (parsed !== 0)
+					items.push(parsed);
+			});
+			deleteConfirmMessageBulk(url, items);
 		}
 
 	</script>

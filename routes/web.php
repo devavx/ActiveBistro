@@ -26,14 +26,12 @@ Route::get('/recommended_meal', 'FrontendController@recommendedMeal')->name('rec
 Route::get('options', 'FrontendController@options')->name('profile_options');
 Route::post('options/save', 'FrontendController@saveOptions')->name('profile_options.save');
 
-
 // AUTH USER Route
 Route::group(['middleware' => ['auth']], function () {
 	Route::post('/update_user', 'UserProfileController@updateUserDetail')->name('update_user');
 	Route::post('/change_password', 'UserProfileController@updatePassword')->name('update_password');
 	Route::get('/my_order', 'UserProfileController@getAllOrder')->name('my_order');
 });
-
 
 Route::get('/ourmenu', 'FrontendController@ourmenu')->name('ourmenu');
 
@@ -100,7 +98,6 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 
 	// DailyMealPlanController URI
 
-
 	// AllergyController URI
 	Route::get('/allergy/delete/{id}', 'Admin\AllergyController@delete')->name('allergy.delete');
 	Route::delete('/allergy/delete', 'Admin\AllergyController@deleteBulk')->name('allergy.delete');
@@ -116,8 +113,11 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/items/delete/{id}', 'ItemController@delete')->name('items.delete');
 	Route::delete('/items/delete', 'ItemController@deleteBulk')->name('items.delete');
 	Route::get('/items/change_status/{id}', 'ItemController@changeStatus')->name('items.chnage_status');
-	// ItemController URI
-	Route::get('/orders', 'Admin\OrderController@index')->name('items.orders');
+	// OrderController URI
+	Route::get('/orders', 'Admin\OrderController@index')->name('orders.index');
+	Route::get('/orders/{key}', 'Admin\OrderController@show')->name('orders.show');
+	Route::get('orders/delete/{key}', 'Admin\OrderController@delete')->name('orders.delete');
+	Route::delete('orders/delete', 'Admin\OrderController@deleteBulk')->name('orders.delete');
 
 	// HomeSettingController URI
 	Route::get('/home_setting/delete/{id}', 'Admin\HomeSettingController@delete')->name('home_setting.delete');
@@ -138,32 +138,25 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
 	Route::get('/faqs/change_status/{id}', 'Admin\FaqController@changeStatus')->name('setting.faqs.change_status');
 
-
 	Route::get('/postal_codes/delete/{id}', 'Admin\PostalCodeController@delete')->name('setting.postal_codes.delete');
 	Route::get('/postal_codes/change_status/{id}', 'Admin\PostalCodeController@changeStatus')->name('postal_codes.change_status');
-
 
 	Route::get('/category/delete/{id}', 'CategoryController@delete')->name('category.delete');
 	Route::delete('/category/delete', 'CategoryController@deleteBulk')->name('category.delete');
 	Route::get('/category/change_status/{id}', 'CategoryController@changeStatus')->name('category.change_status');
 
-
 	Route::get('/item_type/delete/{id}', 'ItemTypeController@delete')->name('item_type.delete');
 	Route::delete('/item_type/delete', 'ItemTypeController@delete')->name('item_type.delete');
 	Route::get('/item_type/change_status/{id}', 'ItemTypeController@changeStatus')->name('item_type.change_status');
 
-
 	Route::get('/term_conditions/delete/{id}', 'TermConditionController@delete')->name('setting.term_conditions.delete');
 	Route::get('/term_conditions/change_status/{id}', 'TermConditionController@changeStatus')->name('setting.term_conditions.change_status');
-
 
 	Route::get('/privacy_policy/delete/{id}', 'PrivacyPolicyController@delete')->name('setting.privacy_policy.delete');
 	Route::get('/privacy_policy/change_status/{id}', 'PrivacyPolicyController@changeStatus')->name('setting.privacy_policy.change_status');
 
-
 	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
 	Route::post('/contact_us/save', 'Admin\SettingController@saveContactUs')->name('setting.save_contactus');
-
 
 	Route::resource('/faqs', 'Admin\FaqController');
 	Route::resource('/postal_codes', 'Admin\PostalCodeController');

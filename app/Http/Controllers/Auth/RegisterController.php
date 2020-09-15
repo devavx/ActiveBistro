@@ -82,18 +82,18 @@ class RegisterController extends Controller
             $data['click_to_verify']=0;
         }
         return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'name' => $data['first_name'].' '.$data['last_name'],
-            'phone' => $data['phone'],
-            'gender' => $data['gender'],
-            'dob' => $data['dob'],
-            'gender_info' => $data['gender_info'] ?? $data['first_name'],
-            'click_to_verify' => $data['click_to_verify'] ?? '0',
-            'role_id' => 2,
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'about' => $data['first_name'],
+	        'first_name' => $data['first_name'],
+	        'last_name' => $data['last_name'],
+	        'name' => $data['first_name'] . ' ' . $data['last_name'],
+	        'phone' => $data['phone'],
+	        'gender' => $data['gender'],
+	        'dob' => $data['dob'],
+	        'gender_info' => $data['gender_info'],
+	        'click_to_verify' => $data['click_to_verify'] ?? '0',
+	        'role_id' => 2,
+	        'email' => $data['email'],
+	        'password' => Hash::make($data['password']),
+	        'about' => $data['first_name'],
         ]);
     }
 
