@@ -17,10 +17,8 @@ class CreateOrderItemsTable extends Migration
 			$table->bigIncrements('id');
 			$table->unsignedBigInteger('order_id');
 			$table->unsignedBigInteger('meal_plan_id');
-			$table->unsignedBigInteger('item_id');
+			$table->text('items')->nullable();
 			$table->integer('quantity')->default(1);
-			$table->decimal('actual_price', 8, 2);
-			$table->decimal('selling_price', 8, 2);
 			$table->decimal('total', 8, 2);
 			$table->timestamps();
 		});

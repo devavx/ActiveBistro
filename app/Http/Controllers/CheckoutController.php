@@ -6,6 +6,7 @@ use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\Models\Address;
+use App\Models\Order;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -46,6 +47,7 @@ class CheckoutController extends Controller
 		 * @var $state State
 		 * @var $address Address
 		 * @var $secondAddress Address
+		 * @var $order Order
 		 */
 		$state = new State(auth()->user());
 		$user = auth()->user();
@@ -54,7 +56,7 @@ class CheckoutController extends Controller
 			$addressCollection = $user->addresses()->createMany($request->addresses())->toArray();
 			$address = $addressCollection[0];
 			$secondAddress = $addressCollection[1];
-			$user->orders()->create([
+			$order = $user->orders()->create([
 				'address_id' => $address->getKey(),
 				'second_address_id' => $secondAddress->getKey(),
 				'invoice_id' => $state->invoice()->id,
@@ -67,6 +69,17 @@ class CheckoutController extends Controller
 					return $meal->total;
 				}),
 			]);
+			$items->each(function (\stdClass $meal) use ($order) {
+				$items = collect($meal->items)->where('chosen', true);
+				$order->items()->create([
+					'meal_plan_id' => $meal->id,
+					'items' => $items->toArray(),
+					'quantity' => 1,
+					'total' => $items->sum(function (\stdClass $item) {
+						return $item->selling_price ?? 0;
+					})
+				]);
+			});
 		} else {
 			$address = $request->address();
 			$address['day'] = DaysOfWeek::Sunday;
@@ -75,7 +88,7 @@ class CheckoutController extends Controller
 			$wednesday = $address;
 			$sunday = $user->addresses()->create($sunday);
 			$wednesday = $user->addresses()->create($wednesday);
-			$user->orders()->create([
+			$order = $user->orders()->create([
 				'address_id' => $sunday->getKey(),
 				'second_address_id' => $wednesday->getKey(),
 				'invoice_id' => $state->invoice()->id,
@@ -88,6 +101,17 @@ class CheckoutController extends Controller
 					return $meal->total;
 				}),
 			]);
+			$items->each(function (\stdClass $meal) use ($order) {
+				$items = collect($meal->items)->where('chosen', true);
+				$order->items()->create([
+					'meal_plan_id' => $meal->id,
+					'items' => $items->toArray(),
+					'quantity' => 1,
+					'total' => $items->sum(function (\stdClass $item) {
+						return $item->selling_price ?? 0;
+					})
+				]);
+			});
 		}
 		$payload = [];
 		$payload['items'] = $state->items();
