@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\User;
 use DeepCopy\DeepCopy;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Collection;
 
 class State
 {
@@ -522,8 +523,24 @@ class State
 		];
 	}
 
-	public function invoiceId (): string
+	public function invoice (): \stdClass
 	{
-		return strtoupper(substr(md5($this->cart()->getKey()), 0, 10));
+		$id = strtoupper(substr(md5($this->cart()->getKey()), 0, 10));
+		$description = "Order_{$id}";
+		return (object)[
+			'id' => $id,
+			'description' => $description
+		];
+	}
+
+	public function meals (): Collection
+	{
+		$collection = new Collection();
+		foreach ($this->cards() as $day => $meals) {
+			foreach ($meals as $meal) {
+				$collection->push($meal);
+			}
+		}
+		return $collection;
 	}
 }
