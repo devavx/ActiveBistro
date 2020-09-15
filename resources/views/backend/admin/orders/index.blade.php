@@ -79,6 +79,7 @@
 										<th>Status</th>
 										<th>Address</th>
 										<th>Total</th>
+										<th>Payment Slab</th>
 										<th>No Of Meals</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -96,9 +97,10 @@
 											<td>
 												<a href data-toggle="modal" data-target="#detailmodal"> {{$order->user->name}} </a>
 											</td>
-											<td> {{$order->status}}</td>
+											<td> {{ucfirst($order->status)}}</td>
 											<td> {{$order->address->stringify()}}</td>
 											<td> {{$order->total}}</td>
+											<td> {{ucfirst($order->payment_slab)}}</td>
 											<td> {{$order->quantity}}</td>
 											<td> {{$order->created_at}}</td>
 											<td>-</td>
