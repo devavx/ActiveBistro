@@ -39,7 +39,7 @@
 						<div class="row">
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label>First Name</label>
+									<label>First Name <sup class="text-danger">*</sup></label>
 									<input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 								</div>
 								@error('first_name')
@@ -52,7 +52,7 @@
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label>Last Name</label>
+									<label>Last Name <sup class="text-danger">*</sup></label>
 									<input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="last_name" value="{{ old('last_name') }}" required autocomplete="last_name">
 								</div>
 								@error('last_name')
@@ -64,7 +64,7 @@
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label>Phone</label>
+									<label>Phone <sup class="text-danger">*</sup></label>
 									<input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{ old('phone') }}" required autocomplete="phone">
 								</div>
 								@error('phone')
@@ -76,7 +76,7 @@
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label>Password</label>
+									<label>Password <sup class="text-danger">*</sup></label>
 									<input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="{{ old('password') }}" required autocomplete="password">
 								</div>
 								@error('password')
@@ -89,7 +89,7 @@
 						<div class="form-group">
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 col-12">
-									<label>Sex
+									<label>Sex <sup class="text-danger">*</sup>
 										<span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="Refers to your gender."><i class="fa fa-question-circle"></i></span></label>
 								</div>
 
@@ -121,7 +121,7 @@
 						</div>
 
 						<div class="form-group">
-							<label>Date of Birth</label>
+							<label>Date of Birth <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}" placeholder="Enter Date Of Birth..">
 							@error('dob')
 							<span class="invalid-feedback" role="alert">
@@ -138,9 +138,10 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-lg-2 col-sm-3 col-12">Email ID </label>
+							<label class="col-lg-2 col-sm-3 col-12">Email ID <sup class="text-danger">*</sup></label>
 							<div class="col-lg-10 col-sm-9 col-12">
 								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+								<p><small>.ac or .nhs email addresses are eligible</small></p>
 							</div>
 							@error('email')
 							<span class="invalid-feedback" role="alert">
