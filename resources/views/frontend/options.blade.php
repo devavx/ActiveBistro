@@ -47,7 +47,71 @@
 
 					</fieldset>
 
-					<fieldset class="paddingrl">
+					<fieldset class="paddingrl" id="allergiesRadio0">
+			        	<div class="row">
+			        		<div class="col-12">
+			        			<div class="form-group">
+			        				<label>Would you like breakfasts in your plan?</label>
+			        				<br>
+
+			        				<div class="row switch-field">
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-one" value="yes"/>
+			        						<label for="radio-one" class="brakfast_name">Yes</label>
+			        					</div>
+
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-two" value="no"/>
+											<label for="radio-two" class="brakfast_name">No</label>
+			        					</div>
+			        				</div>
+
+			        				
+			        			</div>
+			        		</div>
+			        	</div>
+			        </fieldset>
+
+					<fieldset class="paddingrl" id="allergiesRadio2">
+			        	<div class="row">
+			        		<div class="col-12">
+			        			<div class="form-group">
+			        				<label>How many snacks do you want per day?</label>
+			        				<br>
+
+			        				<div class="row switch-field">
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-one" value="1snacks"/>
+			        						<label for="radio-one" class="snack_count">1 Snack per day</label>
+			        					</div>
+
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-one" value="2snacks"/>
+			        						<label for="radio-one" class="snack_count">2 Snack per day</label>
+			        					</div>
+
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-one" value="3snacks"/>
+			        						<label for="radio-one" class="snack_count">3 Snack per day</label>
+			        					</div>
+
+			        					<div class="col-12">
+			        						<input type="radio" id="radio-one" value="nosnacks"/>
+			        						<label for="radio-one" class="snack_count">No Snack</label>
+			        					</div>
+
+			        					
+			        				</div>
+
+			        			</div>
+			        		</div>
+			        	</div>
+			        	
+			        </fieldset>
+
+			       
+
+					<fieldset class="paddingrl" id="allergiesRadio3">
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
@@ -57,12 +121,12 @@
 									<div class="row switch-field">
 										<div class="col-12">
 											<input type="radio" id="radio-one" name="meals_at_weekends" value="1"/>
-											<label for="radio-one">Yes</label>
+											<label for="radio-one" class="weekend_mail">Yes</label>
 										</div>
 
 										<div class="col-12">
 											<input type="radio" id="radio-two" name="meals_at_weekends" value="0"/>
-											<label for="radio-two">No</label>
+											<label for="radio-two" class="weekend_mail">No</label>
 										</div>
 									</div>
 
@@ -70,11 +134,10 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-info next float-right rounded btn-md">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+						
 					</fieldset>
 
-					<fieldset class="paddingrl">
+					<fieldset class="paddingrl" id="allergiesRadio4">
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
@@ -137,6 +200,31 @@
 @endsection
 @section('script')
 	<script>
+
+		$(document).ready(function () {
+			$(".brakfast_name").click(function () {
+			$("#allergiesRadio0").addClass("d-none");
+			$("#allergiesRadio2").addClass("d-block");
+		});
+
+
+		$(".snack_count").click(function () {
+			$("#allergiesRadio2").removeClass();
+			$("#allergiesRadio2").addClass("d-none");
+			$("#allergiesRadio3").addClass("d-block");
+		});
+
+		$(".weekend_mail").click(function () {
+			$("#allergiesRadio3").removeClass();
+			$("#allergiesRadio3").addClass("d-none");
+			$("#allergiesRadio4").addClass("d-block");
+		});
+		});
+		
+   		
+	</script>
+	<script>
+
 		$(document).ready(function () {
 			$("input:radio[name=has_allergies]").change(function () {
 				if (this.value == 1) {
