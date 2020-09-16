@@ -19,5 +19,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/amvirgin</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="ActiveBistro Live" uuid="92cc8d94-5704-479f-89a6-9afdd72733f2">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://proximitycrm.com:3306/proximitycrm_shamma</jdbc-url>
+    </data-source>
   </component>
 </project>

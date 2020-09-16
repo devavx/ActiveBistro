@@ -95,7 +95,7 @@
 							<div class="col-12">
 								<div class="form-group">
 									<label>What is your activity level?<sup class="text-danger">*</sup></label>
-									<select class="form-control" name="activity_lavel" id="activity_lavel">
+									<select class="form-control" name="activity_lavel" id="activity_lavel" required>
 										<option>Select</option>
 										<option value="1">1 - Sedentary - Little or no exercise -
 											(Desk job)
