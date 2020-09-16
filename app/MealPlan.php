@@ -65,6 +65,6 @@ class MealPlan extends Model {
 	}
 
 	public static function classifyCards (): Builder {
-		return self::query()->with('items')->whereNotNull('day')->where('active', 1);
+		return self::query()->with('items', 'allergies')->whereNotNull('day')->where('active', 1);
 	}
 }

@@ -106,6 +106,9 @@ final class State
 		});
 		foreach ($this->cards as $key => $value) {
 			foreach ($value as $plan) {
+				foreach ($plan->allergies->pluck('id') as $allergyId) {
+					$plan->allergic = $this->isAllergicTo($allergyId);
+				}
 				foreach ($plan->items as $item) {
 					$item->prepare();
 					$item->chosen = $item->pivot->default == 1 || $item->pivot->default == true;
@@ -582,5 +585,15 @@ final class State
 			}
 		}
 		return $collection;
+	}
+
+	public function isAllergicTo ($allergyId): bool
+	{
+		foreach ($this->allergies() as $allergy) {
+			if ($allergyId == $allergy) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
