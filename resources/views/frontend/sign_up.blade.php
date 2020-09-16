@@ -173,8 +173,8 @@
 		$("#datepicker").datepicker({
 			changeMonth: true,
 			changeYear: true,
-			minDate: '{{date('Y-m-d',0)}}',
-			maxDate: '{{date('Y-m-d')}}',
+			startDate: '{{date('Y-m-d',0)}}',
+			endDate: '{{date('Y-m-d')}}',
 			dateFormat: "yy-m-dd"
 		});
 
