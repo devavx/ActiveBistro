@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MealPlan extends Model {
+class MealPlan extends Model
+{
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
@@ -34,37 +35,46 @@ class MealPlan extends Model {
 		'Sun' => 'Sunday'
 	];
 
-	public function items (): BelongsToMany {
+	public function items (): BelongsToMany
+	{
 		return $this->belongsToMany(Item::class, 'meal_plan_items')->withPivot('meal_plan_id', 'item_id', 'slab', 'default');
 	}
 
-	public function allergies (): BelongsToMany {
+	public function allergies (): BelongsToMany
+	{
 		return $this->belongsToMany(Allergy::class, 'meal_plan_allergies');
 	}
 
-	public function mealItems (): HasMany {
+	public function mealItems (): HasMany
+	{
 		return $this->hasMany(MealPlanItem::class);
 	}
 
-	public function childrens () {
+	public function childrens ()
+	{
 		return $this->belongsToMany(MealPlan::class, 'item_meal_plan', 'meal_plan_id', 'item_id');
 	}
 
-	public function getRatePerItemThreeDaysAttribute () {
+	public function getRatePerItemThreeDaysAttribute ()
+	{
 		return url('/storage/app/public/items/' . $this->attributes['rate_per_item_three_days']);
 	}
 
-	public function images (): HasMany {
+	public function images (): HasMany
+	{
 		return $this->hasMany(MealPlanImage::class);
 	}
 
-	public function prepare (): void {
+	public function prepare (): void
+	{
 		$this->quantity = 1;
 		$this->total = 0;
+		$this->allergic = false;
 		$this->uuid = Str::uuid()->toString();
 	}
 
-	public static function classifyCards (): Builder {
+	public static function classifyCards (): Builder
+	{
 		return self::query()->with('items', 'allergies')->whereNotNull('day')->where('active', 1);
 	}
 }
