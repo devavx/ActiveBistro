@@ -213,10 +213,16 @@
 						</p>
 
 						<hr>
-
-						<h6>Delivery cost per week (First delivery 26th July)
-							<span class="font-weight-bold text-color float-right">Free</span></h6>
+						<h6>Delivery cost per week (First delivery 26th July)<span class="font-weight-bold text-color float-right">Free</span>
+						</h6>
 						<hr>
+						@if(auth()->user()->click_to_verify==1)
+							<hr>
+							<h6>
+								25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; {{round(2.5*$state->total(),2)}}</span>
+							</h6>
+							<hr>
+						@endif
 
 						<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
 						</p>
