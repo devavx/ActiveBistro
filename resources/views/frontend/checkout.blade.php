@@ -226,7 +226,11 @@
 						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">£ {{$state->total()-(round($state->total()/10.0,2)*2)}}</span>
 						</p>
 
-						<p>Referred by a friend or got a coupon? <a href="#" class="text-color"> Click here.</a></p>
+						<p>Referred by a friend or got a coupon? <a class="text-color" id="coupantoggle"> Click here.</a></p>
+
+						<div class="form-group" id="showcoupantextfield" style="display: none;">
+							<input type="text" class="form-control" placeholder="Enter coupon code">
+						</div>
 
 						<p class="text-center">
 							<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
@@ -249,6 +253,13 @@
 @endsection
 @section('script')
 	<script src="{{asset("js/parsley.js")}}"></script>
+
+	<script>
+		$("#coupantoggle").click(function(){
+		  $("#showcoupantextfield").toggle();
+		});
+	</script>
+	
 	<script>
 		let current_fs, next_fs, previous_fs, opacity;
 
