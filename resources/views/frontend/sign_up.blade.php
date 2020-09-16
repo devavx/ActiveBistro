@@ -2,7 +2,8 @@
 @section('title') Active Bistro | SignUp @endsection
 @section('css') 
 <!-- Date picker plugins css -->
- <link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" type="text/css" /> 
+<!--  <link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" type="text/css" />  -->
+ <link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/jquery-ui.css') }}" rel="stylesheet" type="text/css" /> 
 <style type="text/css">
 	.invalid-feedback{
 		display: block !important;
@@ -120,7 +121,7 @@
 
 			        	<div class="form-group">
 			        		<label>Date of Birth</label>
-			        		<input type="text" class="form-control" name="dob" id="dob" value="{{ old('dob') }}" placeholder="Enter Date Of Birth..">
+			        		<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}" placeholder="Enter Date Of Birth..">
 			        			@error('dob')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -161,11 +162,19 @@
 @endsection
 @section('script')
 <script src="{{ asset('assets/node_modules/moment/moment.js') }}"></script>
-<script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+<!-- <script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> -->
+<script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/jquery-ui.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
    <script>
 
-   	$('#dob').bootstrapMaterialDatePicker({ format: 'YYYY-MM-DD',time:false, maxDate: new Date() });
+   	$( "#datepicker" ).datepicker({
+		changeMonth: true,
+      	changeYear: true,
+      	minDate: 0,
+      	dateFormat: "yy-m-dd"
+	});
+
+   	// $('#dob').bootstrapMaterialDatePicker({ format: 'YYYY-MM-DD',time:false, maxDate: new Date() });
    	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})

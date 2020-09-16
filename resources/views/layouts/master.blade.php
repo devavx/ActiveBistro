@@ -18,14 +18,53 @@
 </head>
 <body>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="mdblock">
+					<li class="nav-item">
+					    <span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+				    </li>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr class="mt-1 mb-0 mdblock">
+
 <nav class="navbar navbar-expand-lg navbar-dark shadow">
 	<div class="container">
 		<a class="navbar-brand" href="{{ url('') }}"><img src="{{ asset('uploads/image/logo.png') }}"></a>
+
+		<!-- <ul class="navbar-nav mdblock mx-auto">
+			<li class="nav-item dropdown text-dark mt-2">
+			    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+			    aria-haspopup="true" aria-expanded="false">Login</a>
+			    <div class="dropdown-menu dropdown-primary pt-0 pb-0" aria-labelledby="navbarDropdownMenuLink">
+			    <a class="dropdown-item" href="{{ url('/sign-in') }}">Log in</a>
+			    <a class="dropdown-item" href="{{ url('/sign-up') }}">Sign Up</a>
+			    </div>
+			</li>
+		</ul> -->
+
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#activebistronavbar" aria-controls="activebistronavbar" aria-expanded="false" aria-label="Toggle navigation">
 			<i class="fa fa-bars"></i>
 		</button>
 		<div class="collapse navbar-collapse" id="activebistronavbar">
 			<ul class="navbar-nav mx-auto">
+				<div class="offcanvas-header mt-3">  
+
+			      <button class="btn p-2 btn-close float-right"> <i class="fa fa-times"></i></button>
+
+			      <h5 class="py-2 text-white"><img src="{{ asset('uploads/image/logo.png') }}" class="toggle-brand"></h5>
+			    </div>
+			    <li class="nav-item mdblock">
+					<a class="nav-link" href="{{ url('/sign-in') }}">Log in</a>
+				</li>
+				<li class="nav-item mdblock">
+					<a class="nav-link" href="{{ url('/sign-up') }}">Sign up</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{{ url('ourmenu') }}">Order Now</a>
 				</li>
@@ -35,18 +74,18 @@
 				</li>
 
 				<li class="nav-item">
-					<span class="border p-2 rounded header-time-slot nav-link text-color"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+					<span class="border p-2 rounded md-none header-time-slot nav-link text-color"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
 				</li>
 
 			</ul>
 			<ul class="navbar-nav ml-auto">
 				@guest
-					<li class="nav-item">
-						<a class="nav-link" href="{{ url('/sign-in') }}">Login</a>
+					<li class="nav-item md-none">
+						<a class="nav-link" href="{{ url('/sign-in') }}">Log in</a>
 					</li>
 
-					<li class="nav-item">
-						<a class="nav-link headersignupbtn" href="{{ url('/sign-up') }}" style="color: #fff !important;">Signup</a>
+					<li class="nav-item md-none">
+						<a class="nav-link headersignupbtn" href="{{ url('/sign-up') }}" style="color: #fff !important;">Sign up</a>
 					</li>
 				@else
 					<li class="nav-item">
@@ -150,6 +189,7 @@
 <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }} "></script>
 <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }} "></script>
 <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }} "></script>
+<script type="text/javascript" src="{{ asset('assets/js/custom.js') }} "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
