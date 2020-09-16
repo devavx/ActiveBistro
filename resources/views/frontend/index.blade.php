@@ -38,7 +38,7 @@
 						    <!--First slide-->
 						    @if(!empty(count($listData)))
 						    	@foreach($listData as $key => $rows)
-								    <div class="carousel-item @if($key==0) active @endif" style="height: 502px;">
+								    <div class="carousel-item @if($key==0) active @endif">
 								    	@if($rows->thumbnail_type == 'video/mp4')
                                             <video class="video-fluid" autoplay loop muted  >
                                             <source src="{{ $rows->thumbnail }}" type="video/mp4" />
@@ -102,14 +102,14 @@
 
 					</div>
 
-					<div class="banner-right-side pt-5">
+					<!-- <div class="banner-right-side pt-5">
 						<div class="banner-right-text">
 							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c1.png') }}"></a>
 							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c3.png') }}"></a>
 							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c3.png') }}"></a>
 							<a href data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod."><img src="{{ asset('uploads/image/c4.png') }}"></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
