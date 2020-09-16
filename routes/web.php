@@ -30,7 +30,7 @@ Route::post('options/save', 'FrontendController@saveOptions')->name('profile_opt
 Route::group(['middleware' => ['auth']], function () {
 	Route::post('/update_user', 'UserProfileController@updateUserDetail')->name('update_user');
 	Route::post('/change_password', 'UserProfileController@updatePassword')->name('update_password');
-	Route::get('/my_order', 'UserProfileController@getAllOrder')->name('my_order');
+	Route::get('/my_order', 'OrderController@index')->name('my_order');
 });
 
 Route::get('/ourmenu', 'FrontendController@ourmenu')->name('ourmenu');

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
+use App\Core\Primitives\Time;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
@@ -28,6 +29,16 @@ class User extends Authenticatable
 
 	protected $casts = [
 		'email_verified_at' => 'datetime',
+	];
+
+	protected $activityLevel = [
+		-1 => 2.4,
+		1 => 1.2,
+		2 => 1.4,
+		3 => 1.6,
+		4 => 1.75,
+		5 => 2,
+		6 => 2.4,
 	];
 
 	public function role (): BelongsTo
@@ -64,34 +75,38 @@ class User extends Authenticatable
 		return Uploads::existsUrl($this->attributes['profile_image']);
 	}
 
-	public function age (): int
+	public function age (bool $asInterval = false)
 	{
-		return 1;
+		$difference = date_diff(date_create($this->dob ?? date('Y-m-d 00:00:00')), date_create(date('Y-m-d 00:00:00')), true);
+		if ($asInterval) {
+			return $difference;
+		}
+		if (!$difference) {
+			return 0;
+		}
+		return $difference->y . '.' . $difference->m;
 	}
 
-	/**
-	 * Will always be in centimetres;
-	 * @return float
-	 */
 	public function height (): float
 	{
-		return $this->height;
+		return $this->user_height;
 	}
 
-	/**
-	 * Will always be in kilograms;
-	 * @return float
-	 */
 	public function weight (): float
 	{
-		return $this->weight;
+		return $this->user_weight;
 	}
 
-	public function rmr (): float
+	public function additive (): int
 	{
-		$additive = $this->gender == 'male' ? +5 : -161;
+		return $this->gender == 'male' ? +5 : -161;
+	}
+
+	public function metabolicRate (): float
+	{
+		$age = Time::intervalToAbsoluteValue($this->age(true));
 		try {
-			return round((99.99 * $this->weight()) + (6.25 * $this->height()) - (4.92 * $this->age() + $additive), 2);
+			return round(((9.99 * $this->weight()) + (6.25 * $this->height()) - (4.92 * $age)) + $this->additive(), 2);
 		} catch (\Throwable $e) {
 			return 0;
 		}
@@ -99,22 +114,28 @@ class User extends Authenticatable
 
 	public function calories (): float
 	{
-		$activityLevel = empty($this->activity_lavel) ? floatval($this->activity_lavel) : 1;
-		return $this->rmr() * $activityLevel;
+		$index = empty($this->activity_lavel) ? intval($this->activity_lavel) : 1;
+		if (!isset($this->activityLevel[$index]))
+			return $this->metabolicRate() * $this->activityLevel[-1];
+		else
+			return $this->metabolicRate() * $this->activityLevel[$index];
 	}
 
-	public function proteins (): ?string
+	public function proteins (): float
 	{
-		return 40;
+		$calories = $this->calories();
+		return round((0.2 * $calories) / 4.0, 2);
 	}
 
-	public function carbohydrates (): ?string
+	public function carbohydrates (): float
 	{
-		return 24;
+		$calories = $this->calories();
+		return round((0.3 * $calories) / 9.0, 2);
 	}
 
-	public function fats (): ?string
+	public function fats (): float
 	{
-		return 17;
+		$calories = $this->calories();
+		return round((0.5 * $calories) / 4.0, 2);
 	}
 }

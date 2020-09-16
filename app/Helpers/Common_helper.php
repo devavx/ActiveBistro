@@ -73,7 +73,6 @@ function getAge($date1 = '', $date2 = '')
     }
 
     return $years;
-    // printf("%d years, %d months, %d days\n", $years, $months, $days);
 }
 
 function getCalories($gender = '', $weightInKG = '', $heighIntCM = '', $age = '')
