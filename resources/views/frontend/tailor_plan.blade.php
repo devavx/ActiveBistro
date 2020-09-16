@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title') Active Bistro | Tailor Plan @endsection
 @section('css')
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<style type="text/css">
         .invalid-feedback {
             display: block !important;
@@ -34,18 +35,19 @@
 							</div>
 
 							<div class="col-lg-6 col-sm-6 col-12">
-								<div class="form-group">
-									<br>
+								<div class="form-group sliderbtncheck">
+									<input type="checkbox" checked data-toggle="toggle" data-on="Metric (kg/cm)" data-off="Imperial (lb)" data-onstyle="info" data-offstyle="primary">
+									<!-- <br>
 									<div class="custom-control custom-radio custom-control-inline">
 										<input type="radio" class="custom-control-input" id="metric" value="metric" name="weight_total" checked>
 										<label class="custom-control-label" for="metric">Metric (kg/cm)</label>
 									</div>
 
-									<!-- Default inline 2-->
+									
 									<div class="custom-control custom-radio custom-control-inline">
 										<input type="radio" value="imperial" class="custom-control-input" id="imperial" name="weight_total">
 										<label class="custom-control-label" for="imperial">Imperial (lb)</label>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -146,6 +148,7 @@
 @endsection
 @section('script')
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 	<script>
 		let weights = {
