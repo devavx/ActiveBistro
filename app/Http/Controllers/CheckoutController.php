@@ -32,7 +32,21 @@ class CheckoutController extends Controller
 	public function index (): Renderable
 	{
 		$state = new State(auth()->user());
-		return view('frontend.checkout')->with('state', $state);
+		$total = $state->total();
+		$rebates = new \stdClass();
+		$rebates->weekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
+		$rebates->firstWeekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
+		$rebates->secondWeekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
+		if (auth()->user()->click_to_verify == 1) {
+			$rebates->staffRebate = (object)['value' => 25, 'calculated' => percentOf($total, 25)];
+		}
+		$totalRebate = 0;
+		foreach ($rebates as $key => $rebate) {
+			$totalRebate += $rebate->value;
+		}
+		$state->setDiscount($totalRebate);
+		$state->calculateStats();
+		return view('frontend.checkout')->with('state', $state)->with('rebates', $rebates);
 	}
 
 	public function store (StoreRequest $request): RedirectResponse

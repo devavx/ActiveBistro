@@ -205,28 +205,28 @@
 						<hr>
 
 						<h6>10% off your first two weeks promo
-							<span class="font-weight-bold text-color float-right">&pound; {{round($state->total()/10.0,2)}}</span>
+							<span class="font-weight-bold text-color float-right">&pound; {{$rebates->weekRebate->calculated}}</span>
 						</h6>
-						<p>Week 1 discount<span class="float-right font-weight-bold">&pound; {{round($state->total()/10.0,2)}}</span>
+						<p>Week 1 discount<span class="float-right font-weight-bold">&pound; {{$rebates->firstWeekRebate->calculated}}</span>
 						</p>
-						<p>Week 2 discount<span class="float-right font-weight-bold">&pound; {{round($state->total()/10.0,2)}}</span>
+						<p>Week 2 discount<span class="float-right font-weight-bold">&pound; {{$rebates->secondWeekRebate->calculated}}</span>
 						</p>
 
 						<hr>
 						<h6>Delivery cost per week (First delivery 26th July)<span class="font-weight-bold text-color float-right">Free</span>
 						</h6>
 						<hr>
-						@if(auth()->user()->click_to_verify==1)
+						@if(isset($rebates->staffRebate))
 							<hr>
 							<h6>
-								25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; {{round(2.5*$state->total(),2)}}</span>
+								25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; {{$rebates->staffRebate->calculated}}</span>
 							</h6>
 							<hr>
 						@endif
 
 						<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
 						</p>
-						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->total()-(round($state->total()/10.0,2)*2)}}</span>
+						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
 						</p>
 
 						<p>Referred by a friend or got a coupon?

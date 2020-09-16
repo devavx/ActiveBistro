@@ -89,6 +89,12 @@ final class State
 				$this->setTotal($this->total() + $plan->total);
 			}
 		}
+		if ($this->discount() > 0) {
+			$total = $this->total();
+			$rebate = ($this->discount() / 100.0) * $total;
+			$this->setSubTotal($total);
+			$this->setTotal($total - $rebate);
+		}
 	}
 
 	protected function createSnapshot (): void
@@ -115,6 +121,12 @@ final class State
 				$plan->total = $plan->total * $plan->quantity;
 				$this->setTotal($this->total() + $plan->total);
 			}
+		}
+		if ($this->discount() > 0) {
+			$total = $this->total();
+			$rebate = ($this->discount() / 100.0) * $total;
+			$this->setSubTotal($total);
+			$this->setTotal($total - $rebate);
 		}
 		$state = [
 			'options' => $this->options,
@@ -171,7 +183,9 @@ final class State
 			'fats' => 0,
 			'proteins' => 0,
 			'calories' => 0,
-			'total' => 0
+			'total' => 0,
+			'subTotal' => 0,
+			'discount' => 0
 		];
 	}
 
@@ -251,6 +265,16 @@ final class State
 		return $this->stats->total ?? 0;
 	}
 
+	public function subTotal (): float
+	{
+		return $this->stats->subTotal ?? 0;
+	}
+
+	public function discount (): float
+	{
+		return $this->stats->discount ?? 0;
+	}
+
 	public function setCalories (float $calories): float
 	{
 		$this->stats->calories = $calories;
@@ -279,6 +303,18 @@ final class State
 	{
 		$this->stats->total = $total;
 		return $this->stats->total;
+	}
+
+	public function setSubTotal (float $subTotal): float
+	{
+		$this->stats->subTotal = $subTotal;
+		return $this->stats->subTotal;
+	}
+
+	public function setDiscount (float $discount, $type = 'percent'): float
+	{
+		$this->stats->discount = $discount;
+		return $this->stats->discount;
 	}
 
 	public function resetStats (): void
