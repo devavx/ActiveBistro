@@ -172,17 +172,12 @@
 			changeMonth: true,
 			changeYear: true,
 			startDate: '{{date('Y-m-d',0)}}',
-			endDate: '0d',
-			dateFormat: "yy-m-dd"
+			endDate: '-10y',
 		});
 
-		// $('#dob').bootstrapMaterialDatePicker({ format: 'YYYY-MM-DD',time:false, maxDate: new Date() });
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
-		// $(document).on('click','#addGenderInfo', function(){
-		// 	$('#genderInfo').toggle();
-		// });
 
 		jQuery(function ($) {
 			$('#addGenderInfo[data-toggle="collapse"]').on('click', function () {
@@ -204,7 +199,6 @@
 						$('#email').after('<span class="error">Not eligible for special discount!.</span><br>');
 						return false;   // PASS validation otherwise
 					}
-					;
 				}
 				return true;
 			})
