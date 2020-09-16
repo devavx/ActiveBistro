@@ -20,26 +20,32 @@ use App\SliderSetting;
 use App\TermCondition;
 use Illuminate\Support\Facades\Auth;
 
-class FrontendController extends Controller {
-	public function index () {
+class FrontendController extends Controller
+{
+	public function index ()
+	{
 		$listData = SliderSetting::query()->where('active', 1)->get();
 		$homeData = HomeSetting::query()->where(['active' => 1, 'type' => 'home_content'])->get();
 		return view('frontend.index', compact(['listData', 'homeData']));
 	}
 
-	public function login () {
+	public function login ()
+	{
 		return view('frontend.login');
 	}
 
-	public function signup () {
+	public function signup ()
+	{
 		return view('frontend.sign_up');
 	}
 
-	public function tailorPlan () {
+	public function tailorPlan ()
+	{
 		return view('frontend.tailor_plan');
 	}
 
-	public function saveTailorPlan (TailorPlanRule $request) {
+	public function saveTailorPlan (TailorPlanRule $request)
+	{
 		$userData = Auth::user();
 		if (!empty($userData)) {
 			$userData->weight_total = $request->weight_total;
@@ -60,11 +66,13 @@ class FrontendController extends Controller {
 		return back();
 	}
 
-	public function recommendedMeal () {
+	public function recommendedMeal ()
+	{
 		return view('frontend.recommended_meal');
 	}
 
-	public function options () {
+	public function options ()
+	{
 		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get();
 		$quadruplets = [];
 		$set = [];
@@ -83,7 +91,8 @@ class FrontendController extends Controller {
 		return view('frontend.options')->with('allergies', $quadruplets);
 	}
 
-	public function saveOptions () {
+	public function saveOptions ()
+	{
 		$state = new State(\auth()->user());
 		$state->setMealsAtWeekends(request('meals_at_weekends', 0) == 1);
 		$state->setMealsPerDay(request('meals_per_day', 2));
@@ -95,41 +104,49 @@ class FrontendController extends Controller {
 		return redirect()->route('cart.index');
 	}
 
-	public function ourmenu () {
+	public function ourmenu ()
+	{
 		return view('frontend.our-menu');
 	}
 
-	public function about () {
+	public function about ()
+	{
 		return view('frontend.aboutus');
 	}
 
-	public function contact () {
+	public function contact ()
+	{
 		$data = HomeSetting::where('type', 'contact_us')->select('other_option')->first();
 		$recordData = json_decode($data->other_option);
 		return view('frontend.contactus', compact('recordData'));
 	}
 
-	public function howItWork () {
+	public function howItWork ()
+	{
 		$listData = HowItWork::where('active', 1)->get();
 		return view('frontend.howitwork', compact('listData'));
 	}
 
-	public function getFaq () {
+	public function getFaq ()
+	{
 		$listData = Faq::where('active', 1)->get();
 		return view('frontend.faqs', compact('listData'));
 	}
 
-	public function termCondition () {
+	public function termCondition ()
+	{
 		$listData = TermCondition::where('active', 1)->get();
 		return view('frontend.term_condition', compact('listData'));
 	}
 
-	public function privacyPolicy () {
+	public function privacyPolicy ()
+	{
 		$listData = PrivacyPolicy::where('active', 1)->get();
 		return view('frontend.privacy_policy', compact('listData'));
 	}
 
-	public function getAllItem () {
+	public function getAllItem ()
+	{
 		$query = Item::where('active', 1);
 		if (!empty(request('type'))) {
 			$query->where('item_type_id', request('type'));
@@ -141,7 +158,8 @@ class FrontendController extends Controller {
 		return view('frontend.all_item', compact(['listData', 'categoryData', 'itemTypeData']));
 	}
 
-	public function getAllMeal () {
+	public function getAllMeal ()
+	{
 		$query = MealPlan::with('items')->whereNotNull('day')->where('active', 1);
 		if (!empty(request('type'))) {
 			$query->where('item_type_id', request('type'));
@@ -171,11 +189,13 @@ class FrontendController extends Controller {
 		return view('frontend.all_meal', compact(['listData', 'categoryData', 'itemTypeData']))->with('items', $items);
 	}
 
-	protected function imperialToMetricLength ($value) {
+	protected function imperialToMetricLength ($value)
+	{
 		return round($value * 30.48, 2);
 	}
 
-	protected function imperialToMetricWeight ($value) {
+	protected function imperialToMetricWeight ($value)
+	{
 		return round($value / 2.20462, 2);
 	}
 }
