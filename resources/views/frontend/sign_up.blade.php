@@ -126,19 +126,19 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror 
-			        	</div>  
-			        	<div class="form-group">
-			        		<label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
-			        		<div class="custom-control custom-checkbox ">
-							  <input type="checkbox" class="custom-control-input" id="click_to_verify" name="click_to_verify">
-							  <label class="custom-control-label" for="verify1">Click to verify</label>
-							</div>
 			        	</div>
+				        <div class="form-group">
+					        <label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
+					        <div class="custom-control custom-checkbox ">
+						        <input type="checkbox" class="custom-control-input" id="click_to_verify" name="click_to_verify">
+						        <label class="custom-control-label" for="click_to_verify">Click to verify</label>
+					        </div>
+				        </div>
 
-			        	<div class="form-group row">
-			        		<label class="col-lg-2 col-sm-3 col-12">Email ID </label>
-			        		<div class="col-lg-10 col-sm-9 col-12">
-			        			<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+				        <div class="form-group row">
+					        <label class="col-lg-2 col-sm-3 col-12">Email ID </label>
+					        <div class="col-lg-10 col-sm-9 col-12">
+						        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 			        		</div>
 			        		@error('email')
                                 <span class="invalid-feedback" role="alert">
