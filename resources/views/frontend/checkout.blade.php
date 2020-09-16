@@ -200,7 +200,7 @@
 						<hr>
 
 						<h6 class="font-weight-bold text-color">Your weekly subscription:</h6>
-						<p>3 meals & 1 snack every week day.</p>
+						<p>{{$state->getMealsPerDay()}} meals & 1 snack every week day.</p>
 
 						<hr>
 

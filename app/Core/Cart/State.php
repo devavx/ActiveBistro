@@ -104,6 +104,12 @@ final class State
 			$meal->prepare();
 			$this->cards->$day[] = $meal;
 		});
+		if (!$this->getMealsAtSunday()) {
+			$this->cards->sunday = [];
+		}
+		if (!$this->getMealsAtSaturday()) {
+			$this->cards->saturday = [];
+		}
 		foreach ($this->cards as $key => $value) {
 			foreach ($value as $plan) {
 				foreach ($plan->allergies->pluck('id') as $allergyId) {
