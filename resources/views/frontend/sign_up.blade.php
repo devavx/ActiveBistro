@@ -2,8 +2,7 @@
 @section('title') Active Bistro | SignUp @endsection
 @section('css')
 	<!-- Date picker plugins css -->
-	<!--  <link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet" type="text/css" />  -->
-	<link href="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/css/jquery-ui.css') }}" rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
         .invalid-feedback {
             display: block !important;
@@ -165,8 +164,7 @@
 @endsection
 @section('script')
 	<script src="{{ asset('assets/node_modules/moment/moment.js') }}"></script>
-	<!-- <script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script> -->
-	<script src="{{ asset('assets/node_modules/bootstrap-material-datetimepicker/js/jquery-ui.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script>
 
