@@ -174,7 +174,7 @@
 			changeMonth: true,
 			changeYear: true,
 			startDate: '{{date('Y-m-d',0)}}',
-			endDate: '{{date('Y-m-d')}}',
+			endDate: '0d',
 			dateFormat: "yy-m-dd"
 		});
 
