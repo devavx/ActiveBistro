@@ -54,7 +54,7 @@
 			<div class="col-lg-3 col-sm-3 col-12">
 				<form id="filter_form">
 					<div class="form-group mb-0">
-						<select class="form-control" name="type" id="type">
+						<select class="form-control" name="type" id="type" onchange="handleFilterChanged(this.value);">
 							<option value="none" selected>Dietary Filter</option>
 							@foreach($types as $type)
 								<option value="{{ $type->id }}" @if($chosen==$type->id) selected @endif>{{ $type->name }}</option>
@@ -177,10 +177,8 @@
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
-		$(document).ready(function () {
-			$(document).on('change', '#filter_form', function () {
-				$('#filter_form').submit();
-			})
-		})
+		handleFilterChanged = (value) => {
+			$('#filter_form').submit();
+		};
 	</script>
 @endsection

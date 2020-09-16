@@ -19,7 +19,15 @@ class StoreRequest extends FormRequest
 		return request('payment_slab');
 	}
 
-	public function hasSeparateAddresses (): bool
+	public function coupon ()
+	{
+		return (object)[
+			'code' => null,
+			'isValid' => false
+		];
+	}
+
+	public function containsMultiAddresses (): bool
 	{
 		return request()->has('separate_addresses');
 	}

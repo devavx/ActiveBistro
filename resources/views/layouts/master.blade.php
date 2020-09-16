@@ -18,25 +18,25 @@
 </head>
 <body>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-12">
-				<div class="mdblock">
-					<li class="nav-item">
-					    <span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
-				    </li>
-				</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="mdblock">
+				<li class="nav-item">
+					<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+				</li>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<hr class="mt-1 mb-0 mdblock">
+<hr class="mt-1 mb-0 mdblock">
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow">
 	<div class="container">
 		<a class="navbar-brand" href="{{ url('') }}"><img src="{{ asset('uploads/image/logo.png') }}"></a>
 
-		<!-- <ul class="navbar-nav mdblock mx-auto">
+	<!-- <ul class="navbar-nav mdblock mx-auto">
 			<li class="nav-item dropdown text-dark mt-2">
 			    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
 			    aria-haspopup="true" aria-expanded="false">Login</a>
@@ -53,13 +53,14 @@
 		</button>
 		<div class="collapse navbar-collapse" id="activebistronavbar">
 			<ul class="navbar-nav mx-auto">
-				<div class="offcanvas-header mt-3">  
+				<div class="offcanvas-header mt-3">
 
-			      <button class="btn p-2 btn-close float-right"> <i class="fa fa-times"></i></button>
+					<button class="btn p-2 btn-close float-right"><i class="fa fa-times"></i></button>
 
-			      <h5 class="py-2 text-white"><img src="{{ asset('uploads/image/logo.png') }}" class="toggle-brand"></h5>
-			    </div>
-			    <li class="nav-item mdblock">
+					<h5 class="py-2 text-white"><img src="{{ asset('uploads/image/logo.png') }}" class="toggle-brand">
+					</h5>
+				</div>
+				<li class="nav-item mdblock">
 					<a class="nav-link" href="{{ url('/sign-in') }}">Log in</a>
 				</li>
 				<li class="nav-item mdblock">
@@ -94,7 +95,7 @@
 					</li>
 					<li class="nav-item dropdown mt-2">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-						   aria-haspopup="true" aria-expanded="false">My Account</a>
+								aria-haspopup="true" aria-expanded="false">My Account</a>
 						<div class="dropdown-menu dropdown-primary pt-0 pb-0" aria-labelledby="navbarDropdownMenuLink">
 							@if(Auth::user()->role->name=='admin')
 								<a class="dropdown-item" href="{{ url('admin') }}">My Admin</a>
@@ -132,36 +133,41 @@
 			</div>
 
 			<div class="col-lg-6 col-sm-6 col-12">
-<div class="row">
-<div class="col-lg-6 col-sm-6 col-12">
-<div class="footer-middel">
-					<h5 class="text-white mb-0">Company</h5>
-					<hr>
-					<ul>
-						<li><a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a></li>
-						
-						<li><a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy &
-								Policy</a></li>
-						<li><a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Term &
-								Use</a></li>
-					</ul>
-				</div>
-</div>
+				<div class="row">
+					<div class="col-lg-6 col-sm-6 col-12">
+						<div class="footer-middel">
+							<h5 class="text-white mb-0">Company</h5>
+							<hr>
+							<ul>
+								<li><a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a>
+								</li>
 
-<div class="col-lg-6 col-sm-6 col-12">
-<div class="footer-middel">
-					<h5 class="text-white mb-0">Support</h5>
-					<hr>
-					<ul>
-					
-						<li><a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a></li>
-						<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+								<li>
+									<a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy &
+										Policy</a></li>
+								<li>
+									<a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Term &
+										Use</a></li>
+							</ul>
+						</div>
+					</div>
 
-					</ul>
+					<div class="col-lg-6 col-sm-6 col-12">
+						<div class="footer-middel">
+							<h5 class="text-white mb-0">Support</h5>
+							<hr>
+							<ul>
+
+								<li>
+									<a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a>
+								</li>
+								<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+
+							</ul>
+						</div>
+					</div>
 				</div>
-</div>
-</div>
-				
+
 			</div>
 
 			<div class="col-lg-3 col-sm-3 col-12">

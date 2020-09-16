@@ -19,6 +19,7 @@ use App\Models\Cart;
 use App\PrivacyPolicy;
 use App\SliderSetting;
 use App\TermCondition;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -110,7 +111,16 @@ class FrontendController extends Controller
 
 	public function ourmenu ()
 	{
-		return view('frontend.our-menu');
+		$types = ItemType::query()->where('active', 1)->get();
+		$meals = MealPlan::query()->with('images', 'allergies', 'items')->where('active', 1)->whereNull('day');
+		$type = request('type', 'none');
+		if ($type != 'none') {
+			$meals->whereHas('items', function (Builder $query) use ($type) {
+				$query->whereKey($type);
+			});
+		}
+		$meals = $meals->get();
+		return view('frontend.our-menu')->with('meals', $meals)->with('types', $types)->with('chosen', request('type', 'none'));
 	}
 
 	public function about ()

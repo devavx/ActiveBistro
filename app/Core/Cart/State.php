@@ -59,9 +59,9 @@ final class State
 	{
 		$exists = $this->createCartIfNotExists($user);
 		if (!$exists) {
+			$this->createDefaultOptions($options);
 			$this->createBlankCards();
 			$this->createBlankStats();
-			$this->createDefaultOptions($options);
 			$this->createSnapshot();
 		} else {
 			$this->loadSnapshot();

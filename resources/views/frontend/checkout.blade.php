@@ -227,7 +227,7 @@
 							<a class="text-color" id="coupantoggle"> Click here.</a></p>
 
 						<div class="form-group" id="showcoupantextfield" style="display: none;">
-							<input type="text" class="form-control" placeholder="Enter coupon code">
+							<input type="text" class="form-control" placeholder="Enter coupon code" name="coupon_code">
 						</div>
 
 						<p class="text-center">
@@ -252,11 +252,11 @@
 	<script src="{{asset("js/parsley.js")}}"></script>
 
 	<script>
-		$("#coupantoggle").click(function(){
-		  $("#showcoupantextfield").toggle();
+		$("#coupantoggle").click(function () {
+			$("#showcoupantextfield").toggle();
 		});
 	</script>
-	
+
 	<script>
 		let current_fs, next_fs, previous_fs, opacity;
 

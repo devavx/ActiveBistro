@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('address_id');
 			$table->unsignedBigInteger('second_address_id');
-			$table->string('invoice_id');
+			$table->string('invoice_id', 25);
+			$table->string('coupon_code', 25)->nullable();
 			$table->enum('payment_slab', ['monthly', 'weekly']);
 			$table->integer('quantity')->default(0);
 			$table->double('sub_total', 8, 2);

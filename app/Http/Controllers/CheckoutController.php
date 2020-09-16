@@ -47,7 +47,7 @@ class CheckoutController extends Controller
 		$state = new State(auth()->user());
 		$user = auth()->user();
 		$items = $state->meals();
-		if ($request->hasSeparateAddresses()) {
+		if ($request->containsMultiAddresses()) {
 			$addressCollection = $user->addresses()->createMany($request->addresses())->toArray();
 			$address = $addressCollection[0];
 			$secondAddress = $addressCollection[1];
@@ -55,6 +55,7 @@ class CheckoutController extends Controller
 				'address_id' => $address->getKey(),
 				'second_address_id' => $secondAddress->getKey(),
 				'invoice_id' => $state->invoice()->id,
+				'coupon_code' => $request->coupon()->code,
 				'payment_slab' => $request->paymentSlab(),
 				'quantity' => $items->count(),
 				'sub_total' => $items->sum(function (\stdClass $meal) {
@@ -87,6 +88,7 @@ class CheckoutController extends Controller
 				'address_id' => $sunday->getKey(),
 				'second_address_id' => $wednesday->getKey(),
 				'invoice_id' => $state->invoice()->id,
+				'coupon_code' => $request->coupon()->code,
 				'payment_slab' => $request->paymentSlab(),
 				'quantity' => $items->count(),
 				'sub_total' => $items->sum(function (\stdClass $meal) {
