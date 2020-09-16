@@ -65,7 +65,7 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Phone <sup class="text-danger">*</sup></label>
-									<input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{ old('phone') }}" required autocomplete="phone">
+									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" minlength="8" id="phone" value="{{ old('phone') }}" required autocomplete="phone">
 								</div>
 								@error('phone')
 								<span class="invalid-feedback" role="alert">
@@ -214,7 +214,6 @@
 					last_name: {required: true,},
 					phone: {
 						required: true,
-						number: true,
 						minlength: 8,
 						maxlength: 13,
 					},

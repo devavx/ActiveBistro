@@ -13,7 +13,7 @@ use DeepCopy\DeepCopy;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 
-class State
+final class State
 {
 	/**
 	 * Maximum quantity of a meal plan in the cart.
@@ -53,14 +53,15 @@ class State
 	/**
 	 * State constructor.
 	 * @param $user Authenticatable|User
+	 * @param Options|null $options
 	 */
-	public function __construct ($user)
+	public function __construct ($user, Options $options = null)
 	{
 		$exists = $this->createCartIfNotExists($user);
 		if (!$exists) {
 			$this->createBlankCards();
 			$this->createBlankStats();
-			$this->createDefaultOptions();
+			$this->createDefaultOptions($options);
 			$this->createSnapshot();
 		} else {
 			$this->loadSnapshot();
@@ -174,15 +175,18 @@ class State
 		];
 	}
 
-	protected function createDefaultOptions (): void
+	protected function createDefaultOptions (Options $options = null): void
 	{
+		if ($options == null) {
+			$options = new Options();
+		}
 		$this->options = (object)[
-			'allergies' => [],
-			'weekends' => (object)['saturday' => false, 'sunday' => false],
-			'breakfast' => false,
-			'snacks' => false,
-			'mealsPerDay' => 0,
-			'dietary_requirement' => DietaryRequirement::None
+			'allergies' => $options->getAllergies(),
+			'weekends' => $options->getMealsAtWeekends(),
+			'breakfast' => $options->wantBreakfast(),
+			'snacks' => $options->wantSnacks(),
+			'mealsPerDay' => $options->getMealsPerDay(),
+			'dietary_requirement' => $options->getDietaryRequirement()
 		];
 	}
 

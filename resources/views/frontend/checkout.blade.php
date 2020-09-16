@@ -126,7 +126,7 @@
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="number" class="form-control" name="address[sunday][postcode]" min="1000" max="9999999" step="1" data-parsley-group='["sunday_address","address"]' required>
+										<input type="text" class="form-control" name="address[sunday][postcode]" minlength="4" maxlength="8" data-parsley-group='["sunday_address","address"]' required>
 									</div>
 								</div>
 							</div>
@@ -142,7 +142,7 @@
 							</div>
 							<div class="form-group">
 								<label>Address Line 1</label>
-								<input type="text" class="form-control" name="address[wednesday][address_first_line]" value="Wednesday" data-parsley-group="address" minlength="2" maxlength="100">
+								<input type="text" class="form-control" name="address[wednesday][address_first_line]" data-parsley-group="address" minlength="2" maxlength="100">
 							</div>
 
 							<div class="form-group">
@@ -159,7 +159,7 @@
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="text" class="form-control" name="address[wednesday][postcode]" min="1000" max="9999999" step="1" data-parsley-group="address">
+										<input type="text" class="form-control" name="address[wednesday][postcode]" minlength="4" max="8" data-parsley-group="address">
 									</div>
 								</div>
 							</div>
@@ -180,13 +180,9 @@
 					</fieldset>
 
 					<fieldset class="pl-4 pr-4">
-
-
 						<div class="form-group">
-							<p>This is a flexible subscription service. You can edit, pause or cancel your plan at any
-								point in time after purchase.</p>
+							<p>This is a flexible subscription service. You can edit, pause or cancel your plan at any point in time after purchase.</p>
 						</div>
-
 
 						<div class="form-group">
 							<div class="custom-control custom-radio">
@@ -209,11 +205,11 @@
 						<hr>
 
 						<h6>10% off your first two weeks promo
-							<span class="font-weight-bold text-color float-right">£ {{round($state->total()/10.0,2)}}</span>
+							<span class="font-weight-bold text-color float-right">&pound; {{round($state->total()/10.0,2)}}</span>
 						</h6>
-						<p>Week 1 discount<span class="float-right font-weight-bold">£ {{round($state->total()/10.0,2)}}</span>
+						<p>Week 1 discount<span class="float-right font-weight-bold">&pound; {{round($state->total()/10.0,2)}}</span>
 						</p>
-						<p>Week 2 discount<span class="float-right font-weight-bold">£ {{round($state->total()/10.0,2)}}</span>
+						<p>Week 2 discount<span class="float-right font-weight-bold">&pound; {{round($state->total()/10.0,2)}}</span>
 						</p>
 
 						<hr>
@@ -222,11 +218,13 @@
 							<span class="font-weight-bold text-color float-right">Free</span></h6>
 						<hr>
 
-						<p>Total per week<span class="float-right font-weight-bold">£ {{$state->total()}}</span></p>
-						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">£ {{$state->total()-(round($state->total()/10.0,2)*2)}}</span>
+						<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
+						</p>
+						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->total()-(round($state->total()/10.0,2)*2)}}</span>
 						</p>
 
-						<p>Referred by a friend or got a coupon? <a class="text-color" id="coupantoggle"> Click here.</a></p>
+						<p>Referred by a friend or got a coupon?
+							<a class="text-color" id="coupantoggle"> Click here.</a></p>
 
 						<div class="form-group" id="showcoupantextfield" style="display: none;">
 							<input type="text" class="form-control" placeholder="Enter coupon code">
@@ -237,10 +235,9 @@
 						</p>
 
 						<div class="custom-control custom-checkbox ">
-							<input type="checkbox" class="custom-control-input" id="agree" name="payslot">
+							<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
 							<label class="custom-control-label" for="agree">You have read and agree to our T&C's</label>
 						</div>
-
 
 						<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
 

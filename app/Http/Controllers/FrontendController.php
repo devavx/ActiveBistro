@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
@@ -93,13 +94,16 @@ class FrontendController extends Controller
 
 	public function saveOptions ()
 	{
-		$state = new State(\auth()->user());
-		$state->setMealsAtWeekends(request('meals_at_weekends', 0) == 1);
-		$state->setMealsPerDay(request('meals_per_day', 2));
-		collect(request('allergies', []))->each(function ($allergy) use ($state) {
-			$state->addAllergy($allergy);
-		});
-		$state->setDietaryRequirement(request('dietary_requirement', DietaryRequirement::None));
+		$options = new Options();
+		if (request('meals_at_weekends', 0) == 1) {
+			$options->setMealsAtWeekends((object)[DaysOfWeek::Saturday => true, DaysOfWeek::Sunday => true]);
+		} else {
+			$options->setMealsAtWeekends((object)[DaysOfWeek::Saturday => false, DaysOfWeek::Sunday => false]);
+		}
+		$options->setMealsPerDay(request('meals_per_day', 2));
+		$options->setAllergies(request('allergies', []));
+		$options->setDietaryRequirement(request('dietary_requirement', DietaryRequirement::None));
+		$state = new State(\auth()->user(), $options);
 		$state->update();
 		return redirect()->route('cart.index');
 	}
@@ -191,7 +195,7 @@ class FrontendController extends Controller
 
 	protected function imperialToMetricLength ($value)
 	{
-		return round($value * 30.48, 2);
+		return round($value * 30.48, 0);
 	}
 
 	protected function imperialToMetricWeight ($value)
