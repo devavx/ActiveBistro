@@ -181,26 +181,30 @@
 		    .data('text-alt', $(this).data('text-original'));
 		  });
 		});
-	$(document).ready(function () {   
-		$("#msform").on("submit", function(){ 
-		    if($("#click_to_verify").prop('checked') == true){  
+    $(document).ready(function () {
+	    $("#msform").on("submit", function () {
+		    if ($("#click_to_verify").prop('checked') == true) {
 			    str = $('#email').val();
-			    str = str.split('.').slice(1); 
-			    var allowedDomains = ['nhs','ac'];  
+			    str = str.split('.').slice(1);
+			    var allowedDomains = ['nhs', 'ac'];
 			    if ($.inArray(str[0], allowedDomains) !== -1) {
-			        return true;  // FAIL validation when REGEX matches
-			    } else { 
-			    	$('#email').after('<span class="error">Sorry,Please enter a valid email I have enabled very strict email validation.</span>');
-			        return false;   // PASS validation otherwise
-			    };  
-			} 
-		   return true;
-		})
-		 
+				    return true;  // FAIL validation when REGEX matches
+			    } else {
+				    $('#email').after('<span class="error">Not eligible for special discount!.</span><br>');
+				    return false;   // PASS validation otherwise
+			    }
+			    ;
+		    }
+		    return true;
+	    })
 
-           $('#msform').validate({ // initialize the plugin
-                rules: { 
-                    first_name: {required: true,minlength:4},
+
+	    $('#msform').validate({ // initialize the plugin
+		    rules: {
+			    first_name: {
+				    required: true,
+				    minlength: 4
+			    },
                     last_name: { required: true, },
                     phone: { required: true,number: true,minlength:8,maxlength:13,},
                     gender: { required: true,},
