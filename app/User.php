@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Core\Enums\Common\ActivityLevel;
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Time;
@@ -32,13 +33,13 @@ class User extends Authenticatable
 	];
 
 	protected $activityLevel = [
-		-1 => 2.4,
-		1 => 1.2,
-		2 => 1.4,
-		3 => 1.6,
-		4 => 1.75,
-		5 => 2,
-		6 => 2.4,
+		ActivityLevel::None => 2.4,
+		ActivityLevel::Sedentary => 1.2,
+		ActivityLevel::Light => 1.4,
+		ActivityLevel::Moderate => 1.6,
+		ActivityLevel::Very => 1.75,
+		ActivityLevel::Extra => 2,
+		ActivityLevel::Athlete => 2.4,
 	];
 
 	public function role (): BelongsTo
@@ -112,30 +113,34 @@ class User extends Authenticatable
 		}
 	}
 
-	public function calories (): float
+	public function calories (bool $round = true): float
 	{
-		$index = empty($this->activity_lavel) ? intval($this->activity_lavel) : 1;
-		if (!isset($this->activityLevel[$index]))
-			return $this->metabolicRate() * $this->activityLevel[-1];
+		$level = empty($this->activity_lavel) ? intval($this->activity_lavel) : ActivityLevel::Sedentary;
+		if (!isset($this->activityLevel[$level]))
+			$multiplier = $this->activityLevel[ActivityLevel::None];
 		else
-			return $this->metabolicRate() * $this->activityLevel[$index];
+			$multiplier = $this->activityLevel[$level];
+		if (!$round)
+			return $this->metabolicRate() * $multiplier;
+		else
+			return round($this->metabolicRate() * $multiplier, 0);
 	}
 
 	public function proteins (): float
 	{
-		$calories = $this->calories();
-		return round((0.2 * $calories) / 4.0, 2);
+		$calories = $this->calories(false);
+		return round((0.2 * $calories) / 4.0, 0);
 	}
 
 	public function carbohydrates (): float
 	{
-		$calories = $this->calories();
-		return round((0.3 * $calories) / 9.0, 2);
+		$calories = $this->calories(false);
+		return round((0.5 * $calories) / 4.0, 0);
 	}
 
 	public function fats (): float
 	{
-		$calories = $this->calories();
-		return round((0.5 * $calories) / 4.0, 2);
+		$calories = $this->calories(false);
+		return round((0.3 * $calories) / 9.0, 0);
 	}
 }
