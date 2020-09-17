@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Allergy @endsection
+@section('title') Admin | Coupons @endsection
 
 @section('style')
 	<link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,15 +27,15 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Allergy List</h4>
+					<h4 class="text-themecolor">Coupon List</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item active">Allergy</li>
+							<li class="breadcrumb-item active">Coupon</li>
 						</ol>
-						<a href="{{ url('/admin/allergy/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
+						<a href="{{ url('/admin/coupons/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Allergy List</h4>
+							<h4 class="card-title">Coupons List</h4>
 							<div class="text-right">
 								<button type="button" onclick="confirmDeleteBulk();" class="btn btn-primary mr-4">
 									<i class="fa fa-trash mr-2"></i>Delete
@@ -77,46 +77,48 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
-										<th>Name</th>
+										<th>Code</th>
 										<th>Description</th>
-										<th>Status</th>
+										<th>Valid From</th>
+										<th>Valid Until</th>
+										<th>Active</th>
 										<th>Created At</th>
 										<th>Action</th>
 									</tr>
 									</thead>
 									<tbody>
-									@if(!empty(@listData))
-										@foreach($listData as $rows)
+									@if(count($coupons)>0)
+										@foreach($coupons as $coupon)
 											<tr>
 												<td>
-													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
+													<label><input type="checkbox" name="delete_target" value="{{$coupon->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 												<td>{{$loop->index+1}}</td>
 
 												<td>
-													<a href="javascript:void(0)" data-value="{{ $rows->description ?? '-'}}" id="{{ $rows->id }}" class="detailmodal"> {{ $rows->name ?? '-'}} </a>
+													{{ $coupon->code}}
 												</td>
-												<td>{{ $rows->description ?? '-'}} </td>
-												@if($rows->active)
+												<td>{{ $coupon->description ?? '-'}} </td>
+												<td>{{ $coupon->valid_from ?? '-'}} </td>
+												<td>{{ $coupon->valid_until ?? '-'}} </td>
+												@if($coupon->active)
 													<td>
-														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
+														<button type="button" class="btn btn-success change_status" id="{{ $coupon->id }}" data-id="{{ $coupon->active }}">
 															Active
 														</button>
 													</td>
 												@else
 													<td>
-														<button type="button" class="btn btn-danger change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
+														<button type="button" class="btn btn-danger change_status" id="{{ $coupon->id }}" data-id="{{ $coupon->active }}">
 															Inactive
 														</button>
 													</td>
 												@endif
 												<td>
-													<p class="created_at" id="{{$rows->id}}"> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</p>
+													<p class="created_at" id="{{$coupon->id}}"> {{ changeDateFormat($coupon->created_at,'M-d-Y') }}</p>
 												</td>
 												<td style="text-align: center; ">
-													<a class="like" href="{{ route('admin.allergy.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a>
-													/
-													<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
+													<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $coupon->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 												</td>
 											</tr>
 										@endforeach
@@ -222,14 +224,14 @@
 		});
 
 		function confirmDelete(id) {
-			url = "{{ url('/admin/allergy/delete/') }}/" + id;
+			url = "{{ url('/admin/coupons/delete/') }}/" + id;
 			deleteConfirmMessage(id, url, 'remove');
 		}
 
 		$(document).ready(function () {
 			$(document).on('click', '.change_status', function () {
 				var id = $(this).attr('id');
-				url = "{{ url('/admin/allergy/change_status/') }}/" + id;
+				url = "{{ url('/admin/coupons/change_status/') }}/" + id;
 				var status_val = $(this).attr('data-id');
 				changeStatusConfirmMessage(id, url, 'change_status');
 			});
@@ -242,7 +244,7 @@
 		}
 
 		function confirmDeleteBulk() {
-			const url = "{{ url('/admin/allergy/delete') }}";
+			const url = "{{ url('/admin/coupons/delete') }}";
 			const items = [];
 			$("input:checkbox[name=delete_target]:checked").each(function () {
 				const parsed = Number.parseInt($(this).val());

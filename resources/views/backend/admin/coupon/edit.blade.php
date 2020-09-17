@@ -1,10 +1,13 @@
 @extends('backend.master')
 
-@section('title') Admin | Allergy | Edit @endsection
+@section('title') Admin | Coupons | Edit @endsection
 
 @section('style')
+	<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
-
+        .error {
+            color: red;
+        }
 	</style>
 @endsection
 @section('content')
@@ -18,13 +21,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Edit Ingredient</h4>
+					<h4 class="text-themecolor">Edit Coupon</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/ingredient') }}">Ingredient</a></li>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/coupons') }}">Coupon</a></li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ol>
 						<!-- <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
@@ -35,7 +38,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Edit Ingredient</h4>
+							<h4 class="m-b-0 text-white">Edit Coupon</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -61,30 +64,50 @@
 								</button>
 								<ul class="p-0 m-0" style="list-style: none;">
 									@foreach($errors->all() as $error)
-										<li>{{$error}}</li>
+										<li>{{ $error }}</li>
 									@endforeach
 								</ul>
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.ingredient.update',$record->id) }}" method="post">
+							<form action="{{ route('admin.coupons.update') }}" method="post" id="add_form">
 								@csrf
-								@method('PUT')
 								<div class="form-body">
 									<hr>
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-6">
 											<div class="form-group">
-												<label>Name</label>
-												<input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}">
+												<label>Code</label>
+												<input type="text" name="code" id="name" class="form-control" placeholder="Enter code.." required value="{{old('code',$coupon->code)}}" readonly>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Description(Optional)</label>
+												<input type="text" name="description" id="description" class="form-control" placeholder="Enter Description.." value="{{old('description',$coupon->description)}}">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Valid From</label>
+												<input type="text" id="code" name="valid_from" class="form-control" required placeholder="Valid from date..." readonly value="{{old('valid_from',$coupon->valid_from)}}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Valid Until</label>
+												<input type="text" name="valid_until" id="description" class="form-control" required placeholder="Valid until date..." readonly value="{{old('valid_until',$coupon->valid_until)}}">
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="form-actions">
-									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
+									<button type="submit" id="add_btn" class="btn btn-success">
+										<i class="fa fa-check"></i> Save
 									</button>
-									<a href="{{ route('admin.ingredient.index') }}" class="btn btn-inverse">Cancel</a>
+									<a href="{{ route('admin.coupons.index') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>
@@ -95,8 +118,41 @@
 	</div>
 @endsection
 @section('script')
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+	<script type="text/javascript">
 
-	<script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
+		$(document).ready(function () {
+			$("input[name=valid_from]").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				startDate: '{{date('Y-m-d')}}',
+				endDate: '+1y',
+			});
+
+			$("input[name=valid_until]").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				startDate: '{{date('Y-m-d',time()+86400)}}',
+				endDate: '+1y',
+			});
+
+			$('#add_form').validate({ // initialize the plugin
+				rules: {
+					code: {
+						required: true,
+					},
+				}
+			});
+
+			$(document).on('click', '#edit_profile', function () {
+				if (!$("#add_form").valid()) { // Not Valid
+					return false;
+				} else {
+
+				}
+			});
+		});
+	</script>
 @endsection
        

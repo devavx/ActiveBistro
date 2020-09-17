@@ -79,6 +79,13 @@ $uri2 = Request::segment(2);
 					</ul>
 				</li>
 				<li>
+					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Coupons</span></a>
+					<ul aria-expanded="false" class="collapse">
+						<li><a href="{{ route('admin.coupons.index') }}">Coupons List</a></li>
+						<li><a href="{{ route('admin.coupons.create') }}">New coupon</a></li>
+					</ul>
+				</li>
+				<li>
 					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Orders</span></a>
 					<ul aria-expanded="false" class="collapse">
 						<li><a href="{{ url('/admin/orders') }}">Orders</a></li>

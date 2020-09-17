@@ -201,4 +201,20 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 		Route::get('show/{id}', 'Admin\MealPlanController@show');
 	});
 	Route::resource('meals', 'Admin\MealPlanController');
+
+	/*
+	|--------------------------------------------------------------------------
+	| Coupons Namespace Route(s)
+	|--------------------------------------------------------------------------
+	|
+	*/
+	Route::prefix('coupons')->group(static function () {
+		Route::get(Str::Empty, 'Admin\CouponController@index')->name('coupons.index');
+		Route::get('create', 'Admin\CouponController@create')->name('coupons.create');
+		Route::get('{id}/edit', 'Admin\CouponController@edit')->name('coupons.edit');
+		Route::post(Str::Empty, 'Admin\CouponController@store')->name('coupons.store');
+		Route::get('change_status/{id}', 'Admin\CouponController@changeStatus')->name('coupons.update.status');
+		Route::get('delete/{id}', 'Admin\CouponController@delete')->name('coupons.delete');
+		Route::delete('delete', 'Admin\CouponController@deleteBulk')->name('coupons.delete.bulk');
+	});
 });
