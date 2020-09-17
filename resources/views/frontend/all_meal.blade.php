@@ -81,7 +81,7 @@
 
 			var carousels = function () {
 				$(".owl-carousel1").owlCarousel({
-					// loop: true,
+					loop: true,
 					center: true,
 					margin: 0,
 
@@ -95,7 +95,7 @@
 						680: {
 							items: 2,
 							nav: false,
-							loop: false
+							loop: true
 						},
 						1000: {
 							items: 3,
