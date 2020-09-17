@@ -92,13 +92,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Valid From</label>
-												<input type="text" id="code" name="valid_from" class="form-control" required placeholder="Valid from date..." readonly value="{{old('valid_from')}}">
+												<input type="text" id="code" name="valid_from" class="form-control" required placeholder="Valid from date..." readonly value="{{old('valid_from')}}" style="background-color: white;">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Valid Until</label>
-												<input type="text" name="valid_until" id="description" class="form-control" required placeholder="Valid until date..." readonly value="{{old('valid_until')}}">
+												<input type="text" name="valid_until" id="description" class="form-control" required placeholder="Valid until date..." readonly value="{{old('valid_until')}}" style="background-color: white;">
 											</div>
 										</div>
 									</div>
