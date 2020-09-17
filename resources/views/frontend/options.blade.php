@@ -84,17 +84,17 @@
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-one" value="2" name="snacksPerDay"/>
+											<input type="radio" id="radio-two" value="2" name="snacksPerDay"/>
 											<label for="radio-one" class="snack_count">2 Snack per day</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-one" value="3" name="snacksPerDay"/>
+											<input type="radio" id="radio-three" value="3" name="snacksPerDay"/>
 											<label for="radio-one" class="snack_count">3 Snack per day</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-one" value="0" name="snacksPerDay"/>
+											<input type="radio" id="radio-four" value="0" name="snacksPerDay"/>
 											<label for="radio-one" class="snack_count">No Snack</label>
 										</div>
 
