@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('title') Active Bistro | All Meals @endsection
 @section('css')
+	<link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
 	<link href="{{ asset("assets/node_modules/select2/dist/css/select2.min.css") }}" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -9,8 +11,6 @@
 	</style>
 @endsection
 @section('content')
-	<link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">

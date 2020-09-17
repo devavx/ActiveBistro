@@ -34,11 +34,11 @@ class CheckoutController extends Controller
 		$state = new State(auth()->user());
 		$total = $state->total();
 		$rebates = new \stdClass();
-		$rebates->weekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
-		$rebates->firstWeekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
-		$rebates->secondWeekRebate = (object)['value' => 10, 'calculated' => percentOf($total, 10)];
+		$rebates->weekRebate = $this->makeRebateOf($total, 10);
+		$rebates->firstWeekRebate = $this->makeRebateOf($total, 10);
+		$rebates->secondWeekRebate = $this->makeRebateOf($total, 10);
 		if (auth()->user()->click_to_verify == 1) {
-			$rebates->staffRebate = (object)['value' => 25, 'calculated' => percentOf($total, 25)];
+			$rebates->staffRebate = $this->makeRebateOf($total, 25);
 		}
 		$totalRebate = 0;
 		foreach ($rebates as $key => $rebate) {
@@ -133,5 +133,15 @@ class CheckoutController extends Controller
 		$payload['total'] = $state->total();
 		$response = $this->provider->setExpressCheckout($payload);
 		return redirect()->to($response['paypal_link']);
+	}
+
+	/**
+	 * @param float $total
+	 * @param float $percent
+	 * @return object
+	 */
+	protected function makeRebateOf (float $total, float $percent): object
+	{
+		return (object)['value' => $percent, 'calculated' => percentOf($total, $percent)];
 	}
 }
