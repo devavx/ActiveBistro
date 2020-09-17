@@ -143,4 +143,25 @@ class User extends Authenticatable
 		$calories = $this->calories(false);
 		return round((0.3 * $calories) / 9.0, 0);
 	}
+
+	public function recommendedMealsPerDay (): int
+	{
+		$level = $this->activity_lavel ?? ActivityLevel::Sedentary;
+		switch ($level) {
+			case ActivityLevel::Moderate:
+				return 3;
+
+			case ActivityLevel::Very:
+				return 4;
+
+			case ActivityLevel::Extra:
+				return 5;
+
+			case ActivityLevel::Athlete:
+				return 6;
+
+			default:
+				return 2;
+		}
+	}
 }

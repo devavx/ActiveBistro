@@ -95,6 +95,7 @@ class FrontendController extends Controller
 
 	public function saveOptions ()
 	{
+		dd(request()->all());
 		$options = new Options();
 		if (request('meals_at_weekends', 0) == 1) {
 			$options->setMealsAtWeekends((object)[DaysOfWeek::Saturday => true, DaysOfWeek::Sunday => true]);

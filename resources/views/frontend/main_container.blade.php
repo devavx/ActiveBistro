@@ -87,7 +87,8 @@
 			<div class="row">
 				<div class="col-lg-5 col-sm-6 col-12">
 					<div class="checktext-btn">
-						<h5 class="m-0 font-weight-bold">£ <span id="total_weekly_amout">{{$state->total()}}</span>
+						<h5 class="m-0 font-weight-bold">&pound;
+							<span id="total_weekly_amout">{{$state->total()}}</span>
 							per week</h5>
 						<p class="text-color m-0"><i class="fa fa-truck mr-2"></i>Free Delivery, Always</p>
 					</div>

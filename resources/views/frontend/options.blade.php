@@ -31,11 +31,9 @@
 								<div class="form-group">
 									<label for="meals_per_day">Meals per day (not including breakfast or snacks)</label>
 									<select class="form-control" name="meals_per_day" id="meals_per_day">
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
+										@for($i=2;$i<=6;$i++)
+											<option value="{{$i}}" @if(auth()->user()->recommendedMealsPerDay()==$i) selected @endif>{{$i}}</option>
+										@endfor
 									</select>
 								</div>
 							</div>
@@ -48,68 +46,67 @@
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio0">
-			        	<div class="row">
-			        		<div class="col-12">
-			        			<div class="form-group">
-			        				<label>Would you like breakfasts in your plan?</label>
-			        				<br>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label>Would you like breakfasts in your plan?</label>
+									<br>
 
-			        				<div class="row switch-field">
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-one" value="yes"/>
-			        						<label for="radio-one" class="brakfast_name">Yes</label>
-			        					</div>
+									<div class="row switch-field">
+										<div class="col-12">
+											<input type="radio" id="radio-one" value="1" name="wantBreakfast"/>
+											<label for="radio-one" class="brakfast_name">Yes</label>
+										</div>
 
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-two" value="no"/>
+										<div class="col-12">
+											<input type="radio" id="radio-two" value="0" name="wantBreakfast"/>
 											<label for="radio-two" class="brakfast_name">No</label>
-			        					</div>
-			        				</div>
+										</div>
+									</div>
 
-			        				
-			        			</div>
-			        		</div>
-			        	</div>
-			        </fieldset>
+
+								</div>
+							</div>
+						</div>
+					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio2">
-			        	<div class="row">
-			        		<div class="col-12">
-			        			<div class="form-group">
-			        				<label>How many snacks do you want per day?</label>
-			        				<br>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label>How many snacks do you want per day?</label>
+									<br>
 
-			        				<div class="row switch-field">
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-one" value="1snacks"/>
-			        						<label for="radio-one" class="snack_count">1 Snack per day</label>
-			        					</div>
+									<div class="row switch-field">
+										<div class="col-12">
+											<input type="radio" id="radio-one" value="1" name="snacksPerDay"/>
+											<label for="radio-one" class="snack_count">1 Snack per day</label>
+										</div>
 
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-one" value="2snacks"/>
-			        						<label for="radio-one" class="snack_count">2 Snack per day</label>
-			        					</div>
+										<div class="col-12">
+											<input type="radio" id="radio-one" value="2" name="snacksPerDay"/>
+											<label for="radio-one" class="snack_count">2 Snack per day</label>
+										</div>
 
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-one" value="3snacks"/>
-			        						<label for="radio-one" class="snack_count">3 Snack per day</label>
-			        					</div>
+										<div class="col-12">
+											<input type="radio" id="radio-one" value="3" name="snacksPerDay"/>
+											<label for="radio-one" class="snack_count">3 Snack per day</label>
+										</div>
 
-			        					<div class="col-12">
-			        						<input type="radio" id="radio-one" value="nosnacks"/>
-			        						<label for="radio-one" class="snack_count">No Snack</label>
-			        					</div>
+										<div class="col-12">
+											<input type="radio" id="radio-one" value="0" name="snacksPerDay"/>
+											<label for="radio-one" class="snack_count">No Snack</label>
+										</div>
 
-			        					
-			        				</div>
 
-			        			</div>
-			        		</div>
-			        	</div>
-			        	
-			        </fieldset>
+									</div>
 
-			       
+								</div>
+							</div>
+						</div>
+
+					</fieldset>
+
 
 					<fieldset class="paddingrl" id="allergiesRadio3">
 						<div class="row">
@@ -134,7 +131,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio4">
@@ -203,25 +200,25 @@
 
 		$(document).ready(function () {
 			$(".brakfast_name").click(function () {
-			$("#allergiesRadio0").addClass("d-none");
-			$("#allergiesRadio2").addClass("d-block");
+				$("#allergiesRadio0").addClass("d-none");
+				$("#allergiesRadio2").addClass("d-block");
+			});
+
+
+			$(".snack_count").click(function () {
+				$("#allergiesRadio2").removeClass();
+				$("#allergiesRadio2").addClass("d-none");
+				$("#allergiesRadio3").addClass("d-block");
+			});
+
+			$(".weekend_mail").click(function () {
+				$("#allergiesRadio3").removeClass();
+				$("#allergiesRadio3").addClass("d-none");
+				$("#allergiesRadio4").addClass("d-block");
+			});
 		});
 
 
-		$(".snack_count").click(function () {
-			$("#allergiesRadio2").removeClass();
-			$("#allergiesRadio2").addClass("d-none");
-			$("#allergiesRadio3").addClass("d-block");
-		});
-
-		$(".weekend_mail").click(function () {
-			$("#allergiesRadio3").removeClass();
-			$("#allergiesRadio3").addClass("d-none");
-			$("#allergiesRadio4").addClass("d-block");
-		});
-		});
-		
-   		
 	</script>
 	<script>
 
