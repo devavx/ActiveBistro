@@ -79,6 +79,8 @@
 										<th>Sr. No.</th>
 										<th>Code</th>
 										<th>Description</th>
+										<th>Usage Count</th>
+										<th>Discount</th>
 										<th>Valid From</th>
 										<th>Valid Until</th>
 										<th>Active</th>
@@ -99,6 +101,8 @@
 													{{ $coupon->code}}
 												</td>
 												<td>{{ $coupon->description ?? '-'}} </td>
+												<td>{{ $coupon->usage_count ?? '-'}} </td>
+												<td>{{ $coupon->discount ?? '-'}} </td>
 												<td>{{ $coupon->valid_from ?? '-'}} </td>
 												<td>{{ $coupon->valid_until ?? '-'}} </td>
 												@if($coupon->active)
@@ -124,7 +128,7 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="6" class="text-danger">No Record Found !</td>
+											<td colspan="11" class="text-danger text-center">No Record Found !</td>
 										</tr>
 									@endif
 									</tbody>

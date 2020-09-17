@@ -19,6 +19,8 @@ class CreateCouponsTable extends Migration
 			$table->string('description', 1000)->nullable();
 			$table->dateTime('valid_from')->nullable();
 			$table->dateTime('valid_until')->nullable();
+			$table->integer('usage_count')->nullable();
+			$table->float('discount')->default(0.0);
 			$table->boolean('active')->default(true);
 			$table->timestamps();
 		});

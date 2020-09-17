@@ -91,6 +91,20 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
+												<label>Usage Count</label>
+												<input type="number" min="1" maxlength="1000000" name="usage_count" id="usage_count" class="form-control" placeholder="Limit number of times this coupon can be used, leave blank otherwise" value="{{old('usage_count')}}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Discount</label>
+												<input type="number" min="1" max="10" name="discount" id="description" class="form-control" placeholder="Enter Description.." value="{{old('discount',10)}}">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
 												<label>Valid From</label>
 												<input type="text" id="code" name="valid_from" class="form-control" required placeholder="Valid from date..." readonly value="{{old('valid_from')}}" style="background-color: white;">
 											</div>
