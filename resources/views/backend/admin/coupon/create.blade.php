@@ -98,7 +98,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Discount</label>
-												<input type="number" min="1" max="10" name="discount" id="description" class="form-control" placeholder="Enter Description.." value="{{old('discount',10)}}">
+												<input type="number" min="1" max="100" name="discount" id="description" class="form-control" placeholder="Enter Description.." value="{{old('discount',10)}}">
 											</div>
 										</div>
 									</div>
