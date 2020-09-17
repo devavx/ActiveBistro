@@ -70,7 +70,8 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.coupons.store') }}" method="post" id="add_form">
+							{{--							<form action="{{ route('admin.coupons.store') }}" method="post" id="add_form">--}}
+							<form action="" method="post" id="add_form">
 								@csrf
 								<div class="form-body">
 									<hr>
