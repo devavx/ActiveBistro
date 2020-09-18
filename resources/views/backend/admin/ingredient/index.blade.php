@@ -93,7 +93,7 @@
 												</td>
 												<td>{{$loop->index+1}}</td>
 												
-												<td><a href data-toggle="modal" data-target="#detailmodal"> {{ $rows->name ?? '-'}} </a></td>
+												<td>{{ $rows->name ?? '-'}}</td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
@@ -132,51 +132,7 @@
 	</div>
 	<div id="cover-spin" style="display: none;"></div>
 
-<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-xl" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Ingredient Detail</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Name</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>Tenderstem Broccoli</p>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Created at</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>Jul-24-2020</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Status</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p class="text-success">Active</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 @endsection
 @section('script')
