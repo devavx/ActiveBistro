@@ -30,7 +30,6 @@ class FrontendController extends Controller
 		$listData = SliderSetting::query()->where('active', 1)->get();
 		$homeData = HomeSetting::query()->where(['active' => 1, 'type' => 'home_content'])->get();
 		$promotion = Coupon::query()->where('promote', true)->first();
-		dd($promotion);
 		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion);
 	}
 
