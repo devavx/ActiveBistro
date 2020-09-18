@@ -217,9 +217,15 @@
 						</h6>
 						<hr>
 						@if(isset($rebates->staffRebate))
-							<hr>
 							<h6>
 								25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; {{$rebates->staffRebate->calculated}}</span>
+							</h6>
+							<hr>
+						@endif
+						@if(isset($rebates->coupon))
+							<h6>
+								{{$rebates->coupon->coupon->discount}}% using coupon {{$rebates->coupon->coupon->code}}
+								<span class="font-weight-bold text-color float-right">&pound; {{$rebates->staffRebate->calculated}}</span>
 							</h6>
 							<hr>
 						@endif
@@ -233,7 +239,8 @@
 							<a class="text-color" id="coupantoggle"> Click here.</a></p>
 
 						<div class="form-group" id="showcoupantextfield" style="display: none;">
-							<input type="text" class="form-control" placeholder="Enter coupon code" name="coupon_code">
+							<input type="text" class="form-control" placeholder="Enter coupon code" name="coupon_code" id="coupon_code">
+							<button type="button" onclick="validateCoupon();">Apply</button>
 						</div>
 
 						<p class="text-center">
@@ -333,6 +340,25 @@
 					next_fs.css({'opacity': opacity});
 				},
 				duration: 600
+			});
+		}
+
+		validateCoupon = () => {
+			const code = $('#coupon_code').val();
+			setLoading(true, () => {
+				performGet({
+					url: '/cart/replace/' + day + '/' + slab + '/' + mealId + '/' + itemId,
+					success: (message, data) => {
+						notyf.success('Your changes have been successfully saved!');
+						reload();
+					},
+					failed: (message) => {
+
+					},
+					complete: () => {
+						setLoading(false);
+					}
+				});
 			});
 		}
 	</script>

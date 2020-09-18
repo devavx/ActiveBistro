@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
+use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\Models\Address;
 use App\Models\Order;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
@@ -29,8 +31,9 @@ class CheckoutController extends Controller
 		$this->provider = new ExpressCheckout();
 	}
 
-	public function index (): Renderable
+	public function index (CouponRequest $request): Renderable
 	{
+		$coupon = $request->coupon();
 		$state = new State(auth()->user());
 		$total = $state->total();
 		$rebates = new \stdClass();
@@ -40,6 +43,10 @@ class CheckoutController extends Controller
 		if (auth()->user()->click_to_verify == 1) {
 			$rebates->staffRebate = $this->makeRebateOf($total, 25);
 		}
+		if ($coupon != null && $coupon->isValid() && $coupon->isUsable()) {
+			$coupon->incrementUsageCount();
+			$rebates->coupon = $this->makeRebateOf($total, $coupon->discount, ['coupon' => $coupon]);
+		}
 		$totalRebate = 0;
 		foreach ($rebates as $key => $rebate) {
 			$totalRebate += $rebate->value;
@@ -47,6 +54,11 @@ class CheckoutController extends Controller
 		$state->setDiscount($totalRebate);
 		$state->calculateStats();
 		return view('frontend.checkout')->with('state', $state)->with('rebates', $rebates);
+	}
+
+	public function validateCoupon (CouponRequest $request): JsonResponse
+	{
+
 	}
 
 	public function store (StoreRequest $request): RedirectResponse
@@ -138,10 +150,13 @@ class CheckoutController extends Controller
 	/**
 	 * @param float $total
 	 * @param float $percent
+	 * @param mixed ...$extra
 	 * @return object
 	 */
-	protected function makeRebateOf (float $total, float $percent): object
+	protected function makeRebateOf (float $total, float $percent, ...$extra): object
 	{
-		return (object)['value' => $percent, 'calculated' => percentOf($total, $percent)];
+		$base = ['value' => $percent, 'calculated' => percentOf($total, $percent)];
+		$base = array_merge($base, $extra);
+		return (object)$base;
 	}
 }

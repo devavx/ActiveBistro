@@ -70,8 +70,7 @@
 							</div>
 						@endif
 						<div class="card-body">
-							{{--							<form action="{{ route('admin.coupons.store') }}" method="post" id="add_form">--}}
-							<form action="" method="post" id="add_form">
+							<form action="{{ route('admin.coupons.store') }}" method="post" id="add_form">
 								@csrf
 								<div class="form-body">
 									<hr>
@@ -90,10 +89,19 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-6 d-none">
 											<div class="form-group">
 												<label>Usage Count</label>
 												<input type="number" min="1" maxlength="1000000" name="usage_count" id="usage_count" class="form-control" placeholder="Limit number of times this coupon can be used, leave blank otherwise" value="{{old('usage_count')}}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Type</label>
+												<select name="type" id="type" class="form-control">
+													<option value="{{\App\Models\Coupon::Percent}}" selected>Percent</option>
+													<option value="{{\App\Models\Coupon::Flat}}">Flat</option>
+												</select>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -104,16 +112,26 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group">
 												<label>Valid From</label>
 												<input type="text" id="code" name="valid_from" class="form-control" required placeholder="Valid from date..." readonly value="{{old('valid_from')}}" style="background-color: white;">
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group">
 												<label>Valid Until</label>
 												<input type="text" name="valid_until" id="description" class="form-control" required placeholder="Valid until date..." readonly value="{{old('valid_until')}}" style="background-color: white;">
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label>Promote</label>
+												<select name="promote" id="promote" class="form-control">
+													<option value="0" selected>No</option>
+													<option value="1">Yes</option>
+												</select>
+												<small>Setting this to yes will enable showing this coupon as a promotion on the homepage.<br>(Replaces previously promoted coupon, if any.)</small>
 											</div>
 										</div>
 									</div>
@@ -152,7 +170,7 @@
 				endDate: '+1y',
 			});
 
-			$('#add_form').validate({ // initialize the plugin
+			$('#add_form').validate({
 				rules: {
 					code: {
 						required: true,

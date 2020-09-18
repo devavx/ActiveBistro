@@ -21,6 +21,8 @@ class CreateCouponsTable extends Migration
 			$table->dateTime('valid_until')->nullable();
 			$table->integer('usage_count')->nullable();
 			$table->float('discount')->default(0.0);
+			$table->enum('type', ['flat', 'percent']);
+			$table->boolean('promote')->default(false);
 			$table->boolean('active')->default(true);
 			$table->timestamps();
 		});

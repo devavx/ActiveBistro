@@ -79,10 +79,11 @@
 										<th>Sr. No.</th>
 										<th>Code</th>
 										<th>Description</th>
-										<th>Usage Count</th>
+										<th>Type</th>
 										<th>Discount</th>
 										<th>Valid From</th>
 										<th>Valid Until</th>
+										<th>Promoted</th>
 										<th>Active</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -101,10 +102,11 @@
 													{{ $coupon->code}}
 												</td>
 												<td>{{ $coupon->description ?? '-'}} </td>
-												<td>{{ $coupon->usage_count ?? '-'}} </td>
+												<td>{{ ucfirst($coupon->type) ?? '-'}} </td>
 												<td>{{ $coupon->discount ?? '-'}} </td>
 												<td>{{ $coupon->valid_from ?? '-'}} </td>
 												<td>{{ $coupon->valid_until ?? '-'}} </td>
+												<td>{{ $coupon->promote?'Yes':'No'}} </td>
 												@if($coupon->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $coupon->id }}" data-id="{{ $coupon->active }}">
@@ -128,7 +130,7 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="11" class="text-danger text-center">No Record Found !</td>
+											<td colspan="12" class="text-danger text-center">No Record Found !</td>
 										</tr>
 									@endif
 									</tbody>
