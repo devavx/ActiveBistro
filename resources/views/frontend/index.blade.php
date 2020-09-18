@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-12">
 					@if($coupon!=null&&$coupon->isValid())
-						<h6 class="text-white m-0 text-center">
+						<h6 class="text-white m-0 text-center">Seen us on
 							<a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.">{{$coupon->description}}</a>
 						</h6>
 					@endif
