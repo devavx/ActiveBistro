@@ -214,6 +214,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 		Route::get('{id}/edit', 'Admin\CouponController@edit')->name('coupons.edit');
 		Route::post(Str::Empty, 'Admin\CouponController@store')->name('coupons.store');
 		Route::get('change_status/{id}', 'Admin\CouponController@changeStatus')->name('coupons.update.status');
+		Route::get('change_promotion/{id}', 'Admin\CouponController@changePromotion')->name('coupons.update.promotion');
 		Route::get('delete/{id}', 'Admin\CouponController@delete')->name('coupons.delete');
 		Route::delete('delete', 'Admin\CouponController@deleteBulk')->name('coupons.delete.bulk');
 	});

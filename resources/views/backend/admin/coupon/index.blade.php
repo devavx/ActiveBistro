@@ -106,7 +106,19 @@
 												<td>{{ $coupon->discount ?? '-'}} </td>
 												<td>{{ $coupon->valid_from ?? '-'}} </td>
 												<td>{{ $coupon->valid_until ?? '-'}} </td>
-												<td>{{ $coupon->promote?'Yes':'No'}} </td>
+												@if($coupon->promote)
+													<td>
+														<button type="button" class="btn btn-success change_promotion" id="{{ $coupon->id }}" data-id="{{ $coupon->promote }}">
+															Enable
+														</button>
+													</td>
+												@else
+													<td>
+														<button type="button" class="btn btn-danger change_promotion" id="{{ $coupon->id }}" data-id="{{ $coupon->promote }}">
+															Disable
+														</button>
+													</td>
+												@endif
 												@if($coupon->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $coupon->id }}" data-id="{{ $coupon->active }}">
@@ -238,6 +250,12 @@
 			$(document).on('click', '.change_status', function () {
 				var id = $(this).attr('id');
 				url = "{{ url('/admin/coupons/change_status/') }}/" + id;
+				var status_val = $(this).attr('data-id');
+				changeStatusConfirmMessage(id, url, 'change_status');
+			});
+			$(document).on('click', '.change_promotion', function () {
+				var id = $(this).attr('id');
+				url = "{{ url('/admin/coupons/change_promotion/') }}/" + id;
 				var status_val = $(this).attr('data-id');
 				changeStatusConfirmMessage(id, url, 'change_status');
 			});

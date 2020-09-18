@@ -10,7 +10,7 @@
 				<div class="col-12">
 					@if($coupon!=null)
 						<h6 class="text-white m-0 text-center">Seen us on
-							<a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.">{{$coupon->description}}</a>
+							<a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="{{}}">{{$coupon->description}}</a>
 						</h6>
 					@endif
 				</div>

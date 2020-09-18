@@ -36,6 +36,31 @@ class CouponController extends Controller
 		return redirect()->route('admin.coupons.index')->with('success', 'Coupon created successfully!');
 	}
 
+	public function change_promotion ($id = '')
+	{
+		$result = array();
+		$data = Coupon::find($id);
+
+		if (!empty($data)) {
+			if ($data->promote == false) {
+				$data->promote = true;
+			} else {
+				$data->promote = false;
+			}
+			$data->update();
+			Coupon::query()->where('id', '!=', $data->getKey())->update([
+				'promote' => false
+			]);
+			$result['status'] = 'success';
+			$result['message'] = 'Coupon status changed successfully !';
+		} else {
+			$result['status'] = 'error';
+			$result['message'] = 'Oops! Something went wrong!';
+		}
+
+		return json_encode($result);
+	}
+
 	public function delete ($id = '')
 	{
 		$result = array();
