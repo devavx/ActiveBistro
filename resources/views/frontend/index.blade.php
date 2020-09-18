@@ -10,7 +10,7 @@
 				<div class="col-12">
 					@if($coupon!=null&&$coupon->isValid())
 						<h6 class="text-white m-0 text-center">Seen us on
-							<a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.">{{$coupon->description}}</a>
+							<a href="#" class="font-weight-bold text-white" data-toggle="tooltip" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.">Click Here to get 50% OFF your first 2 boxes.</a>
 						</h6>
 					@endif
 				</div>
