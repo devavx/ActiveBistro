@@ -27,7 +27,12 @@ class CouponController extends Controller
 
 	public function store (StoreRequest $request)
 	{
-		Coupon::query()->create($request->convert());
+		$coupon = Coupon::query()->create($request->convert());
+		if ($request->wantsPromotion()) {
+			Coupon::query()->where('id', '!=', $coupon->getKey())->update([
+				'promote' => false
+			]);
+		}
 		return redirect()->route('admin.coupons.index')->with('success', 'Coupon created successfully!');
 	}
 

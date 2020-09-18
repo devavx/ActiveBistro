@@ -35,4 +35,9 @@ class StoreRequest extends FormRequest
 			'valid_until' => date('Y-m-d', strtotime($this->validated()['valid_until'])),
 		];
 	}
+
+	public function wantsPromotion (): bool
+	{
+		return isset($this->validated()['promote']);
+	}
 }
