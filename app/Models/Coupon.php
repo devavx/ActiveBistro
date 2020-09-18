@@ -22,7 +22,7 @@ class Coupon extends Model
 		$begin = strtotime($this->valid_from . '00:00:00');
 		$end = strtotime($this->valid_until . '00:00:00');
 		$current = time();
-		return $current >= $begin && $current <= $end;
+		return $current > $begin && $current <= $end;
 	}
 
 	public function isUsable (): bool
