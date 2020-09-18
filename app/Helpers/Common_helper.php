@@ -96,3 +96,18 @@ function percentOf ($value, $percent): float
 {
 	return ($percent / 100.0) * $value;
 }
+
+function elapsed (): ?string
+{
+	$deadline = deadline();
+	if ($deadline == null) {
+		return 0;
+	} else {
+		return strtotime($deadline->deadline);
+	}
+}
+
+function deadline ()
+{
+	return \App\DeliveryDeadline::query()->first();
+}

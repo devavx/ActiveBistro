@@ -117,6 +117,10 @@ $uri2 = Request::segment(2);
 							<a class="@if($uri2 =='bottom_section')active @endif" href="{{ url('/admin/bottom_section') }}">Bottom Section</a>
 						</li>
 
+						<li class="@if($uri2 =='delivery_deadline')active @endif">
+							<a class="@if($uri2 =='delivery_deadline')active @endif" href="{{ url('/admin/delivery_deadline') }}">Delivery Deadline</a>
+						</li>
+
 						<li class="@if($uri2 =='contact_us')active @endif">
 							<a class="@if($uri2 =='contact_us')active @endif" href="{{ url('/admin/contact_us') }}">Contact
 								Us</a></li>

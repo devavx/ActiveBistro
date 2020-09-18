@@ -99,7 +99,6 @@ class FrontendController extends Controller
 
 	public function saveOptions ()
 	{
-		dd(request()->all());
 		$options = new Options();
 		if (request('meals_at_weekends', 0) == 1) {
 			$options->setMealsAtWeekends((object)[DaysOfWeek::Saturday => true, DaysOfWeek::Sunday => true]);
@@ -154,14 +153,14 @@ class FrontendController extends Controller
 
 	public function termCondition ()
 	{
-		$listData = TermCondition::where('active', 1)->get();
-		return view('frontend.term_condition', compact('listData'));
+		$tnc = TermCondition::query()->first();
+		return view('frontend.term_condition')->with('tnc', $tnc);
 	}
 
 	public function privacyPolicy ()
 	{
-		$listData = PrivacyPolicy::where('active', 1)->get();
-		return view('frontend.privacy_policy', compact('listData'));
+		$policy = PrivacyPolicy::query()->first();
+		return view('frontend.privacy_policy')->with('policy', $policy);
 	}
 
 	public function getAllItem ()

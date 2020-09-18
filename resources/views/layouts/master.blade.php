@@ -17,13 +17,21 @@
 	@yield('css')
 </head>
 <body>
-
+@php
+	$elapsed=elapsed();
+	$current=time();
+	$difference=$elapsed-$current;
+@endphp
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<div class="mdblock">
 				<li class="nav-item">
-					<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+					@if($difference>=43200)
+						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
+					@else
+						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
+					@endif
 				</li>
 			</div>
 		</div>
@@ -75,7 +83,11 @@
 				</li>
 
 				<li class="nav-item">
-					<span class="border p-2 rounded md-none header-time-slot nav-link text-color"><b>Delivery Deadline:</b> 1 Hour 30 Minutes</span>
+					@if($difference>=43200)
+						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
+					@else
+						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
+					@endif
 				</li>
 
 			</ul>
