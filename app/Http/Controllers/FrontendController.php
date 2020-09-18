@@ -16,6 +16,7 @@ use App\ItemType;
 use App\MealPlan;
 use App\Models\Allergy;
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\PrivacyPolicy;
 use App\SliderSetting;
 use App\TermCondition;
@@ -28,7 +29,8 @@ class FrontendController extends Controller
 	{
 		$listData = SliderSetting::query()->where('active', 1)->get();
 		$homeData = HomeSetting::query()->where(['active' => 1, 'type' => 'home_content'])->get();
-		return view('frontend.index', compact(['listData', 'homeData']));
+		$promotion = Coupon::query()->where('promote', true)->first();
+		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion);
 	}
 
 	public function login ()

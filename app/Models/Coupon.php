@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
@@ -10,6 +11,11 @@ class Coupon extends Model
 	protected $casts = ['active' => 'bool', 'promoted' => 'bool'];
 	public const Flat = 'flat';
 	public const Percent = 'percent';
+
+	public function promoteScope (Builder $query): Builder
+	{
+		return $query->where('promote', true);
+	}
 
 	public function isValid (): bool
 	{
