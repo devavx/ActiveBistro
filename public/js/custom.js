@@ -140,7 +140,7 @@ function deleteConfirmMessageBulk(url, items) {
 function changeStatusConfirmMessage(id, url, buttonId) {
 	swal({
 		title: "Are you sure?",
-		text: "Changing active status will control visibility of some items.",
+		text: "Changing this will control visibility of some items.",
 		icon: "warning",
 		buttons: true,
 		dangerMode: true,

@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
 			'usage_count' => $this->validated()['usage_count'],
 			'discount' => $this->validated()['discount'],
 			'type' => $this->validated()['type'],
-			'promote' => isset($this->validated()['promote']),
+			'promote' => $this->validated()['promote'],
 			'valid_from' => date('Y-m-d', strtotime($this->validated()['valid_from'])),
 			'valid_until' => date('Y-m-d', strtotime($this->validated()['valid_until'])),
 		];
@@ -38,6 +38,6 @@ class StoreRequest extends FormRequest
 
 	public function wantsPromotion (): bool
 	{
-		return isset($this->validated()['promote']);
+		return $this->validated()['promote'] == 1;
 	}
 }

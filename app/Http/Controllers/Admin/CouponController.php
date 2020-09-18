@@ -36,7 +36,7 @@ class CouponController extends Controller
 		return redirect()->route('admin.coupons.index')->with('success', 'Coupon created successfully!');
 	}
 
-	public function change_promotion ($id = '')
+	public function changePromotion ($id = '')
 	{
 		$result = array();
 		$data = Coupon::find($id);
@@ -52,7 +52,7 @@ class CouponController extends Controller
 				'promote' => false
 			]);
 			$result['status'] = 'success';
-			$result['message'] = 'Coupon status changed successfully !';
+			$result['message'] = 'Coupon promotion enabled/disabled successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something went wrong!';
