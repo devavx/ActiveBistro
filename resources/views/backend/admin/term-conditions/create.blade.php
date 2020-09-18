@@ -1,16 +1,17 @@
 @extends('backend.master')
 
-@section('title') Admin | Term & Condition | Create @endsection
+@section('title') Admin | Term & Condition @endsection
 
-@section('style')  
- <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css" />
-<style type="text/css">
-    .select2-container--default .select2-selection--multiple .select2-selection__choice {
-        background-color: #000 !important;
-    }
-    .error{
-        color: red;
-    }
+@section('style')
+    <link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css"/>
+    <style type="text/css">
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #000 !important;
+        }
+
+        .error {
+            color: red;
+        }
 </style>
 @endsection
 @section('content')

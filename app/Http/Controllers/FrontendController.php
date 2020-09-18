@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BottomSection;
 use App\Category;
 use App\Core\Cart\Options;
 use App\Core\Cart\State;
@@ -30,7 +31,8 @@ class FrontendController extends Controller
 		$listData = SliderSetting::query()->where('active', 1)->get();
 		$homeData = HomeSetting::query()->where(['active' => 1, 'type' => 'home_content'])->get();
 		$promotion = Coupon::query()->where('promote', true)->first();
-		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion);
+		$section = BottomSection::query()->first();
+		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion)->with('section', $section);
 	}
 
 	public function login ()

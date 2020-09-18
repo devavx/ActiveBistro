@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Privacy Policy | Edit @endsection
+@section('title') Admin | Bottom Section | Edit @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css"/>
@@ -19,13 +19,13 @@
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Privacy Policy</h4>
+					<h4 class="text-themecolor">Bottom Section</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Privacy Policy</a>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Bottom Section</a>
 							</li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ol>
@@ -36,7 +36,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Privacy Policy</h4>
+							<h4 class="m-b-0 text-white">Bottom Section</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -68,16 +68,33 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.privacy_policy.update', $policy->id) }}" id="add_form" method="post">
+							<form action="{{ route('admin.bottom_section.store') }}" id="add_form" method="post" enctype="multipart/form-data">
 								@csrf
-								@method('PUT')
 								<div class="form-body">
 									<hr>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Privacy Policy</label>
-												<textarea type="text" name="description" id="description" class="form-control" placeholder="Enter name..">{{ $policy->description }}</textarea>
+												<label>Link</label>
+												<input type="url" name="link" id="description" class="form-control" placeholder="Enter name.." value="{{$section->link}}" required>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Link Text</label>
+												<input type="text" name="link_text" id="description" class="form-control" placeholder="Enter name.." value="{{$section->link_text}}" required minlength="2" maxlength="255">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Image</label>
+												<input type="file" name="image" id="description" class="form-control" required accept=".jpg, .jpeg, .png">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Content</label>
+												<textarea type="text" name="content" id="content" class="form-control" placeholder="Enter name..">{{ $section->content }}</textarea>
 											</div>
 										</div>
 
@@ -86,7 +103,7 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Update
 									</button>
-									<a href="{{ url('/admin/privacy_policy') }}" class="btn btn-inverse">Cancel</a>
+									<a href="{{ url('/admin/bottom_section') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>
@@ -105,7 +122,7 @@
 
 			if ($("#description").length > 0) {
 				tinymce.init({
-					selector: "textarea#description",
+					selector: "textarea#content",
 					theme: "modern",
 					height: 300,
 					plugins: [

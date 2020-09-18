@@ -167,6 +167,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::resource('/how_it_works', 'HowItWorkController');
 	Route::resource('/privacy_policy', 'PrivacyPolicyController');
 	Route::resource('/term_conditions', 'TermConditionController');
+	Route::resource('/bottom_section', 'BottomSectionController');
 	Route::resource('/sliders', 'SliderSettingController');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/item_type', 'ItemTypeController');
