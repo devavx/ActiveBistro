@@ -52,9 +52,9 @@ class HowItWorkController extends Controller
 		$validated = $request->validate($rules);
 		$save = $howItWork->update($validated);
 		if ($save) {
-			return redirect('admin/how_it_works')->with('success', 'HowItWork Updated successfully!');
+			return redirect('admin/how_it_works')->with('success', 'HowItWork updated successfully!');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Oops! Something went wrong! Try Again!');
 		}
 	}
 
