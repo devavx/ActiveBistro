@@ -95,7 +95,7 @@
 											</td>
 											<td>{{$loop->index+1}}</td>
 											<td> #{{$order->id}}</td>
-											<td>{{$order->user->name}}</td>
+											<td><a href data-toggle="modal" data-target="#detailmodal">{{$order->user->name}}</a></td>
 											<td> {{ucfirst($order->status)}}</td>
 											<td> {{$order->address->stringify()}}</td>
 											<td> {{$order->total}}</td>
