@@ -43,7 +43,7 @@
 						<div class="col-md-12">
 							<div class="d-flex no-block align-items-center">
 								<div>
-									<h3><i class="icon-screen-desktop"></i></h3>
+									<h3><i class="ti-user"></i></h3>
 									<p class="text-muted">MY CUSTOMER</p>
 								</div>
 								<div class="ml-auto">
@@ -67,7 +67,7 @@
 						<div class="col-md-12">
 							<div class="d-flex no-block align-items-center">
 								<div>
-									<h3><i class="icon-note"></i></h3>
+									<h3><i class="fa fa-cutlery"></i></h3>
 									<p class="text-muted">MY MEALS</p>
 								</div>
 								<div class="ml-auto">
@@ -91,7 +91,7 @@
 						<div class="col-md-12">
 							<div class="d-flex no-block align-items-center">
 								<div>
-									<h3><i class="icon-doc"></i></h3>
+									<h3><i class="fa fa-cutlery"></i></h3>
 									<p class="text-muted">MY ITEM</p>
 								</div>
 								<div class="ml-auto">

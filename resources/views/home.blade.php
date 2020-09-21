@@ -154,7 +154,7 @@
 		<div class="modal-dialog  modal-full-height modal-right" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-color ">
-					<h5 class="modal-title w-100 text-white">Change Persnal Detail</h5>
+					<h5 class="modal-title w-100 text-white">Change Personal Detail</h5>
 					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" class="text-white">&times;</span>
 					</button>
