@@ -50,7 +50,6 @@ class HowItWorkController extends Controller
 			'description' => 'bail|required|string|max:10000'
 		];
 		$validated = $request->validate($rules);
-//		if (is_null($validated['title'])) unset($validated['title']);
 		$save = $howItWork->update($validated);
 		if ($save) {
 			return redirect('admin/how_it_works')->with('success', 'HowItWork updated successfully!');
