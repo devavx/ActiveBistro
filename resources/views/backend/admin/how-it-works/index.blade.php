@@ -45,9 +45,9 @@
 					<div class="card">
 						<div class="card-body">
 							<h4 class="card-title">How It Work List</h4>
-							<div class="text-right">
-								<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
-							</div>
+							<button type="button" onclick="confirmDeleteBulk();" class="btn btn-primary mr-4">
+								<i class="fa fa-trash mr-2"></i>Delete
+							</button>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
 									<strong> {{$message}}</strong>
@@ -88,7 +88,7 @@
 										@foreach($listData as $rows)
 											<tr>
 												<td>
-													<label><input type="checkbox"><span class="sr-only"> Select Row </span></label>
+													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 												<td>{{$loop->index+1}}</td>
 												<td>
@@ -173,6 +173,23 @@
 				changeStatusConfirmMessage(id, url, 'change_status');
 			});
 		});
+
+		initialized = () => {
+			$('#check_all').change(function () {
+				$("input:checkbox[name=delete_target]").prop('checked', this.checked);
+			})
+		}
+
+		function confirmDeleteBulk() {
+			const url = "{{ url('/admin/how_it_works/delete') }}";
+			const items = [];
+			$("input:checkbox[name=delete_target]:checked").each(function () {
+				const parsed = Number.parseInt($(this).val());
+				if (parsed !== 0)
+					items.push(parsed);
+			});
+			deleteConfirmMessageBulk(url, items);
+		}
 
 	</script>
 @endsection
