@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Ingredient;
+use App\Item;
+use App\MealPlan;
+use App\Models\Coupon;
+use App\Models\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,12 +19,12 @@ class AdminController extends Controller
 	public function index ()
 	{
 		$customers = User::query()->where('role_id', 2)->count('id');
-		$dailyMeals = 0;
-		$meals = 0;
-		$items = 0;
-		$orders = 0;
-		$coupons = 0;
-		$ingredients = 0;
+		$dailyMeals = MealPlan::query()->whereNotNull('day')->count('id');
+		$meals = MealPlan::query()->whereNull('day')->count('id');
+		$items = Item::query()->count('id');;
+		$orders = Order::query()->count('id');;
+		$coupons = Coupon::query()->count('id');;
+		$ingredients = Ingredient::query()->count('id');;
 		$stats = [
 			'customers' => $customers,
 			'dailyMeals' => $dailyMeals,

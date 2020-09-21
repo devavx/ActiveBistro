@@ -37,7 +37,7 @@
 			<!-- Info box -->
 			<!-- ============================================================== -->
 			<div class="card-group">
-				<div class="card">
+				<div class="card mr-3">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
@@ -61,7 +61,7 @@
 				</div>
 				<!-- Column -->
 				<!-- Column -->
-				<div class="card">
+				<div class="card mr-3">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
@@ -111,7 +111,7 @@
 			<div class="card-group">
 				<!-- Column -->
 				<!-- Column -->
-				<div class="card">
+				<div class="card mr-3">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
@@ -134,7 +134,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<div class="card mr-3">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
