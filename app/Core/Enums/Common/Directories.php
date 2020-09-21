@@ -12,4 +12,5 @@ class Directories extends Enum
 	const HomeSliderImages = "home_slider_images";
 	const HeroSliderImages = "hero_slider_images";
 	const BottomSectionImages = "bottom_section_images";
+	const HowItWorks = 'how_it_works';
 }

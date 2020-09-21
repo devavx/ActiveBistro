@@ -26,8 +26,10 @@ $uri2 = Request::segment(2);
 			{{--				</li>--}}
 			<!-- <li class="nav-small-cap">--- PERSONAL</li> -->
 				<li>
+					<a class="waves-effect waves-dark" href="{{ url('/admin') }}" aria-expanded="false"><i class="ti-dashboard"></i><span class="hide-menu">Dashboard <span class="badge badge-pill badge-cyan ml-auto"></span></span></a>
+				</li>
+				<li>
 					<a class="waves-effect waves-dark" href="{{ url('/admin/customers') }}" aria-expanded="false"><i class="ti-user"></i><span class="hide-menu">Customers <span class="badge badge-pill badge-cyan ml-auto"></span></span></a>
-
 				</li>
 				<li>
 					<a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-list"></i><span class="hide-menu">Category</span></a>
@@ -131,9 +133,9 @@ $uri2 = Request::segment(2);
 						<li class="@if($uri2 =='home_setting')active @endif">
 							<a class="@if($uri2 =='home_setting')active @endif" href="{{ url('/admin/home_setting') }}">Home
 								Setting</a></li>
-						<li class="@if($uri2 =='social_medial')active @endif">
-							<a class="@if($uri2 =='social_medial')active @endif" href="{{ url('/admin/social_medial') }}">Footer
-								Social Media</a></li>
+						{{--						<li class="@if($uri2 =='social_medial')active @endif">--}}
+						{{--							<a class="@if($uri2 =='social_medial')active @endif" href="{{ url('/admin/social_medial') }}">Footer--}}
+						{{--								Social Media</a></li>--}}
 					</ul>
 				</li>
 				<!-- <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li> -->
