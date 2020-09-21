@@ -37,49 +37,25 @@
 			<!-- Info box -->
 			<!-- ============================================================== -->
 			<div class="card-group">
-				<div class="card mr-3">
+				<div class="card">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-user"></i></h3>
-										<p class="text-muted">Customers</p>
+										<h3><i class="ti-user text-primary"></i></h3>
+										<p class="text-muted font-weight-bold">Customers</p>
 									</div>
 									<div class="ml-auto">
 										<h2 class="counter text-primary">{{ $stats->customers }}</h2>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
+							<!-- <div class="col-12">
 								<div class="progress">
 									<div class="progress-bar bg-primary" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Column -->
-				<!-- Column -->
-				<div class="card mr-3">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<h3><i class="fa fa-cutlery"></i></h3>
-										<p class="text-muted">Daily Meals</p>
-									</div>
-									<div class="ml-auto">
-										<h2 class="counter text-cyan">{{ $stats->dailyMeals }}</h2>
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="progress">
-									<div class="progress-bar bg-cyan" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -91,19 +67,66 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="fa fa-cutlery"></i></h3>
-										<p class="text-muted">Meals</p>
+										<h3><i class="ti-server text-cyan"></i></h3>
+										<p class="text-muted font-weight-bold">Daily Meals</p>
+									</div>
+									<div class="ml-auto">
+										<h2 class="counter text-cyan">{{ $stats->dailyMeals }}</h2>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-12">
+								<div class="progress">
+									<div class="progress-bar bg-cyan" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				<!-- Column -->
+				<!-- Column -->
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex no-block align-items-center">
+									<div>
+										<h3><i class="ti-layout-media-overlay text-purple"></i></h3>
+										<p class="text-muted font-weight-bold">Meals</p>
 									</div>
 									<div class="ml-auto">
 										<h2 class="counter text-purple">{{ $stats->meals }}</h2>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
+							<!-- <div class="col-12">
 								<div class="progress">
 									<div class="progress-bar bg-purple" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex no-block align-items-center">
+									<div>
+										<h3><i class="ti-layout-menu-v text-success"></i></h3>
+										<p class="text-muted font-weight-bold">Items</p>
+									</div>
+									<div class="ml-auto">
+										<h2 class="counter text-success">{{$stats->items}}</h2>
+									</div>
+								</div>
 							</div>
+							<!-- <div class="col-12">
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -111,48 +134,26 @@
 			<div class="card-group">
 				<!-- Column -->
 				<!-- Column -->
-				<div class="card mr-3">
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<h3><i class="icon-bag"></i></h3>
-										<p class="text-muted">Items</p>
-									</div>
-									<div class="ml-auto">
-										<h2 class="counter text-success">{{$stats->items}}</h2>
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="progress">
-									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="card mr-3">
+				<div class="card">
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="icon-bag"></i></h3>
-										<p class="text-muted">Coupons</p>
+										<h3><i class="ti-tag text-info"></i></h3>
+										<p class="text-muted font-weight-bold">Coupons</p>
 									</div>
 									<div class="ml-auto">
-										<h2 class="counter text-success">{{$stats->coupons}}</h2>
+										<h2 class="counter text-info">{{$stats->coupons}}</h2>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
+							<!-- <div class="col-12">
 								<div class="progress">
 									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -163,19 +164,65 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="icon-bag"></i></h3>
-										<p class="text-muted">Ingredients</p>
+										<h3><i class="ti-bolt-alt text-warning"></i></h3>
+										<p class="text-muted font-weight-bold">Ingredients</p>
 									</div>
 									<div class="ml-auto">
-										<h2 class="counter text-success">{{$stats->ingredients}}</h2>
+										<h2 class="counter text-warning">{{$stats->ingredients}}</h2>
 									</div>
 								</div>
 							</div>
-							<div class="col-12">
+							<!-- <div class="col-12">
 								<div class="progress">
 									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex no-block align-items-center">
+									<div>
+										<h3><i class="ti-truck text-cyan"></i></h3>
+										<p class="text-muted font-weight-bold">Order</p>
+									</div>
+									<div class="ml-auto">
+										<h2 class="counter text-cyan">15</h2>
+									</div>
+								</div>
 							</div>
+							<!-- <div class="col-12">
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex no-block align-items-center">
+									<div>
+										<h3><i class="ti-fullscreen text-danger"></i></h3>
+										<p class="text-muted font-weight-bold">Allergies</p>
+									</div>
+									<div class="ml-auto">
+										<h2 class="counter text-danger">3</h2>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="col-12">
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
