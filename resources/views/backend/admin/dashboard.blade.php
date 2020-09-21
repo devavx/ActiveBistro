@@ -43,7 +43,8 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-user text-primary"></i></h3>
+										<!-- <h3><i class="ti-user text-primary"></i></h3> -->
+										<img src="{{ asset('assets/images/1.jpg') }}">
 										<p class="text-muted font-weight-bold">Customers</p>
 									</div>
 									<div class="ml-auto">
@@ -67,7 +68,8 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-server text-cyan"></i></h3>
+										<!-- <h3><i class="ti-server text-cyan"></i></h3> -->
+										<img src="{{ asset('assets/images/2.jpg') }}">
 										<p class="text-muted font-weight-bold">Daily Meals</p>
 									</div>
 									<div class="ml-auto">
@@ -91,7 +93,9 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-layout-media-overlay text-purple"></i></h3>
+										<!-- <h3><i class="ti-layout-media-overlay text-purple"></i></h3> -->
+
+										<img src="{{ asset('assets/images/3.jpg') }}">
 										<p class="text-muted font-weight-bold">Meals</p>
 									</div>
 									<div class="ml-auto">
@@ -114,7 +118,8 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-layout-menu-v text-success"></i></h3>
+										<!-- <h3><i class="ti-layout-menu-v text-success"></i></h3> -->
+										<img src="{{ asset('assets/images/4.jpg') }}">
 										<p class="text-muted font-weight-bold">Items</p>
 									</div>
 									<div class="ml-auto">
@@ -141,7 +146,9 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-tag text-info"></i></h3>
+										<!-- <h3><i class="ti-tag text-info"></i></h3> -->
+
+										<img src="{{ asset('assets/images/5.jpg') }}">
 										<p class="text-muted font-weight-bold">Coupons</p>
 									</div>
 									<div class="ml-auto">
@@ -164,7 +171,8 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-bolt-alt text-warning"></i></h3>
+										<!-- <h3><i class="ti-bolt-alt text-warning"></i></h3> -->
+										<img src="{{ asset('assets/images/6.jpg') }}">
 										<p class="text-muted font-weight-bold">Ingredients</p>
 									</div>
 									<div class="ml-auto">
@@ -187,7 +195,9 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-truck text-cyan"></i></h3>
+										<!-- <h3><i class="ti-truck text-cyan"></i></h3> -->
+
+										<img src="{{ asset('assets/images/7.jpg') }}">
 										<p class="text-muted font-weight-bold">Order</p>
 									</div>
 									<div class="ml-auto">
@@ -210,7 +220,9 @@
 							<div class="col-md-12">
 								<div class="d-flex no-block align-items-center">
 									<div>
-										<h3><i class="ti-fullscreen text-danger"></i></h3>
+										<!-- <h3><i class="ti-fullscreen text-danger"></i></h3> -->
+
+										<img src="{{ asset('assets/images/8.jpg') }}">
 										<p class="text-muted font-weight-bold">Allergies</p>
 									</div>
 									<div class="ml-auto">
