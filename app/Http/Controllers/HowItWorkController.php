@@ -47,7 +47,7 @@ class HowItWorkController extends Controller
 	public function update (Request $request, HowItWork $howItWork)
 	{
 		$rules = [
-			'title' => 'bail|required|image|max:1024',
+			'title' => 'bail|sometimes|image|max:1024',
 			'description' => 'bail|required|string|max:10000'
 		];
 		$validated = $request->validate($rules);
