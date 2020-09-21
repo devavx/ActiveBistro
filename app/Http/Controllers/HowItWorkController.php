@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\HowItWork;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class HowItWorkController extends Controller
@@ -77,6 +78,16 @@ class HowItWorkController extends Controller
 		}
 
 		return json_encode($result);
+	}
+
+	public function deleteBulk ()
+	{
+		$result = array();
+		$result['success'] = 1;
+		$result['message'] = 'HowItWork(s) deleted successfully!';
+		$result['data'] = [];
+		HowItWork::query()->whereIn('id', request('items', []))->delete();
+		return response()->json($result);
 	}
 
 	public function changeStatus ($id = '')

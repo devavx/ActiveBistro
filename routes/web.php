@@ -133,6 +133,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/sliders/change_status/{id}', 'SliderSettingController@changeStatus')->name('setting.slider.change_status');
 
 	Route::get('/how_it_works/delete/{id}', 'HowItWorkController@delete')->name('setting.how_it_work.delete');
+	Route::delete('/how_it_works/delete', 'HowItWorkController@deleteBulk')->name('setting.how_it_work.delete');
 	Route::get('/how_it_works/change_status/{id}', 'HowItWorkController@changeStatus')->name('setting.how_it_work.change_status');
 
 	Route::get('/faqs/delete/{id}', 'Admin\FaqController@delete')->name('setting.faqs.delete');
