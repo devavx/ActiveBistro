@@ -107,6 +107,8 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="card-group">
 				<!-- Column -->
 				<!-- Column -->
 				<div class="card">
@@ -154,61 +156,85 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- ============================================================== -->
-			<!-- End Info box -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Over Visitor, Our income , slaes different and  sales prediction -->
-			<!-- ============================================================== -->
-			<!-- <div class="row"> -->
-			<!-- Column -->
-			<!-- <div class="col-lg-8 col-md-12">
+
 				<div class="card">
 					<div class="card-body">
-						<div class="d-flex m-b-40 align-items-center no-block">
-							<h5 class="card-title ">YEARLY SALES</h5>
-							<div class="ml-auto">
-								<ul class="list-inline font-12">
-									<li><i class="fa fa-circle text-cyan"></i> Iphone</li>
-									<li><i class="fa fa-circle text-primary"></i> Ipad</li>
-									<li><i class="fa fa-circle text-purple"></i> Ipod</li>
-								</ul>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="d-flex no-block align-items-center">
+									<div>
+										<h3><i class="icon-bag"></i></h3>
+										<p class="text-muted">Ingredients</p>
+									</div>
+									<div class="ml-auto">
+										<h2 class="counter text-success">{{$stats->ingredients}}</h2>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div id="morris-area-chart" style="height: 340px;"></div>
-					</div>
-				</div>
-			</div> -->
-			<!-- Column -->
-			<!-- <div class="col-lg-4 col-md-12">
-				<div class="row"> -->
-			<!-- Column -->
-			<!-- <div class="col-md-12">
-				<div class="card bg-cyan text-white">
-					<div class="card-body ">
-						<div class="row weather">
-							<div class="col-6 m-t-40">
-								<h3>&nbsp;</h3>
-								<div class="display-4">73<sup>°F</sup></div>
-								<p class="text-white">AHMEDABAD, INDIA</p>
-							</div>
-							<div class="col-6 text-right">
-								<h1 class="m-b-"><i class="wi wi-day-cloudy-high"></i></h1>
-								<b class="text-white">SUNNEY DAY</b>
-								<p class="op-5">April 14</p>
+							<div class="col-12">
+								<div class="progress">
+									<div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div> -->
-			<!-- Column -->
-			<!-- <div class="col-md-12">
-				<div class="card bg-primary text-white">
-					<div class="card-body">
-						<div id="myCarouse2" class="carousel slide" data-ride="carousel"> -->
-			<!-- Carousel items -->
-		<!-- <div class="carousel-inner">
+			</div>
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Info box -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Over Visitor, Our income , slaes different and  sales prediction -->
+		<!-- ============================================================== -->
+		<!-- <div class="row"> -->
+		<!-- Column -->
+		<!-- <div class="col-lg-8 col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex m-b-40 align-items-center no-block">
+						<h5 class="card-title ">YEARLY SALES</h5>
+						<div class="ml-auto">
+							<ul class="list-inline font-12">
+								<li><i class="fa fa-circle text-cyan"></i> Iphone</li>
+								<li><i class="fa fa-circle text-primary"></i> Ipad</li>
+								<li><i class="fa fa-circle text-purple"></i> Ipod</li>
+							</ul>
+						</div>
+					</div>
+					<div id="morris-area-chart" style="height: 340px;"></div>
+				</div>
+			</div>
+		</div> -->
+		<!-- Column -->
+		<!-- <div class="col-lg-4 col-md-12">
+			<div class="row"> -->
+		<!-- Column -->
+		<!-- <div class="col-md-12">
+			<div class="card bg-cyan text-white">
+				<div class="card-body ">
+					<div class="row weather">
+						<div class="col-6 m-t-40">
+							<h3>&nbsp;</h3>
+							<div class="display-4">73<sup>°F</sup></div>
+							<p class="text-white">AHMEDABAD, INDIA</p>
+						</div>
+						<div class="col-6 text-right">
+							<h1 class="m-b-"><i class="wi wi-day-cloudy-high"></i></h1>
+							<b class="text-white">SUNNEY DAY</b>
+							<p class="op-5">April 14</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- Column -->
+		<!-- <div class="col-md-12">
+			<div class="card bg-primary text-white">
+				<div class="card-body">
+					<div id="myCarouse2" class="carousel slide" data-ride="carousel"> -->
+		<!-- Carousel items -->
+	<!-- <div class="carousel-inner">
 										<div class="carousel-item active">
 											<h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br/>laugh at the moment</h4>
 											<div class="d-flex no-block">
@@ -240,18 +266,18 @@
 											</div>
 										</div>
 									</div> -->
-			<!-- 	</div>
-			</div>
+		<!-- 	</div>
 		</div>
+	</div>
+</div> -->
+		<!-- Column -->
+		<!-- </div>
 	</div> -->
-			<!-- Column -->
-			<!-- </div>
-		</div> -->
-			<!-- </div> -->
-			<!-- ============================================================== -->
-			<!-- Comment - table -->
-			<!-- ============================================================== -->
-		<!-- <div class="row">
+		<!-- </div> -->
+		<!-- ============================================================== -->
+		<!-- Comment - table -->
+		<!-- ============================================================== -->
+	<!-- <div class="row">
 			  <div class="col-lg-6">
 				<div class="card">
 					<div class="card-body">
@@ -426,129 +452,129 @@
 						</div>
 					</div>
 				</div>-->
-			<!-- ============================================================== -->
-			<!-- End Comment - chats -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Over Visitor, Our income , slaes different and  sales prediction -->
-			<!-- ============================================================== -->
-			<!-- <div class="row"> -->
-			<!-- Column -->
-			<!-- <div class="col-lg-8 col-md-12">
+		<!-- ============================================================== -->
+		<!-- End Comment - chats -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Over Visitor, Our income , slaes different and  sales prediction -->
+		<!-- ============================================================== -->
+		<!-- <div class="row"> -->
+		<!-- Column -->
+		<!-- <div class="col-lg-8 col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="d-flex m-b-40 align-items-center no-block">
+						<h5 class="card-title ">SALES DIFFERENCE</h5>
+						<div class="ml-auto">
+							<ul class="list-inline font-12">
+								<li><i class="fa fa-circle text-cyan"></i> SITE A</li>
+								<li><i class="fa fa-circle text-primary"></i> SITE B</li>
+							</ul>
+						</div>
+					</div>
+					<div id="morris-area-chart2" style="height: 340px;"></div>
+				</div>
+			</div>
+		</div> -->
+		<!-- Column -->
+		<!-- <div class="col-lg-4 col-md-12">
+			<div class="row"> -->
+		<!-- Column -->
+		<!-- <div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">SALES DIFFERENCE</h5>
+					<div class="row">
+						<div class="col-6  m-t-30">
+							<h1 class="text-info">$647</h1>
+							<p class="text-muted">APRIL 2017</p>
+							<b>(150 Sales)</b> </div>
+							<div class="col-6">
+								<div id="sparkline2dash" class="text-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		<!-- Column -->
+		<!-- <div class="col-md-12">
+			<div class="card bg-purple text-white">
+				<div class="card-body">
+					<h5 class="card-title">VISIT STATASTICS</h5>
+					<div class="row">
+						<div class="col-6  m-t-30">
+							<h1 class="text-white">$347</h1>
+							<p class="light_op_text">APRIL 2017</p>
+							<b class="text-white">(150 Sales)</b> </div>
+							<div class="col-6">
+								<div id="sales1" class="text-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		<!-- Column -->
+		<!-- </div>
+		</div> -->
+		<!-- </div> -->
+		<!-- ============================================================== -->
+		<!-- End Page Content -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- Todo, chat, notification -->
+		<!-- ============================================================== -->
+		<!-- <div class="row">
+			<div class="col-md-4">
 				<div class="card">
-					<div class="card-body">
-						<div class="d-flex m-b-40 align-items-center no-block">
-							<h5 class="card-title ">SALES DIFFERENCE</h5>
-							<div class="ml-auto">
-								<ul class="list-inline font-12">
-									<li><i class="fa fa-circle text-cyan"></i> SITE A</li>
-									<li><i class="fa fa-circle text-primary"></i> SITE B</li>
-								</ul>
-							</div>
-						</div>
-						<div id="morris-area-chart2" style="height: 340px;"></div>
-					</div>
-				</div>
-			</div> -->
-			<!-- Column -->
-			<!-- <div class="col-lg-4 col-md-12">
-				<div class="row"> -->
-			<!-- Column -->
-			<!-- <div class="col-md-12">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">SALES DIFFERENCE</h5>
-						<div class="row">
-							<div class="col-6  m-t-30">
-								<h1 class="text-info">$647</h1>
-								<p class="text-muted">APRIL 2017</p>
-								<b>(150 Sales)</b> </div>
-								<div class="col-6">
-									<div id="sparkline2dash" class="text-right"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			<!-- Column -->
-			<!-- <div class="col-md-12">
-				<div class="card bg-purple text-white">
-					<div class="card-body">
-						<h5 class="card-title">VISIT STATASTICS</h5>
-						<div class="row">
-							<div class="col-6  m-t-30">
-								<h1 class="text-white">$347</h1>
-								<p class="light_op_text">APRIL 2017</p>
-								<b class="text-white">(150 Sales)</b> </div>
-								<div class="col-6">
-									<div id="sales1" class="text-right"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
-			<!-- Column -->
-			<!-- </div>
-			</div> -->
-			<!-- </div> -->
-			<!-- ============================================================== -->
-			<!-- End Page Content -->
-			<!-- ============================================================== -->
-			<!-- ============================================================== -->
-			<!-- Todo, chat, notification -->
-			<!-- ============================================================== -->
-			<!-- <div class="row">
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body"> -->
-			<!-- <div class="d-flex no-block align-items-center">
-				<div>
-					<h5 class="card-title m-b-0">TO DO LIST</h5>
-				</div>
-				<div class="ml-auto">
-					<button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
-				</div>
-			</div> -->
-			<!-- ============================================================== -->
-			<!-- To do list widgets -->
-			<!-- ============================================================== -->
-			<!-- <div class="to-do-widget m-t-20" id="todo" style="height: 400px;position: relative;"> -->
-			<!-- .modal for add task -->
-			<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog" role="document"> -->
-			<!-- <div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Add Task</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-				</div>
-				<div class="modal-body">
-					<form>
+					<div class="card-body"> -->
+		<!-- <div class="d-flex no-block align-items-center">
+			<div>
+				<h5 class="card-title m-b-0">TO DO LIST</h5>
+			</div>
+			<div class="ml-auto">
+				<button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+			</div>
+		</div> -->
+		<!-- ============================================================== -->
+		<!-- To do list widgets -->
+		<!-- ============================================================== -->
+		<!-- <div class="to-do-widget m-t-20" id="todo" style="height: 400px;position: relative;"> -->
+		<!-- .modal for add task -->
+		<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog" role="document"> -->
+		<!-- <div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Task</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>Task name</label>
+						<input type="text" class="form-control" placeholder="Enter Task Name"> </div>
 						<div class="form-group">
-							<label>Task name</label>
-							<input type="text" class="form-control" placeholder="Enter Task Name"> </div>
-							<div class="form-group">
-								<label>Assign to</label>
-								<select class="custom-select form-control pull-right">
-									<option selected="">Sachin</option>
-									<option value="1">Sehwag</option>
-									<option value="2">Pritam</option>
-									<option value="3">Alia</option>
-									<option value="4">Varun</option>
-								</select>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-					</div>
-				</div> -->
-			<!-- /.modal-content -->
-			<!-- </div> -->
-			<!-- /.modal-dialog -->
-			<!-- </div> -->
-			<!-- /.modal -->
-		<!-- <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
+							<label>Assign to</label>
+							<select class="custom-select form-control pull-right">
+								<option selected="">Sachin</option>
+								<option value="1">Sehwag</option>
+								<option value="2">Pritam</option>
+								<option value="3">Alia</option>
+								<option value="4">Varun</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+				</div>
+			</div> -->
+		<!-- /.modal-content -->
+		<!-- </div> -->
+		<!-- /.modal-dialog -->
+		<!-- </div> -->
+		<!-- /.modal -->
+	<!-- <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
 													<li class="list-group-item" data-role="task">
 														<div class="custom-control custom-checkbox">
 															<input type="checkbox" class="custom-control-input" id="customCheck">
@@ -606,11 +632,11 @@
 														</ul>
 													</li>
 												</ul> -->
-			<!-- </div>
-		</div>
+		<!-- </div>
 	</div>
+</div>
 </div> -->
-		<!-- <div class="col-md-4">
+	<!-- <div class="col-md-4">
 									<div class="card">
 										<div class="card-body">
 											<h5 class="card-title">YOU HAVE 5 NEW MESSAGES</h5>
@@ -655,7 +681,7 @@
 																</div>
 															</div>
 														</div> -->
-		<!-- <div class="col-md-4">
+	<!-- <div class="col-md-4">
 															<div class="card">
 																<div class="card-body">
 																	<h5 class="card-title">CHAT</h5>
@@ -717,14 +743,14 @@
 																</div>
 															</div>
 														</div> -->
-		</div>
-		<!-- ============================================================== -->
-		<!-- End Page Content -->
-		<!-- ============================================================== -->
-		<!-- ============================================================== -->
-		<!-- Right sidebar -->
-		<!-- ============================================================== -->
-		<!-- .right-sidebar -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page Content -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- Right sidebar -->
+	<!-- ============================================================== -->
+	<!-- .right-sidebar -->
 	<!-- <div class="right-sidebar">
                     <div class="slimscrollright">
                         <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
@@ -776,8 +802,8 @@
                     </div>
                 </div>
             -->                <!-- ============================================================== -->
-		<!-- End Right sidebar -->
-		<!-- ============================================================== -->
+	<!-- End Right sidebar -->
+	<!-- ============================================================== -->
 	</div>
 	<!-- ============================================================== -->
 	<!-- End Container fluid  -->

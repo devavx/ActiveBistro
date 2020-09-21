@@ -19,13 +19,15 @@ class AdminController extends Controller
 		$items = 0;
 		$orders = 0;
 		$coupons = 0;
+		$ingredients = 0;
 		$stats = [
 			'customers' => $customers,
 			'dailyMeals' => $dailyMeals,
 			'meals' => $meals,
 			'items' => $items,
 			'orders' => $orders,
-			'coupons' => $coupons
+			'coupons' => $coupons,
+			'ingredients' => $ingredients
 		];
 		return view('backend/admin/dashboard')->with('stats', (object)$stats);
 	}
