@@ -27,7 +27,7 @@ class AdminController extends Controller
 			'orders' => $orders,
 			'coupons' => $coupons
 		];
-		return view('backend/admin/dashboard')->with('stats', $stats);
+		return view('backend/admin/dashboard')->with('stats', (object)$stats);
 	}
 
 	public function profile ()
