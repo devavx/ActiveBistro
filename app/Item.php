@@ -6,6 +6,7 @@ use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\UploadedFile;
 
@@ -21,6 +22,20 @@ class Item extends Model
 	public function ingredients ()
 	{
 		return $this->belongsToMany("App\Ingredient");
+	}
+
+	public function type (): BelongsTo
+	{
+		return $this->belongsTo(ItemType::class)->withDefault(function (ItemType $type) {
+			return $type->name = Str::Empty;
+		});
+	}
+
+	public function category (): BelongsTo
+	{
+		return $this->belongsTo(Category::class)->withDefault(function (Category $category) {
+			return $category->name = Str::Empty;
+		});
 	}
 
 	public function childrens ()

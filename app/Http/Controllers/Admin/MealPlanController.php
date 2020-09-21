@@ -13,19 +13,23 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
-class MealPlanController extends Controller {
-	public function index (): Renderable {
+class MealPlanController extends Controller
+{
+	public function index (): Renderable
+	{
 		$plans = MealPlan::query()->whereNull('day')->get();
 		return view('backend.admin.mealplan.index')->with('plans', $plans);
 	}
 
-	public function create (): Renderable {
+	public function create (): Renderable
+	{
 		$listData = Item::query()->where('active', 1)->get();
 		$allergies = Allergy::query()->where('active', true)->get();
 		return view('backend.admin.mealplan.create', compact('listData'))->with('allergies', $allergies);
 	}
 
-	public function edit ($id) {
+	public function edit ($id)
+	{
 		$mealplan = MealPlan::query()->where('id', $id)->first();
 		$listData = Item::query()->where('active', 1)->get();
 		$bound = [
@@ -42,7 +46,8 @@ class MealPlanController extends Controller {
 
 	}
 
-	public function store (StoreRequest $request) {
+	public function store (StoreRequest $request)
+	{
 		/**
 		 * @var MealPlan $plan
 		 */
@@ -70,7 +75,8 @@ class MealPlanController extends Controller {
 		}
 	}
 
-	public function update (UpdateRequest $request, $id) {
+	public function update (UpdateRequest $request, $id)
+	{
 		$plan = MealPlan::query()->whereKey($id)->first();
 		if ($plan != null) {
 			$validated = $request->validated();
@@ -100,11 +106,12 @@ class MealPlanController extends Controller {
 		}
 	}
 
-	public function show ($id) {
+	public function show ($id)
+	{
 		/**
 		 * @var MealPlan $plan
 		 */
-		$plan = MealPlan::query()->whereKey($id)->first();
+		$plan = MealPlan::query()->with('allergies', 'images', 'items')->whereKey($id)->first();
 		if ($plan != null) {
 			return response()->json(['success' => 1, 'message' => '', 'data' => view('backend.admin.mealplan.show')->with('plan', $plan)->render()]);
 		} else {
@@ -112,7 +119,8 @@ class MealPlanController extends Controller {
 		}
 	}
 
-	public function delete ($id = '') {
+	public function delete ($id = '')
+	{
 		$result = array();
 		$data = MealPlan::find($id);
 		if (!empty($data)) {
@@ -127,7 +135,8 @@ class MealPlanController extends Controller {
 		return json_encode($result);
 	}
 
-	public function deleteBulk () {
+	public function deleteBulk ()
+	{
 		$result = array();
 		$result['success'] = 1;
 		$result['message'] = 'Meal plan(s) deleted successfully!';
@@ -136,7 +145,8 @@ class MealPlanController extends Controller {
 		return response()->json($result);
 	}
 
-	public function changeStatus ($id = '') {
+	public function changeStatus ($id = '')
+	{
 		$result = array();
 		$data = MealPlan::find($id);
 		if (!empty($data)) {
@@ -155,7 +165,8 @@ class MealPlanController extends Controller {
 		return json_encode($result);
 	}
 
-	public function removeImages ($id, string $key) {
+	public function removeImages ($id, string $key)
+	{
 		MealPlanImage::query()->whereKey($key)->where('meal_plan_id', $id)->delete();
 	}
 }

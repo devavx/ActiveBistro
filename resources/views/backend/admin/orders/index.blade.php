@@ -94,8 +94,10 @@
 												<label><input type="checkbox" name="delete_target"><span class="sr-only"> Select Row </span></label>
 											</td>
 											<td>{{$loop->index+1}}</td>
-											<td> #{{$order->id}}</td>
-											<td><a href data-toggle="modal" data-target="#detailmodal">{{$order->user->name}}</a></td>
+											<td>
+												<button class="btn btn-link" onclick="showDetails('{{$order->id}}');"> #{{$order->id}}</button>
+											</td>
+											<td>{{$order->user->name}}</td>
 											<td> {{ucfirst($order->status)}}</td>
 											<td> {{$order->address->stringify()}}</td>
 											<td> {{$order->total}}</td>
@@ -103,7 +105,7 @@
 											<td> {{$order->quantity}}</td>
 											<td> {{$order->created_at}}</td>
 											<td style="text-align: center; ">
-{{--												<a class="like" href="{{route('admin.orders.show',$order->id)}}" title="View"><i class="fa fa-search text-info"></i></a>&nbsp;/--}}
+												<a class="like" href="{{route('admin.orders.show',$order->id)}}" title="View"><i class="fa fa-search text-info"></i></a>&nbsp;/
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $order->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 											</td>
 										@endforeach
@@ -121,79 +123,16 @@
 	<div id="cover-spin" style="display: none;"></div>
 
 	<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Order Detail</h4>
+					<h4 class="modal-title">Order Details</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Order ID</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>#123</p>
-								</div>
-							</div>
-						</div>
+				<div class="modal-body" id="content-body">
 
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Customer Name</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>David</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Status</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p class="text-success">Open</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Address</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>A-113 Sector 12 Noida Uttar Pradesh 110012</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Total</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>1000</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">No. of Meal</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>12</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Created</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>14/12/2020</p>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -252,6 +191,24 @@
 			});
 			deleteConfirmMessageBulk(url, items);
 		}
+
+		showDetails = key => {
+			setLoading(true, () => {
+				performGet({
+					url: `/admin/orders/show/${key}`,
+					success: (message, data) => {
+						$('#content-body').html(data);
+						$('#detailmodal').modal('show');
+					},
+					failed: message => {
+
+					},
+					complete: () => {
+						setLoading(false);
+					}
+				});
+			});
+		};
 
 	</script>
 @endsection

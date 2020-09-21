@@ -89,12 +89,14 @@
 									<tbody>
 									@foreach($plans as $plan)
 										<tr>
-<td>
+											<td>
 												<label><input type="checkbox" name="delete_target" value="{{$plan->id}}"><span class="sr-only"> Select Row </span></label>
 											</td>
 											<td>{{$loop->index+1}}</td>
-											
-											<td><a href data-toggle="modal" data-target="#detailmodal"> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</a></td>
+
+											<td>
+												<button class="btn btn-link" onclick="showDetails('{{$plan->id}}');"> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</button>
+											</td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
 												@foreach($plan->images as $image)
@@ -134,139 +136,24 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-sm">
+	<div id="cover-spin" style="display: none;"></div>
+
+	<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Meal Plan Details</h5>
+					<h4 class="modal-title">Meal Details</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body p-0" id="plan_details">
-
+				<div class="modal-body" id="content-body">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div> -->
-	<div id="cover-spin" style="display: none;"></div>
-
-<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
-	  	<div class="modal-dialog modal-xl" role="document">
-	     	<div class="modal-content">
-	      		<div class="modal-header">
-	        		<h4 class="modal-title">Meal Detail</h4>
-	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          			<span aria-hidden="true">&times;</span>
-	       			</button>
-	      		</div>
-	      		<div class="modal-body">
-	        		<div class="row">
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Name</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p>Spicy Salad</p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Type</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p>Snacks</p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Item(s)</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p><span class="border pl-2 pr-2 p-1 rounded mr-2">Item1</span><span class="border pl-2 pr-2 p-1 rounded mr-2">Item2</span><span class="border pl-2 pr-2 p-1 rounded mr-2">Item3</span></p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Default Item(s)</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p><span class="border pl-2 pr-2 p-1 rounded mr-2">Item1</span><span class="border pl-2 pr-2 p-1 rounded mr-2">Item2</span><span class="border pl-2 pr-2 p-1 rounded mr-2">Item3</span></p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Coming soon (not launched yet)?</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p><input type="checkbox" name="come" checked disabled></p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Status</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p class="text-success">Active</p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-6 col-sm-6 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-3 col-sm-3 col-12">Created at</label>
-	        					<div class="col-lg-9 col-sm-9 col-12">
-	        						<p>Aug-19-2020</p>
-	        					</div>
-	        				</div>
-	        			</div>
-
-	        			<div class="col-lg-12 col-sm-12 col-12">
-	        				<div class="form-group row">
-	        					<label class="col-lg-12 col-sm-12 col-12">Image(s)</label>
-	        					<div class="col-lg-12 col-sm-12 col-12">
-	        						<div class="row">
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-
-	        							<div class="col-lg-2 col-sm-3 col-6">
-	        								<img src="image/homehow.jpg" class="img-fluid w-100 d-block mt-2">
-	        							</div>
-	        						</div>
-	        					</div>
-	        				</div>
-	        			</div>
-	        		</div>
-	      		</div>
-	      		<div class="modal-footer">
-	        		<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-	      		</div>
-	    	</div>
-	  	</div>
 	</div>
 
 @endsection
@@ -341,6 +228,24 @@
 			});
 			deleteConfirmMessageBulk(url, items);
 		}
+
+		showDetails = key => {
+			setLoading(true, () => {
+				performGet({
+					url: `/admin/meals/show/${key}`,
+					success: (message, data) => {
+						$('#content-body').html(data);
+						$('#detailmodal').modal('show');
+					},
+					failed: message => {
+
+					},
+					complete: () => {
+						setLoading(false);
+					}
+				});
+			});
+		};
 
 	</script>
 @endsection

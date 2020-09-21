@@ -111,11 +111,12 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 
 	// ItemController URI
 	Route::get('/items/delete/{id}', 'ItemController@delete')->name('items.delete');
+	Route::get('/items/show/{id}', 'ItemController@show')->name('items.show');
 	Route::delete('/items/delete', 'ItemController@deleteBulk')->name('items.delete');
 	Route::get('/items/change_status/{id}', 'ItemController@changeStatus')->name('items.chnage_status');
 	// OrderController URI
 	Route::get('/orders', 'Admin\OrderController@index')->name('orders.index');
-	Route::get('/orders/{key}', 'Admin\OrderController@show')->name('orders.show');
+	Route::get('/orders/show/{key}', 'Admin\OrderController@show')->name('orders.show');
 	Route::get('orders/delete/{key}', 'Admin\OrderController@delete')->name('orders.delete');
 	Route::delete('orders/delete', 'Admin\OrderController@deleteBulk')->name('orders.delete');
 

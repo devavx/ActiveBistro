@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\MealPlan;
 use App\Models\Order;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -21,11 +22,14 @@ class OrderController extends Controller
 
 	public function show ($key)
 	{
+		/**
+		 * @var Order $order
+		 */
 		$order = Order::query()->with('user', 'items', 'address', 'secondAddress', 'items.meal')->whereKey($key)->first();
 		if ($order != null) {
-			return view('backend.admin.orders.show')->with('order', $order);
+			return response()->json(['success' => 1, 'message' => '', 'data' => view('backend.admin.orders.show')->with('order', $order)->render()]);
 		} else {
-			return redirect()->back()->with('errormsg', 'Could not find order.');
+			return response()->json(['success' => 0, 'message' => '', 'data' => null]);
 		}
 	}
 

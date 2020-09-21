@@ -114,7 +114,7 @@ class DailyMealPlanController extends Controller
 		/**
 		 * @var MealPlan $plan
 		 */
-		$plan = MealPlan::query()->whereKey($id)->first();
+		$plan = MealPlan::query()->with('allergies', 'images', 'items')->whereKey($id)->first();
 		if ($plan != null) {
 			return response()->json(['success' => 1, 'message' => '', 'data' => view('backend.admin.dailymealplan.show')->with('plan', $plan)->render()]);
 		} else {
