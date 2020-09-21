@@ -72,7 +72,7 @@
 									<thead>
 									<tr>
 										<th scope="col" class="border">
-											<label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
+											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
 
