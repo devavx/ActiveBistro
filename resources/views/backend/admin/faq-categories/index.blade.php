@@ -104,7 +104,7 @@
 												@endif
 												<td> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
 												<td>
-													<a class="like" href="{{ route('admin.faqs.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a> /
+													<a class="like" href="{{ route('admin.faq-categories.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a> /
 													<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $rows->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 												</td>
 											</tr>
