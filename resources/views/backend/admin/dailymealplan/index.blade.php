@@ -121,7 +121,7 @@
 											@endif
 											<td> {{ changeDateFormat($plan->created_at,'M-d-Y') }}</td>
 											<td style="text-align: center; ">
-												<a class="like" href="javascript:void(0);" onclick="showMealPlan({{$plan->id}});" title="View"><i class="fas fa-search text-primary"></i></a>
+												<a class="like" href="javascript:void(0);" onclick="showDetails('{{$plan->id}}');" title="View"><i class="fas fa-search text-primary"></i></a>
 												/
 												<a class="like" href="{{ route('admin.daily-meals.edit',$plan->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a>
 												/

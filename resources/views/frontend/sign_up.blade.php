@@ -122,7 +122,7 @@
 
 						<div class="form-group">
 							<label>Date of Birth <sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}" placeholder="Enter Date Of Birth..">
+							<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}" placeholder="Enter date of birth..">
 							@error('dob')
 							<span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -138,7 +138,7 @@
 						</div>
 
 						<div class="form-group row">
-							<label class="col-lg-2 col-sm-3 col-12">Email ID <sup class="text-danger">*</sup></label>
+							<label class="col-lg-2 col-sm-3 col-12">Email <sup class="text-danger">*</sup></label>
 							<div class="col-lg-10 col-sm-9 col-12">
 								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 								<p><small>.ac or .nhs email addresses are eligible</small></p>
@@ -209,20 +209,25 @@
 				rules: {
 					first_name: {
 						required: true,
-						minlength: 4
+						minlength: 2,
+						maxlength: 15
 					},
-					last_name: {required: true,},
+					last_name: {
+						required: true,
+						minlength: 2,
+						maxlength: 15
+					},
 					phone: {
 						required: true,
 						minlength: 8,
 						maxlength: 13,
 					},
-					gender: {required: true,},
+					gender: {required: true},
 					email: {
 						required: true,
 						email: true,
 					},
-					dob: {required: true,},
+					dob: {required: true},
 					password: {
 						required: true,
 						minlength: 8,
