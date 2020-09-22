@@ -70,7 +70,6 @@
 						<div class="card-body">
 							<form action="{{ route('admin.faq-categories.update',$category->id) }}" id="add_form" method="post" enctype="multipart/form-data">
 								@csrf
-								@method('PUT')
 								<div class="form-body">
 									<hr>
 									<div id="faq_section">
