@@ -32,7 +32,7 @@
 			<div class="col-lg-9 col-sm-9 col-12">
 				<p>
 					@foreach($plan->items as $item)
-						<span class="border pl-2 pr-2 p-1 rounded mr-2 @if($item->default==false) border border-danger @endif">{{$item->name}}</span>
+						<span class="border pl-2 pr-2 p-1 rounded mr-2 @if($item->default==true) border border-danger @endif">{{$item->name}}</span>
 					@endforeach
 				</p>
 			</div>
