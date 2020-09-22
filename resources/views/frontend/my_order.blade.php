@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') Active Bistro | My Order @endsection
+@section('title') Active Bistro | My Orders @endsection
 @section('css')
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 	<style type="text/css">
