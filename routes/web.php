@@ -223,4 +223,16 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 		Route::get('delete/{id}', 'Admin\CouponController@delete')->name('coupons.delete');
 		Route::delete('delete', 'Admin\CouponController@deleteBulk')->name('coupons.delete.bulk');
 	});
+
+	/*
+	|--------------------------------------------------------------------------
+	| FAQ Categories Namespace Route(s)
+	|--------------------------------------------------------------------------
+	|
+	*/
+	Route::prefix('faq-categories')->group(static function () {
+		Route::get(Str::Root, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
+		Route::get(Str::Create, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
+		Route::get(Str::Edit, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
+	});
 });
