@@ -68,7 +68,7 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.faq-categories.update',$record->id) }}" id="add_form" method="post" enctype="multipart/form-data">
+							<form action="{{ route('admin.faq-categories.update',$category->id) }}" id="add_form" method="post" enctype="multipart/form-data">
 								@csrf
 								@method('PUT')
 								<div class="form-body">
@@ -78,7 +78,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>Title</label>
-													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." value="{{ $record->title }}">
+													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." value="{{ $category->title }}">
 												</div>
 											</div>
 										</div>
