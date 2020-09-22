@@ -9,7 +9,7 @@ class Str extends \Illuminate\Support\Str
 	const Empty = '';
 	const Root = '';
 	const Create = 'create';
-	const Edit = '{key}/edit';
+	const Edit = '{id}/edit';
 
 	public static function placeholder (?string $value, ?string $placeholder = '<N/A>'): ?string
 	{

@@ -31,7 +31,16 @@ class FaqCategoryController extends Controller
 			'title' => 'bail|required|string|min:1|max:255'
 		]);
 		FaqCategory::query()->create($validated);
-		return redirect()->route('admin.faq-categories.index');
+		return redirect()->route('admin.faq-categories.index')->with('success', 'FAQ Category created successfully!');
+	}
+
+	public function update (Request $request, FaqCategory $category)
+	{
+		$validated = $request->validate([
+			'title' => 'bail|required|string|min:1|max:255'
+		]);
+		$category->update($validated);
+		return redirect()->route('admin.faq-categories.index')->with('success', 'FAQ Category updated successfully!');
 	}
 
 	public function delete ($id = '')
