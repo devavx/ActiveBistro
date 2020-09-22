@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coupon extends Model
 {
+	use SoftDeletes;
+
 	protected $fillable = ['code', 'description', 'valid_from', 'valid_until', 'active', 'usage_count', 'discount', 'type', 'promote'];
 	protected $casts = ['active' => 'bool', 'promoted' => 'bool'];
 	public const Flat = 'flat';
