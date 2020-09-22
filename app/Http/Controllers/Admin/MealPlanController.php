@@ -17,7 +17,7 @@ class MealPlanController extends Controller
 {
 	public function index (): Renderable
 	{
-		$plans = MealPlan::query()->whereNull('day')->get();
+		$plans = MealPlan::query()->whereNull('day')->latest()->get();
 		return view('backend.admin.mealplan.index')->with('plans', $plans);
 	}
 

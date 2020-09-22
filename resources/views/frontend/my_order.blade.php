@@ -114,55 +114,8 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Order ID</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>#123</p>
-								</div>
-							</div>
-						</div>
+				<div class="modal-body" id="content-body">
 
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Address</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>demo, , demo, 125416</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Total</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>£900</p>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Payment Slab</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>Monthly</p>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">No. of Meals</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p>3</p>
-								</div>
-							</div>
-						</div>
-
-						
-					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-info btn-md" data-dismiss="modal">Close</button>
@@ -182,5 +135,23 @@
 			$('#example').DataTable();
 			$('#example1').DataTable();
 		});
+
+		showDetails = key => {
+			setLoading(true, () => {
+				performGet({
+					url: `/my_order/show/${key}`,
+					success: (message, data) => {
+						$('#content-body').html(data);
+						$('#detailmodal').modal('show');
+					},
+					failed: message => {
+
+					},
+					complete: () => {
+						setLoading(false);
+					}
+				});
+			});
+		};
 	</script>
 @endsection

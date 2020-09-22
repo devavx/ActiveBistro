@@ -25,7 +25,7 @@ class ItemController extends Controller
 	 */
 	public function index ()
 	{
-		$listData = Item::all();
+		$listData = Item::query()->latest()->get();
 		return view('backend.admin.item.index', compact('listData'));
 	}
 
