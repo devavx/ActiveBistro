@@ -27,7 +27,7 @@ class FaqController extends Controller
 
 			for ($i = 0; $i < count($request->faq_title); $i++) {
 				$res = Faq::create([
-					'category_id' => $request->category_id,
+					'faq_category_id' => $request->category_id,
 					'faq_title' => $request['faq_title'][$i],
 					'faq_description' => $request['faq_description'][$i],
 				]);
@@ -61,7 +61,7 @@ class FaqController extends Controller
 		}
 		$data->faq_title = $request->faq_title;
 		$data->faq_description = $request->faq_description;
-		$data->category_id = $request->category_id;
+		$data->faq_category_id = $request->category_id;
 		$save = $data->update();
 		if ($save) {
 			return redirect('admin/faqs')->with('success', 'Faq Updated successfully!');
