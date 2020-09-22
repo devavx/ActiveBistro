@@ -25,6 +25,11 @@ class FaqCategoryController extends Controller
 		return view('backend.admin.faq-categories.create');
 	}
 
+	public function edit (FaqCategory $category)
+	{
+		return view('backend.admin.faq-categories.edit')->with('category', $category);
+	}
+
 	public function store (Request $request)
 	{
 		$validated = $request->validate([

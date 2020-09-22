@@ -235,6 +235,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 		Route::get(Str::Create, 'Admin\FaqCategoryController@create')->name('faq-categories.create');
 		Route::get(Str::Edit, 'Admin\FaqCategoryController@edit')->name('faq-categories.edit');
 		Route::post(Str::Root, 'Admin\FaqCategoryController@store')->name('faq-categories.store');
+		Route::post(Str::Update, 'Admin\FaqCategoryController@update')->name('faq-categories.update');
 		Route::get('change_status/{id}', 'Admin\FaqCategoryController@changeStatus')->name('faq-categories.update.status');
 		Route::get('delete/{id}', 'Admin\FaqCategoryController@delete')->name('faq-categories.delete');
 		Route::delete('delete', 'Admin\FaqCategoryController@deleteBulk')->name('faq-categories.delete.bulk');

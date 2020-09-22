@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Core\Primitives;
-
 
 class Str extends \Illuminate\Support\Str
 {
@@ -10,6 +8,7 @@ class Str extends \Illuminate\Support\Str
 	const Root = '';
 	const Create = 'create';
 	const Edit = '{id}/edit';
+	const Update = '{id}/update';
 
 	public static function placeholder (?string $value, ?string $placeholder = '<N/A>'): ?string
 	{
