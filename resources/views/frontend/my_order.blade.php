@@ -58,7 +58,10 @@
 								<td class="p-2">&pound;{{$order->total}}</td>
 								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
 								<td class="p-2">{{$order->quantity}}</td>
-								<td class="p-2"><a title="Check Order Details" href class="text-color" data-toggle="modal" data-target="#detailmodal"><i class="fa fa-eye"></i></a></td>
+								<td class="p-2">
+									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
+										<i class="fa fa-eye"></i></button>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -109,7 +112,7 @@
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">Order Detail</h4>
+					<h4 class="modal-title">Order Details</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
