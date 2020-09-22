@@ -69,17 +69,16 @@
 							@endif
 							<div class="table-responsive m-t-40">
 								<table id="example23"
-								       class="display nowrap table table-hover table-striped table-bordered"
-								       cellspacing="0" width="100%">
+										class="display nowrap table table-hover table-striped table-bordered"
+										cellspacing="0" width="100%">
 									<thead>
 									<tr>
-<th scope="col" class="border">
+										<th scope="col" class="border">
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
-										
+
 										<th>Name</th>
-										<!-- <th>SubName</th>  -->
 										<th>ShortDescription</th>
 										<th>Protein</th>
 										<th>Calories</th>
@@ -103,7 +102,6 @@
 												<td>
 													<button class="btn btn-link" onclick="showDetails('{{$rows->id}}');"> {{\App\Core\Primitives\Str::placeholder($rows->name)}}</button>
 												</td>
-											<!-- <td> {{ $rows->sub_name ?? '-'}}</td> -->
 												<td> {{ $rows->short_description ?? '-'}}</td>
 												<td> {{ $rows->protein ?? '-'}}</td>
 												<td> {{ $rows->calories ?? '-'}}</td>
@@ -122,7 +120,9 @@
 														</button>
 													</td>
 												@endif
-												<td><img src="{{ $rows->thumnail }}" alt="image" width="100"></td>
+												<td>
+													<img src="{{ $rows->thumbnail }}" alt="image" width="100">
+												</td>
 												<td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
 												<td style="text-align: center; ">
 													<a class="like" href="{{ route('admin.items.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a>
@@ -133,7 +133,7 @@
 										@endforeach
 									@else
 										<tr>
-											<td colspan="6" class="text-danger">No Record Found !</td>
+											<td colspan="6" class="text-danger">No Record Found!</td>
 										</tr>
 									@endif
 									</tbody>
