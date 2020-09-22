@@ -73,29 +73,31 @@
 								<div class="form-body">
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Title</label>
-													<input type="text" name="faq_title" id="faq_title" class="form-control" placeholder="Enter Title.." value="{{ $record->faq_title }}" required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Description</label>
-													<textarea type="text" name="faq_description" id="faq_description" class="form-control" placeholder="Enter description.." required>{{ $record->faq_description }}</textarea>
-												</div>
-											</div>
-										</div>
-										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Category</label>
+													<label>Category*</label>
 													<select name="category_id" id="" class="form-control" required>
 														<option value="">Choose...</option>
 														@foreach($categories as $category)
 															<option value="{{$category->id}}" @if($record->faq_category_id==$category->id) selected @endif>{{$category->title}}</option>
 														@endforeach
 													</select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Title*</label>
+													<input type="text" name="faq_title" id="faq_title" class="form-control" placeholder="Enter Title.." value="{{ $record->faq_title }}" required>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Description*</label>
+													<textarea type="text" name="faq_description" id="faq_description" class="form-control" placeholder="Enter description.." required>{{ $record->faq_description }}</textarea>
 												</div>
 											</div>
 										</div>

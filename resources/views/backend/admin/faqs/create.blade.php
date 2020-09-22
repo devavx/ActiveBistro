@@ -72,26 +72,9 @@
 								<div class="form-body">
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Title</label>
-													<input type="text" name="faq_title[]" id="faq_title" class="form-control" placeholder="Enter title.." required>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Description</label>
-													<textarea type="text" name="faq_description[]" id="faq_description" rows="1" class="form-control" placeholder="Enter description.." required></textarea>
-												</div>
-											</div>
-											<div class="col-md-2 d-none" style="margin-top: 28px;">
-												<button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
-											</div>
-										</div>
-										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label>Category</label>
+													<label>Category*</label>
 													<select name="category_id" id="" class="form-control" required>
 														<option value="">Choose...</option>
 														@foreach($categories as $category)
@@ -100,6 +83,25 @@
 													</select>
 												</div>
 											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Title*</label>
+													<input type="text" name="faq_title[]" id="faq_title" class="form-control" placeholder="Enter title.." required>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Description*</label>
+													<textarea type="text" name="faq_description[]" id="faq_description" rows="6" class="form-control" placeholder="Enter description.." required></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-2 d-none" style="margin-top: 28px;">
+											<button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
 										</div>
 									</div>
 								</div>
