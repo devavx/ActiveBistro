@@ -89,6 +89,7 @@
 							<th class="p-2 font-weight-bold text-white">Total</th>
 							<th class="p-2 font-weight-bold text-white">Payment Slab</th>
 							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
+							<th class="p-2 font-weight-bold text-white">Detail</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -99,6 +100,10 @@
 								<td class="p-2">&pound;{{$order->total}}</td>
 								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
 								<td class="p-2">{{$order->quantity}}</td>
+								<td class="p-2">
+									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
+										<i class="fa fa-eye"></i></button>
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
@@ -130,8 +135,7 @@
 @section('script')
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js
-"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
 	<script>
 		$(document).ready(function () {
