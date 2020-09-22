@@ -109,7 +109,7 @@
 	</div>
 
 	<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-xl" role="document">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">Order Details</h4>
