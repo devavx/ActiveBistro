@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Faq | Create @endsection
+@section('title') Admin | FAQ Categories | Create @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css"/>
@@ -19,13 +19,14 @@
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Faq</h4>
+					<h4 class="text-themecolor">FAQ Categories</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Faq</a></li>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/faq-categories') }}">FAQ Categories</a>
+							</li>
 							<li class="breadcrumb-item active">Create</li>
 						</ol>
 					</div>
@@ -35,7 +36,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Faq</h4>
+							<h4 class="m-b-0 text-white">FAQ Categories List</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -67,7 +68,7 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.faqs.store') }}" id="add_form" method="post" enctype="multipart/form-data">
+							<form action="{{ route('admin.faq-categories.store') }}" id="add_form" method="post" enctype="multipart/form-data">
 								@csrf
 								<div class="form-body">
 									<hr>
@@ -76,17 +77,8 @@
 											<div class="col-md-5">
 												<div class="form-group">
 													<label>Title</label>
-													<input type="text" name="faq_title[]" id="faq_title" class="form-control" placeholder="Enter Title..">
+													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." required maxlength="255" minlength="1">
 												</div>
-											</div>
-											<div class="col-md-5">
-												<div class="form-group">
-													<label>Deacription</label>
-													<textarea type="text" name="faq_description[]" id="faq_description" class="form-control" placeholder="Enter Description..">Faqs</textarea>
-												</div>
-											</div>
-											<div class="col-md-2" style="margin-top: 28px;">
-												<button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
 											</div>
 										</div>
 									</div>
@@ -94,7 +86,7 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
-									<a href="{{ url('/admin/faqs') }}" class="btn btn-inverse">Cancel</a>
+									<a href="{{ route('admin.faq-categories.index') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>
@@ -132,12 +124,9 @@
 
 			$('#add_form').validate({ // initialize the plugin
 				rules: {
-					"faq_title[]": {
+					title: {
 						required: true,
 					},
-					"faq_description[]": {
-						required: true,
-					}
 				}
 			});
 

@@ -232,7 +232,10 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	*/
 	Route::prefix('faq-categories')->group(static function () {
 		Route::get(Str::Root, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
-		Route::get(Str::Create, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
-		Route::get(Str::Edit, 'Admin\FaqCategoryController@index')->name('faq-categories.index');
+		Route::get(Str::Create, 'Admin\FaqCategoryController@create')->name('faq-categories.create');
+		Route::get(Str::Edit, 'Admin\FaqCategoryController@edit')->name('faq-categories.edit');
+		Route::post(Str::Root, 'Admin\FaqCategoryController@store')->name('faq-categories.store');
+		Route::get('delete/{id}', 'Admin\FaqCategoryController@delete')->name('faq-categories.delete');
+		Route::delete('delete', 'Admin\FaqCategoryController@deleteBulk')->name('faq-categories.delete.bulk');
 	});
 });
