@@ -27,6 +27,7 @@ class FaqCategoryController extends Controller
 
 	public function edit (FaqCategory $category)
 	{
+		dd($category->toArray());
 		return view('backend.admin.faq-categories.edit')->with('category', $category);
 	}
 
