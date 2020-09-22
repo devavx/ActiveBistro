@@ -25,10 +25,13 @@ class FaqCategoryController extends Controller
 		return view('backend.admin.faq-categories.create');
 	}
 
-	public function edit (FaqCategory $category)
+	public function edit ($id)
 	{
-		dd($category->toArray());
-		return view('backend.admin.faq-categories.edit')->with('category', $category);
+		$category = FaqCategory::query()->whereKey($id)->first();
+		if ($category != null)
+			return view('backend.admin.faq-categories.edit')->with('category', $category);
+		else
+			return redirect()->route('admin.faq-categories.index')->with('errormsg', 'Could not find FAQ category.');
 	}
 
 	public function store (Request $request)
@@ -40,13 +43,18 @@ class FaqCategoryController extends Controller
 		return redirect()->route('admin.faq-categories.index')->with('success', 'FAQ Category created successfully!');
 	}
 
-	public function update (Request $request, FaqCategory $category)
+	public function update (Request $request, $id)
 	{
 		$validated = $request->validate([
 			'title' => 'bail|required|string|min:1|max:255'
 		]);
-		$category->update($validated);
-		return redirect()->route('admin.faq-categories.index')->with('success', 'FAQ Category updated successfully!');
+		$category = FaqCategory::query()->whereKey($id)->first();
+		if ($category != null) {
+			$category->update($validated);
+			return redirect()->route('admin.faq-categories.index')->with('success', 'FAQ Category updated successfully!');
+		} else {
+			return redirect()->route('admin.faq-categories.index')->with('errormsg', 'Could not find FAQ category.');
+		}
 	}
 
 	public function delete ($id = '')
