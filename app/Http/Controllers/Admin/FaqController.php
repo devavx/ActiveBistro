@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Faq;
 use App\Http\Controllers\Controller;
+use App\Models\FaqCategory;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -16,7 +17,8 @@ class FaqController extends Controller
 
 	public function create ()
 	{
-		return view('backend/admin/faqs/create');
+		$categories = FaqCategory::query()->where('active', true)->get();
+		return view('backend/admin/faqs/create')->with('categories', $categories);
 	}
 
 	public function store (Request $request)
@@ -25,6 +27,7 @@ class FaqController extends Controller
 
 			for ($i = 0; $i < count($request->faq_title); $i++) {
 				$res = Faq::create([
+					'category_id' => $request->category_id,
 					'faq_title' => $request['faq_title'][$i],
 					'faq_description' => $request['faq_description'][$i],
 				]);
@@ -42,9 +45,10 @@ class FaqController extends Controller
 
 	public function edit ($id)
 	{
+		$categories = FaqCategory::query()->where('active', true)->get();
 		$record = Faq::where('id', $id)->first();
 		if (!empty($record)) {
-			return view('backend/admin/faqs/edit', compact('record'));
+			return view('backend/admin/faqs/edit', compact('record'))->with('categories', $categories);
 		}
 		return redirect('admin/faqs');
 	}
@@ -53,15 +57,16 @@ class FaqController extends Controller
 	{
 		$data = Faq::where('id', $id)->first();
 		if (empty($data)) {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Oops! Something went wrong! Try Again!');
 		}
 		$data->faq_title = $request->faq_title;
 		$data->faq_description = $request->faq_description;
+		$data->category_id = $request->category_id;
 		$save = $data->update();
 		if ($save) {
 			return redirect('admin/faqs')->with('success', 'Faq Updated successfully!');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Oops!! Something went wrong! Try Again!');
 		}
 	}
 
@@ -72,10 +77,10 @@ class FaqController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Faq Deleted Sucessfully !';
+			$result['message'] = 'Faq deleted successfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something went wrong!';
 		}
 
 		return json_encode($result);
@@ -93,10 +98,10 @@ class FaqController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Stactus Change Sucessfully !';
+			$result['message'] = 'Status changed successfully!';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something went wrong!';
 		}
 		return json_encode($result);
 	}

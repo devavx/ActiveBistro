@@ -8,7 +8,6 @@ use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
-use App\Faq;
 use App\HomeSetting;
 use App\HowItWork;
 use App\Http\Requests\TailorPlanRule;
@@ -18,6 +17,7 @@ use App\MealPlan;
 use App\Models\Allergy;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\FaqCategory;
 use App\PrivacyPolicy;
 use App\SliderSetting;
 use App\TermCondition;
@@ -147,8 +147,8 @@ class FrontendController extends Controller
 
 	public function getFaq ()
 	{
-		$listData = Faq::where('active', 1)->get();
-		return view('frontend.faqs', compact('listData'));
+		$categories = FaqCategory::query()->with('faqs')->where('active', true)->get();
+		return view('frontend.faqs')->with('categories', $categories);
 	}
 
 	public function termCondition ()
