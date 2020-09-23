@@ -14,6 +14,7 @@ use App\Models\Coupon;
 use App\Models\Order;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -71,6 +72,9 @@ class AddSoftDeletesCommand extends Command
 	public function handle ()
 	{
 		Collection::make($this->models)->each(function (string $column, string $slug) {
+			/**
+			 * @var $model Model
+			 */
 			$model = new $slug;
 			$table = $model->getTable();
 			$model = class_basename($slug);
