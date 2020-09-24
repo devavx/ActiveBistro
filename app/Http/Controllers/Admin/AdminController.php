@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Ingredient;
 use App\Item;
 use App\MealPlan;
+use App\Models\Allergy;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\User;
@@ -21,10 +22,11 @@ class AdminController extends Controller
 		$customers = User::query()->where('role_id', 2)->count('id');
 		$dailyMeals = MealPlan::query()->whereNotNull('day')->count('id');
 		$meals = MealPlan::query()->whereNull('day')->count('id');
-		$items = Item::query()->count('id');;
-		$orders = Order::query()->count('id');;
-		$coupons = Coupon::query()->count('id');;
-		$ingredients = Ingredient::query()->count('id');;
+		$items = Item::query()->count('id');
+		$orders = Order::query()->count('id');
+		$coupons = Coupon::query()->count('id');
+		$ingredients = Ingredient::query()->count('id');
+		$allergies = Allergy::query()->count('id');
 		$stats = [
 			'customers' => $customers,
 			'dailyMeals' => $dailyMeals,
@@ -32,7 +34,8 @@ class AdminController extends Controller
 			'items' => $items,
 			'orders' => $orders,
 			'coupons' => $coupons,
-			'ingredients' => $ingredients
+			'ingredients' => $ingredients,
+			'allergies' => $allergies
 		];
 		return view('backend/admin/dashboard')->with('stats', (object)$stats);
 	}

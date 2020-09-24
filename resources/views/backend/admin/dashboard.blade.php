@@ -201,7 +201,7 @@
 										<p class="text-muted font-weight-bold">Order</p>
 									</div>
 									<div class="ml-auto">
-										<h2 class="counter text-cyan">15</h2>
+										<h2 class="counter text-cyan">{{$stats->orders}}</h2>
 									</div>
 								</div>
 							</div>
