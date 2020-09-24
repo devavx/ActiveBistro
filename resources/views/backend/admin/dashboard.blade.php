@@ -226,7 +226,7 @@
 										<p class="text-muted font-weight-bold">Allergies</p>
 									</div>
 									<div class="ml-auto">
-										<h2 class="counter text-danger">3</h2>
+										<h2 class="counter text-danger">{{$stats->allergies}}</h2>
 									</div>
 								</div>
 							</div>
