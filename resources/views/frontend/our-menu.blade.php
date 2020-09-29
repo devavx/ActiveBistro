@@ -108,26 +108,16 @@
 									<p style="visibility: hidden;"></p>
 
 									<ul class="nav nav-pills justify-content-center" role="tablist">
-
-										<li class="nav-item d-none">
-											<a class="nav-link active" data-toggle="tab" href="#modalmenudescription" role="tab">Description</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#modalmenuingrediant" role="tab">Ingredients</a>
+										<li class="nav-item active">
+											<a class="nav-link" data-toggle="tab" href="#tab-ingredients" role="tab">Ingredients</a>
 										</li>
 									</ul>
 
 
 									<div class="tab-content pt-3">
-
-										<div class="tab-pane active d-none" id="modalmenudescription" role="tabpanel">
-											<p>About 20 minutes before grilling, remove the steaks from the refrigerator and let sit, covered, at room temperature. Heat your grill to high. Brush the steaks on both sides with oil and season liberally with salt and pepper. Place the steaks on the grill and cook until golden brown and slightly charred, 4 to 5 minutes. Turn the steaks over and continue to grill 3 to 5 minutes for medium-rare (an internal temperature of 135 degrees F), 5 to 7 minutes for medium (140 degrees F) or 8 to 10 minutes for medium-well (150 degrees F). Transfer the steaks to a cutting board or platter, tent loosely with foil and let rest 5 minutes before slicing.</p>
-										</div>
-
-										<div class="tab-pane" id="modalmenuingrediant" role="tabpanel">
+										<div class="tab-pane active" id="tab-ingredients" role="tabpanel">
 											<p>{{implode(", ",$meal->ingredients()->pluck('name')->toArray())}}</p>
 										</div>
-
 									</div>
 								</div>
 							</div>

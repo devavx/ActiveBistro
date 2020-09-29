@@ -44,8 +44,8 @@ class MealPlan extends Model
 	public function ingredients (): Collection
 	{
 		$ingredients = new Collection();
-		$this->items->each(function (Item $item) use ($ingredients) {
-			$ingredients = $ingredients->concat($item->ingredients);
+		$this->items->each(function (Item $item) use (&$ingredients) {
+			$ingredients = $ingredients->merge($item->ingredients);
 		});
 		return $ingredients;
 	}
