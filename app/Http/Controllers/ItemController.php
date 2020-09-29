@@ -28,7 +28,7 @@ class ItemController extends Controller
 
 	public function store (StoreRequest $request)
 	{
-		dd($request->all());
+		dd($request->validated());
 		$product = Item::query()->create($request->validated());
 		if ($product) {
 			$product->ingredients()->attach($request->ingredient_id);
