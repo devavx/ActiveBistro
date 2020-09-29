@@ -105,7 +105,7 @@
 			autoProcessQueue: false,
 			addRemoveLinks: true,
 			acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.mp4",
-			maxFilesize: 2,
+			maxFilesize: 25,
 			maxFiles: 4,
 			paramName: 'file[]',
 			init: function () {
