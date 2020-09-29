@@ -95,7 +95,7 @@
 												<td>{{$loop->index+1}}</td>
 												<td>
 													<div class="timeline-badge">
-														<img src="{{$rows->icon}}" alt="" style="width: 50px; height: 50px;">
+														<img src="{{$rows->image}}" alt="" style="width: 50px; height: 50px;">
 													</div>
 												</td>
 												<td>{{$rows->title??'-'}}</td>
