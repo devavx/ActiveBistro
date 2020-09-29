@@ -158,13 +158,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Selling Price</label>
-												<input type="number" min="0.00" max="100000.00" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price.." value="{{ $item->selling_price }}" required>
+												<input type="number" min="0.00" max="100000.00" name="selling_price" id="selling_price" class="form-control" placeholder="Enter selling price.." value="{{ $item->selling_price }}" required>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Regular Price </label>
-												<input type="number" min="0.00" max="100000.00" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regual Price.." value="{{ $item->actual_price }}" required>
+												<input type="number" min="0.00" max="100000.00" name="actual_price" id="actual_price" class="form-control" placeholder="Enter regular price.." value="{{ $item->actual_price }}" required>
 											</div>
 										</div>
 									</div>

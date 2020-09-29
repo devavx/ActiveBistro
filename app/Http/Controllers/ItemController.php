@@ -8,32 +8,16 @@ use App\Ingredient;
 use App\Item;
 use App\ItemType;
 use App\MealPlan;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
-use Illuminate\View\View;
 
 class ItemController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Application|Factory|Response|View
-	 */
 	public function index ()
 	{
 		$listData = Item::query()->latest()->get();
 		return view('backend.admin.item.index', compact('listData'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Application|Factory|Response|View
-	 */
 	public function create ()
 	{
 		$listData = Ingredient::all();
@@ -42,12 +26,6 @@ class ItemController extends Controller
 		return view('backend/admin/item/create', compact(['listData', 'categoryList', 'itemTypeList']));
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param AddEditItemRule $request
-	 * @return Application|RedirectResponse|Response|Redirector
-	 */
 	public function store (AddEditItemRule $request)
 	{
 		$product = Item::query()->create([
@@ -68,7 +46,6 @@ class ItemController extends Controller
 		} else {
 			return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
 		}
-
 	}
 
 	public function show ($id)
@@ -84,12 +61,6 @@ class ItemController extends Controller
 		}
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param Item $item
-	 * @return Application|Factory|Response|View
-	 */
 	public function edit (Item $item)
 	{
 		$listData = Ingredient::all();
@@ -102,13 +73,6 @@ class ItemController extends Controller
 		return redirect('admin/items')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param Request $request
-	 * @param Item $item
-	 * @return Application|RedirectResponse|Response|Redirector
-	 */
 	public function update (Request $request, Item $item)
 	{
 		$item->name = $request->name;
@@ -132,17 +96,6 @@ class ItemController extends Controller
 		} else {
 			return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
 		}
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param Item $item
-	 * @return Response
-	 */
-	public function destroy (Item $item)
-	{
-		//
 	}
 
 	public function delete ($id = '')
@@ -193,11 +146,6 @@ class ItemController extends Controller
 		return json_encode($result);
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Application|Factory|Response|View
-	 */
 	public function orders ()
 	{
 		$listData = [];

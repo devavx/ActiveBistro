@@ -81,19 +81,13 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Name</label>
-												<input type="text" name="name" id="name" class="form-control" placeholder="Enter name..">
+												<label>Name*</label>
+												<input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." minlength="2" maxlength="255" required>
 											</div>
 										</div>
-										<!-- <div class="col-md-6">
-											<div class="form-group">
-												<label>Sub Name</label>
-												<input type="text" id="sub_name" name="sub_name" class="form-control" placeholder="Enter Sub name..">
-											</div>
-										</div>  -->
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Category </label>
+												<label>Category* </label>
 												<select class="form-control" id="category_id" name="category_id" required>
 													<option value="">Select Category</option>
 													@if(!empty($categoryList))
@@ -109,48 +103,48 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Short Description</label>
-												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter Short Description..">
+												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter short description..">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Description </label>
-												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter Description..">
+												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter description..">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Protein</label>
-												<input type="text" name="protein" id="protein" class="form-control" placeholder="Enter protein..">
+												<label>Protein*</label>
+												<input type="number" name="protein" id="protein" class="form-control" placeholder="Enter protein.." min="0.00" max="10000.00" step="0.01" required>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Calories </label>
-												<input type="text" name="calories" id="calories" class="form-control" placeholder="Enter calories..">
+												<label>Calories*</label>
+												<input type="number" name="calories" id="calories" class="form-control" placeholder="Enter calories.." min="0.00" max="10000.00" step="0.01" required>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Carbohydrates</label>
-												<input type="text" name="carbs" id="carbs" class="form-control" placeholder="Enter carbohydrates..">
+												<label>Carbohydrates*</label>
+												<input type="number" name="carbs" id="carbs" class="form-control" placeholder="Enter carbohydrates.." min="0.00" max="10000.00" step="0.01" required>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Fat</label>
-												<input type="text" name="fat" id="fat" class="form-control" placeholder="Enter fat..">
+												<label>Fats*</label>
+												<input type="number" name="fat" id="fat" class="form-control" placeholder="Enter fat.." min="0.00" max="10000.00" step="0.01" required>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Type </label>
+												<label>Type</label>
 												<select class="form-control" id="item_type_id" name="item_type_id">
 													<option value="">Select Type</option>
 													@if(!empty($itemTypeList))
@@ -165,34 +159,17 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Selling Price</label>
-												<input type="number" min="0.00" max="100000.00" name="selling_price" id="selling_price" class="form-control" placeholder="Enter Selling price..">
+												<label>Selling Price*</label>
+												<input type="number" min="0.00" max="100000.00" step="0.01" name="selling_price" id="selling_price" class="form-control" placeholder="Enter selling price...">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Regular Price </label>
-												<input type="number" min="0.00" max="100000.00" name="actual_price" id="actual_price" class="form-control" placeholder="Enter Regular Price..">
+												<label>Regular Price*</label>
+												<input type="number" min="0.00" max="100000.00" step="0.01" name="actual_price" id="actual_price" class="form-control" placeholder="Enter regular Price...">
 											</div>
 										</div>
 									</div>
-								<!-- <div class="row">
-                                            <div class="col-md-6"> 
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Category </label>
-                                                    <select class="form-control" id="category_id" name="category_id" required>
-                                                        <option value="">Select Category</option>
-                                                        @if(!empty($categoryList))
-									@foreach($categoryList as $rows)
-										<option value="{{ $rows->id }}">{{ $rows->name }}</option>
-                                                            @endforeach
-								@endif
-										</select>
-									</div>
-								</div>
-							</div> -->
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
@@ -202,7 +179,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Ingredient</label>
+												<label>Ingredient(s)</label>
 												<select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
 													@if(!empty(@listData))
 														@foreach($listData as $rows)
