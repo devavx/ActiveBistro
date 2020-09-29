@@ -71,9 +71,9 @@
 							<form action="{{ route('admin.sliders.store') }}" class="dropzone" id="dropzoneForm" method="post" enctype="multipart/form-data">
 								@csrf
 							</form>
-
+							<small>Max file size is 2 MB.</small>
 							<div class="form-actions" style="margin-top: 20px">
-								<button type="button" id="submit-all" class="btn btn-success">
+								<button type="button" id="submit-all" class="btn btn-success" onclick="beginUpload();">
 									<i class="fa fa-check"></i> Upload
 								</button>
 								<a href="{{ url('/admin/sliders') }}" class="btn btn-inverse">Cancel</a>
@@ -97,43 +97,39 @@
 @section('script')
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
-
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script>
+		let dropZone = null;
 		Dropzone.options.dropzoneForm = {
 			autoProcessQueue: false,
 			addRemoveLinks: true,
 			acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.mp4",
+			maxFilesize: 2,
+			maxFiles: 4,
+			paramName: 'file[]',
 			init: function () {
-				var submitButton = document.querySelector('#submit-all');
-				myDropzone = this;
-				submitButton.addEventListener("click", function () {
-					myDropzone.processQueue();
-				});
-				var messageS = 'File Uploaded Successfully !';
-				var messageClass = 'success';
-				this.on("error", function (file, errorMessage) {
-					var messageS = errorMessage;
-					var messageClass = 'error';
-					console.log("error : " + errorMessage);
-				});
-				this.on("complete", function () {
-					if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0) {
-						var _this = this;
-						_this.removeAllFiles();
-
-						(function ($) {
-							"use strict";
-							Lobibox.notify(messageClass, {
-								position: 'top right',
-								msg: messageS
-							});
-						})(jQuery);
+				dropZone = this;
+				this.on('complete', file => {
+					this.removeFile(file);
+					if (file.status != 'error') {
+						Lobibox.notify('success', {
+							position: 'top right',
+							msg: 'File(s) uploaded successfully!'
+						});
 					}
-					// load_images();
+				});
+				this.on('error', file => {
+					Lobibox.notify('error', {
+						position: 'top right',
+						msg: 'Can\'t upload this file. Either the size is too big or the format is incorrect.'
+					});
 				});
 			},
+		};
+
+		beginUpload = () => {
+			dropZone.processQueue();
 		};
 
 		// load_images();
