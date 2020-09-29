@@ -180,7 +180,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Ingredient(s)</label>
-												<select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+												<select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]" style="width: 100%" multiple="multiple" data-placeholder="Choose...">
 													@if(!empty(@listData))
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
@@ -212,7 +212,6 @@
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript">
 		$(".select2").select2({
-			placeholder: "Please select Ingredient",
 			allowClear: true
 		});
 		$(document).ready(function () {
