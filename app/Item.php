@@ -16,7 +16,7 @@ class Item extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-		'name', 'sub_name', 'short_description', 'long_description', 'thumbnail', 'protein', 'calories', 'carbs', 'item_type_id', 'category_id', 'selling_price', 'actual_price', 'active'
+		'name', 'sub_name', 'short_description', 'long_description', 'thumbnail', 'protein', 'calories', 'carbs', 'item_type_id', 'category_id', 'selling_price', 'actual_price', 'active', 'fat'
 	];
 
 	protected $hidden = [

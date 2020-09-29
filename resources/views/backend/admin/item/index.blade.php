@@ -79,11 +79,11 @@
 										<th>Sr. No.</th>
 
 										<th>Name</th>
-										<th>ShortDescription</th>
+										<th>Short Description</th>
 										<th>Protein</th>
 										<th>Calories</th>
 										<th>Carbohydrates</th>
-										<th>fats</th>
+										<th>Fats</th>
 										<th>Status</th>
 										<th>Thumbnail</th>
 										<th>Created At</th>

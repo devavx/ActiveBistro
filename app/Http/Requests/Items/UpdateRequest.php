@@ -31,6 +31,8 @@ class UpdateRequest extends FormRequest
 			'calories' => 'bail|required|numeric|min:0.00|max:10000.00',
 			'carbs' => 'bail|required|numeric|min:0.00|max:10000.00',
 			'fat' => 'bail|required|numeric|min:0.00|max:10000.00',
+			'selling_price' => 'bail|required|numeric|min:0.00|max:10000.00',
+			'actual_price' => 'bail|required|numeric|min:0.00|max:10000.00|gte:selling_price',
 			'item_type_id' => 'bail|required|exists:item_types,id',
 			'category_id' => 'bail|required|exists:categories,id',
 			'ingredient_id' => 'bail|required|exists:ingredients,id',
