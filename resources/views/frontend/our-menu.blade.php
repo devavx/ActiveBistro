@@ -140,21 +140,21 @@
 								<div class="row">
 									<div class="col-4">
 										<div class="modalrightsubp text-center mt-3">
-											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->where('default',1)->sum('protein')}}</h6>
+											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->sum('protein')}}</h6>
 											<p>Protein</p>
 										</div>
 									</div>
 
 									<div class="col-4">
 										<div class="modalrightsubp text-center mt-3">
-											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->where('default',1)->sum('fat')}}</h6>
+											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->sum('fat')}}</h6>
 											<p>Fat</p>
 										</div>
 									</div>
 
 									<div class="col-4">
 										<div class="modalrightsubp text-center mt-3">
-											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->where('default',1)->sum('carbs')}}</h6>
+											<h6 class="font-weight-bold mb-1 text-color">{{$meal->items->sum('carbs')}}</h6>
 											<p>Carbs</p>
 										</div>
 									</div>
@@ -162,48 +162,55 @@
 
 								<h5 class="text-color mb-3 font-weight-bold">Nutritional Facts</h5>
 
-								<p class="mb-1 pb-2 border-bottom">Serving Size(g)
+								<p class="mb-1 pb-2 border-bottom d-none">Serving Size(g)
 									<span class="font-weight-bold float-right text-color">10</span></p>
 
-								<p class="mb-1 pb-2 border-bottom">Servings Per Container
+								<p class="mb-1 pb-2 border-bottom d-none">Servings Per Container
 									<span class="font-weight-bold float-right text-color">2</span></p>
 
-								<h6 class="font-weight-bold text-color">Amount Per Serving</h6>
+								<h6 class="font-weight-bold text-color d-none">Amount Per Serving</h6>
 
-								<p class="mb-1 pb-2 border-bottom">Calories Kcal
-									<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('calories')}}</span>
+								<p class="mb-1 pb-2 border-bottom">Calories (Kcal)
+									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('calories')}}</span>
 								</p>
 
-								<p class="mb-1 pb-2 border-bottom">Total Fat g<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('fat')}}</span>
+								<p class="mb-1 pb-2 border-bottom">Total Fat (Grams)<span class="font-weight-bold float-right text-color">{{$meal->items->sum('fat')}}</span>
 								</p>
 
-								<p class="mb-1 pb-2 border-bottom">Saturated Fat g
+								<p class="mb-1 pb-2 border-bottom d-none">Saturated Fat g
 									<span class="font-weight-bold float-right text-color">3.3%</span></p>
 
-								<p class="mb-1 pb-2 border-bottom">Trans Fat g<span class="font-weight-bold float-right text-color">85%</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Trans Fat g<span class="font-weight-bold float-right text-color">85%</span>
 								</p>
 
-								<p class="mb-1 pb-2 border-bottom">Cholesterol mg
+								<p class="mb-1 pb-2 border-bottom d-none">Cholesterol mg
 									<span class="font-weight-bold float-right text-color">8%</span></p>
 
-								<p class="mb-1 pb-2 border-bottom">Sodium mg
+								<p class="mb-1 pb-2 border-bottom d-none">Sodium mg
 									<span class="font-weight-bold float-right text-color">8%</span></p>
 
-								<p class="mb-1 pb-2 border-bottom">Total Carbohydrates g<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('carbs')}}</span>
+								<p class="mb-1 pb-2 border-bottom">Total Carbohydrates (Grams)
+									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('carbs')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Dietary Fiber g<span class="font-weight-bold float-right text-color">8%</span>
+								<p class="mb-1 pb-2 border-bottom">Total Protein (Grams)
+									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('protein')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Sugar g<span class="font-weight-bold float-right text-color">8965</span>
+								<p class="mb-1 pb-2 border-bottom">Total Fat (Grams)
+									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('fat')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Protein g<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('protein')}}</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Dietary Fiber g<span class="font-weight-bold float-right text-color">8%</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Vitamin-D mcg<span class="font-weight-bold float-right text-color">7%</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Sugar g<span class="font-weight-bold float-right text-color">8965</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Calcium mg<span class="font-weight-bold float-right text-color">9%</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Protein g<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('protein')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Iron mg<span class="font-weight-bold float-right text-color">11%</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Vitamin-D mcg<span class="font-weight-bold float-right text-color">7%</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Potassium mcg<span class="font-weight-bold float-right text-color">8%</span>
+								<p class="mb-1 pb-2 border-bottom d-none">Calcium mg<span class="font-weight-bold float-right text-color">9%</span>
+								</p>
+								<p class="mb-1 pb-2 border-bottom d-none">Iron mg<span class="font-weight-bold float-right text-color">11%</span>
+								</p>
+								<p class="mb-1 pb-2 border-bottom d-none">Potassium mcg<span class="font-weight-bold float-right text-color">8%</span>
 								</p>
 
 								<p>* Present Daily values are based on 2,000 calories diet. Your daily values may be higher or lower depending on your calories need.</p>

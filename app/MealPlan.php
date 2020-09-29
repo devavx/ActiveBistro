@@ -45,7 +45,7 @@ class MealPlan extends Model
 	{
 		$ingredients = new Collection();
 		$this->items->each(function (Item $item) use ($ingredients) {
-			$ingredients->concat($item->ingredients);
+			$ingredients = $ingredients->concat($item->ingredients);
 		});
 		return $ingredients;
 	}
