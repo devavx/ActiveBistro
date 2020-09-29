@@ -9,29 +9,19 @@ use Illuminate\Http\UploadedFile;
 
 class HowItWork extends Model
 {
-	protected $fillable = ['title', 'description', 'active'];
+	protected $fillable = ['title', 'image', 'description', 'active'];
 
-	public function setTitleAttribute ($value): void
+	public function setImageAttribute ($value): void
 	{
 		if ($value instanceof UploadedFile) {
-			$this->attributes['title'] = Uploads::instance()->putFile(Directories::HowItWorks, $value);
+			$this->attributes['image'] = Uploads::instance()->putFile(Directories::HowItWorks, $value);
 		} else {
-			$this->attributes['title'] = $value;
+			$this->attributes['image'] = $value;
 		}
 	}
 
-	public function getTitleAttribute ($value): ?string
+	public function getImageAttribute ($value): ?string
 	{
-		return Uploads::existsUrl($this->attributes['title']);
-	}
-
-	public function setIconAttribute ($value): void
-	{
-		$this->setTitleAttribute($value);
-	}
-
-	public function getIconAttribute ($value): ?string
-	{
-		return $this->getTitleAttribute($value);
+		return Uploads::existsUrl($this->attributes['image']);
 	}
 }

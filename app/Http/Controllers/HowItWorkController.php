@@ -21,7 +21,8 @@ class HowItWorkController extends Controller
 	public function store (Request $request)
 	{
 		$rules = [
-			'title' => 'bail|required|image|max:1024',
+			'title' => 'bail|required|string|min:2|max:255',
+			'image' => 'bail|required|image|max:1024',
 			'description' => 'bail|required|string|max:10000'
 		];
 		$validated = $request->validate($rules);
@@ -46,7 +47,8 @@ class HowItWorkController extends Controller
 	public function update (Request $request, HowItWork $howItWork)
 	{
 		$rules = [
-			'title' => 'bail|sometimes|image|max:1024',
+			'title' => 'bail|required|string|min:2|max:255',
+			'image' => 'bail|required|image|max:1024',
 			'description' => 'bail|required|string|max:10000'
 		];
 		$validated = $request->validate($rules);
@@ -56,11 +58,6 @@ class HowItWorkController extends Controller
 		} else {
 			return back()->with('errormsg', 'Oops! Something went wrong! Try Again!');
 		}
-	}
-
-	public function destroy (HowItWork $howItWork)
-	{
-		//
 	}
 
 	public function delete ($id = '')

@@ -75,11 +75,17 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Icon</label>&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Recommended size of icon is 256*256 (1:1), you can use a larger image, but the dimensions should grow proportionally. Use a PNG or JPG.">
+												<label>Image*</label>&nbsp;&nbsp;&nbsp;<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Recommended size of icon is 256*256 (1:1), you can use a larger image, but the dimensions should grow proportionally. Use a PNG or JPG.">
   <label class="badge badge-light btn btn-success" style="pointer-events: none;" type="button" disabled>?</label>
 </span>
 												<input type="file" name="title" id="title" class="form-control" placeholder="Choose an icon..." accept=".jpg, .jpeg, .png">
 												<small>Choose new to overwrite existing.</small>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="title">Title*</label>
+												<input type="text" name="title" id="title" minlength="2" maxlength="255" placeholder="Enter title..." class="form-control">
 											</div>
 										</div>
 										<div class="col-md-12">

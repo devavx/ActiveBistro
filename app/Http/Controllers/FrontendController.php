@@ -141,8 +141,8 @@ class FrontendController extends Controller
 
 	public function howItWork ()
 	{
-		$listData = HowItWork::where('active', 1)->get();
-		return view('frontend.howitwork', compact('listData'));
+		$items = HowItWork::where('active', 1)->get();
+		return view('frontend.howitwork')->with('items', $items);
 	}
 
 	public function getFaq ()
