@@ -14,7 +14,7 @@
 							@if($loop->index%2==0)
 								<li>
 									<div class="timeline-badge">
-										<img src="{{$item->image}}" alt="" style="height: 250px; width: 250px;">
+										<img src="{{$item->image}}" alt="" style="height: 30px;!important; width: 30px;!important;">
 									</div>
 									<div class="timeline-panel">
 										<div class="timeline-heading">
@@ -30,7 +30,7 @@
 							@else
 								<li class="timeline-inverted">
 									<div class="timeline-badge">
-										<img src="{{$item->image}}" alt="" style="height: 250px; width: 250px;">
+										<img src="{{$item->image}}" alt="" style="height: 30px;!important; width: 30px;!important;">
 									</div>
 									<div class="timeline-panel">
 										<div class="timeline-heading">
