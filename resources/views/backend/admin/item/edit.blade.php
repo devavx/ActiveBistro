@@ -166,13 +166,15 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Thumbnail</label>
-												<input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
-												<small>
-													Choose new to update/overwrite existing.
+												<label>
+													Thumbnail
 													@if($item->thumbnail!=null)
 														<a href="{{$item->thumbnail}}" target="_blank" class="btn btn-link">View</a>
 													@endif
+												</label>
+												<input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
+												<small>
+													Choose new to update/overwrite existing.
 												</small>
 											</div>
 										</div>
