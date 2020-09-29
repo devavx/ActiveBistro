@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MealPlan extends Model
@@ -38,6 +39,11 @@ class MealPlan extends Model
 	public function items (): BelongsToMany
 	{
 		return $this->belongsToMany(Item::class, 'meal_plan_items')->withPivot('meal_plan_id', 'item_id', 'slab', 'default');
+	}
+
+	public function ingredients (): HasManyThrough
+	{
+		return $this->hasManyThrough(Ingredient::class, 'ingredient_items');
 	}
 
 	public function allergies (): BelongsToMany
