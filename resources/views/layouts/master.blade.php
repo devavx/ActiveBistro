@@ -77,9 +77,10 @@
 				<li class="nav-item">
 					@auth
 						<a class="nav-link" href="#">Order Now</a>
-					@elseauth
-						<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
 					@endauth
+					@guest
+						<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
+					@endguest
 				</li>
 
 				@guest
