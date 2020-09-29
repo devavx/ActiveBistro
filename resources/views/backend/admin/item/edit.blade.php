@@ -135,7 +135,7 @@
 												<input type="number" name="fat" id="fat" class="form-control" placeholder="Enter fat.." min="0.00" max="10000.00" step="0.01" required value="{{$item->fat}}">
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="form-group">
 												<label>Type*</label>
 												<select class="form-control" id="item_type_id" name="item_type_id" required>
