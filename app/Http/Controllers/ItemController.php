@@ -20,9 +20,9 @@ class ItemController extends Controller
 
 	public function create ()
 	{
-		$listData = Ingredient::all();
-		$categoryList = Category::all();
-		$itemTypeList = ItemType::all();
+		$listData = Ingredient::active()->get();
+		$categoryList = Category::active()->get();
+		$itemTypeList = ItemType::active()->get();
 		return view('backend/admin/item/create', compact(['listData', 'categoryList', 'itemTypeList']));
 	}
 

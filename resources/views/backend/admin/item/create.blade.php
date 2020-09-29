@@ -103,13 +103,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Short Description*</label>
-												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter short description..">
+												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter short description.." minlength="2" maxlength="255" required>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Description*</label>
-												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter description..">
+												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="1000" required>
 											</div>
 										</div>
 									</div>
@@ -166,7 +166,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Regular Price*</label>
-												<input type="number" min="0.00" max="100000.00" step="0.01" name="actual_price" id="actual_price" class="form-control" placeholder="Enter regular Price...">
+												<input type="number" min="0.00" max="100000.00" step="0.01" name="actual_price" id="actual_price" class="form-control" placeholder="Enter regular price...">
 											</div>
 										</div>
 									</div>

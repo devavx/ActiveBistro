@@ -5,6 +5,7 @@ namespace App;
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Str;
+use App\Core\Traits\ActiveStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,6 +15,7 @@ use Illuminate\Http\UploadedFile;
 class Item extends Model
 {
 	use SoftDeletes;
+	use ActiveStatus;
 
 	protected $fillable = [
 		'name', 'sub_name', 'short_description', 'long_description', 'thumbnail', 'protein', 'calories', 'carbs', 'item_type_id', 'category_id', 'selling_price', 'actual_price', 'active', 'fat'
