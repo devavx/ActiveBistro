@@ -89,7 +89,7 @@
 											<div class="form-group">
 												<label>Category* </label>
 												<select class="form-control" id="category_id" name="category_id" required>
-													<option value="">Select Category</option>
+													<option value="" selected disabled>Choose...</option>
 													@if(!empty($categoryList))
 														@foreach($categoryList as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>

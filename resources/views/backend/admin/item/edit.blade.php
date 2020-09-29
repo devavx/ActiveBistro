@@ -84,7 +84,7 @@
 											<div class="form-group">
 												<label>Category*</label>
 												<select class="form-control" id="category_id" name="category_id" required>
-													<option value="">Select Category</option>
+													<option value="" selected disabled>Choose...</option>
 													@if(!empty($categoryList))
 														@foreach($categoryList as $rows)
 															<option @if($item->category_id==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
@@ -168,6 +168,12 @@
 											<div class="form-group">
 												<label>Thumbnail</label>
 												<input type="file" name="thumbnail" id="thumbnail" class="form-control" title="Select thumbnail..">
+												<small>
+													Choose new to update/overwrite existing.
+													@if($item->thumbnail!=null)
+														<a href="{{$item->thumbnail}}" target="_blank" class="btn btn-link">View</a>
+													@endif
+												</small>
 											</div>
 										</div>
 										@php
