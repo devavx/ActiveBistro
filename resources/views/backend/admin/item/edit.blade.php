@@ -158,7 +158,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Regular Price </label>
+												<label>Regular Price*</label>
 												<input type="number" min="0.00" max="100000.00" step="0.01" name="actual_price" id="actual_price" class="form-control" placeholder="Enter regular price..." value="{{$item->actual_price}}">
 											</div>
 										</div>
