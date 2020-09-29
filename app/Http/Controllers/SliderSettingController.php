@@ -20,11 +20,12 @@ class SliderSettingController extends Controller
 
     public function store(Request $request)
     {
-        $slider = SliderSetting::query()->create([
-            'thumbnail' => $request->file('thumbnail'),
-            'thumbnail_type' => $request->file('thumbnail')->getMimeType()
-        ]);
-        return response()->json(['success' => $slider->thumbnail]);
+	    dd($request->all());
+	    $slider = SliderSetting::query()->create([
+		    'thumbnail' => $request->file('thumbnail'),
+		    'thumbnail_type' => $request->file('thumbnail')->getMimeType()
+	    ]);
+	    return response()->json(['success' => $slider->thumbnail]);
     }
 
     public function show(SliderSetting $sliderSetting)
