@@ -61,8 +61,8 @@
 												@endguest
 											</div>
 										</div>
-								@endforeach
-							@endif
+									@endforeach
+								@endif
 							</div>
 							<!--/.Slides-->
 							<!--Controls-->
@@ -84,12 +84,12 @@
 	</div>
 
 	<div class="container mt-5 mb-5">
-		<div class="row">
-			<div class="col-12">
-				<h3 class="text-center text-color font-weight-bold">How it Work</h3>
-			</div>
-		</div>
 		@if(!empty(count($homeData)))
+			<div class="row">
+				<div class="col-12">
+					<h3 class="text-center text-color font-weight-bold">How it Work</h3>
+				</div>
+			</div>
 			@foreach($homeData as $key => $rows)
 				<div class="row">
 					@if ($key % 2 == 0)
