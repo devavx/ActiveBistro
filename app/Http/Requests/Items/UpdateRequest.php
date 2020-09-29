@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Items;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddEditItemRule extends FormRequest
+class UpdateRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class AddEditItemRule extends FormRequest
 	 */
 	public function authorize ()
 	{
-		return True;
+		return true;
 	}
 
 	/**
@@ -31,10 +31,10 @@ class AddEditItemRule extends FormRequest
 			'calories' => 'bail|required|numeric|min:0.00|max:10000.00',
 			'carbs' => 'bail|required|numeric|min:0.00|max:10000.00',
 			'fat' => 'bail|required|numeric|min:0.00|max:10000.00',
-			'item_type_id' => 'required',
-			'category_id' => 'required',
-			'ingredient_id' => 'required',
-			'thumbnail' => 'image',
+			'item_type_id' => 'bail|required|exists:item_types,id',
+			'category_id' => 'bail|required|exists:categories,id',
+			'ingredient_id' => 'bail|required|exists:ingredients,id',
+			'thumbnail' => 'bail|sometimes|image|max:4096',
 		];
 	}
 }

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2467f509-1700-479b-be72-3507a9b5052c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_29_092337_change_items_table_column_types.php" afterDir="false" />
+    <list default="true" id="2467f509-1700-479b-be72-3507a9b5052c" name="Default Changelist" comment="Updates">
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Items/StoreRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Items/UpdateRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/AddEditItemRule.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Item.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Item.php" afterDir="false" />
     </list>
     <list id="425eed0b-6d36-49b3-8531-ae6944b040e0" name="Don't Commit" comment="All the files that I wanna ignore will go here.">
       <change afterPath="$PROJECT_DIR$/public/pma/CODE_OF_CONDUCT.md" afterDir="false" />
@@ -3025,21 +3029,21 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;HTML" />
     <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/backend/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Requests/Items" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\inetpub\wwwroot\ActiveBistro\app\Resources\Cart" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\inetpub\wwwroot\ActiveBistro\app\Http\Requests\Items" />
       <recent name="C:\inetpub\wwwroot\ActiveBistro\resources\views\backend\admin" />
       <recent name="C:\inetpub\wwwroot\ActiveBistro\resources\views\backend\admin\item" />
       <recent name="C:\inetpub\wwwroot\ActiveBistro\app\Http\Controllers" />
       <recent name="C:\inetpub\wwwroot\ActiveBistro\resources\views\backend\admin\bottom_section" />
-      <recent name="C:\inetpub\wwwroot\ActiveBistro\resources\views\backend\admin\privacy-policy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\inetpub\wwwroot\ActiveBistro\app\Resources\Cart" />
     </key>
   </component>
   <component name="RunManager">
@@ -3098,14 +3102,7 @@
       <workItem from="1600752040608" duration="29357000" />
       <workItem from="1600878540730" duration="2342000" />
       <workItem from="1600925454348" duration="786000" />
-      <workItem from="1601360201788" duration="2909000" />
-    </task>
-    <task id="LOCAL-00111" summary="Updates">
-      <created>1600422751607</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1600422751607</updated>
+      <workItem from="1601360201788" duration="5365000" />
     </task>
     <task id="LOCAL-00112" summary="Updates">
       <created>1600432747222</created>
@@ -3443,7 +3440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601371192006</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="Updates">
+      <created>1601371554059</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1601371554059</updated>
+    </task>
+    <option name="localTasksCounter" value="161" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -3524,10 +3528,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="761" y="399" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#1/0.0.1920.1050@0.0.1920.1050" timestamp="1599833918254" />
-    <state x="486" y="184" key="CommitChangelistDialog2" timestamp="1601371126623">
+    <state x="486" y="184" key="CommitChangelistDialog2" timestamp="1601373693160">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="486" y="184" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1601371126623" />
+    <state x="486" y="184" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1601373693160" />
     <state x="738" y="437" key="ComposerInitDialogKey" timestamp="1598975274388">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3544,22 +3548,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="148" width="440" height="649" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1600765550883" />
-    <state width="1101" height="294" key="GridCell.Tab.0.bottom" timestamp="1600780824305">
+    <state width="1079" height="294" key="GridCell.Tab.0.bottom" timestamp="1601372515966">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1101" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1600780824305" />
-    <state width="1101" height="294" key="GridCell.Tab.0.center" timestamp="1600780824305">
+    <state width="1079" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1601372515966" />
+    <state width="1079" height="294" key="GridCell.Tab.0.center" timestamp="1601372515965">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1101" height="294" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1600780824305" />
-    <state width="1101" height="294" key="GridCell.Tab.0.left" timestamp="1600780824305">
+    <state width="1079" height="294" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1601372515965" />
+    <state width="1079" height="294" key="GridCell.Tab.0.left" timestamp="1601372515965">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1101" height="294" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1600780824305" />
-    <state width="1101" height="294" key="GridCell.Tab.0.right" timestamp="1600780824305">
+    <state width="1079" height="294" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1601372515965" />
+    <state width="1079" height="294" key="GridCell.Tab.0.right" timestamp="1601372515966">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1101" height="294" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1600780824305" />
+    <state width="1079" height="294" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1601372515966" />
     <state width="1877" height="353" key="GridCell.Tab.1.bottom" timestamp="1597762344651">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3618,10 +3622,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="807" y="438" key="VCS.ChangelistChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1600925707201" />
-    <state x="602" y="178" key="Vcs.Push.Dialog.v2" timestamp="1601371225707">
+    <state x="602" y="178" key="Vcs.Push.Dialog.v2" timestamp="1601371571693">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="602" y="178" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1601371225707" />
+    <state x="602" y="178" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1601371571693" />
     <state x="816" y="423" key="WebDeployment.AddServerDialog.v.1" timestamp="1598437433571">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3638,11 +3642,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="756" y="343" width="408" height="359" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1597320142398" />
-    <state x="795" y="178" width="554" height="678" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1600881061177">
+    <state x="795" y="178" width="554" height="678" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1601372684738">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="803" y="186" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1048@0.0.1920.1048" timestamp="1597478384631" />
-    <state x="795" y="178" width="554" height="678" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1600881061177" />
+    <state x="795" y="178" width="554" height="678" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1601372684738" />
     <state x="512" y="253" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1597512892853">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3663,12 +3667,12 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1598975637746" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1601366813352">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1601374000137">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="431" y="189" width="672" height="539" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1600507764410" />
     <state x="623" y="227" width="672" height="677" key="search.everywhere.popup/0.0.1920.1048@0.0.1920.1048" timestamp="1597478608562" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1601366813352" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1601374000137" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

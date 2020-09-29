@@ -42,11 +42,6 @@ class Item extends Model
 		});
 	}
 
-	public function childrens ()
-	{
-		return $this->belongsToMany(Item::class, 'ingredient_items', 'item_id', 'ingredient_id');
-	}
-
 	public function setThumbnailAttribute ($value): void
 	{
 		if ($value instanceof UploadedFile) {

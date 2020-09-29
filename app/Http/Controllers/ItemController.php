@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Http\Requests\AddEditItemRule;
+use App\Http\Requests\Items\StoreRequest;
+use App\Http\Requests\Items\UpdateRequest;
 use App\Ingredient;
 use App\Item;
 use App\ItemType;
 use App\MealPlan;
-use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
@@ -26,20 +26,10 @@ class ItemController extends Controller
 		return view('backend/admin/item/create', compact(['listData', 'categoryList', 'itemTypeList']));
 	}
 
-	public function store (AddEditItemRule $request)
+	public function store (StoreRequest $request)
 	{
-		$product = Item::query()->create([
-			'name' => $request->name,
-			'short_description' => $request->short_description,
-			'long_description' => $request->long_description,
-			'protein' => ($request->protein) ? $request->protein : 0,
-			'calories' => ($request->calories) ? $request->calories : 0,
-			'thumbnail' => $request->thumbnail,
-			'carbs' => ($request->carbs) ? $request->carbs : 0,
-			'fat' => ($request->fat) ? $request->fat : 0,
-			'item_type_id' => ($request->item_type_id) ? $request->item_type_id : 0,
-			'category_id' => ($request->category_id) ? $request->category_id : 0
-		]);
+		dd($request->all());
+		$product = Item::query()->create($request->validated());
 		if ($product) {
 			$product->ingredients()->attach($request->ingredient_id);
 			return redirect('admin/items')->with('success', 'Item Added Successfully');
@@ -73,7 +63,7 @@ class ItemController extends Controller
 		return redirect('admin/items')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
 	}
 
-	public function update (Request $request, Item $item)
+	public function update (UpdateRequest $request, Item $item)
 	{
 		$item->name = $request->name;
 		if ($request->hasFile('thumbnail')) {
