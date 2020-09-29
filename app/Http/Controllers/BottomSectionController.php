@@ -11,12 +11,11 @@ class BottomSectionController extends Controller
 	{
 		$section = BottomSection::query()->first();
 		if ($section == null) {
-			$section = BottomSection::query()->create([
-				'link' => Str::Empty,
-				'link_text' => Str::Empty,
-				'image' => null,
-				'content' => Str::Empty
-			]);
+			$section = new BottomSection();
+			$section->link = Str::Empty;
+			$section->link_text = Str::Empty;
+			$section->image = null;
+			$section->content = Str::Empty;
 		}
 		return view('backend/admin/bottom_section/edit')->with('section', $section);
 	}

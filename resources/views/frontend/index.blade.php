@@ -63,21 +63,6 @@
 										</div>
 								@endforeach
 							@endif
-
-							<!--/Second slide-->
-								<!--Third slide-->
-								<!-- <div class="carousel-item">
-								  <div class="video-height" style="height: 502px;">
-										  <video class="video-fluid" autoplay loop muted  >
-											<source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
-									  </video>
-									  </div>
-									<div class="top-banner-text">
-										<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
-										<a href="login.html" class="btn btn-info btn-md">Get Started <i class="fa fa-chevron-right ml-2"></i></a>
-									</div>
-								</div> -->
-								<!--/Third slide-->
 							</div>
 							<!--/.Slides-->
 							<!--Controls-->
@@ -139,12 +124,10 @@
 					<div class="homehowtext mt-3 pt-3">
 						{!! $section->content !!}
 						<a href="{{ $section->link }}" class="btn btn-info ml-0">
-							{{$section->link_text}}
-							<i class="fa fa-chevron-right ml-2"></i>
+							{{$section->link_text}}<i class="fa fa-chevron-right ml-2"></i>
 						</a>
 					</div>
 				</div>
-
 				<div class="col-lg-6 col-sm-12 col-12">
 					<div class="homehowimg mt-3">
 						<img src="{{ $section->image }}" class="img-fluid rounded w-100">
