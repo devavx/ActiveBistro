@@ -75,12 +75,18 @@
 					<a class="nav-link" href="{{ url('/sign-up') }}">Sign up</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ url('ourmenu') }}">Order Now</a>
+					@auth
+						<a class="nav-link" href="#">Order Now</a>
+					@elseauth
+						<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
+					@endauth
 				</li>
 
-				<li class="nav-item">
-					<a class="nav-link" href="{{ url('/how_it_work') }}">How it Works</a>
-				</li>
+				@guest
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url('/how_it_work') }}">How it Works</a>
+					</li>
+				@endguest
 
 				<li class="nav-item">
 					@if($difference>=43200)
