@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2467f509-1700-479b-be72-3507a9b5052c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/backend/admin/how-it-works/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/backend/admin/how-it-works/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/howitwork.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/howitwork.blade.php" afterDir="false" />
     </list>
     <list id="425eed0b-6d36-49b3-8531-ae6944b040e0" name="Don't Commit" comment="All the files that I wanna ignore will go here.">
       <change afterPath="$PROJECT_DIR$/public/pma/CODE_OF_CONDUCT.md" afterDir="false" />
@@ -3098,14 +3098,7 @@
       <workItem from="1600752040608" duration="29357000" />
       <workItem from="1600878540730" duration="2342000" />
       <workItem from="1600925454348" duration="786000" />
-      <workItem from="1601360201788" duration="14897000" />
-    </task>
-    <task id="LOCAL-00123" summary="Updates">
-      <created>1600680590237</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1600680590237</updated>
+      <workItem from="1601360201788" duration="15098000" />
     </task>
     <task id="LOCAL-00124" summary="Updates">
       <created>1600680803536</created>
@@ -3443,7 +3436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601387880308</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="Updates">
+      <created>1601388085082</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1601388085082</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -3524,10 +3524,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="761" y="399" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#1/0.0.1920.1050@0.0.1920.1050" timestamp="1599833918254" />
-    <state x="486" y="184" key="CommitChangelistDialog2" timestamp="1601387833647">
+    <state x="486" y="184" key="CommitChangelistDialog2" timestamp="1601388075339">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="486" y="184" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1601387833647" />
+    <state x="486" y="184" key="CommitChangelistDialog2/0.0.1920.1050@0.0.1920.1050" timestamp="1601388075339" />
     <state x="738" y="437" key="ComposerInitDialogKey" timestamp="1598975274388">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3618,10 +3618,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="807" y="438" key="VCS.ChangelistChooser/0.0.1920.1050@0.0.1920.1050" timestamp="1600925707201" />
-    <state x="602" y="178" key="Vcs.Push.Dialog.v2" timestamp="1601387881657">
+    <state x="602" y="178" key="Vcs.Push.Dialog.v2" timestamp="1601388086757">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="602" y="178" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1601387881657" />
+    <state x="602" y="178" key="Vcs.Push.Dialog.v2/0.0.1920.1050@0.0.1920.1050" timestamp="1601388086757" />
     <state x="816" y="423" key="WebDeployment.AddServerDialog.v.1" timestamp="1598437433571">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -3630,10 +3630,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="775" y="384" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1920.1050@0.0.1920.1050" timestamp="1600152675592" />
-    <state x="798" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1600881412141">
+    <state x="798" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1601388049457">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="798" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1600881412141" />
+    <state x="798" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1601388049457" />
     <state x="756" y="343" width="408" height="359" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1597320142398">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
