@@ -77,8 +77,8 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
-
-										<th>Icon</th>
+										<th>Image</th>
+										<th>Title</th>
 										<th>HowItWork</th>
 										<th>Status</th>
 										<th>Created At</th>
@@ -98,6 +98,7 @@
 														<img src="{{$rows->icon}}" alt="" style="width: 50px; height: 50px;">
 													</div>
 												</td>
+												<td>{{$rows->title??'-'}}</td>
 												<td> {!! $rows->description ?? '-' !!}</td>
 												@if($rows->active)
 													<td>
