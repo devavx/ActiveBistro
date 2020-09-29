@@ -28,13 +28,13 @@ class ItemController extends Controller
 
 	public function store (StoreRequest $request)
 	{
-		dd($request->validated());
-		$product = Item::query()->create($request->validated());
+		$validated = $request->validated();
+		$product = Item::query()->create($validated);
 		if ($product) {
-			$product->ingredients()->attach($request->ingredient_id);
-			return redirect('admin/items')->with('success', 'Item Added Successfully');
+			$product->ingredients()->attach($validated['ingredient_id'] ?? []);
+			return redirect('admin/items')->with('success', $this->storeOkay());
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
+			return back()->with('errormsg', $this->commonError());
 		}
 	}
 
@@ -60,31 +60,19 @@ class ItemController extends Controller
 			$record = $item;
 			return view('backend/admin/item/edit', compact(['item', 'listData', 'categoryList', 'itemTypeList']));
 		}
-		return redirect('admin/items')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+		return redirect('admin/items')->with('errormsg', $this->commonError());
 	}
 
 	public function update (UpdateRequest $request, Item $item)
 	{
-		$item->name = $request->name;
-		if ($request->hasFile('thumbnail')) {
-			$item->thumbnail = $request->file('thumbnail');
-		}
-		$item->short_description = $request->short_description;
-		$item->long_description = $request->long_description;
-		$item->protein = ($request->protein) ? $request->protein : 0;
-		$item->calories = ($request->calories) ? $request->calories : 0;
-		$item->carbs = ($request->carbs) ? $request->carbs : 0;
-		$item->fat = ($request->fat) ? $request->fat : 0;
-		$item->selling_price = ($request->selling_price) ? $request->selling_price : 0;
-		$item->actual_price = ($request->actual_price) ? $request->actual_price : 0;
-		$item->item_type_id = ($request->item_type_id) ? $request->item_type_id : 0;
-		$item->category_id = ($request->category_id) ? $request->category_id : 0;
+		$validated = $request->validated();
+		$item->update($validated);
 		$item->ingredients()->detach();
 		if ($item->save()) {
-			$item->ingredients()->attach($request->ingredient_id);
+			$item->ingredients()->attach($validated['ingredient_id'] ?? []);
 			return redirect('admin/items')->with('success', 'Item Updated Successfully');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthing Went Wrong! Try Again!!');
+			return back()->with('errormsg', $this->commonError());
 		}
 	}
 
@@ -98,7 +86,7 @@ class ItemController extends Controller
 			$result['message'] = 'Item Deleted Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = $this->commonError();
 		}
 
 		return json_encode($result);

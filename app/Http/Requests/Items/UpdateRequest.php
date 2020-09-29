@@ -35,6 +35,7 @@ class UpdateRequest extends FormRequest
 			'category_id' => 'bail|required|exists:categories,id',
 			'ingredient_id' => 'bail|required|exists:ingredients,id',
 			'thumbnail' => 'bail|sometimes|image|max:4096',
+			'ingredient_id.*' => 'bail|required|exists:ingredients,id'
 		];
 	}
 }

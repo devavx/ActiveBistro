@@ -82,7 +82,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Name*</label>
-												<input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." minlength="2" maxlength="255" required>
+												<input type="text" name="name" id="name" class="form-control" placeholder="Enter name..." minlength="2" maxlength="255" required>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -102,13 +102,13 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Short Description</label>
+												<label>Short Description*</label>
 												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter short description..">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label>Description </label>
+												<label>Description*</label>
 												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter description..">
 											</div>
 										</div>
@@ -144,9 +144,9 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label>Type</label>
-												<select class="form-control" id="item_type_id" name="item_type_id">
-													<option value="">Select Type</option>
+												<label>Type*</label>
+												<select class="form-control" id="item_type_id" name="item_type_id" required>
+													<option value="">Choose...</option>
 													@if(!empty($itemTypeList))
 														@foreach($itemTypeList as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
