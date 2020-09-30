@@ -70,3 +70,13 @@ Route::prefix('payment')->middleware('auth')->group(static function () {
 	Route::get('confirmed', [\App\Http\Controllers\PaymentController::class, 'confirmed'])->name('payments.confirmed');
 	Route::get('failed', [\App\Http\Controllers\PaymentController::class, 'failed'])->name('payments.failed');
 });
+
+/*
+|--------------------------------------------------------------------------
+| OrderNow Namespace Route(s)
+|--------------------------------------------------------------------------
+|
+*/
+Route::prefix('order-now')->middleware('auth')->group(static function () {
+	Route::get(Str::Root, [\App\Http\Controllers\OrderNowController::class, 'index'])->name('order-now.index');
+});

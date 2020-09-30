@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-//Backend URLS
 Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], 'prefix' => 'admin'], function () {
 	Route::get('/', 'Admin\AdminController@index')->name('admin.dashboard');
 	Route::get('/profile', 'Admin\AdminController@profile')->name('admin.profile')->middleware(['password.confirm']);
@@ -18,9 +17,6 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::delete('/customer/delete', 'Admin\AdminController@customerDeleteBulk')->name('customer.bulk_delete');
 	Route::post('/update_customer', 'Admin\AdminController@updateCustomerDetail')->name('update_customer_details');
 
-	// DailyMealPlanController URI
-
-	// AllergyController URI
 	Route::get('/allergy/delete/{id}', 'Admin\AllergyController@delete')->name('allergy.delete');
 	Route::delete('/allergy/delete', 'Admin\AllergyController@deleteBulk')->name('allergy.delete');
 	Route::get('/allergy/change_status/{id}', 'Admin\AllergyController@changeStatus')->name('allergy.change_status');

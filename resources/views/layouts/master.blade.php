@@ -76,7 +76,7 @@
 				</li>
 				<li class="nav-item">
 					@auth
-						<a class="nav-link" href="#">Order Now</a>
+						<a class="nav-link" href="{{route('order-now.index')}}">Order Now</a>
 					@endauth
 					@guest
 						<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
