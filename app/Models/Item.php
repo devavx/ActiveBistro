@@ -27,7 +27,7 @@ class Item extends Model
 
 	public function ingredients ()
 	{
-		return $this->belongsToMany(Ingredient::class);
+		return $this->belongsToMany(Ingredient::class, IngredientItem::class);
 	}
 
 	public function type (): BelongsTo
