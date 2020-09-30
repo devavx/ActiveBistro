@@ -116,7 +116,7 @@
 
 									<div class="tab-content pt-3">
 										<div class="tab-pane active" id="tab-ingredients" role="tabpanel">
-											<p>{{implode(", ",$meal->ingredients()->pluck('name')->toArray())}}</p>
+											<p>{{implode(", ",$meal->ingredients()->unique()->pluck('name')->toArray())}}</p>
 										</div>
 									</div>
 								</div>

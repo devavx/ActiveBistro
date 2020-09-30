@@ -47,7 +47,6 @@ class MealPlan extends Model
 		$this->items->each(function (Item $item) use (&$ingredients) {
 			$ingredients = $ingredients->merge($item->ingredients);
 		});
-		$ingredients = $ingredients->unique();
 		return $ingredients;
 	}
 
