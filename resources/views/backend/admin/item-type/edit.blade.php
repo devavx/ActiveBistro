@@ -56,13 +56,13 @@
                                     </button>
                                     <ul class="p-0 m-0" style="list-style: none;">
                                         @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
+                                            <li>{{$error}}</li>
                                         @endforeach
                                     </ul>
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.item_type.update',$itemType->id) }}" method="post">
+                                <form action="{{ route('admin.item_type.update',$itemType->id) }}" method="post" id="add_form">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-body">
