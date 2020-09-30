@@ -69,19 +69,20 @@
                             <div class="card-body">
                                 <form action="{{ route('admin.item_type.store') }}" id="add_form" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="form-body"> 
+                                    <div class="form-body">
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name..">
+                                                    <label>Name*</label>
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." minlength="2" maxlength="50" required>
                                                 </div>
-                                            </div> 
-                                        </div>  
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
+                                        </button>
                                         <a href="{{ route('admin.item_type.index') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>

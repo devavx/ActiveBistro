@@ -64,20 +64,21 @@
                             <div class="card-body">
                                 <form action="{{ route('admin.item_type.update',$itemType->id) }}" method="post">
                                     @csrf
-                                    @method('PUT') 
-                                    <div class="form-body"> 
+                                    @method('PUT')
+                                    <div class="form-body">
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $itemType->name }}">
+                                                    <label>Name*</label>
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $itemType->name }}" minlength="2" maxlength="50" required>
                                                 </div>
-                                            </div> 
-                                        </div>  
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
+                                        </button>
                                         <a href="{{ route('admin.item_type.index') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>

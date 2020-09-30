@@ -7,33 +7,17 @@ use Illuminate\Http\Request;
 
 class ItemTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $listData = ItemType::all();
         return view('backend/admin/item-type/index', compact('listData'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('backend/admin/item-type/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $res=ItemType::create($request->all());
@@ -44,35 +28,16 @@ class ItemTypeController extends Controller
         }
     }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param \App\Models\ItemType $itemType
-	 * @return \Illuminate\Http\Response
-	 */
     public function show(ItemType $itemType)
     {
         //
     }
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param \App\Models\ItemType $itemType
-	 * @return \Illuminate\Http\Response
-	 */
     public function edit(ItemType $itemType)
     {
         return view('backend/admin/item-type/edit',compact('itemType'));
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param \App\Models\ItemType $itemType
-	 * @return \Illuminate\Http\Response
-	 */
     public function update(Request $request, ItemType $itemType)
     {
         $itemType->name = $request->name;
@@ -84,12 +49,6 @@ class ItemTypeController extends Controller
         }
     }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param \App\Models\ItemType $itemType
-	 * @return \Illuminate\Http\Response
-	 */
     public function destroy(ItemType $itemType)
     {
         //
