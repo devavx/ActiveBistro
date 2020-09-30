@@ -67,7 +67,7 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.ingredient.update',$record->id) }}" method="post">
+							<form action="{{ route('admin.allergy.update',$record->id) }}" method="post">
 								@csrf
 								@method('PUT')
 								<div class="form-body">
@@ -84,7 +84,7 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
-									<a href="{{ route('admin.ingredient.index') }}" class="btn btn-inverse">Cancel</a>
+									<a href="{{ route('admin.allergy.index') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>
