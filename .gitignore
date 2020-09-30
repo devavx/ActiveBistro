@@ -15,3 +15,5 @@ yarn-error.log
 /shammaweb
 /.idea
 /public/pma/
+.ftpquota
+/.well-known
