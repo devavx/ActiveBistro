@@ -61,41 +61,61 @@
                                     </button>
                                     <ul class="p-0 m-0" style="list-style: none;">
                                         @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
+                                            <li>{{$error}}</li>
                                         @endforeach
                                     </ul>
                                 </div>
                             @endif
                             <div class="card-body">
-                                <form action="{{ route('admin.ingredient.update',$record->id) }}" method="post">
+                                <form action="{{ route('admin.ingredient.update',$record->id) }}" method="post" id="add_form">
                                     @csrf
-                                    @method('PUT') 
-                                    <div class="form-body"> 
+                                    @method('PUT')
+                                    <div class="form-body">
                                         <hr>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}">
+                                                    <label>Name*</label>
+                                                    <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}" minlength="2" maxlength="255" required>
                                                 </div>
-                                            </div> 
-                                        </div> 
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
+                                        </button>
                                         <a href="{{ route('admin.ingredient.index') }}" class="btn btn-inverse">Cancel</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                </div> 
-                </div> 
-        </div>
-         @endsection
-    @section('script')
-    
-    <script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-    @endsection
+                </div>
+            </div>
+</div>
+@endsection
+@section('script')
+
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#add_form').validate({ // initialize the plugin
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                }
+            });
+
+            $(document).on('click', '#edit_profile', function () {
+                if (!$("#add_form").valid()) { // Not Valid
+                    return false;
+                } else {
+
+                }
+            });
+        });
+    </script>
+@endsection
        
