@@ -85,14 +85,29 @@
                             </div>
                         </div>
                     </div>
-                </div> 
-                </div> 
-        </div>
-         @endsection
-    @section('script') 
+                </div>
+            </div>
+</div>
+@endsection
+@section('script')
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
     <script type="text/javascript">
-       
+        $(document).ready(function () {
+            $('#add_form').validate({ // initialize the plugin
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+            });
+            $(document).on('click', '#edit_profile', function () {
+                if (!$("#add_form").valid()) { // Not Valid
+                    return false;
+                } else {
+
+                }
+            });
+        });
     </script>
-     
-    @endsection
+@endsection
        
