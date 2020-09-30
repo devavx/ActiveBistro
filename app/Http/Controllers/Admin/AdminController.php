@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Ingredient;
-use App\Item;
-use App\MealPlan;
 use App\Models\Allergy;
 use App\Models\Coupon;
+use App\Models\Ingredient;
+use App\Models\Item;
+use App\Models\MealPlan;
 use App\Models\Order;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Core\Traits\ActiveStatus;
 use Illuminate\Database\Eloquent\Model;

@@ -8,7 +8,7 @@ use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\Models\Address;
 use App\Models\Order;
-use App\User;
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;

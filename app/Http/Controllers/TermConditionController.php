@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Primitives\Str;
-use App\TermCondition;
+use App\Models\TermCondition;
 
 class TermConditionController extends Controller
 {

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomeSetting;
 use Illuminate\Http\Request;
-use App\HomeSetting;
 
 class SettingController extends Controller
 {

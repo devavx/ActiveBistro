@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\BottomSection;
-use App\Category;
 use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
-use App\HomeSetting;
-use App\HowItWork;
 use App\Http\Requests\TailorPlanRule;
-use App\Item;
-use App\ItemType;
-use App\MealPlan;
 use App\Models\Allergy;
+use App\Models\BottomSection;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\FaqCategory;
-use App\PrivacyPolicy;
-use App\SliderSetting;
-use App\TermCondition;
+use App\Models\HomeSetting;
+use App\Models\HowItWork;
+use App\Models\Item;
+use App\Models\ItemType;
+use App\Models\MealPlan;
+use App\Models\PrivacyPolicy;
+use App\Models\SliderSetting;
+use App\Models\TermCondition;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 

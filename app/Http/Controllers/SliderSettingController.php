@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\SliderSetting;
+use App\Models\SliderSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PostalCode;
 use Illuminate\Http\Request;
-use App\PostalCode;
 
 class PostalCodeController extends Controller
 {

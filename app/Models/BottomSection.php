@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;

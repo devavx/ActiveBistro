@@ -38,7 +38,7 @@ function timeFormat24To12 ($time = '')
 function getAllItemList ()
 {
 	try {
-		$catList = App\Item::all();
+		$catList = \App\Models\Item::all();
 	} catch (Exception $e) {
 		$catList = [];
 	}
@@ -49,7 +49,7 @@ function getAllItemList ()
 function getAllUserList ()
 {
 	try {
-		$userList = App\User::all();
+		$userList = \App\Models\User::all();
 	} catch (Exception $e) {
 		$userList = [];
 	}
@@ -109,5 +109,5 @@ function elapsed (): ?string
 
 function deadline ()
 {
-	return \App\DeliveryDeadline::query()->first();
+	return \App\Models\DeliveryDeadline::query()->first();
 }

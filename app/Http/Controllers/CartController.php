@@ -4,11 +4,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Category;
 use App\Core\Cart\State;
-use App\ItemType;
-use App\MealPlan;
 use App\Models\Allergy;
+use App\Models\Category;
+use App\Models\ItemType;
+use App\Models\MealPlan;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;

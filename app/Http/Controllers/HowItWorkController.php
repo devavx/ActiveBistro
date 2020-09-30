@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\HowItWork;
+use App\Models\HowItWork;
 use Illuminate\Http\Request;
 
 class HowItWorkController extends Controller

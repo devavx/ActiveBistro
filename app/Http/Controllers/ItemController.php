@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Http\Requests\Items\StoreRequest;
 use App\Http\Requests\Items\UpdateRequest;
-use App\Ingredient;
-use App\Item;
-use App\ItemType;
-use App\MealPlan;
+use App\Models\Category;
+use App\Models\Ingredient;
+use App\Models\Item;
+use App\Models\ItemType;
+use App\Models\MealPlan;
 
 class ItemController extends Controller
 {

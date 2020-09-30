@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\BottomSection;
 use App\Core\Primitives\Str;
+use App\Models\BottomSection;
 
 class BottomSectionController extends Controller
 {

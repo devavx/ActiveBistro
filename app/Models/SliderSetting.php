@@ -1,15 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 
-class HomeSetting extends Model
+class SliderSetting extends Model
 {
-	protected $fillable = ['title', 'description', 'thumbnail', 'type', 'other_option', 'active'];
+	protected $fillable = ['title', 'description', 'thumbnail', 'thumbnail_type', 'active'];
 
 	public function setThumbnailAttribute ($value): void
 	{
@@ -20,7 +20,7 @@ class HomeSetting extends Model
 		}
 	}
 
-	public function getThumbnailAttribute ($value): ?string
+	public function getThumbnailAttribute ()
 	{
 		return Uploads::existsUrl($this->attributes['thumbnail']);
 	}

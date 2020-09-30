@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Category;
-use App\Faq;
-use App\Ingredient;
-use App\Item;
-use App\ItemType;
-use App\MealPlan;
 use App\Models\Address;
 use App\Models\Allergy;
+use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Faq;
+use App\Models\Ingredient;
+use App\Models\Item;
+use App\Models\ItemType;
+use App\Models\MealPlan;
 use App\Models\Order;
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

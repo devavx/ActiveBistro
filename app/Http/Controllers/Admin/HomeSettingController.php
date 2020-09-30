@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\HomeSetting;
 use App\Http\Controllers\Controller;
+use App\Models\HomeSetting;
 use Illuminate\Http\Request;
 
 class HomeSettingController extends Controller

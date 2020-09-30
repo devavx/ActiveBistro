@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Primitives\Str;
-use App\PrivacyPolicy;
+use App\Models\PrivacyPolicy;
 
 class PrivacyPolicyController extends Controller
 {

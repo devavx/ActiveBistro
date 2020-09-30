@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IngredientRule;
-use App\Ingredient;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller

@@ -1,14 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Core\Enums\Common\ActivityLevel;
 use App\Core\Enums\Common\Directories;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Time;
-use App\Models\Address;
-use App\Models\Cart;
-use App\Models\Order;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;

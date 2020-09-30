@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DeliveryDeadline;
+use App\Models\DeliveryDeadline;
 
 class DeliveryDeadlineController extends Controller
 {
