@@ -25,7 +25,7 @@ class AllergyController extends Controller
 		if ($res) {
 			return redirect('admin/allergy')->with('success', 'Record Added successfully!');;
 		} else {
-			return redirect()->back('errormsg', 'OPPS!! Something Went Wrong!');
+			return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
 		}
 	}
 
@@ -70,7 +70,7 @@ class AllergyController extends Controller
 			$result['message'] = 'Record Deleted Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 
 		return json_encode($result);
@@ -98,10 +98,10 @@ class AllergyController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Stactus Change Sucessfully !';
+			$result['message'] = 'Status Change Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 		return json_encode($result);
 	}

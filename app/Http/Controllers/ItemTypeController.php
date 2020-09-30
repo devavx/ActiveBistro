@@ -64,7 +64,7 @@ class ItemTypeController extends Controller
 			$result['message'] = 'ItemType Deleted Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 
 		return json_encode($result);
@@ -92,10 +92,10 @@ class ItemTypeController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Stactus Change Sucessfully !';
+			$result['message'] = 'Status Change Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 		return json_encode($result);
 	}

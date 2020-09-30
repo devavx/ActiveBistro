@@ -66,7 +66,7 @@ class AdminController extends Controller
 			$result['message'] = 'Customer(s) Deleted Successfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 
 		return json_encode($result);
@@ -173,7 +173,7 @@ class AdminController extends Controller
 			$userData->save();
 			return back()->with('success', 'Details Updated Successfully!');
 		} else {
-			return back()->with('errormsg', 'OPPS!! Something Went Wrong!');
+			return back()->with('errormsg', 'Oops!! Something Went Wrong!');
 		}
 	}
 

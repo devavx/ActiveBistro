@@ -66,7 +66,7 @@ class HomeSettingController extends Controller
             $result['message'] = 'Record Deleted Sucessfully !';
         } else {
             $result['status'] = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+	        $result['message'] = 'Oops! Something Went Wrong!';
         }
 
         return json_encode($result);

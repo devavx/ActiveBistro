@@ -47,10 +47,10 @@ class PostalCodeController extends Controller
             if ($res){ 
                 return redirect('admin/postal_codes')->with('success','PostalCode Added successfully!');;
             }else{ 
-                return redirect()->back('errormsg','OPPS!! Something Went Wrong!'); 
+                return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
             }
-        }else{ 
-            return redirect()->back('errormsg','OPPS!! Something Went Wrong!'); 
+        }else{
+	        return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
         }
     }
 
@@ -123,8 +123,8 @@ class PostalCodeController extends Controller
             $result['status']  = 'success';
             $result['message'] = 'PostalCode Deleted Sucessfully !';
         }else{
-            $result['status']  = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+	        $result['status'] = 'error';
+	        $result['message'] = 'Oops! Something Went Wrong!';
         }
 
         return json_encode($result);
@@ -139,11 +139,11 @@ class PostalCodeController extends Controller
                 $data->active = 0;
             } 
             $data->update();
-            $result['status']  = 'success';
-            $result['message'] = 'Stactus Change Sucessfully !';
+	        $result['status'] = 'success';
+	        $result['message'] = 'Status Change Sucessfully !';
         }else{
-            $result['status']  = 'error';
-            $result['message'] = 'OPPS! Something Went Wrong!';
+	        $result['status'] = 'error';
+	        $result['message'] = 'Oops! Something Went Wrong!';
         }
         return json_encode($result);
     }

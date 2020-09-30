@@ -40,7 +40,7 @@ class CategoryController extends Controller
 		if ($res) {
 			return redirect('admin/category')->with('success', 'Category Added successfully!');;
 		} else {
-			return redirect()->back('errormsg', 'OPPS!! Something Went Wrong!');
+			return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
 		}
 	}
 
@@ -105,7 +105,7 @@ class CategoryController extends Controller
 			$result['message'] = 'Category Deleted Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 
 		return json_encode($result);
@@ -133,10 +133,10 @@ class CategoryController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Stactus Change Sucessfully !';
+			$result['message'] = 'Status Change Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 		return json_encode($result);
 	}

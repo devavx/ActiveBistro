@@ -36,7 +36,7 @@ class UserProfileController extends Controller
             $userData->save();
             return back()->with('success','Details Updated Successfully!');
         }else{
-        	return back()->with('errormsg','OPPS!! Something Went Wrong!');	
+	        return back()->with('errormsg', 'Oops!! Something Went Wrong!');
         }
     }
 

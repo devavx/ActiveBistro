@@ -77,7 +77,7 @@ class SliderSettingController extends Controller
 			$result['message'] = 'Slider Image Deleted Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 
 		return json_encode($result);
@@ -95,10 +95,10 @@ class SliderSettingController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Stactus Change Sucessfully !';
+			$result['message'] = 'Status Change Sucessfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'OPPS! Something Went Wrong!';
+			$result['message'] = 'Oops! Something Went Wrong!';
 		}
 		return json_encode($result);
 	}

@@ -35,10 +35,10 @@ class FaqController extends Controller
 			if ($res) {
 				return redirect('admin/faqs')->with('success', 'Faqs Added successfully!');
 			} else {
-				return redirect()->back('errormsg', 'OPPS!! Something Went Wrong!');
+				return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
 			}
 		} else {
-			return redirect()->back('errormsg', 'OPPS!! Something Went Wrong!');
+			return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
 		}
 
 	}
