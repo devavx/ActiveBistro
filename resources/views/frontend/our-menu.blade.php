@@ -50,7 +50,7 @@
 			</div>
 
 			<div class="col-lg-2 col-sm-3 col-12">
-				<a href="{{route('cart.index')}}" class="btn btn-info m-0 btn-md btn-block">Order Now
+				<a href="{{route('order-now.index')}}" class="btn btn-info m-0 btn-md btn-block">Order Now
 					<i class="fa fa-chevron-right ml-2"></i>
 				</a>
 			</div>
