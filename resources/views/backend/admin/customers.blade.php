@@ -40,15 +40,15 @@
 							<!-- <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6> -->
 							<div class="table-responsive m-t-40">
 								<table id="example23"
-								       class="display nowrap table table-hover table-striped table-bordered"
-								       cellspacing="0" width="100%">
+										class="display nowrap table table-hover table-striped table-bordered"
+										cellspacing="0" width="100%">
 									<thead>
 									<tr>
-<th scope="col" class="border">
+										<th scope="col" class="border">
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
-										
+
 										<th>Name</th>
 										<th>Email</th>
 										<th>address</th>
@@ -62,11 +62,11 @@
 									@if(!empty($listData))
 										@foreach($listData as $rows)
 											<tr>
-<td>
+												<td>
 													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 												<td>{{$loop->index+1}}</td>
-												
+
 												<td>{{ $rows->name ?? '-' }}</td>
 												<td>{{ $rows->email ?? '-' }}</td>
 												<td>{{ $rows->address ?? '-' }}</td>
@@ -152,7 +152,8 @@
 				if (parsed !== 0)
 					items.push(parsed);
 			});
-			deleteConfirmMessageBulk(url, items);
+			if (items.length > 0)
+				deleteConfirmMessageBulk(url, items);
 		}
 
 	</script>

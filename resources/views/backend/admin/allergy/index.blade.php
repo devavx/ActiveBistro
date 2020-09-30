@@ -69,8 +69,8 @@
 							@endif
 							<div class="table-responsive m-t-40">
 								<table id="example23"
-								       class="display nowrap table table-hover table-striped table-bordered"
-								       cellspacing="0" width="100%">
+										class="display nowrap table table-hover table-striped table-bordered"
+										cellspacing="0" width="100%">
 									<thead>
 									<tr>
 										<th scope="col" class="border">
@@ -92,8 +92,10 @@
 													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 												<td>{{$loop->index+1}}</td>
-												
-												<td><a href="javascript:void(0)" data-value="{{ $rows->description ?? '-'}}" id="{{ $rows->id }}" class="detailmodal"> {{ $rows->name ?? '-'}} </a></td>
+
+												<td>
+													<a href="javascript:void(0)" data-value="{{ $rows->description ?? '-'}}" id="{{ $rows->id }}" class="detailmodal"> {{ $rows->name ?? '-'}} </a>
+												</td>
 												<td>{{ $rows->description ?? '-'}} </td>
 												@if($rows->active)
 													<td>
@@ -108,7 +110,9 @@
 														</button>
 													</td>
 												@endif
-												<td><p class="created_at" id="{{$rows->id}}"> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</p></td>
+												<td>
+													<p class="created_at" id="{{$rows->id}}"> {{ changeDateFormat($rows->created_at,'M-d-Y') }}</p>
+												</td>
 												<td style="text-align: center; ">
 													<a class="like" href="{{ route('admin.allergy.edit',$rows->id) }}" title="Edit"><i class="fas fa-edit text-info"></i></a>
 													/
@@ -133,7 +137,7 @@
 	</div>
 	<div id="cover-spin" style="display: none;"></div>
 
-<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
+	<div class="modal" id="detailmodal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-xl" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -245,21 +249,22 @@
 				if (parsed !== 0)
 					items.push(parsed);
 			});
-			deleteConfirmMessageBulk(url, items);
+			if (items.length > 0)
+				deleteConfirmMessageBulk(url, items);
 		}
 
-		$(document).ready(function(){
-			$(document).on('click','.detailmodal',function(){ 
-				var id =$(this).attr('id');
-				$.get('{{ url("/admin/allergy/details")}}', { id: id }, function(data) {
-					data = JSON.parse(data); 
-				    $('#detail_name').text(data.name);
+		$(document).ready(function () {
+			$(document).on('click', '.detailmodal', function () {
+				var id = $(this).attr('id');
+				$.get('{{ url("/admin/allergy/details")}}', {id: id}, function (data) {
+					data = JSON.parse(data);
+					$('#detail_name').text(data.name);
 					$('#detail_description').text(data.description);
 					$('#detail_date').text(data.created_at);
 					// $('details_status').html(status);  
 					$('#detailmodal').modal('show');
-				}); 
-				
+				});
+
 			});
 		})
 

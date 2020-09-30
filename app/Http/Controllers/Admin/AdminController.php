@@ -52,7 +52,7 @@ class AdminController extends Controller
 			$userRecord = User::find($id);
 			return view('backend/admin/customer_details', compact('userRecord'));
 		}
-		$listData = User::query()->latest()->get();
+		$listData = User::query()->latest()->where('role_id', '!=', 1)->get();
 		return view('backend/admin/customers', compact('listData'));
 	}
 

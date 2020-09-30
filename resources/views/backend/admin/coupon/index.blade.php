@@ -275,7 +275,8 @@
 				if (parsed !== 0)
 					items.push(parsed);
 			});
-			deleteConfirmMessageBulk(url, items);
+			if (items.length > 0)
+				deleteConfirmMessageBulk(url, items);
 		}
 
 		$(document).ready(function () {

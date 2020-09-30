@@ -69,15 +69,15 @@
 							@endif
 							<div class="table-responsive m-t-40">
 								<table id="example23"
-								       class="display nowrap table table-hover table-striped table-bordered"
-								       cellspacing="0" width="100%">
+										class="display nowrap table table-hover table-striped table-bordered"
+										cellspacing="0" width="100%">
 									<thead>
 									<tr>
-<th scope="col" class="border">
+										<th scope="col" class="border">
 											<label><input type="checkbox" id="check_all" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>Sr. No.</th>
-										
+
 										<th>Name</th>
 										<th>Type</th>
 										<th>Image(s)</th>
@@ -226,7 +226,8 @@
 				if (parsed !== 0)
 					items.push(parsed);
 			});
-			deleteConfirmMessageBulk(url, items);
+			if (items.length > 0)
+				deleteConfirmMessageBulk(url, items);
 		}
 
 		showDetails = key => {
