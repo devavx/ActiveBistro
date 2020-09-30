@@ -208,7 +208,7 @@
 						</div>
 					</div>
 					<div class="modal-footer p-0 justify-content-left">
-						<a href="{{route('cart.index')}}" class="btn btn-info btn-md">Order Now<i class="fa fa-chevron-right ml-2"></i></a>
+						<a href="{{route('order-now.index')}}" class="btn btn-info btn-md">Order Now<i class="fa fa-chevron-right ml-2"></i></a>
 						<button type="button" class="btn btn-dark btn-md" data-dismiss="modal">Close</button>
 					</div>
 				</div>
