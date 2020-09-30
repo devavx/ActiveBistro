@@ -12,8 +12,8 @@ class Role extends Model
 	protected $dates = ['deleted_at'];
 	protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
 
-    public function user()
-    {
-	    return $this->hasMany('App\Models\User');
-    }
+	public function user ()
+	{
+		return $this->hasMany('App\Models\User');
+	}
 }
