@@ -8,33 +8,17 @@ use Illuminate\Http\Request;
 
 class AllergyController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function index ()
 	{
 		$listData = Allergy::query()->latest()->get();
 		return view('backend/admin/allergy/index', compact('listData'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create ()
 	{
 		return view('backend/admin/allergy/create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store (Request $request)
 	{
 		$res = Allergy::create($request->all());
@@ -45,23 +29,11 @@ class AllergyController extends Controller
 		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param \App\Models\Allergy $allergy
-	 * @return \Illuminate\Http\Response
-	 */
 	public function show (Allergy $allergy)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param \App\Models\Allergy $allergy
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit (Allergy $allergy)
 	{
 		$record = $allergy;
@@ -71,13 +43,6 @@ class AllergyController extends Controller
 		return redirect('admin/allergy')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param \App\Models\Allergy $allergy
-	 * @return \Illuminate\Http\Response
-	 */
 	public function update (Request $request, Allergy $allergy)
 	{
 		$allergy->name = $request->name;
@@ -90,12 +55,6 @@ class AllergyController extends Controller
 		}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param \App\Models\Allergy $allergy
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy (Allergy $allergy)
 	{
 		//
