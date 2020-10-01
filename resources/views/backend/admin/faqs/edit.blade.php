@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Faq | Create @endsection
+@section('title') Admin | FAQ | Create @endsection
 
 @section('style')
 	<link href="{{ asset('assets/node_modules/html5-editor/bootstrap-wysihtml5.css') }}" type="text/css"/>
@@ -19,13 +19,13 @@
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Faq</h4>
+					<h4 class="text-themecolor">FAQ</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">Faq</a></li>
+							<li class="breadcrumb-item"><a href="{{ url('/admin/how_it_works') }}">FAQ</a></li>
 							<li class="breadcrumb-item active">Create</li>
 						</ol>
 					</div>
@@ -35,7 +35,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-header bg-info">
-							<h4 class="m-b-0 text-white">Faq</h4>
+							<h4 class="m-b-0 text-white">FAQ</h4>
 						</div>
 						@if($message=Session::get('success'))
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -89,7 +89,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Title*</label>
-													<input type="text" name="faq_title" id="faq_title" class="form-control" placeholder="Enter Title.." value="{{ $record->faq_title }}" required>
+													<input type="text" name="faq_title" id="faq_title" class="form-control" placeholder="Enter Title.." value="{{ $record->faq_title }}" required minlength="2" maxlength="255">
 												</div>
 											</div>
 										</div>
@@ -97,7 +97,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description*</label>
-													<textarea type="text" name="faq_description" id="faq_description" class="form-control" placeholder="Enter description.." required>{{ $record->faq_description }}</textarea>
+													<textarea type="text" name="faq_description" id="faq_description" class="form-control" placeholder="Enter description.." required minlength="2" maxlength="10000">{{ $record->faq_description }}</textarea>
 												</div>
 											</div>
 										</div>
@@ -127,12 +127,9 @@
 				rules: {
 					faq_title: {
 						required: true,
-						minlength: 1,
-						maxlength: 255
 					},
 					faq_description: {
-						minlength: 1,
-						maxlength: 5000
+						required: true,
 					},
 					category_id: {
 						required: true
