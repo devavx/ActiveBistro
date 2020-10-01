@@ -83,7 +83,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::resource('/ingredient', 'Admin\IngredientController');
 	Route::resource('/allergy', 'Admin\AllergyController');
 
-	Route::resource('/items', 'ItemController');
+	Route::resource('/items', 'ItemController')->except('destroy');
 	Route::resource('/how_it_works', 'HowItWorkController');
 	Route::resource('/privacy_policy', 'PrivacyPolicyController');
 	Route::resource('/term_conditions', 'TermConditionController');
@@ -168,4 +168,5 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::delete('faq/delete', 'Admin\FaqController@deleteBulk');
 	Route::delete('sliders/delete', 'SliderSettingController@deleteBulk');
 	Route::delete('home_setting/delete', 'Admin\HomeSettingController@deleteBulk');
+	Route::delete('items/delete', 'ItemController@deleteBulk');
 });

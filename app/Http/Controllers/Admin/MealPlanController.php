@@ -141,7 +141,7 @@ class MealPlanController extends Controller
 		$result['success'] = 1;
 		$result['message'] = 'Meal plan(s) deleted successfully!';
 		$result['data'] = [];
-		MealPlan::query()->whereNotNull('day')->whereIn('id', request('items', []))->delete();
+		MealPlan::query()->whereIn('id', request('items', []))->delete();
 		return response()->json($result);
 	}
 

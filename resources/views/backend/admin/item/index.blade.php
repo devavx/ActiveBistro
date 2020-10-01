@@ -77,7 +77,6 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>#</th>
-
 										<th>Name</th>
 										<th>Short Description</th>
 										<th>Protein</th>
@@ -95,7 +94,7 @@
 										@foreach($listData as $rows)
 											<tr>
 												<td>
-													<label><input type="checkbox" name="delete_target"><span class="sr-only"> Select Row </span></label>
+													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 												<td>{{$loop->index+1}}</td>
 
