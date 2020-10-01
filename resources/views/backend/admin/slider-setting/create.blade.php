@@ -71,7 +71,7 @@
 							<form action="{{ route('admin.sliders.store') }}" class="dropzone" id="dropzoneForm" method="post" enctype="multipart/form-data">
 								@csrf
 							</form>
-							<small>Max file size is 2 MB.</small>
+							<small>Max file size is 25 MB.</small>
 							<div class="form-actions" style="margin-top: 20px">
 								<button type="button" id="submit-all" class="btn btn-success" onclick="beginUpload();">
 									<i class="fa fa-check"></i> Upload
@@ -105,8 +105,8 @@
 			autoProcessQueue: false,
 			addRemoveLinks: true,
 			acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.mp4",
-			maxFilesize: 2,
-			maxFiles: 10,
+			maxFilesize: 25,
+			maxFiles: 4,
 			paramName: 'file[]',
 			init: function () {
 				dropZone = this;
