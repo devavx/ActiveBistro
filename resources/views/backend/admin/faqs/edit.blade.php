@@ -76,7 +76,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Category*</label>
-													<select name="category_id" id="" class="form-control" required>
+													<select name="faq_category_id" id="" class="form-control" required>
 														<option value="">Choose...</option>
 														@foreach($categories as $category)
 															<option value="{{$category->id}}" @if($record->faq_category_id==$category->id) selected @endif>{{$category->title}}</option>
