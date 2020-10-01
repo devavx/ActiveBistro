@@ -158,15 +158,15 @@
 							<h5 class="text-white mb-0">Company</h5>
 							<hr>
 							<ul>
-								<li><a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a>
+								<li>
+									<a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a>
 								</li>
-
 								<li>
-									<a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy &
-										Policy</a></li>
+									<a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy Policy</a>
+								</li>
 								<li>
-									<a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Term &
-										Use</a></li>
+									<a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Terms of Use</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 								<li>
 									<a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a>
 								</li>
-								<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>Faqs</a></li>
+								<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>FAQ</a></li>
 
 							</ul>
 						</div>
@@ -202,8 +202,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<p class="mb-0 text-right">Copyright <i class="fa fa-copyright"></i> by
-					<a href="{{ url('') }}" class="text-white">ACTIVE BISTRO</a></p>
+				<p class="mb-0 text-right">Copyright <i class="fa fa-copyright"></i>&nbsp;{{date('Y')}} by
+					<a href="{{ route('index') }}" class="text-white">Active Bistro Ltd.</a></p>
 			</div>
 		</div>
 	</div>
