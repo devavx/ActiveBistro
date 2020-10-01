@@ -92,7 +92,7 @@
 												</td>
 
 												<td>{{$loop->index+1}}</td>
-												<td> {{ $rows->title ?? '-'}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->title ?? '-',25)}}</td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button>

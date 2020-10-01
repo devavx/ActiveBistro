@@ -96,9 +96,9 @@
 
 												<td>{{$loop->index+1}}</td>
 
-												<td> {{ $rows->faq_title ?? '-'}}</td>
-												<td> {{ $rows->faq_description ?? '-'}}</td>
-												<td> {{ $rows->category()->exists() ? $rows->category->title:'-'}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_title ?? '-',25)}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_description ?? '-',25)}}</td>
+												<td> {{ $rows->category()->exists() ? \App\Core\Primitives\Str::ellipsis($rows->category->title,25):'-'}}</td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button>
