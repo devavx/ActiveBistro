@@ -116,8 +116,8 @@ $uri2 = Request::segment(2);
 								& Condition</a></li>
 
 						<li class="@if($uri2 =='privacy_policy')active @endif">
-							<a class="@if($uri2 =='privacy_policy')active @endif" href="{{ url('/admin/privacy_policy') }}">Privacy
-								& Policy</a></li>
+							<a class="@if($uri2 =='privacy_policy')active @endif" href="{{ url('/admin/privacy_policy') }}">Privacy Policy</a>
+						</li>
 
 						<li class="@if($uri2 =='bottom_section')active @endif">
 							<a class="@if($uri2 =='bottom_section')active @endif" href="{{ url('/admin/bottom_section') }}">Bottom Section</a>
@@ -133,10 +133,10 @@ $uri2 = Request::segment(2);
 
 						<li class="@if($uri2 =='sliders')active @endif">
 							<a class="@if($uri2 =='sliders')active @endif" href="{{ url('/admin/sliders') }}">Slider
-								Setting</a></li>
+								Settings</a></li>
 						<li class="@if($uri2 =='home_setting')active @endif">
 							<a class="@if($uri2 =='home_setting')active @endif" href="{{ url('/admin/home_setting') }}">Home
-								Setting</a></li>
+								Settings</a></li>
 						{{--						<li class="@if($uri2 =='social_medial')active @endif">--}}
 						{{--							<a class="@if($uri2 =='social_medial')active @endif" href="{{ url('/admin/social_medial') }}">Footer--}}
 						{{--								Social Media</a></li>--}}
