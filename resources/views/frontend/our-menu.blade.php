@@ -185,9 +185,6 @@
 								<p class="mb-1 pb-2 border-bottom">Total Protein (Grams)
 									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('protein')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom">Total Fat (Grams)
-									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('fat')}}</span>
-								</p>
 								<p class="mb-1 pb-2 border-bottom d-none">Dietary Fiber g<span class="font-weight-bold float-right text-color">8%</span>
 								</p>
 								<p class="mb-1 pb-2 border-bottom d-none">Sugar g<span class="font-weight-bold float-right text-color">8965</span>
