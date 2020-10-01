@@ -32,7 +32,7 @@ class Item extends Model
 
 	public function type (): BelongsTo
 	{
-		return $this->belongsTo(ItemType::class)->withDefault(function (ItemType $type) {
+		return $this->belongsTo(ItemType::class, 'item_type_id')->withDefault(function (ItemType $type) {
 			return $type->name = Str::Empty;
 		});
 	}
