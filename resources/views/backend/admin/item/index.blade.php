@@ -100,9 +100,9 @@
 												<td>{{$loop->index+1}}</td>
 
 												<td>
-													<button class="btn btn-link" onclick="showDetails('{{$rows->id}}');"> {{\App\Core\Primitives\Str::placeholder($rows->name)}}</button>
+													<button class="btn btn-link" onclick="showDetails('{{$rows->id}}');"> {{\App\Core\Primitives\Str::ellipsis($rows->name,25)}}</button>
 												</td>
-												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->short_description ?? '-',40)}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->short_description ?? '-',25)}}</td>
 												<td> {{ $rows->protein ?? '-'}}</td>
 												<td> {{ $rows->calories ?? '-'}}</td>
 												<td> {{ $rows->carbs ?? '-'}}</td>
