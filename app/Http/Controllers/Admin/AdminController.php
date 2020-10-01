@@ -107,7 +107,7 @@ class AdminController extends Controller
 				$result['message'] = 'Check your current password';
 			} else if ((Hash::check(request('new_password'), $user->password)) == true) {
 				$result['status'] = 'error';
-				$result['message'] = 'Please enter a password which is not similar then current password';
+				$result['message'] = 'Please enter a password which is not similar to current password';
 			} else {
 				$user->update(['password' => Hash::make($input['new_password'])]);
 				$result['status'] = 'success';
@@ -176,5 +176,4 @@ class AdminController extends Controller
 			return back()->with('errormsg', 'Oops!! Something Went Wrong!');
 		}
 	}
-
 }

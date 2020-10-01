@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Traits\BulkDelete;
 use App\Models\SliderSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
 class SliderSettingController extends Controller
 {
+	use BulkDelete;
+
+	public function __construct ()
+	{
+		$this->setBoundModel(SliderSetting::class);
+	}
+
 	public function index ()
 	{
 		$listData = SliderSetting::all();
@@ -28,26 +36,6 @@ class SliderSettingController extends Controller
 			]);
 		});
 		return response()->json(['success' => 1]);
-	}
-
-	public function show (SliderSetting $sliderSetting)
-	{
-		//
-	}
-
-	public function edit (SliderSetting $sliderSetting)
-	{
-		//
-	}
-
-	public function update (Request $request, SliderSetting $sliderSetting)
-	{
-		//
-	}
-
-	public function destroy (SliderSetting $sliderSetting)
-	{
-		//
 	}
 
 	function fetch ()
@@ -71,13 +59,12 @@ class SliderSettingController extends Controller
 		$result = array();
 		$data = SliderSetting::find($id);
 		if (!empty($data)) {
-			// unlink(url('/storage/app/public/sliders/'.$data->thumbnail));
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Slider Image Deleted Sucessfully !';
+			$result['message'] = 'SliderImage deleted successfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'Oops! Something Went Wrong!';
+			$result['message'] = $this->commonError();
 		}
 
 		return json_encode($result);
@@ -95,10 +82,10 @@ class SliderSettingController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Status Change Sucessfully !';
+			$result['message'] = 'Status changed successfully !';
 		} else {
 			$result['status'] = 'error';
-			$result['message'] = 'Oops! Something Went Wrong!';
+			$result['message'] = $this->commonError();
 		}
 		return json_encode($result);
 	}

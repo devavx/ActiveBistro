@@ -41,21 +41,21 @@ class IngredientController extends Controller
 		if (!empty($record)) {
 			return view('backend/admin/ingredient/edit', compact('record'));
 		}
-		return redirect('admin/ingredient')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+		return redirect('admin/ingredient')->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 	}
 
 	public function update (Request $request, $id)
 	{
 		$data = Ingredient::where('id', $id)->first();
 		if (empty($data)) {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 		}
 		$data->name = $request->name;
 		$save = $data->update();
 		if ($save) {
 			return redirect('admin/ingredient')->with('success', 'Ingredient Updated successfully!');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 		}
 	}
 
@@ -66,7 +66,7 @@ class IngredientController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Ingredient Deleted Sucessfully !';
+			$result['message'] = 'Ingredient Deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';
@@ -97,7 +97,7 @@ class IngredientController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Status Change Sucessfully !';
+			$result['message'] = 'Status Change successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';

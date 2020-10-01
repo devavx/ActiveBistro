@@ -65,22 +65,23 @@
                                 </div> 
                             @endif
                         <div class="table-responsive m-t-40">
-                            <table id="example23"
-                            class="display nowrap table table-hover table-striped table-bordered"
-                            cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-<th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label></th>
-<th>Sr. No.</th>
-				
-                                    <th data-col-width="100">Term&Condition</th> 
-                                    <th data-col-width="100">Status</th> 
-                                    <th>Created At</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead> 
-                            <tbody> 
-                                  @if(!empty(@listData))
+	                        <table id="example23"
+			                        class="display nowrap table table-hover table-striped table-bordered"
+			                        cellspacing="0" width="100%">
+		                        <thead>
+		                        <tr>
+			                        <th scope="col" class="border"><label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
+			                        </th>
+			                        <th>#</th>
+
+			                        <th data-col-width="100">Term&Condition</th>
+			                        <th data-col-width="100">Status</th>
+			                        <th>Created At</th>
+			                        <th>Action</th>
+		                        </tr>
+		                        </thead>
+		                        <tbody>
+		                        @if(!empty(@listData))
                                     @foreach($listData as $rows)
                                 <tr>
 <td><label><input type="checkbox"><span class="sr-only"> Select Row </span></label></td> 

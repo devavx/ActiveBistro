@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Core\Traits\BulkDelete;
 use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use App\Models\FaqCategory;
@@ -9,6 +10,13 @@ use Illuminate\Http\Request;
 
 class FaqController extends Controller
 {
+	use BulkDelete;
+
+	public function __construct ()
+	{
+		$this->setBoundModel(Faq::class);
+	}
+
 	public function index ()
 	{
 		$listData = Faq::all();

@@ -76,7 +76,7 @@
 										<th scope="col" class="border">
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
-										<th>Sr. No.</th>
+										<th>#</th>
 
 										<th>Name</th>
 										<th>Short Description</th>
@@ -192,7 +192,24 @@
 			$('#example23').DataTable({
 				dom: 'Bfrtip',
 				buttons: [
-					'csv', 'excel', 'pdf', 'print'
+					{
+						extend: 'csvHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 10]
+						}
+					},
+					{
+						extend: 'excelHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 10]
+						}
+					},
+					{
+						extend: 'pdfHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 10]
+						}
+					},
 				]
 			});
 			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');

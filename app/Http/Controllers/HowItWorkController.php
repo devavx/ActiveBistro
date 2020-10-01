@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Traits\BulkDelete;
 use App\Models\HowItWork;
 use Illuminate\Http\Request;
 
 class HowItWorkController extends Controller
 {
+	use BulkDelete;
+
+	public function __construct ()
+	{
+		$this->setBoundModel(HowItWork::class);
+	}
+
 	public function index ()
 	{
 		$listData = HowItWork::all();

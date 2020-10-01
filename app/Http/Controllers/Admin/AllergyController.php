@@ -40,7 +40,7 @@ class AllergyController extends Controller
 		if (!empty($record)) {
 			return view('backend/admin/allergy/edit', compact('record'));
 		}
-		return redirect('admin/allergy')->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+		return redirect('admin/allergy')->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 	}
 
 	public function update (Request $request, Allergy $allergy)
@@ -51,7 +51,7 @@ class AllergyController extends Controller
 		if ($save) {
 			return redirect('admin/allergy')->with('success', 'Record Updated successfully!');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 		}
 	}
 
@@ -67,7 +67,7 @@ class AllergyController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Record Deleted Sucessfully !';
+			$result['message'] = 'Record Deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';
@@ -98,7 +98,7 @@ class AllergyController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Status Change Sucessfully !';
+			$result['message'] = 'Status Change successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';

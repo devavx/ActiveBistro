@@ -149,7 +149,7 @@
 		<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 			<tr>
-				<th>Sr. No.</th>
+				<th>#</th>
 				<th>Meal Name</th>
 				<th>Items</th>
 				<th>Quantity</th>

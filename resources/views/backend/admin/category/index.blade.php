@@ -76,7 +76,7 @@
 										<th scope="col" class="border">
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
-										<th>Sr. No.</th>
+										<th>#</th>
 
 										<th>Name</th>
 										<th>Status</th>
@@ -136,32 +136,17 @@
 
 @endsection
 @section('script')
-
 	<script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-	<!-- end - This is for export functionality only -->
 	<script src="{{ asset('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
-
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script>
 		$(function () {
 			$('#example23').DataTable({
-				dom: 'Bfrtip',
-				buttons: [
-					'csv', 'excel', 'pdf', 'print'
-				]
+				dom: 'Blfrtip',
 			});
-			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 		});
 
 		function confirmDelete(id) {

@@ -8,35 +8,35 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-   
-    public function contactUs()
-    {
-    	$data = HomeSetting::where('type','contact_us')
-    							->select('other_option')
-    							->first();
-    	$recordData= json_decode($data->other_option);
 
-        return view('backend/admin/contact-us/create',compact('recordData'));
-    }
+	public function contactUs ()
+	{
+		$data = HomeSetting::where('type', 'contact_us')
+			->select('other_option')
+			->first();
+		$recordData = json_decode($data->other_option);
 
-    public function saveContactUs(Request $request)
-    {
-    	$check = HomeSetting::where('type','contact_us')->first();
-    	if (!empty($check)) { 
-	        $check->other_option = json_encode($request->all());
-	        $save = $check->update();  
-    	}else{ 
-	    	$save= HomeSetting::create([ 
-	            'type'=>'contact_us',  
-	            'other_option'=>json_encode($request->all())
-	        ]); 
-	    }
-	    if($save) { 
-            return back()->with('success','Record Save successfully!');
-        }else{
-            return back()->with('errormsg','Whoops!! Somthig Went wrong! Try Again!');
-        }
-    }
+		return view('backend/admin/contact-us/create', compact('recordData'));
+	}
 
-    
+	public function saveContactUs (Request $request)
+	{
+		$check = HomeSetting::where('type', 'contact_us')->first();
+		if (!empty($check)) {
+			$check->other_option = json_encode($request->all());
+			$save = $check->update();
+		} else {
+			$save = HomeSetting::create([
+				'type' => 'contact_us',
+				'other_option' => json_encode($request->all())
+			]);
+		}
+		if ($save) {
+			return back()->with('success', 'Details updated successfully!');
+		} else {
+			return back()->with('errormsg', $this->commonError());
+		}
+	}
+
+
 }

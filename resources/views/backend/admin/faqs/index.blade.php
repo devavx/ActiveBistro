@@ -1,6 +1,6 @@
 @extends('backend.master')
 
-@section('title') Admin | Faq @endsection
+@section('title') Admin | FAQ @endsection
 
 @section('style')
 	<link rel="stylesheet" href="{{ asset('assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}">
@@ -27,13 +27,13 @@
 			<!-- ============================================================== -->
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Faq List</h4>
+					<h4 class="text-themecolor">FAQ List</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/admin') }}">Home</a></li>
-							<li class="breadcrumb-item active">Faq</li>
+							<li class="breadcrumb-item active">FAQ</li>
 						</ol>
 						<a href="{{ url('/admin/faqs/create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i
 									class="fa fa-plus-circle"></i> Create New</a>
@@ -44,9 +44,11 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Faq List</h4>
+							<h4 class="card-title">FAQ List</h4>
 							<div class="text-right">
-								<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+								<button type="button" onclick="confirmDeleteBulk();" class="btn btn-primary mr-4">
+									<i class="fa fa-trash mr-2"></i>Delete
+								</button>
 							</div>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -72,9 +74,9 @@
 									<thead>
 									<tr>
 										<th scope="col" class="border">
-											<label><input type="checkbox" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
+											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
-										<th>Sr. No.</th>
+										<th>#</th>
 
 										<th>Title</th>
 										<th>Description</th>
@@ -89,7 +91,7 @@
 										@foreach($listData as $rows)
 											<tr>
 												<td>
-													<label><input type="checkbox"><span class="sr-only"> Select Row </span></label>
+													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
 
 												<td>{{$loop->index+1}}</td>
@@ -132,30 +134,16 @@
 
 @endsection
 @section('script')
-
 	<script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-	<!-- end - This is for export functionality only -->
 	<script src="{{ asset('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
-
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
-
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script>
 		$(function () {
 			$('#example23').DataTable({
-				dom: 'Bfrtip',
-				buttons: [
-					'csv', 'excel', 'pdf', 'print'
-				]
+				dom: 'Blfrtip',
 			});
 			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 		});
@@ -173,6 +161,24 @@
 				changeStatusConfirmMessage(id, url, 'change_status');
 			});
 		});
+
+		function confirmDeleteBulk() {
+			const url = "{{ url('/admin/faq/delete') }}";
+			const items = [];
+			$("input:checkbox[name=delete_target]:checked").each(function () {
+				const parsed = Number.parseInt($(this).val());
+				if (parsed !== 0)
+					items.push(parsed);
+			});
+			if (items.length > 0)
+				deleteConfirmMessageBulk(url, items);
+		}
+
+		initialized = () => {
+			$('#check_all').change(function () {
+				$("input:checkbox[name=delete_target]").prop('checked', this.checked);
+			})
+		}
 
 	</script>
 @endsection

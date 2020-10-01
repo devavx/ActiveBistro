@@ -79,7 +79,7 @@ class FaqCategoryController extends Controller
 		$result['success'] = 1;
 		$result['message'] = 'Record(s) deleted successfully!';
 		$result['data'] = [];
-		FaqCategory::whereIn('id', request('items', []))->delete();
+		FaqCategory::query()->whereIn('id', request('items', []))->delete();
 		return response()->json($result);
 	}
 

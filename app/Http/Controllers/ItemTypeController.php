@@ -61,7 +61,7 @@ class ItemTypeController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'ItemType Deleted Sucessfully !';
+			$result['message'] = 'ItemType Deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';
@@ -92,7 +92,7 @@ class ItemTypeController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Status Change Sucessfully !';
+			$result['message'] = 'Status Change successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';

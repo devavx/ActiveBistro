@@ -83,7 +83,7 @@ class ItemController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Item Deleted Sucessfully !';
+			$result['message'] = 'Item Deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = $this->commonError();

@@ -80,7 +80,7 @@ class CategoryController extends Controller
 		if ($save) {
 			return redirect('admin/category')->with('success', 'Category Updated successfully!');
 		} else {
-			return back()->with('errormsg', 'Whoops!! Somthig Went wrong! Try Again!');
+			return back()->with('errormsg', 'Whoops!! Something Went wrong! Try Again!');
 		}
 	}
 
@@ -102,7 +102,7 @@ class CategoryController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'Category Deleted Sucessfully !';
+			$result['message'] = 'Category Deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';
@@ -133,7 +133,7 @@ class CategoryController extends Controller
 			}
 			$data->update();
 			$result['status'] = 'success';
-			$result['message'] = 'Status Change Sucessfully !';
+			$result['message'] = 'Status Change successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = 'Oops! Something Went Wrong!';

@@ -78,8 +78,8 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/contact_us', 'Admin\SettingController@contactUs')->name('setting.contactus');
 	Route::post('/contact_us/save', 'Admin\SettingController@saveContactUs')->name('setting.save_contactus');
 
-	Route::resource('/faqs', 'Admin\FaqController');
-	Route::resource('/postal_codes', 'Admin\PostalCodeController');
+	Route::resource('/faqs', 'Admin\FaqController')->except('destroy');
+	Route::resource('/postal_codes', 'Admin\PostalCodeController')->except('destroy');
 	Route::resource('/ingredient', 'Admin\IngredientController');
 	Route::resource('/allergy', 'Admin\AllergyController');
 
@@ -89,10 +89,10 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::resource('/term_conditions', 'TermConditionController');
 	Route::resource('/bottom_section', 'BottomSectionController');
 	Route::resource('/delivery_deadline', 'DeliveryDeadlineController');
-	Route::resource('/sliders', 'SliderSettingController');
+	Route::resource('/sliders', 'SliderSettingController')->except('destroy');
 	Route::resource('/category', 'CategoryController');
 	Route::resource('/item_type', 'ItemTypeController');
-	Route::resource('/home_setting', 'Admin\HomeSettingController');
+	Route::resource('/home_setting', 'Admin\HomeSettingController')->except('destroy');
 
 	/*
 	|--------------------------------------------------------------------------
@@ -157,4 +157,15 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 		Route::get('delete/{id}', 'Admin\FaqCategoryController@delete')->name('faq-categories.delete');
 		Route::delete('delete', 'Admin\FaqCategoryController@deleteBulk')->name('faq-categories.delete.bulk');
 	});
+
+	/*
+	|--------------------------------------------------------------------------
+	| Additional Bulk Delete Route(s)
+	|--------------------------------------------------------------------------
+	|
+	*/
+	Route::delete('postal_codes/delete', 'Admin\PostalCodeController@deleteBulk');
+	Route::delete('faq/delete', 'Admin\FaqController@deleteBulk');
+	Route::delete('sliders/delete', 'SliderSettingController@deleteBulk');
+	Route::delete('home_setting/delete', 'Admin\HomeSettingController@deleteBulk');
 });

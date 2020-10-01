@@ -72,10 +72,10 @@
 								<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
 									<thead>
 									<tr>
-										<th scope="col" class="border">
+										<th>
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
-										<th>Sr. No.</th>
+										<th>#</th>
 										<th>OrderId</th>
 										<th>Customer Name</th>
 										<th>Status</th>
@@ -88,8 +88,8 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										@foreach($orders as $order)
+									@foreach($orders as $order)
+										<tr>
 											<td>
 												<label><input type="checkbox" name="delete_target"><span class="sr-only"> Select Row </span></label>
 											</td>
@@ -107,8 +107,8 @@
 											<td style="text-align: center; ">
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $order->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 											</td>
-										@endforeach
-									</tr>
+										</tr>
+									@endforeach
 									</tbody>
 								</table>
 							</div>
@@ -159,20 +159,34 @@
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script>
-		$(function () {
-			$('#example23').DataTable({
-				dom: 'Bfrtip',
-				buttons: [
-					'csv', 'excel', 'pdf', 'print'
-				]
-			});
-			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
-		});
-
 		initialized = () => {
 			$('#check_all').change(function () {
 				$("input:checkbox[name=delete_target]").prop('checked', this.checked);
 			})
+			$('#example23').DataTable({
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'csvHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+						}
+					},
+					{
+						extend: 'excelHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+						}
+					},
+					{
+						extend: 'pdfHtml5',
+						exportOptions: {
+							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+						}
+					},
+				]
+			});
+			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 		}
 
 		function confirmDelete(id) {

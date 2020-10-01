@@ -148,20 +148,20 @@
 										<div class="form-group">
 											<label class="col-md-12">First Name</label>
 											<div class="col-md-12">
-												<input type="text" name="first_name" class="form-control form-control-line" value="{{ $userRecord->first_name }}">
+												<input type="text" name="first_name" class="form-control form-control-line" value="{{ $userRecord->first_name }}" minlength="2" maxlength="25" required>
 												<input type="hidden" name="user_id" value="{{ $userRecord->id }}">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-12">Last Name</label>
 											<div class="col-md-12">
-												<input type="text" name="last_name" class="form-control form-control-line" value="{{ $userRecord->last_name }}">
+												<input type="text" name="last_name" class="form-control form-control-line" value="{{ $userRecord->last_name }}" minlength="2" maxlength="25" required>
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="email" class="col-md-12">Email</label>
 											<div class="col-md-12">
-												<input type="email" class="form-control form-control-line" name="email" id="email" value="{{ $userRecord->email }}">
+												<input type="email" class="form-control form-control-line" name="email" id="email" value="{{ $userRecord->email }}" required>
 											</div>
 										</div>
 										<div class="form-group">
