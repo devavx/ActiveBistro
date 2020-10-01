@@ -35,7 +35,7 @@ class FaqController extends Controller
 
 			for ($i = 0; $i < count($request->faq_title); $i++) {
 				$res = Faq::create([
-					'faq_category_id' => $request->category_id,
+					'faq_category_id' => $request->faq_category_id,
 					'faq_title' => $request['faq_title'][$i],
 					'faq_description' => $request['faq_description'][$i],
 				]);
