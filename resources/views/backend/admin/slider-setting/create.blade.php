@@ -105,8 +105,8 @@
 			autoProcessQueue: false,
 			addRemoveLinks: true,
 			acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.mp4",
-			maxFilesize: 25,
-			maxFiles: 4,
+			maxFilesize: 2,
+			maxFiles: 10,
 			paramName: 'file[]',
 			init: function () {
 				dropZone = this;
