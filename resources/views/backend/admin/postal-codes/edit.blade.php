@@ -15,7 +15,7 @@
 		<div class="container-fluid">
 			<div class="row page-titles">
 				<div class="col-md-5 align-self-center">
-					<h4 class="text-themecolor">Create Postal Edit</h4>
+					<h4 class="text-themecolor">Create Postal Code</h4>
 				</div>
 				<div class="col-md-7 align-self-center text-right">
 					<div class="d-flex justify-content-end align-items-center">
@@ -70,13 +70,13 @@
 									<hr>
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group">
 													<label>Name*</label>
 													<input type="text" name="name" id="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}" minlength="2" maxlength="50" required>
 												</div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description*</label>
 													<textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="50" required>{{ $record->description }}</textarea>

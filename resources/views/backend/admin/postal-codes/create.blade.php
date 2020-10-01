@@ -69,13 +69,13 @@
 									<hr>
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group">
 													<label>Name*</label>
 													<input type="text" name="name[]" id="name" class="form-control" placeholder="Enter name.." minlength="2" maxlength="50" required>
 												</div>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description*</label>
 													<textarea type="text" name="description[]" id="description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="255" required></textarea>
