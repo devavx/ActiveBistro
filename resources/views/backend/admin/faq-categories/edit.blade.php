@@ -74,10 +74,10 @@
 									<hr>
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<div class="form-group">
-													<label>Title</label>
-													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." value="{{ $category->title }}">
+													<label>Title*</label>
+													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." value="{{ $category->title }}" required maxlength="255" minlength="1">
 												</div>
 											</div>
 										</div>
