@@ -102,7 +102,7 @@
 												<td>
 													<button class="btn btn-link" onclick="showDetails('{{$rows->id}}');"> {{\App\Core\Primitives\Str::placeholder($rows->name)}}</button>
 												</td>
-												<td> {{ $rows->short_description ?? '-'}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->short_description ?? '-',40)}}</td>
 												<td> {{ $rows->protein ?? '-'}}</td>
 												<td> {{ $rows->calories ?? '-'}}</td>
 												<td> {{ $rows->carbs ?? '-'}}</td>

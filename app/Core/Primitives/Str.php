@@ -18,7 +18,7 @@ class Str extends \Illuminate\Support\Str
 			return $placeholder;
 	}
 
-	public static function ellipsis (string $value, $length = 25): ?string
+	public static function ellipsis (string $value, $length = 50): ?string
 	{
 		return mb_strimwidth($value, 0, $length, "...");
 	}
