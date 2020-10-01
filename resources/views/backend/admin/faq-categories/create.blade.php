@@ -74,9 +74,9 @@
 									<hr>
 									<div id="faq_section">
 										<div class="row">
-											<div class="col-md-5">
+											<div class="col-md-12">
 												<div class="form-group">
-													<label>Title</label>
+													<label>Title*</label>
 													<input type="text" name="title" id="faq_title" class="form-control" placeholder="Enter title.." required maxlength="255" minlength="1">
 												</div>
 											</div>
