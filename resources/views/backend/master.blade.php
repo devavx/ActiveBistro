@@ -134,7 +134,7 @@
 <!-- footer -->
 	<!-- ============================================================== -->
 	<footer class="footer">
-		© 2020 Developed & Designed by YoungGeeks Technologies
+		Copyright © {{date('Y')}} Active Bistro Ltd.
 	</footer>
 	<!-- ============================================================== -->
 	<!-- End footer -->

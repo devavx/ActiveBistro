@@ -113,7 +113,7 @@ $uri2 = Request::segment(2);
 
 						<li class="@if($uri2 =='term_conditions')active @endif">
 							<a class="@if($uri2 =='term_conditions')active @endif" href="{{ url('/admin/term_conditions') }}">Terms
-								& Condition</a></li>
+								& Conditions</a></li>
 
 						<li class="@if($uri2 =='privacy_policy')active @endif">
 							<a class="@if($uri2 =='privacy_policy')active @endif" href="{{ url('/admin/privacy_policy') }}">Privacy Policy</a>
