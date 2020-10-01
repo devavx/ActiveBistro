@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Faq extends Model
 {
-	protected $fillable = ['faq_title', 'faq_description', 'active'];
+	protected $fillable = ['faq_title', 'faq_description', 'active', 'faq_category_id'];
 
 	public function category (): BelongsTo
 	{
