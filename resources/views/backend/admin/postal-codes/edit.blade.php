@@ -67,7 +67,6 @@
 								@csrf
 								@method('PUT')
 								<div class="form-body">
-									<hr>
 									<div id="faq_section">
 										<div class="row">
 											<div class="col-md-12">

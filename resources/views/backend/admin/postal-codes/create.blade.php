@@ -66,7 +66,6 @@
 							<form action="{{ route('admin.postal_codes.store') }}" id="add_form" method="post" enctype="multipart/form-data">
 								@csrf
 								<div class="form-body">
-									<hr>
 									<div id="faq_section">
 										<div class="row">
 											<div class="col-md-12">
