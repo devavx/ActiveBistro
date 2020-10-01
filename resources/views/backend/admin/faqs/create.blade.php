@@ -96,7 +96,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description*</label>
-													<textarea type="text" name="faq_description[]" id="faq_description" rows="6" class="form-control" placeholder="Enter description.." required minlength="2" maxlength="10000"></textarea>
+													<textarea type="text" name="faq_description[]" id="faq_description" rows="6" class="form-control" placeholder="Enter description.." required minlength="2" maxlength="5000"></textarea>
 												</div>
 											</div>
 										</div>
@@ -148,13 +148,9 @@
 				rules: {
 					"faq_title[]": {
 						required: true,
-						minlength: 1,
-						maxlength: 255
 					},
 					"faq_description[]": {
 						required: true,
-						minlength: 1,
-						maxlength: 5000
 					},
 					category_id: {
 						required: true
