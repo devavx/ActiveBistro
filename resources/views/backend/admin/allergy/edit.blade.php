@@ -67,7 +67,7 @@
 							</div>
 						@endif
 						<div class="card-body">
-							<form action="{{ route('admin.allergy.update',$record->id) }}" method="post">
+							<form action="{{ route('admin.allergy.update',$record->id) }}" method="post" id="add_form">
 								@csrf
 								@method('PUT')
 								<div class="form-body">
