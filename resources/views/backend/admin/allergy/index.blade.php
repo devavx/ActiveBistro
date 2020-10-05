@@ -78,7 +78,6 @@
 										</th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Description</th>
 										<th>Status</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -94,9 +93,8 @@
 												<td>{{$loop->index+1}}</td>
 
 												<td>
-													<a href="javascript:void(0)" data-value="{{ $rows->description ?? '-'}}" id="{{ $rows->id }}" class="detailmodal"> {{ $rows->name ?? '-'}} </a>
+													{{ \App\Core\Primitives\Str::ellipsis($rows->name ?? '-',25)}}
 												</td>
-												<td>{{ $rows->description ?? '-'}} </td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">
@@ -156,14 +154,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-6 col-sm-6 col-12">
-							<div class="form-group row">
-								<label class="col-lg-3 col-sm-3 col-12">Description</label>
-								<div class="col-lg-9 col-sm-9 col-12">
-									<p id="detail_description"></p>
-								</div>
-							</div>
-						</div>
+						{{--						<div class="col-lg-6 col-sm-6 col-12">--}}
+						{{--							<div class="form-group row">--}}
+						{{--								<label class="col-lg-3 col-sm-3 col-12">Description</label>--}}
+						{{--								<div class="col-lg-9 col-sm-9 col-12">--}}
+						{{--									<p id="detail_description"></p>--}}
+						{{--								</div>--}}
+						{{--							</div>--}}
+						{{--						</div>--}}
 
 						<div class="col-lg-6 col-sm-6 col-12">
 							<div class="form-group row">
