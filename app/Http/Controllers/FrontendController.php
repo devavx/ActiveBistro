@@ -147,7 +147,7 @@ class FrontendController extends Controller
 
 	public function getFaq ()
 	{
-		$categories = FaqCategory::query()->with('faqs')->where('active', true)->get();
+		$categories = FaqCategory::query()->with('faqs')->where('active', true)->orderBy('title')->get();
 		return view('frontend.faqs')->with('categories', $categories);
 	}
 

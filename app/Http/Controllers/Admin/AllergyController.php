@@ -23,7 +23,7 @@ class AllergyController extends Controller
 	{
 		$res = Allergy::create($request->all());
 		if ($res) {
-			return redirect('admin/allergy')->with('success', 'Record Added successfully!');;
+			return redirect('admin/allergy')->with('success', 'Record Added successfully!');
 		} else {
 			return redirect()->back('errormsg', 'Oops!! Something Went Wrong!');
 		}
