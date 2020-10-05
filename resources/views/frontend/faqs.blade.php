@@ -64,13 +64,12 @@
 									<div id="accordion" class="accordion mt-3">
 										<div class="card mb-0">
 											@foreach($category->faqs as $faq)
-												{{--												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">--}}
-												{{--													<a class="card-title"> {{$faq->faq_title}} </a>--}}
-												{{--												</div>--}}
-												{{--												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">--}}
-												{{--													<p>{{$faq->faq_description}}</p>--}}
-												{{--												</div>--}}
-												<span>{{$category->title}}</span>
+												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
+													<a class="card-title"> {{$faq->faq_title}} </a>
+												</div>
+												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
+													<p>{{$faq->faq_description}}</p>
+												</div>
 											@endforeach
 										</div>
 									</div>
@@ -80,12 +79,12 @@
 									<div id="accordion" class="accordion mt-3">
 										<div class="card mb-0">
 											@foreach($category->faqs as $faq)
-												{{--												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">--}}
-												{{--													<a class="card-title"> {{$faq->faq_title}} </a>--}}
-												{{--												</div>--}}
-												{{--												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">--}}
-												{{--													<p>{{$faq->faq_description}}</p>--}}
-												{{--												</div>--}}
+												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
+													<a class="card-title"> {{$faq->faq_title}} </a>
+												</div>
+												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
+													<p>{{$faq->faq_description}}</p>
+												</div>
 												<span>{{$category->title}}</span>
 											@endforeach
 										</div>
