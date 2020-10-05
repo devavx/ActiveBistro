@@ -131,7 +131,8 @@
 						"save table contextmenu directionality emoticons template paste textcolor"
 					],
 					toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview fullpage | forecolor backcolor emoticons",
-					menubar: false
+					menubar: false,
+					branding: false
 				});
 			}
 		});
