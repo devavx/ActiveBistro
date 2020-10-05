@@ -120,7 +120,7 @@
 													</td>
 												@endif
 												<td>
-													@if($rows->thumbnail!=null)
+													@if($rows->thumbnail==null)
 														{{"N/A"}}
 													@else
 														<img src="{{ $rows->thumbnail }}" alt="image" width="100">
