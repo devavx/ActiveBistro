@@ -161,13 +161,13 @@
 										<div class="form-group">
 											<label for="email" class="col-md-12">Email</label>
 											<div class="col-md-12">
-												<input type="email" class="form-control form-control-line" name="email" id="email" value="{{ $userRecord->email }}" required>
+												<input type="email" class="form-control form-control-line" name="email" id="email" value="{{ $userRecord->email }}" required minlength="2" maxlength="255">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-12">Phone No</label>
 											<div class="col-md-12">
-												<input type="text" class="form-control form-control-line" name="phone" id="phone" value="{{ $userRecord->phone }}">
+												<input type="text" class="form-control form-control-line" name="phone" id="phone" value="{{ $userRecord->phone }}" minlength="8" maxlength="16" required>
 											</div>
 										</div>
 										<div class="form-group">
@@ -191,13 +191,13 @@
 										<div class="form-group">
 											<label class="col-md-12">Weight (Kilograms)</label>
 											<div class="col-md-12">
-												<input type="text" class="form-control form-control-line" name="user_weight" id="user_weight" value="{{ $userRecord->user_weight }}">
+												<input type="text" class="form-control form-control-line" name="user_weight" id="user_weight" value="{{ $userRecord->user_weight }}" readonly>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-12">Target Weight (Kilograms)</label>
 											<div class="col-md-12">
-												<input type="text" class="form-control form-control-line" name="user_targert_weight" id="user_targert_weight" value="{{ $userRecord->user_targert_weight }}">
+												<input type="text" class="form-control form-control-line" name="user_targert_weight" id="user_targert_weight" value="{{ $userRecord->user_targert_weight }}" readonly>
 											</div>
 										</div>
 										<div class="form-group">
@@ -222,20 +222,20 @@
 										<div class="form-group">
 											<label class="col-md-12">Current Password</label>
 											<div class="col-md-12">
-												<input type="password" name="current_password" id="current_password" placeholder="Current Password.." class="form-control form-control-line">
+												<input type="password" name="current_password" id="current_password" placeholder="Current Password.." class="form-control form-control-line" minlength="8" maxlength="64">
 												<input type="hidden" name="user_id" value="{{ $userRecord->id }}">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-12">New Password</label>
 											<div class="col-md-12">
-												<input type="password" name="new_password" id="new_password" placeholder="New Password.." class="form-control form-control-line">
+												<input type="password" name="new_password" id="new_password" placeholder="New Password.." class="form-control form-control-line" minlength="8" maxlength="64">
 											</div>
 										</div>
 										<div class="form-group">
 											<label for="c_password" class="col-md-12">Confirm Password</label>
 											<div class="col-md-12">
-												<input type="text" placeholder="Confirm Password" class="form-control form-control-line" id="confirm_password" name="confirm_password">
+												<input type="text" placeholder="Confirm Password" class="form-control form-control-line" id="confirm_password" name="confirm_password" minlength="8" maxlength="64">
 											</div>
 										</div>
 										<div class="form-group">
