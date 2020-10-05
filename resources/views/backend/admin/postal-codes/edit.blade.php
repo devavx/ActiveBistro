@@ -78,7 +78,7 @@
 											<div class="col-md-12">
 												<div class="form-group">
 													<label>Description*</label>
-													<textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="50" required>{{ $record->description }}</textarea>
+													<textarea type="text" name="description" id="description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="255" required>{{ $record->description }}</textarea>
 												</div>
 											</div>
 
