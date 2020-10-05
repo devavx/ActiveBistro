@@ -13,6 +13,10 @@
         .error {
             color: red;
         }
+
+        .dz-remove {
+            visibility: hidden;
+        }
 	</style>
 @endsection
 @section('content')
