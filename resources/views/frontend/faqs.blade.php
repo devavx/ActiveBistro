@@ -75,7 +75,7 @@
 													<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
 														<a class="card-title"> {{$faq->faq_title}} </a>
 													</div>
-													<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
+													<div id="collapse_faq_{{$faq->id}}" class="card-body collapse" data-parent="#accordion">
 														<p>{{$faq->faq_description}}</p>
 													</div>
 												@endif
@@ -99,7 +99,7 @@
 													<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
 														<a class="card-title"> {{$faq->faq_title}} </a>
 													</div>
-													<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
+													<div id="collapse_faq_{{$faq->id}}" class="card-body collapse" data-parent="#accordion">
 														<p>{{$faq->faq_description}}</p>
 													</div>
 												@endif
