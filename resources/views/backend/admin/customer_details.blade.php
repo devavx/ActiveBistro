@@ -203,7 +203,7 @@
 										<div class="form-group">
 											<label class="col-md-12">Profile Image</label>
 											<div class="col-md-12">
-												<input type="file" name="profile_image" title="Select profile image.." class="form-control form-control-line" accept=".jpg, .jpeg, .png">
+												<input type="file" name="profile_image" id="profile_image" title="Select profile image.." class="form-control form-control-line" accept=".jpg, .jpeg, .png" data-default-file="{{$userRecord->profile_image}}" data-allowed-file-extensions="png jpg jpeg" data-max-file-size="1M">
 											</div>
 										</div>
 
@@ -262,6 +262,11 @@
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
+			$('#profile_image').dropify({
+				messages: {
+					default: "Click to choose..."
+				}
+			});
 
 			$('#admin_profile_form').validate({ // initialize the plugin
 				rules: {
