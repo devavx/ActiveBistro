@@ -203,7 +203,7 @@
 										<div class="form-group">
 											<label class="col-md-12">Profile Image</label>
 											<div class="col-md-12">
-												<input type="file" name="profile_image" title="Select profile image.." class="form-control form-control-line">
+												<input type="file" name="profile_image" title="Select profile image.." class="form-control form-control-line" accept=".jpg, .jpeg, .png">
 											</div>
 										</div>
 
