@@ -15,7 +15,7 @@
         }
 
         .dz-remove {
-            visibility: hidden;
+            visibility: collapse;
         }
 	</style>
 @endsection
