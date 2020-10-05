@@ -12,6 +12,10 @@
         .error {
             color: red;
         }
+
+        .mce-branding {
+            visibility: collapse !important;
+        }
 	</style>
 @endsection
 @section('content')
