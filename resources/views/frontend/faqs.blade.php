@@ -64,10 +64,10 @@
 									<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab-1">
 										<div id="accordion" class="accordion mt-3">
 											<div class="card mb-0">
-												<div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
 													<a class="card-title"> {{$faq->faq_title}} </a>
 												</div>
-												<div id="collapseOne" class="card-body collapse show" data-parent="#accordion">
+												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
 													<p>{{$faq->faq_description}}</p>
 												</div>
 											</div>
@@ -77,10 +77,10 @@
 									<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab-2">
 										<div id="accordion" class="accordion mt-3">
 											<div class="card mb-0">
-												<div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
 													<a class="card-title"> {{$faq->faq_title}} </a>
 												</div>
-												<div id="collapseOne" class="card-body collapse show" data-parent="#accordion">
+												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
 													<p>{{$faq->faq_description}}</p>
 												</div>
 											</div>
