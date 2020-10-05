@@ -76,7 +76,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Name*</label>
-                                                    <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}" minlength="2" maxlength="255" required>
+                                                    <input type="text" name="name" class="form-control" placeholder="Enter name.." value="{{ $record->name }}" minlength="2" maxlength="50" required>
                                                 </div>
                                             </div>
                                         </div>
