@@ -85,7 +85,6 @@
 												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
 													<p>{{$faq->faq_description}}</p>
 												</div>
-												<span>{{$category->title}}</span>
 											@endforeach
 										</div>
 									</div>
