@@ -69,7 +69,7 @@ class FaqController extends Controller
 		}
 		$data->faq_title = $request->faq_title;
 		$data->faq_description = $request->faq_description;
-		$data->faq_category_id = $request->category_id;
+		$data->faq_category_id = $request->faq_category_id;
 		$save = $data->update();
 		if ($save) {
 			return redirect('admin/faqs')->with('success', 'Faq Updated successfully!');
