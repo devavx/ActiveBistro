@@ -4,7 +4,9 @@
 
 @section('style')
 	<style type="text/css">
-
+        .error {
+            color: red;
+        }
 	</style>
 @endsection
 @section('content')
