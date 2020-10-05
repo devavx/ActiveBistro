@@ -120,7 +120,11 @@
 													</td>
 												@endif
 												<td>
-													<img src="{{ $rows->thumbnail }}" alt="image" width="100">
+													@if($rows->thumbnail!=null)
+														{{"N/A"}}
+													@else
+														<img src="{{ $rows->thumbnail }}" alt="image" width="100">
+													@endif
 												</td>
 												<td>{{ changeDateFormat($rows->created_at,'M-d-Y') }}</td>
 												<td style="text-align: center; ">
