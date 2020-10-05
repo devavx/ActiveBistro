@@ -11,11 +11,13 @@ class SettingController extends Controller
 
 	public function contactUs ()
 	{
-		$data = HomeSetting::where('type', 'contact_us')
-			->select('other_option')
-			->first();
+		$data = HomeSetting::where('type', 'contact_us')->select('other_option')->first();
+		if ($data == null) {
+			$data = HomeSetting::query()->create([
+				'type' => 'contact_us'
+			]);
+		}
 		$recordData = json_decode($data->other_option);
-
 		return view('backend/admin/contact-us/create', compact('recordData'));
 	}
 
