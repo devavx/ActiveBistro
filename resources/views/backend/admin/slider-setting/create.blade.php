@@ -125,6 +125,9 @@
 						msg: 'Can\'t upload this file. Either the size is too big or the format is incorrect.'
 					});
 				});
+				this.on('addedFile', file => {
+					$('.dz-remove').remove();
+				});
 			},
 		};
 
