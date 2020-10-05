@@ -47,9 +47,9 @@
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 						@foreach($categories as $category)
 							@if($loop->first)
-								<a class="nav-link active" id="tab_{{$category->id}}" data-toggle="pill" href="#tab_{{$category->id}}" role="tab" aria-controls="tab_{{$category->id}}" aria-selected="true">{{$category->title}}</a>
+								<a class="nav-link active" id="" data-toggle="pill" href="#tab_{{$category->id}}" role="tab" aria-controls="tab_{{$category->id}}" aria-selected="true">{{$category->title}}</a>
 							@else
-								<a class="nav-link" id="tab_{{$category->id}}" data-toggle="pill" href="#tab_{{$category->id}}" role="tab" aria-controls="tab_{{$category->id}}" aria-selected="false">{{$category->title}}</a>
+								<a class="nav-link" id="" data-toggle="pill" href="#tab_{{$category->id}}" role="tab" aria-controls="tab_{{$category->id}}" aria-selected="false">{{$category->title}}</a>
 							@endif
 						@endforeach
 					</div>
