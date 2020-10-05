@@ -14,6 +14,8 @@ class Category extends Model
 
 	protected $fillable = ['name', 'description', 'active'];
 
+	protected $casts = ['active' => 'bool'];
+
 	public function items (): HasMany
 	{
 		return $this->hasMany(Item::class);

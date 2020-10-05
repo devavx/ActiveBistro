@@ -87,7 +87,7 @@
 													<option value="" selected disabled>Choose...</option>
 													@if(!empty($categoryList))
 														@foreach($categoryList as $rows)
-															<option @if($item->category_id==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
+															<option @if($item->category_id==$rows->id) selected @endif @if(!$rows->active) disabled @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													@endif
 												</select>
@@ -142,7 +142,7 @@
 													<option value="">Choose...</option>
 													@if(!empty($itemTypeList))
 														@foreach($itemTypeList as $rows)
-															<option @if( $item->item_type_id==$rows->id) selected @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
+															<option @if( $item->item_type_id==$rows->id) selected @endif @if(!$rows->active) disabled @endif value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													@endif
 												</select>
@@ -187,7 +187,7 @@
 												<select class="form-control select2 select2-multiple" id="ingredient_id" name="ingredient_id[]" style="width: 100%" multiple="multiple" data-placeholder="Choose..." required>
 													@if(!empty($listData))
 														@foreach($listData as $rows)
-															<option value="{{ $rows->id }}"
+															<option @if(!$rows->active) disabled @endif value="{{ $rows->id }}"
 															@if(!is_null($ids) && in_array($rows->id, $ids))
 																{{'selected'}}
 																	@endif
