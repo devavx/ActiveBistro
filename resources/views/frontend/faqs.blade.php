@@ -60,33 +60,34 @@
 					<div class="tab-content" id="v-pills-tabContent">
 						@foreach($categories as $category)
 							@foreach($category->faqs as $faq)
-								@if($loop->parent->first)
-									<div class="tab-pane fade show active" id="tab_{{$category->id}}" role="tabpanel" aria-labelledby="tab-1">
-										<div id="accordion" class="accordion mt-3">
-											<div class="card mb-0">
-												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
-													<a class="card-title"> {{$faq->faq_title}} </a>
-												</div>
-												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
-													<p>{{$faq->faq_description}}</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								@else
-									<div class="tab-pane fade" id="tab_{{$category->id}}" role="tabpanel" aria-labelledby="tab-2">
-										<div id="accordion" class="accordion mt-3">
-											<div class="card mb-0">
-												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">
-													<a class="card-title"> {{$faq->faq_title}} </a>
-												</div>
-												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">
-													<p>{{$faq->faq_description}}</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								@endif
+								{{--								@if($loop->parent->first)--}}
+								{{--									<div class="tab-pane fade show active" id="tab_{{$category->id}}" role="tabpanel" aria-labelledby="tab-1">--}}
+								{{--										<div id="accordion" class="accordion mt-3">--}}
+								{{--											<div class="card mb-0">--}}
+								{{--												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">--}}
+								{{--													<a class="card-title"> {{$faq->faq_title}} </a>--}}
+								{{--												</div>--}}
+								{{--												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">--}}
+								{{--													<p>{{$faq->faq_description}}</p>--}}
+								{{--												</div>--}}
+								{{--											</div>--}}
+								{{--										</div>--}}
+								{{--									</div>--}}
+								{{--								@else--}}
+								{{--									<div class="tab-pane fade" id="tab_{{$category->id}}" role="tabpanel" aria-labelledby="tab-2">--}}
+								{{--										<div id="accordion" class="accordion mt-3">--}}
+								{{--											<div class="card mb-0">--}}
+								{{--												<div class="card-header collapsed" data-toggle="collapse" href="#collapse_faq_{{$faq->id}}">--}}
+								{{--													<a class="card-title"> {{$faq->faq_title}} </a>--}}
+								{{--												</div>--}}
+								{{--												<div id="collapse_faq_{{$faq->id}}" class="card-body collapse show" data-parent="#accordion">--}}
+								{{--													<p>{{$faq->faq_description}}</p>--}}
+								{{--												</div>--}}
+								{{--											</div>--}}
+								{{--										</div>--}}
+								{{--									</div>--}}
+								{{--								@endif--}}
+								<span>{{"This tab is ".$category->id}}</span>
 							@endforeach
 						@endforeach
 					</div>
