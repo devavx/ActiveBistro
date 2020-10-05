@@ -99,7 +99,7 @@
 											</td>
 											<td>{{$order->user->name}}</td>
 											<td> {{ucfirst($order->status)}}</td>
-											<td> {{$order->address->stringify()}}</td>
+											<td> {{\App\Core\Primitives\Str::ellipsis($order->address->stringify(),25)}}</td>
 											<td> {{$order->total}}</td>
 											<td> {{ucfirst($order->payment_slab)}}</td>
 											<td> {{$order->quantity}}</td>

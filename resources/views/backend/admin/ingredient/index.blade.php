@@ -77,7 +77,6 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>#</th>
-
 										<th>Name</th>
 										<th>Status</th>
 										<th>Created At</th>
@@ -93,7 +92,7 @@
 												</td>
 												<td>{{$loop->index+1}}</td>
 
-												<td>{{ $rows->name ?? '-'}}</td>
+												<td>{{ \App\Core\Primitives\Str::ellipsis($rows->name ?? '-',25)}}</td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">

@@ -95,7 +95,7 @@
 											<td>{{$loop->index+1}}</td>
 
 											<td>
-												<button class="btn btn-link" onclick="showDetails('{{$plan->id}}');"> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</button>
+												<button class="btn btn-link" onclick="showDetails('{{$plan->id}}');"> {{\App\Core\Primitives\Str::ellipsis($plan->name,25)}}</button>
 											</td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
