@@ -113,7 +113,6 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
-									<a href="{{ url('/admin/contact_us') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>
