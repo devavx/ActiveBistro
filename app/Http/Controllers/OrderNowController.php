@@ -41,9 +41,9 @@ class OrderNowController extends Controller
 		$options->setMealsPerDay(request('meals_per_day', 2));
 		$options->setAllergies(request('allergies', []));
 		$options->setDietaryRequirement(request('dietary_requirement', DietaryRequirement::None));
-		dd($options);
 		$state = new State(\auth()->user(), $options);
 		$state->update();
+		die();
 		return redirect()->route('cart.index');
 	}
 }
