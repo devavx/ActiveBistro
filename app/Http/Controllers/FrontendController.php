@@ -119,6 +119,11 @@ class FrontendController extends Controller
 	public function contact ()
 	{
 		$data = HomeSetting::where('type', 'contact_us')->select('other_option')->first();
+		if ($data == null) {
+			$data = HomeSetting::query()->create([
+				'type' => 'contact_us'
+			]);
+		}
 		$recordData = json_decode($data->other_option);
 		return view('frontend.contactus', compact('recordData'));
 	}

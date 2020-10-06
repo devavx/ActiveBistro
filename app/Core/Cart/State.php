@@ -595,6 +595,7 @@ final class State
 
 	public function isAllergicTo ($allergyId): bool
 	{
+		dd($this->allergies());
 		foreach ($this->allergies() as $allergy) {
 			if ($allergyId == $allergy) {
 				return true;
