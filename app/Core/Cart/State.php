@@ -187,7 +187,7 @@ final class State
 	protected function createBlankCards (): void
 	{
 		$this->cards = [];
-		foreach (DaysOfWeek::getValues() as $value) {
+		foreach (DaysOfWeek::sequence() as $value) {
 			$this->cards[$value] = [];
 		}
 		$this->cards = (object)$this->cards;
