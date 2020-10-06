@@ -112,6 +112,7 @@ final class State
 				Arrays::push($this->cards->$day, $meal);
 			}
 		});
+		dd($this->cards);
 		if (!$this->getMealsAtSunday()) {
 			$this->cards->sunday = [];
 		}
