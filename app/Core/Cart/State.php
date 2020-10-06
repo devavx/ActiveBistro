@@ -97,14 +97,19 @@ final class State
 		}
 	}
 
+	protected function query (): \Illuminate\Database\Eloquent\Builder
+	{
+		return MealPlan::query()->with('items', 'allergies')->whereNotNull('day')->where('active', 1);
+	}
+
 	protected function createSnapshot (): void
 	{
-		MealPlan::classifyCards()->each(function (MealPlan $meal) {
+		$this->query()->each(function (MealPlan $meal) {
 			$day = $meal->day;
 			$meal->prepare();
-			if (count($this->cards->$day) <= 1) {
-				$this->cards->$day[] = $meal;
-			}
+//			if (count($this->cards->$day) <= 1) {
+//				$this->cards->$day[] = $meal;
+//			}
 		});
 		if (!$this->getMealsAtSunday()) {
 			$this->cards->sunday = [];
