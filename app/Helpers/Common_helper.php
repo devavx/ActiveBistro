@@ -115,7 +115,7 @@ function deadline ()
 function dates (): array
 {
 	$dates = [];
-	$threeDays = 86400 * 3;
+	$threeDays = 86400 * 4;
 	$nextWednesday = strtotime('next wednesday');
 	$nextSunday = strtotime('next sunday');
 	// We have an upcoming Sunday closer than Wednesday.
