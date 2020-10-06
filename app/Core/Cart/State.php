@@ -521,8 +521,7 @@ final class State
 
 	public function getMealsPerDay (): int
 	{
-//		return $this->options->mealsPerDay ?? 6;
-		return 1;
+		return $this->options->mealsPerDay ?? 6;
 	}
 
 	public function setMealsAtWeekends (bool $enable): void
