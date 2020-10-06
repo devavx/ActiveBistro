@@ -108,6 +108,7 @@ final class State
 			$day = $meal->day;
 			$meal->prepare();
 			$items = $this->cards->$day;
+			dd(gettype($items));
 			if (count($items) <= $this->getMealsPerDay()) {
 				Arrays::push($this->cards->$day, $meal);
 			}
