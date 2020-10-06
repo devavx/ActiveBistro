@@ -62,42 +62,44 @@
 						</div>
 
 						<div class="date-selection mb-3">
-							<div class="active-group">
-								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-7-26" data-itemname="delivery-date-2020-7-26">
-									<span>Sun</span>
-									<span class="bigger">26</span><span>Jul</span>
+							{{--							<div class="active-group">--}}
+							{{--								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-7-26" data-itemname="delivery-date-2020-7-26">--}}
+							{{--									<span>Sun</span>--}}
+							{{--									<span class="bigger">26</span><span>Jul</span>--}}
+							{{--									<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">--}}
+							{{--								</label>--}}
+							{{--								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-7-29" data-itemname="delivery-date-2020-7-29">--}}
+							{{--									<span>Wed</span>--}}
+							{{--									<span class="bigger">29</span>--}}
+							{{--									<span>Jul</span>--}}
+							{{--									<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">--}}
+							{{--								</label>--}}
+							{{--							</div>--}}
+							{{--							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-2" data-itemname="delivery-date-2020-8-2">--}}
+							{{--								<span>Sun</span>--}}
+							{{--								<span class="bigger">2</span>--}}
+							{{--								<span>Aug</span>--}}
+							{{--								<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">--}}
+							{{--							</label>--}}
+							{{--							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-5" data-itemname="delivery-date-2020-8-5">--}}
+							{{--								<span>Wed</span>--}}
+							{{--								<span class="bigger">5</span>--}}
+							{{--								<span>Aug</span>--}}
+							{{--								<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">--}}
+							{{--							</label>--}}
+							{{--							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-9" data-itemname="delivery-date-2020-8-9">--}}
+							{{--								<span>Sun</span>--}}
+							{{--								<span class="bigger">9</span>--}}
+							{{--								<span>Aug</span><input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">--}}
+							{{--							</label>--}}
+							@foreach(dates() as $date)
+								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12">
+									<span>{{$date['day']}}</span>
+									<span class="bigger">{{$date['date']}}</span>
+									<span>{{$date['month']}}</span>
 									<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
 								</label>
-								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-7-29" data-itemname="delivery-date-2020-7-29">
-									<span>Wed</span>
-									<span class="bigger">29</span>
-									<span>Jul</span>
-									<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
-								</label>
-							</div>
-							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-2" data-itemname="delivery-date-2020-8-2">
-								<span>Sun</span>
-								<span class="bigger">2</span>
-								<span>Aug</span>
-								<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
-							</label>
-							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-5" data-itemname="delivery-date-2020-8-5">
-								<span>Wed</span>
-								<span class="bigger">5</span>
-								<span>Aug</span>
-								<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
-							</label>
-							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-9" data-itemname="delivery-date-2020-8-9">
-								<span>Sun</span>
-								<span class="bigger">9</span>
-								<span>Aug</span><input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
-							</label>
-							<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12">
-								<span>Wed</span>
-								<span class="bigger">12</span>
-								<span>Aug</span>
-								<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
-							</label>
+							@endforeach
 						</div>
 
 						<div class="form-group">

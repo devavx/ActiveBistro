@@ -48,21 +48,23 @@
 						</div>
 
 						<div class="form-group">
-							<button type="submit" class="btn btn-info">Submit <i class="fa fa-chevron-right ml-2"></i></button>
+							<button type="submit" class="btn btn-info">Submit <i class="fa fa-chevron-right ml-2"></i>
+							</button>
 						</div>
 
 						<div class="form-group">
-							<p>Don't have a account ? <a href="{{ url('signup') }}" class="text-color">Create Account</a></p>
+							<p>Don't have an account?
+								<a href="{{ url('signup') }}" class="text-color">Create Account</a></p>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div> 
-</div> 
+	</div>
+</div>
 @endsection
-@section('script') 
-<script>
+@section('script')
+	<script>
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})

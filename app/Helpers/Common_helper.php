@@ -111,3 +111,32 @@ function deadline ()
 {
 	return \App\Models\DeliveryDeadline::query()->first();
 }
+
+function dates (): array
+{
+	$dates = [];
+	$threeDays = 86400 * 3;
+	$nextWednesday = strtotime('next wednesday');
+	$nextSunday = strtotime('next sunday');
+	// We have an upcoming Sunday closer than Wednesday.
+	if ($nextSunday < $nextWednesday) {
+		$current = $nextSunday;
+		for ($i = 0; $i < 7; $i++) {
+			$dates[] = [
+				'day' => date('D', $current),
+				'date' => date('d', $current),
+				'month' => date('M', $current += $threeDays)
+			];
+		}
+	} else {
+		$current = $nextWednesday;
+		for ($i = 0; $i < 7; $i++) {
+			$dates[] = [
+				'day' => date('D', $current),
+				'date' => date('d', $current),
+				'month' => date('M', $current += $threeDays)
+			];
+		}
+	}
+	return $dates;
+}
