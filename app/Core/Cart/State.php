@@ -596,7 +596,7 @@ final class State
 	public function isAllergicTo ($allergyId): bool
 	{
 		foreach ($this->allergies() as $allergy) {
-			if ($allergyId == $allergy) {
+			if ($allergyId == intval($allergy)) {
 				return true;
 			}
 		}
