@@ -102,7 +102,7 @@ final class State
 		MealPlan::classifyCards()->each(function (MealPlan $meal) {
 			$day = $meal->day;
 			$meal->prepare();
-			if (count($this->cards->$day) <= $this->getMealsPerDay()) {
+			if (count($this->cards->$day) <= 1) {
 				$this->cards->$day[] = $meal;
 			}
 		});
