@@ -171,21 +171,21 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-12">Shipping address</label>
+											<label class="col-md-12">Shipping address (Max 255 characters)</label>
 											<div class="col-md-12">
-												<textarea rows="5" name="about" class="form-control form-control-line">{{ $userRecord->about }}</textarea>
+												<textarea rows="5" name="about" class="form-control form-control-line" minlength="2" maxlength="255">{{ $userRecord->about }}</textarea>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="col-md-12">Address</label>
+											<label class="col-md-12">Address (Max 255 characters)</label>
 											<div class="col-md-12">
-												<textarea rows="5" name="address" class="form-control form-control-line">{{ $userRecord->address }}</textarea>
+												<textarea rows="5" name="address" class="form-control form-control-line" minlength="2" maxlength="255">{{ $userRecord->address }}</textarea>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-12">Height (centimeters)</label>
 											<div class="col-md-12">
-												<input type="text" class="form-control form-control-line" name="user_height" id="user_height" value="{{ $userRecord->user_height }}">
+												<input type="text" class="form-control form-control-line" name="user_height" id="user_height" value="{{ $userRecord->user_height }}" readonly>
 											</div>
 										</div>
 										<div class="form-group">
