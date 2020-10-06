@@ -107,9 +107,10 @@ final class State
 		$this->query()->each(function (MealPlan $meal) {
 			$day = $meal->day;
 			$meal->prepare();
-//			if (count($this->cards->$day) <= 1) {
-//				$this->cards->$day[] = $meal;
-//			}
+			$items = $this->cards->$day;
+			if (count($items) <= 1) {
+				$this->cards->$day[] = $meal;
+			}
 		});
 		if (!$this->getMealsAtSunday()) {
 			$this->cards->sunday = [];
