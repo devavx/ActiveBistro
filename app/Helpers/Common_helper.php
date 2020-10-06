@@ -115,8 +115,7 @@ function deadline ()
 function dates (): array
 {
 	$dates = [];
-	$fourDays = 86400 * 4;
-	$threeDays = 86400 * 3;
+	$days = 86400 * 4;
 	$nextWednesday = strtotime('next wednesday');
 	$nextSunday = strtotime('next sunday');
 	// We have an upcoming Sunday closer than Wednesday.
@@ -126,7 +125,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
+				'month' => date('M', $i % 2 == 0 ? $current += $days : $current += $days)
 			];
 		}
 	} else {
@@ -135,7 +134,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
+				'month' => date('M', $i % 2 == 0 ? $current += $days : $current += $days)
 			];
 		}
 	}
