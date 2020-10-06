@@ -25,6 +25,7 @@ class OrderNowController extends Controller
 		 * And then make sure the user always lands on the 3rd or 4th page
 		 * in questions series - skip the trivia.
 		 */
+		auth()->user()->cart()->delete();
 		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get()->toArray();
 		$allergies = Arrays::pairsOf($allergies, 4);
 		return view('frontend.options')->with('allergies', $allergies);
