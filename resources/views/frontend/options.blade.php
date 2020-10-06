@@ -79,23 +79,23 @@
 
 									<div class="row switch-field">
 										<div class="col-12">
-											<input type="radio" id="radio-one" value="1" name="snacksPerDay"/>
-											<label for="radio-one" class="snack_count">1 Snack per day</label>
+											<input type="radio" id="radio-three" value="1" name="snacksPerDay"/>
+											<label for="radio-three" class="snack_count">1 Snack per day</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-two" value="2" name="snacksPerDay"/>
-											<label for="radio-one" class="snack_count">2 Snack per day</label>
+											<input type="radio" id="radio-four" value="2" name="snacksPerDay"/>
+											<label for="radio-four" class="snack_count">2 Snack per day</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-three" value="3" name="snacksPerDay"/>
-											<label for="radio-one" class="snack_count">3 Snack per day</label>
+											<input type="radio" id="radio-five" value="3" name="snacksPerDay"/>
+											<label for="radio-five" class="snack_count">3 Snack per day</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-four" value="0" name="snacksPerDay"/>
-											<label for="radio-one" class="snack_count">No Snack</label>
+											<input type="radio" id="radio-six" value="0" name="snacksPerDay"/>
+											<label for="radio-six" class="snack_count">No Snack</label>
 										</div>
 
 
@@ -117,13 +117,13 @@
 
 									<div class="row switch-field">
 										<div class="col-12">
-											<input type="radio" id="radio-one" name="meals_at_weekends" value="1"/>
-											<label for="radio-one" class="weekend_mail">Yes</label>
+											<input type="radio" id="radio-seven" name="meals_at_weekends" value="1"/>
+											<label for="radio-seven" class="weekend_mail">Yes</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-two" name="meals_at_weekends" value="0"/>
-											<label for="radio-two" class="weekend_mail">No</label>
+											<input type="radio" id="radio-eight" name="meals_at_weekends" value="0"/>
+											<label for="radio-eight" class="weekend_mail">No</label>
 										</div>
 									</div>
 
@@ -143,13 +143,13 @@
 
 									<div class="row switch-field" id="allergiesRadio">
 										<div class="col-12">
-											<input type="radio" id="radio-three" name="has_allergies" value="1"/>
-											<label for="radio-three">Yes</label>
+											<input type="radio" id="radio-nine" name="has_allergies" value="1"/>
+											<label for="radio-nine">Yes</label>
 										</div>
 
 										<div class="col-12">
-											<input type="radio" id="radio-four" name="has_allergies" value="0"/>
-											<label for="radio-four">No</label>
+											<input type="radio" id="radio-ten" name="has_allergies" value="0"/>
+											<label for="radio-ten">No</label>
 										</div>
 									</div>
 
@@ -204,7 +204,6 @@
 				$("#allergiesRadio2").addClass("d-block");
 			});
 
-
 			$(".snack_count").click(function () {
 				$("#allergiesRadio2").removeClass();
 				$("#allergiesRadio2").addClass("d-none");
@@ -231,19 +230,13 @@
 					$("#allergiesRadio").addClass("d-none");
 				}
 			});
-			var current_fs, next_fs, previous_fs; //fieldsets
+			var current_fs, next_fs, previous_fs;
 			var opacity;
-
 			$(".next").click(function () {
-
 				current_fs = $(this).parent();
 				next_fs = $(this).parent().next();
-
-				//Add Class Active
-
-
-				//show the next fieldset
 				next_fs.show();
+				$(".allergiesBox").addClass("d-none");
 				//hide the current fieldset with style
 				current_fs.animate({opacity: 0}, {
 					step: function (now) {
