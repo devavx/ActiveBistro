@@ -78,7 +78,6 @@
 					loop: true,
 					center: true,
 					margin: 0,
-
 					responsiveClass: true,
 					nav: false,
 					responsive: {
