@@ -35,15 +35,9 @@
 							<h5 class="text-white pt-3 font-weight-bold">Your tailored meal plan</h5>
 						</div>
 
-						<div class="col-lg-4 col-sm-4 col-12">
+						<div class="col-lg-4 col-sm-4 col-12 my-auto">
 							<div class="form-group mb-0">
-								<select class="form-control">
-									<option>Dietary Filters</option>
-									<option>Keto</option>
-									<option>Vegan</option>
-									<option>Vegetarian</option>
-								</select>
-								<label class="text-white mb-0">Gluten Free</label>
+								<label class="text-white mb-0">{{$state->getDietaryRequirement()}}</label>
 							</div>
 						</div>
 					</div>
