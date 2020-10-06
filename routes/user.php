@@ -80,4 +80,5 @@ Route::prefix('payment')->middleware('auth')->group(static function () {
 */
 Route::prefix('order-now')->middleware('auth')->group(static function () {
 	Route::get(Str::Root, [\App\Http\Controllers\OrderNowController::class, 'index'])->name('order-now.index');
+	Route::post(Str::Root, [\App\Http\Controllers\OrderNowController::class, 'store'])->name('order-now.store');
 });

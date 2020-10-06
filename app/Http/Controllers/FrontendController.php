@@ -6,9 +6,7 @@ use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
-use App\Core\Primitives\Arrays;
 use App\Http\Requests\TailorPlanRule;
-use App\Models\Allergy;
 use App\Models\BottomSection;
 use App\Models\Cart;
 use App\Models\Category;
@@ -80,9 +78,7 @@ class FrontendController extends Controller
 
 	public function options ()
 	{
-		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get()->toArray();
-		$allergies = Arrays::pairsOf($allergies, 4);
-		return view('frontend.options')->with('allergies', $allergies);
+		return redirect()->route('order-now.index');
 	}
 
 	public function saveOptions ()

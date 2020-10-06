@@ -17,7 +17,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
-				<form id="msform" class="shadow p-3 mt-5 mb-5" action="{{route('profile_options.save')}}" method="POST">
+				<form id="msform" class="shadow p-3 mt-5 mb-5" action="{{route('order-now.store')}}" method="POST">
 					@csrf
 					<ul id="progressbar">
 						<li class="active" id="account"><strong>Welcome</strong></li>
@@ -157,7 +157,7 @@
 										<div class="btn-group btn-group-toggle d-none allergiesBox mb-2" data-toggle="buttons">
 											@foreach($set as $allergy)
 												<label class="btn btn-info m-0 text-capitalize rounded mr-2">
-													<input type="checkbox" name="allergies[]" id="option1" value="{{$allergy->id}}">{{$allergy->name}}
+													<input type="checkbox" name="allergies[]" id="option1" value="{{$allergy['id']}}">{{$allergy['name']}}
 												</label>
 											@endforeach
 										</div>
@@ -224,6 +224,7 @@
 
 		$(document).ready(function () {
 			$("input:radio[name=has_allergies]").change(function () {
+				console.log('Toggled');
 				if (this.value == 1) {
 					$('#allergies_label').text('Choose one or more...');
 					$(".allergiesBox").removeClass("d-none");
