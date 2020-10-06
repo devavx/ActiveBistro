@@ -199,25 +199,10 @@
 @endsection
 @section('script')
 	<script>
-
-		$(document).ready(function () {
-			$(".brakfast_name").click(function () {
-				$('#breakfastNext').trigger('click');
-			});
-
-			$(".snack_count").click(function () {
-				$('#snacksNext').trigger('click');
-			});
-
-			$(".weekend_mail").click(function () {
-				$('#weekendsNext').trigger('click');
-			});
+		let current, next, opacity;
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
 		});
-
-
-	</script>
-	<script>
-
 		$(document).ready(function () {
 			$("input:radio[name=has_allergies]").change(function () {
 				if (this.value == 1) {
@@ -229,25 +214,30 @@
 					$('#allergiesNext').trigger('click');
 				}
 			});
-			var current_fs, next_fs, previous_fs;
-			var opacity;
 			$(".next").click(function () {
-				current_fs = $(this).parent();
-				next_fs = $(this).parent().next();
-				current_fs.animate({'opacity': 0}, 'fast', 'swing', () => {
-					current_fs.hide();
-					next_fs.show();
+				current = $(this).parent();
+				next = $(this).parent().next();
+				current.animate({'opacity': 0}, 'fast', 'swing', () => {
+					current.hide();
+					next.show();
 				});
 			});
+
 			$(".submit").click(function () {
 				return false;
 			})
 
-		});
-	</script>
-	<script>
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
+			$(".brakfast_name").click(function () {
+				$('#breakfastNext').trigger('click');
+			});
+
+			$(".snack_count").click(function () {
+				$('#snacksNext').trigger('click');
+			});
+
+			$(".weekend_mail").click(function () {
+				$('#weekendsNext').trigger('click');
+			});
 		});
 	</script>
 @endsection
