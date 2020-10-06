@@ -37,7 +37,7 @@
 
 						<div class="col-lg-4 col-sm-4 col-12 my-auto">
 							<div class="form-group mb-0">
-								<label class="text-white mb-0">{{$state->getDietaryRequirement()}}</label>
+								<label class="text-white mb-0">{{!empty($state->getDietaryRequirement())&&$state->getDietaryRequirement()!=\App\Core\Enums\Common\DietaryRequirement::None?\App\Core\Enums\Common\DietaryRequirement::getKey($state->getDietaryRequirement()):\App\Core\Primitives\Str::Empty}}</label>
 							</div>
 						</div>
 					</div>
