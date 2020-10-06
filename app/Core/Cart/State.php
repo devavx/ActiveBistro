@@ -112,7 +112,7 @@ final class State
 		}
 		foreach ($this->cards as $key => $value) {
 			foreach ($value as $plan) {
-				foreach ($plan->allergies->pluck('id') as $allergyId) {
+				foreach ($plan->allergies->pluck('id')->toArray() as $allergyId) {
 					$plan->allergic = $this->isAllergicTo($allergyId);
 				}
 				foreach ($plan->items as $item) {
@@ -600,6 +600,8 @@ final class State
 //				return true;
 //			}
 //		}
-		return true;
+		if ($allergyId == "6")
+			return true;
+		return false;
 	}
 }
