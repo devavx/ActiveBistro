@@ -108,9 +108,8 @@ final class State
 			$day = $meal->day;
 			$meal->prepare();
 			$items = $this->cards->$day;
-			dd($this->cards->$day);
-			if (count($items) <= 1) {
-				$this->cards->$day[] = $meal;
+			if (count($items) <= $this->getMealsPerDay()) {
+				Arrays::push($this->cards->$day, $meal);
 			}
 		});
 		if (!$this->getMealsAtSunday()) {
