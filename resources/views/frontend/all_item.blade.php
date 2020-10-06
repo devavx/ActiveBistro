@@ -104,57 +104,58 @@
 
 		<div class="row">
 			<div class="col-12">
-				<!-- Nav tabs -->
 				<div class="ourentrees-breakfast mb-5">
 					<div class="tab-content pt-3">
 						@foreach($categories as $category)
-							<div class="tab-pane @if($loop->index==0) active @endif" id="category_{{$category->id}}" role="tabpanel">
-								@foreach($meals as $meal)
-									<div class="col-lg-3 col-sm-4 col-12">
-										<div class="menucol rounded mt-3 shadow pb-3">
-											<div class="menuimgcol">
-												<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
-													<div class="carousel-inner" role="listbox">
-														@foreach($meal->images as $image)
-															<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
-																<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
-															</div>
-														@endforeach
-													</div>
+							<div class="tab-pane @if($loop->first) active @endif" id="category_{{$category->id}}" role="tabpanel">
+								<div class="row">
+									@foreach($meals as $meal)
+										<div class="col-lg-3 col-sm-4">
+											<div class="menucol rounded mt-3 shadow pb-3">
+												<div class="menuimgcol">
+													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+														<div class="carousel-inner" role="listbox">
+															@foreach($meal->images as $image)
+																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
+																	<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
+																</div>
+															@endforeach
+														</div>
 
-													<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-														<i class="fa fa-chevron-left"></i>
-														<span class="sr-only">Previous</span>
-													</a>
-													<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-														<i class="fa fa-chevron-right"></i>
-														<span class="sr-only">Next</span>
-													</a>
+														<a class="carousel-control-prev" href="javascript:void(0);" role="button" data-slide="prev">
+															<i class="fa fa-chevron-left"></i>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="carousel-control-next" href="javascript:void(0);" role="button" data-slide="next">
+															<i class="fa fa-chevron-right"></i>
+															<span class="sr-only">Next</span>
+														</a>
+													</div>
 												</div>
-											</div>
-											<div class="menucoltext p-2">
-												<div class="menucoltextpricebtn">
-													<div class="menucoltextprice">
-														<div class="d-flex">
-															<p class="m-0">
-																<del>$ {{ $meal->items()->sum('selling_price') }}</del>
-															</p>
-															<h5 class="font-weight-bold m-0 text-color ml-2">
-																$ {{ $meal->items()->sum('selling_price') }}</h5>
+												<div class="menucoltext p-2">
+													<div class="menucoltextpricebtn">
+														<div class="menucoltextprice">
+															<div class="d-flex">
+																<p class="m-0">
+																	<del>$ {{ $meal->items()->sum('selling_price') }}</del>
+																</p>
+																<h5 class="font-weight-bold m-0 text-color ml-2">
+																	$ {{ $meal->items()->sum('selling_price') }}</h5>
+															</div>
+														</div>
+														<div class="menucoltextbtn">
+															<button type="button" onclick="addItem('{{$day}}',{{$meal->id}});" class="btn btn-info btn-md float-right">
+																Add
+															</button>
 														</div>
 													</div>
-													<div class="menucoltextbtn">
-														<button type="button" onclick="addItem('{{$day}}',{{$meal->id}});" class="btn btn-info btn-md float-right">
-															Add
-														</button>
-													</div>
+													<h5 class="mb-1 text-color text-center">{{ $meal->name }}</h5>
+													<p class="m-0 text-center">{{ $meal->name }}</p>
 												</div>
-												<h5 class="mb-1 text-color text-center">{{ $meal->name }}</h5>
-												<p class="m-0 text-center">{{ $meal->name }}</p>
 											</div>
 										</div>
-									</div>
-								@endforeach
+									@endforeach
+								</div>
 							</div>
 						@endforeach
 
