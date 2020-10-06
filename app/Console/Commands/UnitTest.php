@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Core\Primitives\Arrays;
 use Illuminate\Console\Command;
 
 class UnitTest extends Command
@@ -37,9 +38,7 @@ class UnitTest extends Command
 	 */
 	public function handle ()
 	{
-		$height = 5.4;
-		$weight = 198.416;
-		echo sprintf("Height = %2.2f, Weight = %.2f", $this->imperialToMetricLength($height), $this->imperialToMetricWeight($weight));
+		
 	}
 
 	protected function imperialToMetricLength ($value)

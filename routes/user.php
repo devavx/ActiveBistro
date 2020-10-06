@@ -4,6 +4,7 @@ use App\Core\Primitives\Str;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontendController@index')->name('index');
+Route::get('/login', 'FrontendController@login')->middleware('guest')->name('login');
 Route::get('/sign-in', 'FrontendController@login')->middleware('guest')->name('sign-in');
 Route::get('/sign-up', 'FrontendController@signup')->middleware('guest')->name('signup');
 Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');

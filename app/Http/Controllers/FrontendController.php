@@ -6,6 +6,7 @@ use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
+use App\Core\Primitives\Arrays;
 use App\Http\Requests\TailorPlanRule;
 use App\Models\Allergy;
 use App\Models\BottomSection;
@@ -79,22 +80,9 @@ class FrontendController extends Controller
 
 	public function options ()
 	{
-		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get();
-		$quadruplets = [];
-		$set = [];
-		$count = 0;
-		$allergies->each(function (Allergy $allergy) use (&$count, &$quadruplets, &$set) {
-			if ($count == 3) {
-				$set[] = $allergy;
-				$count++;
-			} else {
-				$count = 0;
-				$set = [];
-				$set[] = $allergy;
-				$quadruplets[] = $set;
-			}
-		});
-		return view('frontend.options')->with('allergies', $quadruplets);
+		$allergies = Allergy::query()->select(['id', 'name'])->where('active', true)->get()->toArray();
+		$allergies = Arrays::pairsOf($allergies, 4);
+		return view('frontend.options')->with('allergies', $allergies);
 	}
 
 	public function saveOptions ()
