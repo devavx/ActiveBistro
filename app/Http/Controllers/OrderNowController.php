@@ -43,7 +43,6 @@ class OrderNowController extends Controller
 		$options->setDietaryRequirement(request('dietary_requirement', DietaryRequirement::None));
 		$state = new State(\auth()->user(), $options);
 		$state->update();
-		die();
 		return redirect()->route('cart.index');
 	}
 }

@@ -226,12 +226,12 @@ final class State
 		if (!Arrays::contains($this->options->allergies, $allergy)) {
 			Arrays::remove($this->options->allergies, $allergy);
 		}
-		return count($this->options['allergies']);
+		return count($this->options->allergies);
 	}
 
 	public function allergies (): array
 	{
-		return $this->options['allergies'] ?? [];
+		return $this->options->allergies ?? [];
 	}
 
 	public function cards (): object
@@ -595,7 +595,6 @@ final class State
 
 	public function isAllergicTo ($allergyId): bool
 	{
-		dd($this->allergies());
 		foreach ($this->allergies() as $allergy) {
 			if ($allergyId == $allergy) {
 				return true;
