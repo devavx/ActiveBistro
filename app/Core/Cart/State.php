@@ -595,11 +595,11 @@ final class State
 
 	public function isAllergicTo ($allergyId): bool
 	{
-		foreach ($this->allergies() as $allergy) {
-			if ($allergyId == intval($allergy)) {
-				return true;
-			}
-		}
-		return false;
+//		foreach ($this->allergies() as $allergy) {
+//			if ($allergyId == intval($allergy)) {
+//				return true;
+//			}
+//		}
+		return true;
 	}
 }
