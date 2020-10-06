@@ -38,8 +38,6 @@
 								</div>
 							</div>
 						</div>
-
-
 						<button type="button" class="btn btn-info next float-right rounded btn-md">Next
 							<i class="fa fa-chevron-right ml-2"></i></button>
 
@@ -68,6 +66,8 @@
 								</div>
 							</div>
 						</div>
+						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="breakfastNext">Next
+							<i class="fa fa-chevron-right ml-2"></i></button>
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio2">
@@ -104,7 +104,8 @@
 								</div>
 							</div>
 						</div>
-
+						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="snacksNext">Next
+							<i class="fa fa-chevron-right ml-2"></i></button>
 					</fieldset>
 
 
@@ -131,7 +132,8 @@
 								</div>
 							</div>
 						</div>
-
+						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="weekendsNext">Next
+							<i class="fa fa-chevron-right ml-2"></i></button>
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio4">
@@ -166,12 +168,12 @@
 							</div>
 						</div>
 
-						<button type="button" class="btn btn-info next float-right rounded btn-md">Next
+						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="allergiesNext">Next
 							<i class="fa fa-chevron-right ml-2"></i></button>
 					</fieldset>
 
 
-					<fieldset class="paddingrl">
+					<fieldset class="paddingrl" id="lastFieldset">
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
@@ -200,20 +202,15 @@
 
 		$(document).ready(function () {
 			$(".brakfast_name").click(function () {
-				$("#allergiesRadio0").addClass("d-none");
-				$("#allergiesRadio2").addClass("d-block");
+				$('#breakfastNext').trigger('click');
 			});
 
 			$(".snack_count").click(function () {
-				$("#allergiesRadio2").removeClass();
-				$("#allergiesRadio2").addClass("d-none");
-				$("#allergiesRadio3").addClass("d-block");
+				$('#snacksNext').trigger('click');
 			});
 
 			$(".weekend_mail").click(function () {
-				$("#allergiesRadio3").removeClass();
-				$("#allergiesRadio3").addClass("d-none");
-				$("#allergiesRadio4").addClass("d-block");
+				$('#weekendsNext').trigger('click');
 			});
 		});
 
@@ -223,11 +220,13 @@
 
 		$(document).ready(function () {
 			$("input:radio[name=has_allergies]").change(function () {
-				console.log('Toggled');
 				if (this.value == 1) {
 					$('#allergies_label').text('Choose one or more...');
 					$(".allergiesBox").removeClass("d-none");
 					$("#allergiesRadio").addClass("d-none");
+					$('#allergiesNext').removeClass('d-none');
+				} else {
+					$('#allergiesNext').trigger('click');
 				}
 			});
 			var current_fs, next_fs, previous_fs;
@@ -235,52 +234,11 @@
 			$(".next").click(function () {
 				current_fs = $(this).parent();
 				next_fs = $(this).parent().next();
-				next_fs.show();
-				$(".allergiesBox").addClass("d-none");
-				//hide the current fieldset with style
-				current_fs.animate({opacity: 0}, {
-					step: function (now) {
-						// for making fielset appear animation
-						opacity = 1 - now;
-
-						current_fs.css({
-							'display': 'none',
-							'position': 'relative'
-						});
-						next_fs.css({'opacity': opacity});
-					},
-					duration: 600
+				current_fs.animate({'opacity': 0}, 'fast', 'swing', () => {
+					current_fs.hide();
+					next_fs.show();
 				});
 			});
-
-			$(".previous").click(function () {
-
-				current_fs = $(this).parent();
-				previous_fs = $(this).parent().prev();
-
-				//Remove class active
-				$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-				//show the previous fieldset
-				previous_fs.show();
-
-				//hide the current fieldset with style
-				current_fs.animate({opacity: 0}, {
-					step: function (now) {
-						// for making fielset appear animation
-						opacity = 1 - now;
-
-						current_fs.css({
-							'display': 'none',
-							'position': 'relative'
-						});
-						previous_fs.css({'opacity': opacity});
-					},
-					duration: 600
-				});
-			});
-
-
 			$(".submit").click(function () {
 				return false;
 			})
