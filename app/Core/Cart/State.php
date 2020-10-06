@@ -102,7 +102,9 @@ final class State
 		MealPlan::classifyCards()->each(function (MealPlan $meal) {
 			$day = $meal->day;
 			$meal->prepare();
-			$this->cards->$day[] = $meal;
+			if (count($this->cards->$day) <= $this->getMealsPerDay()) {
+				$this->cards->$day[] = $meal;
+			}
 		});
 		if (!$this->getMealsAtSunday()) {
 			$this->cards->sunday = [];
@@ -513,7 +515,7 @@ final class State
 
 	public function getMealsPerDay (): int
 	{
-		return $this->options->mealsPerDay ?? 1;
+		return $this->options->mealsPerDay ?? 6;
 	}
 
 	public function setMealsAtWeekends (bool $enable): void

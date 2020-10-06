@@ -42,7 +42,7 @@ final class Options
 		$this->mealsAtWeekends = (object)['saturday' => false, 'sunday' => false];
 		$this->breakfast = false;
 		$this->snacks = false;
-		$this->mealsPerDay = 0;
+		$this->mealsPerDay = 6;
 		$this->dietaryRequirement = DietaryRequirement::None;
 	}
 
