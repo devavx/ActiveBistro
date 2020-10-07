@@ -118,8 +118,6 @@ function deadline ()
 function dates (): array
 {
 	$dates = [];
-	$four = Time::toSeconds(4, Time::Days);
-	$three = Time::toSeconds(3, Time::Days);
 	$nextWednesday = strtotime('next wednesday');
 	$nextSunday = strtotime('next sunday');
 	// We have an upcoming Sunday closer than Wednesday.
@@ -129,7 +127,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $four : $current += $three)
+				'month' => date('M', $current += (86400 * 4))
 			];
 		}
 	} else {
@@ -138,7 +136,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $three : $current += $four)
+				'month' => date('M', $current += (86400 * 4))
 			];
 		}
 	}
