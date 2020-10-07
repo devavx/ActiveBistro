@@ -100,6 +100,13 @@
 												</div>
 											</div>
 										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label><input type="checkbox" name="mini_faq" class="mr-2">Enlist in Mini FAQ?</label>
+												</div>
+											</div>
+										</div>
 										<div class="col-md-2 d-none" style="margin-top: 28px;">
 											<button type="button" name="add_more" id="add_more" class="btn btn-warning" title="Add More">+</button>
 										</div>

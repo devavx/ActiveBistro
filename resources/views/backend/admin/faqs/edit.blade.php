@@ -101,6 +101,13 @@
 												</div>
 											</div>
 										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label><input type="checkbox" name="mini_faq" class="mr-2" @if($record->mini_faq) checked @endif>Enlist in Mini FAQ?</label>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="form-actions">

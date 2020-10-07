@@ -81,6 +81,7 @@
 										<th>Title</th>
 										<th>Description</th>
 										<th>Category</th>
+										<th>Mini FAQ</th>
 										<th>Status</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -99,6 +100,7 @@
 												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_title ?? '-',25)}}</td>
 												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_description ?? '-',25)}}</td>
 												<td> {{ $rows->category()->exists() ? \App\Core\Primitives\Str::ellipsis($rows->category->title,25):'-'}}</td>
+												<td>{{$rows->minFaq==true?'Yes':'No'}}</td>
 												@if($rows->active)
 													<td>
 														<button type="button" class="btn btn-success change_status" id="{{ $rows->id }}" data-id="{{ $rows->active }}">Active</button>

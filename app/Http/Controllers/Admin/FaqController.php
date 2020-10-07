@@ -38,6 +38,7 @@ class FaqController extends Controller
 					'faq_category_id' => $request->faq_category_id,
 					'faq_title' => $request['faq_title'][$i],
 					'faq_description' => $request['faq_description'][$i],
+					'mini_faq' => $request->has('mini_faq')
 				]);
 			}
 			if ($res) {
@@ -70,6 +71,7 @@ class FaqController extends Controller
 		$data->faq_title = $request->faq_title;
 		$data->faq_description = $request->faq_description;
 		$data->faq_category_id = $request->faq_category_id;
+		$data->mini_faq = $request->has('mini_faq');
 		$save = $data->update();
 		if ($save) {
 			return redirect('admin/faqs')->with('success', 'Faq Updated successfully!');

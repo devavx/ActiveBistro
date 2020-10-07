@@ -92,7 +92,6 @@
 												<textarea name="description" id="description" class="form-control" placeholder="Enter How it work.." required>How It Work</textarea>
 											</div>
 										</div>
-
 									</div>
 								</div>
 								<div class="form-actions">
