@@ -75,18 +75,18 @@
 									<br>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose" readonly>
+										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose" disabled>
 										<label class="custom-control-label" for="loose">Lose Weight</label>
 									</div>
 
 									<!-- Default inline 2-->
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain" readonly>
+										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain" disabled>
 										<label class="custom-control-label" for="gain">Gain Weight</label>
 									</div>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain" readonly>
+										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain" disabled>
 										<label class="custom-control-label" for="maintain">Maintain weight</label>
 									</div>
 								</div>
