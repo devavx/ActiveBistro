@@ -264,13 +264,13 @@
 				const next = $(this).next();
 				const previous = $(this).prev();
 				current.addClass("dateselectradio");
-				current.prop("checked", true);
+				current.children("input:radio").prop("checked", true);
 				current.siblings().removeClass("dateselectradio");
-				current.siblings().prop("checked", false);
+				current.siblings().children("input:radio").prop("checked", false);
 				next.addClass("dateselectradio");
-				next.prop("checked", true);
+				next.children("input:radio").prop("checked", true);
 				previous.removeClass("dateselectradio");
-				previous.prop("checked", false);
+				previous.children("input:radio").prop("checked", false);
 			});
 		});
 
