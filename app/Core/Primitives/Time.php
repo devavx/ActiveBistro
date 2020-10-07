@@ -31,7 +31,7 @@ class Time
 			return $value;
 	}
 
-	public static function toDuration ($value, string $format = "%02d HOUR(s) %02d MINUTE(s)"): string
+	public static function toDuration ($value, string $format = "%02d HOUR(s) %02d MINUTE(s) %02d SECOND(s)"): string
 	{
 		$hours = floor($value / 3600);
 		$minutes = floor($value / 60 % 60);

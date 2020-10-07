@@ -238,7 +238,7 @@
 				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
 				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
 				const second = zeroPadding(parseInt(secondsTimer % 60));
-				setTime(hours + 'Hour(s) ' + minutes + ' Minute(s)');
+				setTime(hours + ' Hour(s) ' + minutes + ' Minute(s) ' + second + ' Second(s)');
 			}, 1000);
 		}
 	});
