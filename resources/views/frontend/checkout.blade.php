@@ -67,7 +67,7 @@
 									<span>{{$date['day']}}</span>
 									<span class="bigger">{{$date['date']}}</span>
 									<span>{{$date['month']}}</span>
-									<input class="hidden" type="radio" id="radio_{{$date['date']}}" value="{{$loop->index}}">
+									<input class="hidden" type="checkbox" id="radio_{{$date['date']}}" name="dates[]" value="radio_{{$loop->index}}">
 								</label>
 							@endforeach
 						</div>
@@ -264,13 +264,13 @@
 				const next = $(this).next();
 				const previous = $(this).prev();
 				current.addClass("dateselectradio");
-				current.children("input:radio").prop("checked", true);
+				current.children("input:checkbox").attr("checked", true);
 				current.siblings().removeClass("dateselectradio");
-				current.siblings().children("input:radio").prop("checked", false);
+				current.siblings("input:checkbox").attr("checked", false);
 				next.addClass("dateselectradio");
-				next.children("input:radio").prop("checked", true);
+				next.children("input:checkbox").attr("checked", true);
 				previous.removeClass("dateselectradio");
-				previous.children("input:radio").prop("checked", false);
+				previous.children("input:checkbox").attr("checked", false);
 			});
 		});
 

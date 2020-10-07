@@ -63,6 +63,7 @@ class CheckoutController extends Controller
 
 	public function store (StoreRequest $request): RedirectResponse
 	{
+		dd($request->all());
 		/**
 		 * @var $user User
 		 * @var $state State

@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\Models\MealPlan;
 use App\Models\User;
 use DeepCopy\DeepCopy;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
@@ -53,7 +54,7 @@ final class State
 
 	/**
 	 * State constructor.
-	 * @param $user User
+	 * @param $user User|Authenticatable
 	 * @param Options|null $options
 	 */
 	public function __construct ($user, Options $options = null)
