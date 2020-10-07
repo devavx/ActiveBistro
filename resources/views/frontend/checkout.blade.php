@@ -95,19 +95,19 @@
 							@foreach(dates() as $date)
 								@if($loop->first)
 									<div class="active-group">
-										<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12">
+										<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12" for="radio_{{$date['day']}}">
 											<span>{{$date['day']}}</span>
 											<span class="bigger">{{$date['date']}}</span>
 											<span>{{$date['month']}}</span>
-											<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
+											<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio" id="radio_{{$date['day']}}">
 										</label>
 									</div>
 								@else
-									<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12">
+									<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12" for="radio_{{$date['day']}}">
 										<span>{{$date['day']}}</span>
 										<span class="bigger">{{$date['date']}}</span>
 										<span>{{$date['month']}}</span>
-										<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio">
+										<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio" id="radio_{{$date['day']}}">
 									</label>
 								@endif
 							@endforeach
