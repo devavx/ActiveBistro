@@ -4,13 +4,14 @@ namespace App\Core\Cart;
 
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
+use App\Core\Enums\Common\MealTypes;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
 use App\Models\Cart;
 use App\Models\MealPlan;
 use App\Models\User;
 use DeepCopy\DeepCopy;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 
 final class State
@@ -52,7 +53,7 @@ final class State
 
 	/**
 	 * State constructor.
-	 * @param $user Authenticatable|User
+	 * @param $user User
 	 * @param Options|null $options
 	 */
 	public function __construct ($user, Options $options = null)
@@ -97,9 +98,9 @@ final class State
 		}
 	}
 
-	protected function query (): \Illuminate\Database\Eloquent\Builder
+	protected function query (): Builder
 	{
-		return MealPlan::query()->with('items', 'allergies')->whereNotNull('day')->where('active', 1);
+		return MealPlan::query()->with('items', 'allergies')->whereNotNull('day')->where('active', 1)->where('launched', 1);
 	}
 
 	protected function createSnapshot (): void
@@ -109,7 +110,13 @@ final class State
 			$meal->prepare();
 			$items = $this->cards->$day;
 			if ($this->getMealsPerDay() > count($items)) {
-				Arrays::push($this->cards->$day, $meal);
+				if (!empty($meal->type)) {
+					if ($meal->type == MealTypes::BreakFast && $this->wantBreakfast()) {
+
+					}
+				} else {
+					Arrays::push($this->cards->$day, $meal);
+				}
 			}
 		});
 		if (!$this->getMealsAtSunday()) {
@@ -543,6 +550,16 @@ final class State
 	public function setDietaryRequirement (string $dietaryRequirement): void
 	{
 		$this->options->dietary_requirement = $dietaryRequirement;
+	}
+
+	public function wantBreakfast (): bool
+	{
+		return $this->options->breakfast ?? false;
+	}
+
+	public function wantSnacks (): bool
+	{
+		return $this->options->snacks ?? false;
 	}
 
 	public function getDietaryRequirement (): string
