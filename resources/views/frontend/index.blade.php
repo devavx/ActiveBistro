@@ -141,7 +141,6 @@
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
 				<h3 class="text-center text-color font-weight-bold">Questions About Our Meal Delivery?</h3>
-				<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
 			</div>
 		</div>
 
