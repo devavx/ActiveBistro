@@ -100,7 +100,7 @@
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save
 									</button>
-									<a href="{{ url('/admin/postal_codes') }}" class="btn btn-inverse">Cancel</a>
+									<a href="{{ url('/admin/how_it_works') }}" class="btn btn-inverse">Cancel</a>
 								</div>
 							</form>
 						</div>

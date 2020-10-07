@@ -61,7 +61,7 @@ class SliderSettingController extends Controller
 		if (!empty($data)) {
 			$data->delete();
 			$result['status'] = 'success';
-			$result['message'] = 'SliderImage deleted successfully !';
+			$result['message'] = 'Slider image deleted successfully !';
 		} else {
 			$result['status'] = 'error';
 			$result['message'] = $this->commonError();

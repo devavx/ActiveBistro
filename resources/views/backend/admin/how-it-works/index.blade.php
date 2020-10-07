@@ -98,7 +98,7 @@
 														<img src="{{$rows->image}}" alt="" style="width: 50px; height: 50px;">
 													</div>
 												</td>
-												<td>{{$rows->title??'-'}}</td>
+												<td>{{\App\Core\Primitives\Str::ellipsis($rows->title??'-',25)}}</td>
 												<td> {!! $rows->description ?? '-' !!}</td>
 												@if($rows->active)
 													<td>
