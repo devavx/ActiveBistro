@@ -229,18 +229,18 @@
 	})
 
 	$(document).ready(function () {
-		if (secondsTimer !== 0) {
-			setInterval(() => {
-				secondsTimer--;
-				const zeroPadding = (value) => {
-					return value < 10 ? "0" + value : value;
-				}
-				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
-				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
-				const second = zeroPadding(parseInt(secondsTimer % 60));
-				setTime(hours + 'h:' + minutes + 'm:' + second + 's');
-			}, 1000);
-		}
+		// if (secondsTimer !== 0) {
+		// 	setInterval(() => {
+		// 		secondsTimer--;
+		// 		const zeroPadding = (value) => {
+		// 			return value < 10 ? "0" + value : value;
+		// 		}
+		// 		const hours = zeroPadding(Math.floor(secondsTimer / 3600));
+		// 		const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
+		// 		const second = zeroPadding(parseInt(secondsTimer % 60));
+		// 		setTime(hours + 'h:' + minutes + 'm:' + second + 's');
+		// 	}, 1000);
+		// }
 	});
 
 	setTime = time => {
