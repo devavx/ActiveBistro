@@ -24,7 +24,7 @@
 						<li id="payment"><strong>Checkout</strong></li>
 					</ul>
 
-					<fieldset class="pl-4 pr-4">
+					<fieldset class="px-2">
 
 						<div class="form-group">
 							<label>Your email address <sup class="text-danger">*</sup></label>
@@ -53,7 +53,7 @@
 						</p>
 					</fieldset>
 
-					<fieldset class="pl-4 pr-4">
+					<fieldset class="px-2">
 
 						<div class="form-group">
 							<h6 class="mb-1 font-weight-bold text-color">1. Choose your delivery start date</h6>
@@ -192,7 +192,7 @@
 
 					</fieldset>
 
-					<fieldset class="pl-4 pr-4">
+					<fieldset class="px-2">
 						<div class="form-group">
 							<p>This is a flexible subscription service. You can edit, pause or cancel your plan at any point in time after purchase.</p>
 						</div>
