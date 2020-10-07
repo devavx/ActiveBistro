@@ -30,7 +30,7 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Height</label>
-									<input type="text" min="2.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
+									<input type="number" min="2.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
 								</div>
 							</div>
 
@@ -56,14 +56,14 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Current weight</label>
-									<input type="number" min="1.0" max="250.0" step="0.1" class="form-control" name="user_weight" id="user_weight" placeholder="Enter your current weight...." onchange="updateWeightGoals('current',this.value);">
+									<input type="number" min="1.0" max="350.0" step="0.1" class="form-control" name="user_weight" id="user_weight" placeholder="Enter your current weight...." onchange="updateWeightGoals('current',this.value);">
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Target Weight</label>
-									<input type="number" min="1.0" step="0.1" max="250.0" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
+									<input type="number" min="1.0" step="0.1" max="350.0" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 								<div class="form-group">
 									<label>What is your activity level?<sup class="text-danger">*</sup></label>
 									<select class="form-control" name="activity_lavel" id="activity_lavel" required>
-										<option>Select</option>
+										<option value="">Select</option>
 										<option value="1">1 - Sedentary - Little or no exercise -
 											(Desk job)
 										</option>
