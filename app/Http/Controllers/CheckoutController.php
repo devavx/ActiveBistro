@@ -8,6 +8,7 @@ use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\PostalCode;
 use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
@@ -53,7 +54,8 @@ class CheckoutController extends Controller
 		}
 		$state->setDiscount($totalRebate);
 		$state->calculateStats();
-		return view('frontend.checkout')->with('state', $state)->with('rebates', $rebates);
+		$postalCodes = PostalCode::active()->get();
+		return view('frontend.checkout')->with('state', $state)->with('rebates', $rebates)->with('postalCodes', $postalCodes);
 	}
 
 	public function validateCoupon (CouponRequest $request): JsonResponse
@@ -63,7 +65,6 @@ class CheckoutController extends Controller
 
 	public function store (StoreRequest $request): RedirectResponse
 	{
-		dd($request->all());
 		/**
 		 * @var $user User
 		 * @var $state State

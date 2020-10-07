@@ -98,7 +98,11 @@
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="text" class="form-control" name="address[sunday][postcode]" minlength="4" maxlength="8" data-parsley-group='["sunday_address","address"]' required>
+										<select name="address[sunday][postcode]" id="" class="form-control" data-parsley-group='["sunday_address","address"]' required>
+											@foreach($postalCodes as $code)
+												<option value="{{$code->name}}">{{$code->name}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 							</div>
@@ -131,7 +135,11 @@
 								<div class="col-lg-6 col-sm-6 col-12">
 									<div class="form-group">
 										<label>Postcode</label>
-										<input type="text" class="form-control" name="address[wednesday][postcode]" minlength="4" max="8" data-parsley-group="address">
+										<select name="address[wednesday][postcode]" id="" class="form-control" data-parsley-group="address">
+											@foreach($postalCodes as $code)
+												<option value="{{$code->name}}">{{$code->name}}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
 							</div>
