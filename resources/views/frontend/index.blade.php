@@ -137,34 +137,36 @@
 		</div>
 	@endif
 
-	<div class="container mt-5 mb-5">
-		<div class="row">
-			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
-				<h3 class="text-center text-color font-weight-bold">Questions About Our Meal Delivery?</h3>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
-				<div id="accordion" class="accordion mt-3">
-					<div class="card mb-0">
-						@foreach($faqs as $faq)
-							<div class="card-header collapsed" data-toggle="collapse" href="#faq_{{$faq->id}}">
-								<a class="card-title">{{$faq->faq_title}}</a>
-							</div>
-							<div id="faq_{{$faq->id}}" class="card-body collapse" data-parent="#accordion">
-								<p class="mb-0">{{$faq->faq_description}}</p>
-							</div>
-						@endforeach
-					</div>
+	@if(count($faqs)>0)
+		<div class="container mt-5 mb-5">
+			<div class="row">
+				<div class="col-lg-8 col-sm-10 col-12 mx-auto">
+					<h3 class="text-center text-color font-weight-bold">Questions About Our Meal Delivery?</h3>
 				</div>
+			</div>
 
-				<p class="text-center mt-3">
-					<a href="{{url("/faq")}}" class="text-color">See All FAQ's<i class="fa fa-chevron-right ml-2"></i></a>
-				</p>
+			<div class="row">
+				<div class="col-lg-8 col-sm-10 col-12 mx-auto">
+					<div id="accordion" class="accordion mt-3">
+						<div class="card mb-0">
+							@foreach($faqs as $faq)
+								<div class="card-header collapsed" data-toggle="collapse" href="#faq_{{$faq->id}}">
+									<a class="card-title">{{$faq->faq_title}}</a>
+								</div>
+								<div id="faq_{{$faq->id}}" class="card-body collapse" data-parent="#accordion">
+									<p class="mb-0">{{$faq->faq_description}}</p>
+								</div>
+							@endforeach
+						</div>
+					</div>
+
+					<p class="text-center mt-3">
+						<a href="{{url("/faq")}}" class="text-color">See All FAQ's<i class="fa fa-chevron-right ml-2"></i></a>
+					</p>
+				</div>
 			</div>
 		</div>
-	</div>
+	@endif
 @endsection
 @section('script')
 
