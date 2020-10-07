@@ -35,6 +35,7 @@ class Time
 	{
 		$hours = floor($value / 3600);
 		$minutes = floor($value / 60 % 60);
-		return sprintf($format, $hours, $minutes);
+		$seconds = intval($value % 60);
+		return sprintf($format, $hours, $minutes, $seconds);
 	}
 }
