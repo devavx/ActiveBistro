@@ -78,7 +78,7 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label>Deadline</label>
-												<input type="datetime-local" name="deadline" id="description" class="form-control" placeholder="Enter name.." value="{{date("Y-m-d\TH:i:s", strtotime($deadline->deadline)}}" required>
+												<input type="datetime-local" name="deadline" id="description" class="form-control" placeholder="Enter name.." value="{{date("Y-m-d\TH:i:s", strtotime($deadline->deadline))}}" required>
 											</div>
 										</div>
 									</div>
