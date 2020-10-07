@@ -3,6 +3,9 @@
  * Maximum length of a file path.
  * Global - change here to reflect everywhere.
  */
+
+use App\Core\Primitives\Time;
+
 const MaxFilePath = 1024;
 
 function changeDateFormat ($date, $format)
@@ -115,7 +118,8 @@ function deadline ()
 function dates (): array
 {
 	$dates = [];
-	$days = 86400 * 4;
+	$four = Time::toSeconds(4, Time::Days);
+	$three = Time::toSeconds(3, Time::Days);
 	$nextWednesday = strtotime('next wednesday');
 	$nextSunday = strtotime('next sunday');
 	// We have an upcoming Sunday closer than Wednesday.
@@ -125,7 +129,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $days : $current += $days)
+				'month' => date('M', $i % 2 == 0 ? $current += $four : $current += $three)
 			];
 		}
 	} else {
@@ -134,7 +138,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $days : $current += $days)
+				'month' => date('M', $i % 2 == 0 ? $current += $three : $current += $four)
 			];
 		}
 	}
