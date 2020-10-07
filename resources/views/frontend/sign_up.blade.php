@@ -141,6 +141,7 @@
 							<label class="col-lg-2 col-sm-3 col-12">Email <sup class="text-danger">*</sup></label>
 							<div class="col-lg-10 col-sm-9 col-12">
 								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
+								<span class="error d-none" id="emailError">Not eligible for special discount!.</span><br>
 								<p><small>.ac or .nhs email addresses are eligible</small></p>
 							</div>
 							@error('email')
@@ -190,20 +191,23 @@
 		});
 		$(document).ready(function () {
 			$("#msform").on("submit", function () {
-				if ($("#click_to_verify").prop('checked') == true) {
+				return true;
+			})
+
+			$("#click_to_verify").on('change', function () {
+				if (this.checked == true) {
 					str = $('#email').val();
 					str = str.split('.').slice(1);
 					var allowedDomains = ['nhs', 'ac'];
 					if ($.inArray(str[0], allowedDomains) !== -1) {
+						$('#emailError').addClass('d-none');
 						return true;  // FAIL validation when REGEX matches
 					} else {
-						$('#email').after('<span class="error">Not eligible for special discount!.</span><br>');
+						$('#emailError').removeClass('d-none');
 						return false;   // PASS validation otherwise
 					}
 				}
-				return true;
-			})
-
+			});
 
 			$('#msform').validate({ // initialize the plugin
 				rules: {
