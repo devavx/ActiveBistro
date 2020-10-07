@@ -340,9 +340,13 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$(".date-label").click(function () {
-				$(this).addClass("dateselectradio").siblings().removeClass("dateselectradio");
-				$(this).next().addClass("dateselectradio");
-				$(this).prev().removeClass("dateselectradio");
+				const current = $(this);
+				const next = $(this).next();
+				const previous = $(this).prev();
+				current.addClass("dateselectradio");
+				current.siblings().removeClass("dateselectradio");
+				next.addClass("dateselectradio");
+				previous.removeClass("dateselectradio");
 			});
 		});
 	</script>
