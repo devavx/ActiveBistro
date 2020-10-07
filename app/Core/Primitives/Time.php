@@ -30,4 +30,11 @@ class Time
 		else
 			return $value;
 	}
+
+	public static function toDuration ($value, string $format = "%02d HOUR(s) %02d MINUTES"): string
+	{
+		$hours = floor($value / 3600);
+		$minutes = floor($value / 60 % 60);
+		return sprintf($format, $hours, $minutes);
+	}
 }
