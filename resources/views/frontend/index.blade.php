@@ -154,7 +154,7 @@
 								<a class="card-title">{{$faq->faq_title}}</a>
 							</div>
 							<div id="faq_{{$faq->id}}" class="card-body collapse" data-parent="#accordion">
-								<p>{{$faq->faq_description}}</p>
+								<p class="mb-0">{{$faq->faq_description}}</p>
 							</div>
 						@endforeach
 					</div>

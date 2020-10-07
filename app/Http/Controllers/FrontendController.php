@@ -32,7 +32,7 @@ class FrontendController extends Controller
 		$homeData = HomeSetting::query()->where(['active' => 1])->get();
 		$promotion = Coupon::query()->where('promote', 1)->first();
 		$section = BottomSection::query()->first();
-		$faqs = Faq::query()->latest()->limit(15)->get();
+		$faqs = Faq::query()->latest()->limit(8)->orderBy('title')->get();
 		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion)->with('section', $section)->with('faqs', $faqs);
 	}
 
