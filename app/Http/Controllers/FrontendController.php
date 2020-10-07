@@ -11,6 +11,7 @@ use App\Models\BottomSection;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Faq;
 use App\Models\FaqCategory;
 use App\Models\HomeSetting;
 use App\Models\HowItWork;
@@ -31,7 +32,8 @@ class FrontendController extends Controller
 		$homeData = HomeSetting::query()->where(['active' => 1])->get();
 		$promotion = Coupon::query()->where('promote', 1)->first();
 		$section = BottomSection::query()->first();
-		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion)->with('section', $section);
+		$faqs = Faq::query()->latest()->limit(15)->get();
+		return view('frontend.index', compact(['listData', 'homeData']))->with('coupon', $promotion)->with('section', $section)->with('faqs', $faqs);
 	}
 
 	public function login ()
