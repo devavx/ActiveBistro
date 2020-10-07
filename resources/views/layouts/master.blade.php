@@ -219,22 +219,24 @@
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
 <script>
-	let secondsTimer = {{$difference}};
+	let secondsTimer = {{$current<$elapsed?$difference:0}};
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
 
 	$(document).ready(function () {
-		setInterval(() => {
-			secondsTimer--;
-			const zeroPadding = (value) => {
-				return value < 10 ? "0" + value : value;
-			}
-			const hours = zeroPadding(Math.floor(secondsTimer / 3600));
-			const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
-			const second = zeroPadding(parseInt(secondsTimer % 60));
-			setTime(hours + 'h:' + minutes + 'm:' + second + 's');
-		}, 1000);
+		if (secondsTimer !== 0) {
+			setInterval(() => {
+				secondsTimer--;
+				const zeroPadding = (value) => {
+					return value < 10 ? "0" + value : value;
+				}
+				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
+				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
+				const second = zeroPadding(parseInt(secondsTimer % 60));
+				setTime(hours + 'h:' + minutes + 'm:' + second + 's');
+			}, 1000);
+		}
 	});
 
 	setTime = time => {
