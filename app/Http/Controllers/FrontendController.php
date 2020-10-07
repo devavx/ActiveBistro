@@ -54,23 +54,20 @@ class FrontendController extends Controller
 	public function saveTailorPlan (TailorPlanRule $request)
 	{
 		$userData = Auth::user();
-		if (!empty($userData)) {
-			$userData->weight_total = $request->weight_total;
-			if ($request->get('weight_total', 'metric') == 'metric') {
-				$userData->user_height = $request->user_height;
-				$userData->user_weight = $request->user_weight;
-				$userData->user_targert_weight = $request->user_targert_weight;
-			} else {
-				$userData->user_height = $this->imperialToMetricLength($request->user_height);
-				$userData->user_weight = $this->imperialToMetricWeight($request->user_weight);
-				$userData->user_targert_weight = $this->imperialToMetricWeight($request->user_targert_weight);
-			}
-			$userData->weight_goal = $request->weight_goal;
-			$userData->activity_lavel = $request->activity_lavel;
-			$userData->save();
-			return redirect('recommended_meal');
+		$userData->weight_total = $request->weight_total;
+		if ($request->get('weight_total', 'metric') == 'metric') {
+			$userData->user_height = $request->user_height;
+			$userData->user_weight = $request->user_weight;
+			$userData->user_targert_weight = $request->user_targert_weight;
+		} else {
+			$userData->user_height = $this->imperialToMetricLength($request->user_height);
+			$userData->user_weight = $this->imperialToMetricWeight($request->user_weight);
+			$userData->user_targert_weight = $this->imperialToMetricWeight($request->user_targert_weight);
 		}
-		return back();
+		$userData->weight_goal = $request->weight_goal;
+		$userData->activity_lavel = $request->activity_lavel;
+		$userData->save();
+		return redirect('recommended_meal');
 	}
 
 	public function recommendedMeal ()
