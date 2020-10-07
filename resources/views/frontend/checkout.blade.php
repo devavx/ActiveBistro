@@ -63,11 +63,11 @@
 
 						<div class="date-selection mb-3">
 							@foreach(dates() as $date)
-								<label class="date-label" data-itemgroup="Start Dates" id="delivery-date-2020-8-12" data-itemname="delivery-date-2020-8-12" for="radio_{{$date['date']}}">
+								<label class="date-label" for="radio_{{$date['date']}}">
 									<span>{{$date['day']}}</span>
 									<span class="bigger">{{$date['date']}}</span>
 									<span>{{$date['month']}}</span>
-									<input class="hidden ng-touched ng-dirty ng-valid" formcontrolname="next_delivery_date" type="radio" id="radio_{{$date['date']}}">
+									<input class="hidden" type="radio" id="radio_{{$date['date']}}" value="{{$loop->index}}">
 								</label>
 							@endforeach
 						</div>
@@ -246,14 +246,6 @@
 		let current_fs, next_fs, previous_fs, opacity;
 
 		$(document).ready(function () {
-
-			// $(".submit").click(function () {
-			// 	return false;
-			// })
-
-			// Since in our case, as of now, I believe the user will
-			// always be registered before he's at this point,
-			// we skip the initial details page.
 			$(".next:first").trigger('click');
 
 			$('#wednesday_address').hide();
@@ -265,6 +257,20 @@
 					$('#wednesday_address').hide(600);
 					$('#wednesday_address :input').prop('required', false);
 				}
+			});
+
+			$(".date-label").click(function () {
+				const current = $(this);
+				const next = $(this).next();
+				const previous = $(this).prev();
+				current.addClass("dateselectradio");
+				current.prop("checked", true);
+				current.siblings().removeClass("dateselectradio");
+				current.siblings().prop("checked", false);
+				next.addClass("dateselectradio");
+				next.prop("checked", true);
+				previous.removeClass("dateselectradio");
+				previous.prop("checked", false);
 			});
 		});
 
@@ -339,15 +345,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			$(".date-label").click(function () {
-				const current = $(this);
-				const next = $(this).next();
-				const previous = $(this).prev();
-				current.addClass("dateselectradio");
-				current.siblings().removeClass("dateselectradio");
-				next.addClass("dateselectradio");
-				previous.removeClass("dateselectradio");
-			});
+
 		});
 	</script>
 @endsection
