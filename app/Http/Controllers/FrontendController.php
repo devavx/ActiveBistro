@@ -22,6 +22,7 @@ use App\Models\PrivacyPolicy;
 use App\Models\SliderSetting;
 use App\Models\TermCondition;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -51,7 +52,7 @@ class FrontendController extends Controller
 		return view('frontend.tailor_plan');
 	}
 
-	public function saveTailorPlan (TailorPlanRule $request)
+	public function saveTailorPlan (Request $request)
 	{
 		$userData = Auth::user();
 		$userData->weight_total = $request->weight_total;
