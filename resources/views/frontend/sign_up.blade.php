@@ -129,26 +129,24 @@
                                     </span>
 							@enderror
 						</div>
-						<div class="form-group">
-							<label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
-							<div class="custom-control custom-checkbox ">
-								<input type="checkbox" class="custom-control-input" id="click_to_verify" name="click_to_verify">
-								<label class="custom-control-label" for="click_to_verify">Click to verify</label>
-							</div>
-						</div>
 
-						<div class="form-group row">
-							<label class="col-lg-2 col-sm-3 col-12">Email <sup class="text-danger">*</sup></label>
-							<div class="col-lg-10 col-sm-9 col-12">
-								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
-								<span class="error d-none" id="emailError">Not eligible for special discount!.</span><br>
-								<p><small>.ac or .nhs email addresses are eligible</small></p>
-							</div>
+						<div class="form-group">
+							<label>Email <sup class="text-danger">*</sup></label>
+							<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
+							<small id="emailMessage"></small>
+							<p><small>.ac or .nhs email addresses are eligible</small></p>
 							@error('email')
 							<span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
 							@enderror
+						</div>
+						<div class="form-group">
+							<label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
+							<div class="custom-control custom-checkbox ">
+								<input type="checkbox" class="custom-control-input" id="click_to_verify" name="click_to_verify">
+								<label class="custom-control-label" for="click_to_verify">Verify</label>
+							</div>
 						</div>
 						<div class="form-group">
 							<a href="{{ url('/sign-in') }}" class="btn btn-dark rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Login</a>
@@ -200,13 +198,14 @@
 					str = str.split('.').slice(1);
 					const allowedDomains = ['nhs', 'ac'];
 					if ($.inArray(str[0], allowedDomains) !== -1) {
+						setMessage("You qualify for special discount!", 'success');
 						return true;  // FAIL validation when REGEX matches
 					} else {
-						$('#emailError').removeClass('d-none');
+						setMessage("Unfortunately, you don\'t qualify for special discount!", "error");
 						return false;   // PASS validation otherwise
 					}
 				} else {
-					$('#emailError').addClass('d-none');
+					setMessage(null, null);
 				}
 			});
 
@@ -243,5 +242,15 @@
 				}
 			});
 		});
+
+		setMessage = (message, type) => {
+			if (type === 'error') {
+				$('#emailMessage').removeClass('d-none').removeClass('text-success').html(message);
+			} else if (type === 'success') {
+				$('#emailMessage').removeClass('d-none').addClass('text-success').html(message);
+			} else {
+				$('#emailMessage').addClass('d-none').removeClass('text-success').html("");
+			}
+		}
 	</script>
 @endsection
