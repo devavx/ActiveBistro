@@ -209,18 +209,12 @@
 				rules: {
 					first_name: {
 						required: true,
-						minlength: 2,
-						maxlength: 15
 					},
 					last_name: {
 						required: true,
-						minlength: 2,
-						maxlength: 15
 					},
 					phone: {
 						required: true,
-						minlength: 8,
-						maxlength: 13,
 					},
 					gender: {required: true},
 					email: {
