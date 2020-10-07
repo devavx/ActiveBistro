@@ -171,28 +171,6 @@
 @section('script')
 
 	<script>
-		let secondsTimer = 43199;
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-
-		$(document).ready(function () {
-			setInterval(() => {
-				secondsTimer--;
-				const zeroPadding = (value) => {
-					return value < 10 ? "0" + value : value;
-				}
-				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
-				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
-				const second = zeroPadding(parseInt(secondsTimer % 60));
-				setTime(hours + 'h:' + minutes + 'm:' + second + 's');
-			}, 1000);
-		});
-
-		setTime = time => {
-			$('.timer_span').html(time);
-		}
-
 
 	</script>
 @endsection

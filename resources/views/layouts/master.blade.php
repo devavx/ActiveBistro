@@ -28,9 +28,9 @@
 			<div class="mdblock">
 				<li class="nav-item">
 					@if($difference>=43200)
-						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
 					@else
-						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
 					@endif
 				</li>
 			</div>
@@ -91,9 +91,9 @@
 
 				<li class="nav-item">
 					@if($difference>=43200)
-						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',strtotime($elapsed))}}</span></span>
 					@else
-						<span class="header-time-slot nav-link text-color text-center"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
 					@endif
 				</li>
 
@@ -218,6 +218,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
+<script>
+	let secondsTimer = {{$difference}};
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+
+	$(document).ready(function () {
+		setInterval(() => {
+			secondsTimer--;
+			const zeroPadding = (value) => {
+				return value < 10 ? "0" + value : value;
+			}
+			const hours = zeroPadding(Math.floor(secondsTimer / 3600));
+			const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
+			const second = zeroPadding(parseInt(secondsTimer % 60));
+			setTime(hours + 'h:' + minutes + 'm:' + second + 's');
+		}, 1000);
+	});
+
+	setTime = time => {
+		$('.timer_span').html(time);
+	}
+
+
+</script>
 @yield('script')
 </body>
 </html>

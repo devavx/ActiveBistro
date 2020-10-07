@@ -152,9 +152,7 @@
 							<a href="{{ url('/sign-in') }}" class="btn btn-dark rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Login</a>
 							<button type="submit" id="register_btn" class="btn btn-info float-right rounded btn-md">Next
 								<i class="fa fa-chevron-right ml-2"></i></button>
-							<!-- <a href="process2.html" class="btn btn-info float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></a> -->
 						</div>
-
 					</fieldset>
 				</form>
 			</div>
