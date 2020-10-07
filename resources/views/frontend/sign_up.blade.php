@@ -195,17 +195,18 @@
 			})
 
 			$("#click_to_verify").on('change', function () {
-				if (this.checked == true) {
-					str = $('#email').val();
+				if (this.checked) {
+					let str = $('#email').val();
 					str = str.split('.').slice(1);
-					var allowedDomains = ['nhs', 'ac'];
+					const allowedDomains = ['nhs', 'ac'];
 					if ($.inArray(str[0], allowedDomains) !== -1) {
-						$('#emailError').addClass('d-none');
 						return true;  // FAIL validation when REGEX matches
 					} else {
 						$('#emailError').removeClass('d-none');
 						return false;   // PASS validation otherwise
 					}
+				} else {
+					$('#emailError').addClass('d-none');
 				}
 			});
 
