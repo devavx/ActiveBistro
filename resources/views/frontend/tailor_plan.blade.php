@@ -30,7 +30,7 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Height</label>
-									<input type="text" min="0.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
+									<input type="text" min="2.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
 								</div>
 							</div>
 
@@ -56,14 +56,14 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Current weight</label>
-									<input type="number" min="0.0" step="0.1" class="form-control" name="user_weight" id="user_weight" placeholder="Enter your current weight...." onchange="updateWeightGoals('current',this.value);">
+									<input type="number" min="1.0" max="250.0" step="0.1" class="form-control" name="user_weight" id="user_weight" placeholder="Enter your current weight...." onchange="updateWeightGoals('current',this.value);">
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Target Weight</label>
-									<input type="number" min="0.0" step="0.1" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
+									<input type="number" min="1.0" step="0.1" max="250.0" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
 								</div>
 							</div>
 						</div>
@@ -75,18 +75,18 @@
 									<br>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose">
+										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose" readonly>
 										<label class="custom-control-label" for="loose">Lose Weight</label>
 									</div>
 
 									<!-- Default inline 2-->
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain">
+										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain" readonly>
 										<label class="custom-control-label" for="gain">Gain Weight</label>
 									</div>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain">
+										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain" readonly>
 										<label class="custom-control-label" for="maintain">Maintain weight</label>
 									</div>
 								</div>

@@ -140,7 +140,7 @@
 						<div class="form-group row">
 							<label class="col-lg-2 col-sm-3 col-12">Email <sup class="text-danger">*</sup></label>
 							<div class="col-lg-10 col-sm-9 col-12">
-								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+								<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
 								<p><small>.ac or .nhs email addresses are eligible</small></p>
 							</div>
 							@error('email')
