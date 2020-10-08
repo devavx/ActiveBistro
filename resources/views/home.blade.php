@@ -113,7 +113,7 @@
 							</table>
 						</div>
 						<div class="col-lg-6 col-sm-6 col-12">
-							<label>Desired Weekly Progress</label>
+							<h6 class="text-color font-weight-bold">Desired Weekly Progress</h6>
 							@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
 								@if(auth()->user()->weekly_progress>0)
 									<p class="text-color">Gain {{abs(auth()->user()->weekly_progress)}} KG per week</p>
