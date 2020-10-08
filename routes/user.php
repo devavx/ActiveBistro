@@ -58,6 +58,11 @@ Route::prefix('cart')->middleware('auth')->group(static function () {
 		Route::post(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'index'])->name('cart.checkout.index');
 		Route::post('store', [\App\Http\Controllers\CheckoutController::class, 'store'])->name('cart.checkout.store');
 	});
+
+	Route::prefix('coupon')->group(static function () {
+		Route::put(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'validateCoupon'])->name('cart.coupon.validate');
+		Route::delete(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'validateCoupon'])->name('cart.coupon.remove');
+	});
 });
 
 /*

@@ -8,6 +8,7 @@ use App\Core\Enums\Common\MealTypes;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\MealPlan;
 use App\Models\User;
 use DeepCopy\DeepCopy;
@@ -46,6 +47,11 @@ final class State
 	 * @var Cart|null
 	 */
 	private $cart;
+
+	/**
+	 * @var Coupon|null
+	 */
+	private $coupon;
 
 	/**
 	 * @var DeepCopy|null
@@ -181,6 +187,14 @@ final class State
 		$this->cart->update([
 			'items' => $state
 		]);
+	}
+
+	protected function loadCouponIfExists ()
+	{
+		$coupon = Coupon::query()->where('code', $this->cart->coupon)->where('valid_from', '<=', date('Y-m-d H:i:s'))->where('valid_until', '>', date('Y-m-d H:i:s'))->where('active', true)->first();
+		if ($coupon != null) {
+
+		}
 	}
 
 	protected function createCartIfNotExists (User $user): bool

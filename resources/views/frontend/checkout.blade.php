@@ -218,12 +218,8 @@
 						</p>
 
 						<p>Referred by a friend or got a coupon?
-							<a class="text-color" id="coupantoggle"> Click here.</a></p>
-
-						<div class="form-group" id="showcoupantextfield" style="display: none;">
-							<input type="text" class="form-control" placeholder="Enter coupon code" name="coupon_code" id="coupon_code">
-							<button type="button" onclick="validateCoupon();">Apply</button>
-						</div>
+							<a class="text-color" data-toggle="modal" data-target="#couponModal" href="javascript:void(0);"> Click here.</a>
+						</p>
 
 						<p class="text-center">
 							<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
@@ -237,6 +233,31 @@
 						<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
 
 					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="couponModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Have a coupon?</h5>
+				</div>
+				<form>
+					<div class="modal-body">
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label for="coupon-code">Code</label>
+								<input type="text" class="form-control is-valid" id="coupon-code" required minlength="2" maxlength="50">
+								<div class="valid-feedback" id="validationMessage"></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Apply</button>
+					</div>
 				</form>
 			</div>
 		</div>
