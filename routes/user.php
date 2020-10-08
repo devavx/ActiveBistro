@@ -9,6 +9,8 @@ Route::get('/sign-in', 'FrontendController@login')->middleware('guest')->name('s
 Route::get('/sign-up', 'FrontendController@signup')->middleware('guest')->name('signup');
 Route::get('/tailor_plan', 'FrontendController@tailorPlan')->name('tailor_plan');
 Route::post('/tailorplan', 'FrontendController@saveTailorPlan')->name('save_tailor_plan');
+Route::get('desired-progress', 'FrontendController@showDesiredProgressDialog')->name('desired-progress.show');
+Route::post('desired-progress', 'FrontendController@saveDesiredProgress')->name('desired-progress.store');
 Route::get('/recommended_meal', 'FrontendController@recommendedMeal')->name('recommended_meal');
 Route::get('options', 'FrontendController@options')->name('profile_options');
 Route::post('options/save', 'FrontendController@saveOptions')->name('profile_options.save');

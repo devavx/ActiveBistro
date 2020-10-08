@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title') Active Bistro | Tailor Plan @endsection
 @section('css')
-<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<style type="text/css">
         .invalid-feedback {
             display: block !important;
@@ -37,17 +37,6 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group sliderbtncheck">
 									<input type="checkbox" checked data-toggle="toggle" data-on="Metric (kg/cm)" data-off="Imperial (lb/ft)" data-onstyle="info" data-offstyle="info" name="unit_system" value="metric">
-									<!-- <br>
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="metric" value="metric" name="weight_total" checked>
-										<label class="custom-control-label" for="metric">Metric (kg/cm)</label>
-									</div>
-
-									
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" value="imperial" class="custom-control-input" id="imperial" name="weight_total">
-										<label class="custom-control-label" for="imperial">Imperial (lb)</label>
-									</div> -->
 								</div>
 							</div>
 						</div>
@@ -62,7 +51,7 @@
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label>Target Weight</label>
+									<label>Target weight</label>
 									<input type="number" min="1.0" step="0.1" max="350.0" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
 								</div>
 							</div>

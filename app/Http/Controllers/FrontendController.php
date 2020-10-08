@@ -52,6 +52,19 @@ class FrontendController extends Controller
 		return view('frontend.tailor_plan');
 	}
 
+	public function showDesiredProgressDialog ()
+	{
+		return view('frontend.desired_progress');
+	}
+
+	public function saveDesiredProgress ()
+	{
+		\auth()->user()->update([
+			'weekly_progress' => \request('weekly_progress')
+		]);
+		return redirect()->route('recommended_meal');
+	}
+
 	public function saveTailorPlan (Request $request)
 	{
 		$userData = Auth::user();
@@ -74,7 +87,7 @@ class FrontendController extends Controller
 		$userData->weight_goal = $request->weight_goal;
 		$userData->activity_lavel = $request->activity_lavel;
 		$userData->save();
-		return redirect('recommended_meal');
+		return redirect()->route('desired-progress.show');
 	}
 
 	public function recommendedMeal ()
