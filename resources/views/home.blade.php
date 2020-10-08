@@ -86,6 +86,14 @@
 							@endif
 						</div>
 						<div class="col-lg-6 col-sm-6 col-12">
+							<label>Activity Level</label>
+							<p class="text-color">{{ \App\Core\Enums\Common\ActivityLevel::getKey(auth()->user()->activity_lavel) }}</p>
+						</div>
+						<div class="col-lg-6 col-sm-6 col-12">
+							<label>Preferred Diet Type</label>
+							<p class="text-color">{{ \App\Core\Enums\Common\DietType::getKey(auth()->user()->diet_type) }}</p>
+						</div>
+						<div class="col-lg-6 col-sm-6 col-12">
 							<h6 class="text-color font-weight-bold">Recommended</h6>
 							@php
 								$userGender = Auth::user()->gender ?? 'male';
