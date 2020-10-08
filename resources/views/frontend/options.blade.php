@@ -188,7 +188,7 @@
 							</div>
 						</div>
 
-						<button class="btn btn-info float-right rounded btn-md">Next
+						<button type="button" class="next btn btn-info float-right rounded btn-md">Next
 							<i class="fa fa-chevron-right ml-2"></i>
 						</button>
 					</fieldset>
