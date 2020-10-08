@@ -160,7 +160,7 @@
 							<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password...">
 						</div>
 
-						<div class="form-group">
+						<div class="form-group mb-0">
 							<button type="button" id="change_password_btn" class="btn btn-info ml-0">Change</button>
 						</div>
 					</form>
