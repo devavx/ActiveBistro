@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Core\Enums\Common\ActivityLevel;
+use App\Core\Enums\Common\DietType;
 use App\Core\Enums\Common\Directories;
 use App\Core\Enums\Common\UnitSystem;
 use App\Core\Enums\Common\WeightGoal;
@@ -22,7 +23,7 @@ class User extends Authenticatable
 	use SoftDeletes;
 
 	protected $fillable = [
-		'name', 'first_name', 'last_name', 'dob', 'gender', 'phone', 'gender_info', 'role_id', 'email', 'password', 'click_to_verify', 'about', 'user_targert_weight', 'user_weight', 'user_height', 'address', 'profile_image', 'weekly_progress'
+		'name', 'first_name', 'last_name', 'dob', 'gender', 'phone', 'gender_info', 'role_id', 'email', 'password', 'click_to_verify', 'about', 'user_targert_weight', 'user_weight', 'user_height', 'address', 'profile_image', 'weekly_progress', 'diet_type'
 	];
 
 	protected $hidden = [
@@ -144,14 +145,24 @@ class User extends Authenticatable
 
 	public function carbohydrates (): float
 	{
+		if ($this->diet_type == DietType::Ketogenic) {
+			$multiplier = 0.05;
+		} else {
+			$multiplier = 0.5;
+		}
 		$calories = $this->calories(false);
-		return round((0.5 * $calories) / 4.0, 0);
+		return round(($multiplier * $calories) / 4.0, 0);
 	}
 
 	public function fats (): float
 	{
+		if ($this->diet_type == DietType::Ketogenic) {
+			$multiplier = 0.75;
+		} else {
+			$multiplier = 0.3;
+		}
 		$calories = $this->calories(false);
-		return round((0.3 * $calories) / 9.0, 0);
+		return round(($multiplier * $calories) / 9.0, 0);
 	}
 
 	public function recommendedMealsPerDay (): int

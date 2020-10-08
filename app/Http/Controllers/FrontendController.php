@@ -60,7 +60,8 @@ class FrontendController extends Controller
 	public function saveDesiredProgress ()
 	{
 		\auth()->user()->update([
-			'weekly_progress' => \request('weekly_progress')
+			'weekly_progress' => \request('weekly_progress'),
+			'diet_type' => \request('diet_type'),
 		]);
 		return redirect()->route('recommended_meal');
 	}

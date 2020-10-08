@@ -70,6 +70,18 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label>What is your preferred diet?<sup class="text-danger">*</sup></label>
+									<select class="form-control" name="diet_type" id="activity_lavel" required>
+										<option value="">Choose</option>
+										<option value="regular">Regular</option>
+										<option value="ketogenic">Ketogenic</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<button type="submit" id="register_btn" class="btn btn-info  float-right rounded btn-md">Next
 								<i class="fa fa-chevron-right ml-2"></i>
