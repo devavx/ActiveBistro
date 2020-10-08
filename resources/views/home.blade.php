@@ -85,7 +85,26 @@
 								<p class="text-color">-</p>
 							@endif
 						</div>
-
+						<div class="col-lg-6 col-sm-6 col-12">
+							<label>Desired Weekly Progress</label>
+							@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
+								@if(auth()->user()->weekly_progress>0)
+									<p class="text-color">Gain {{abs(auth()->user()->weekly_progress)}} KG per week</p>
+								@elseif(auth()->user()->weekly_progress<0)
+									<p class="text-color">Lose {{abs(auth()->user()->weekly_progress)}} KG per week</p>
+								@else
+									<p class="text-color">Maintain weight</p>
+								@endif
+							@else
+								@if(auth()->user()->weekly_progress>0)
+									<p class="text-color">Gain {{abs(auth()->user()->weekly_progress)}} LB per week</p>
+								@elseif(auth()->user()->weekly_progress<0)
+									<p class="text-color">Lose {{abs(auth()->user()->weekly_progress)}} LB per week</p>
+								@else
+									<p class="text-color">Maintain weight</p>
+								@endif
+							@endif
+						</div>
 
 						<div class="col-lg-6 col-sm-6 col-12">
 							<h6 class="text-color font-weight-bold">Recommended</h6>
