@@ -156,6 +156,8 @@
 			target: 0
 		}
 		$(document).ready(function () {
+			$('div.toggle').addClass('w-100').addClass('rounded-0');
+
 			$('#msform').validate({ // initialize the plugin
 				rules: {
 					user_height: {
