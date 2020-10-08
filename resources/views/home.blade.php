@@ -283,7 +283,7 @@
 				},
 				messages: {
 					confirm_password: {
-						equalTo: "Password did not matched !",
+						equalTo: "Passwords do not match!",
 					}
 				}
 			});
