@@ -87,7 +87,7 @@
 						</div>
 						<div class="col-lg-6 col-sm-6 col-12">
 							<label>Activity Level</label>
-							<p class="text-color">{{ \App\Core\Enums\Common\ActivityLevel::getKey(auth()->user()->activity_lavel) }}</p>
+							<p class="text-color">{{ auth()->user()->activity_lavel }}</p>
 						</div>
 						<div class="col-lg-6 col-sm-6 col-12">
 							<label>Preferred Diet Type</label>
