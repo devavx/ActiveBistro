@@ -64,19 +64,19 @@
 									<br>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose" disabled>
-										<label class="custom-control-label" for="loose">Lose Weight</label>
+										<input type="radio" class="custom-control-input weight_goal" id="loose" name="weight_goal" value="lose">
+										<label class="custom-control-label" for="loosexyz">Lose Weight</label>
 									</div>
 
 									<!-- Default inline 2-->
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain" disabled>
-										<label class="custom-control-label" for="gain">Gain Weight</label>
+										<input type="radio" class="custom-control-input" id="gain" name="weight_goal" value="gain">
+										<label class="custom-control-label" for="gainxyz">Gain Weight</label>
 									</div>
 
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain" disabled>
-										<label class="custom-control-label" for="maintain">Maintain weight</label>
+										<input type="radio" class="custom-control-input" id="maintain" name="weight_goal" value="maintain">
+										<label class="custom-control-label" for="maintainxyz">Maintain weight</label>
 									</div>
 								</div>
 							</div>
