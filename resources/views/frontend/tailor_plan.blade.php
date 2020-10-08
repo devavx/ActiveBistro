@@ -36,7 +36,7 @@
 
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group sliderbtncheck">
-									<input type="checkbox" checked data-toggle="toggle" data-on="Metric (kg/cm)" data-off="Imperial (lb)" data-onstyle="info" data-offstyle="primary">
+									<input type="checkbox" checked data-toggle="toggle" data-on="Metric (kg/cm)" data-off="Imperial (lb)" data-onstyle="info" data-offstyle="primary" name="unit_system" value="metric">
 									<!-- <br>
 									<div class="custom-control custom-radio custom-control-inline">
 										<input type="radio" class="custom-control-input" id="metric" value="metric" name="weight_total" checked>
