@@ -131,7 +131,7 @@
 										</div>
 										<div class="col-md-4 col-xs-6"><strong>Target Weight </strong>
 											<br>
-											<p class="text-muted">{{ $userRecord->user_targert ?? '-' }}</p>
+											<p class="text-muted">{{ $userRecord->user_targert_weight ?? '-' }}</p>
 										</div>
 										<div class="col-md-4 col-xs-6"><strong>Date of Birth </strong>
 											<br>
