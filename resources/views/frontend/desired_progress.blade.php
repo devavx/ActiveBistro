@@ -30,7 +30,7 @@
 							<div class="col-12">
 								<div class="form-group">
 									<label>What is your desired weekly progress?<sup class="text-danger">*</sup></label>
-									<select class="form-control" name="weekly_progress" id="activity_lavel" required onchange="updateDuration(Math.abs(this.value),{{abs(auth()->user()->user_weight-auth()->user())->user_targert_weight}});">
+									<select class="form-control" name="weekly_progress" id="activity_lavel" required onchange="updateDuration(Math.abs(this.value),{{abs(auth()->user()->user_weight-auth()->user()->user_targert_weight)}});">
 										<option value="">Choose</option>
 										@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
 											@switch(auth()->user()->weight_goal)
