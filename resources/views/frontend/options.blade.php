@@ -189,7 +189,83 @@
 						</div>
 
 						<button class="btn btn-info float-right rounded btn-md">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+							<i class="fa fa-chevron-right ml-2"></i>
+						</button>
+					</fieldset>
+
+					<fieldset class="paddingrl" id="allergiesRadio6">
+						<div class="row">
+							<div class="col-12">
+								<div class="form-group">
+									<label>What is your desired progress per week?</label>
+									<br>
+									<div class="row switch-field">
+										@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
+											<div class="col-12">
+												<input type="radio" id="radio-11" value="0.5" name="weekly_progress"/>
+												<label for="radio-11">Gain 0.5 KG per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-12" value="0.2" name="weekly_progress"/>
+												<label for="radio-12">Gain 0.2 KG per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-13" value="0" name="weekly_progress"/>
+												<label for="radio-13">Maintain weight</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-14" value="-0.2" name="weekly_progress"/>
+												<label for="radio-14">Lose 0.2 KG per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-15" value="-0.5" name="weekly_progress"/>
+												<label for="radio-15">Lose 0.5 KG per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-16" value="-0.8" name="weekly_progress"/>
+												<label for="radio-16">Lose 0.8 KG per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-17" value="-1" name="weekly_progress"/>
+												<label for="radio-17">Lose 1 KG per week</label>
+											</div>
+										@else
+											<div class="col-12">
+												<input type="radio" id="radio-11" value="1" name="weekly_progress"/>
+												<label for="radio-11">Gain 1 LB per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-12" value="0.5" name="weekly_progress"/>
+												<label for="radio-12">Gain 0.5 LB per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-13" value="0" name="weekly_progress"/>
+												<label for="radio-13">Maintain weight</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-14" value="-0.5" name="weekly_progress"/>
+												<label for="radio-14">Lose 0.5 LB per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-15" value="-1" name="weekly_progress"/>
+												<label for="radio-15">Lose 1 LB per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-16" value="-1.5" name="weekly_progress"/>
+												<label for="radio-16">Lose 1.5 LB per week</label>
+											</div>
+											<div class="col-12">
+												<input type="radio" id="radio-17" value="-2" name="weekly_progress"/>
+												<label for="radio-17">Lose -2 LB per week</label>
+											</div>
+										@endif
+									</div>
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-info float-right rounded btn-md">Next
+							<i class="fa fa-chevron-right ml-2"></i>
+						</button>
 					</fieldset>
 				</form>
 			</div>
