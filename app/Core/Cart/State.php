@@ -112,7 +112,7 @@ final class State
 			$items = $this->cards->$day;
 			if ($this->getMealsPerDay() > count($items)) {
 				if (!empty($meal->type)) {
-					if ($meal->type == MealTypes::BreakFast && $this->wantBreakfast()) {
+					if ($meal->type == MealTypes::Breakfast && $this->wantBreakfast()) {
 						Arrays::push($this->cards->$day, $meal);
 					} elseif ($meal->type == MealTypes::Snacks && $this->wantSnacks()) {
 						Arrays::push($this->cards->$day, $meal);
