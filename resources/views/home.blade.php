@@ -3,6 +3,7 @@
 @section('css')
 	<link rel="stylesheet" href="{{ asset('css/Lobibox.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/loader_spin.css') }}">
+	<link href="{{ asset('assets/node_modules/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
 	<style type="text/css">
         .error {
             color: red;
@@ -128,7 +129,7 @@
 						@csrf
 						<div class="form-group">
 							<label>Enter Current password</label>
-							<input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password...">
+							<input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password..." minlength="8" maxlength="64">
 						</div>
 
 						<div class="form-group">
@@ -164,50 +165,49 @@
 						@csrf
 						<div class="form-group">
 							<label>First Name</label>
-							<input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="first_name" value="{{ Auth::user()->first_name }}" required autocomplete="first_name" autofocus>
+							<input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="first_name" value="{{ Auth::user()->first_name }}" required autocomplete="first_name" autofocus minlength="2" maxlength="25">
 						</div>
 						<div class="form-group">
 							<label>Last Name</label>
-							<input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="last_name" value="{{ Auth::user()->last_name }}" required autocomplete="last_name">
+							<input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="last_name" value="{{ Auth::user()->last_name }}" required autocomplete="last_name" minlength="2" maxlength="25">
 						</div>
 						<div class="form-group">
 							<label>Email Address</label>
-							<input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Auth::user()->email }}" required autocomplete="email" readonly>
+							<input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Auth::user()->email }}" required autocomplete="email" readonly maxlength="100">
 						</div>
 
 						<div class="form-group">
 							<label>Phone</label>
-							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}">
+							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="8" maxlength="16">
 						</div>
 
 						<div class="form-group">
 							<label>Address</label>
-							<textarea class="form-control" rows="3" name="address" id="address" placeholder="Enter you address...">{{ Auth::user()->address }}</textarea>
+							<textarea class="form-control" rows="3" name="address" id="address" placeholder="Enter you address..." minlength="2" maxlength="255">{{ Auth::user()->address }}</textarea>
 						</div>
 
 						<div class="form-group">
 							<label>Shipping Address</label>
-							<textarea class="form-control" rows="3" name="about" id="about" placeholder="Enter you Shipping address...">{{ Auth::user()->about }}</textarea>
+							<textarea class="form-control" rows="3" name="about" id="about" placeholder="Enter you Shipping address..." minlength="2" maxlength="255">{{ Auth::user()->about }}</textarea>
 						</div>
 
 						<div class="form-group">
 							<label>Height</label>
-							<input type="text" class="form-control" name="user_height" id="user_height" value="{{ Auth::user()->user_height }}">
+							<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_height" id="user_height" value="{{ Auth::user()->user_height }}" required>
 						</div>
 
 						<div class="form-group">
 							<label>Weight</label>
-							<input type="text" class="form-control" name="user_weight" id="user_weight" value="{{ Auth::user()->user_weight }}">
+							<input type="number" min="1.0" max="350.0" step="1.0" class="form-control" name="user_weight" id="user_weight" value="{{ Auth::user()->user_weight }}" required>
 						</div>
 						<div class="form-group">
 							<label>Target Weight</label>
-							<input type="text" class="form-control" name="user_targert_weight" id="user_targert_weight" value="{{ Auth::user()->user_targert_weight }}">
+							<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_targert_weight" id="user_targert_weight" value="{{ Auth::user()->user_targert_weight }}" required>
 						</div>
 						<div class="form-group">
 							<label>Profile Image</label>
-							<input type="file" class="form-control" name="profile_image" id="profile_image" title="Change Profile Image">
+							<input type="file" name="profile_image" id="profile_image" title="Choose..." class="form-control form-control-line" accept=".jpg, .jpeg, .png" data-default-file="{{auth()->user()->profile_image}}" data-allowed-file-extensions="png jpg jpeg" data-max-file-size="1M">
 						</div>
-
 						<div class="form-group">
 							<button type="submit" class="btn btn-info">Submit <i class="fa fa-chevron-right ml-2"></i>
 							</button>
@@ -224,9 +224,15 @@
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
-
+	<script src="{{ asset('assets/node_modules/dropify/dist/js/dropify.min.js') }}"></script>
 	<script>
 		$(document).ready(function () {
+			$('#profile_image').dropify({
+				messages: {
+					default: "Click to choose..."
+				}
+			});
+
 			$('#msform').validate({ // initialize the plugin
 				rules: {
 					user_height: {
