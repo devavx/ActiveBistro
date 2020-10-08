@@ -90,7 +90,7 @@
 
 		function updateDuration(value, difference) {
 			if (value != 0) {
-				const weeks = value / difference;
+				const weeks = difference / value;
 				$('#duration').html(`Will take you approximately ${weeks} for goal to be reached.`);
 			} else {
 				$('#duration').html("");
