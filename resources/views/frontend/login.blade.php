@@ -33,7 +33,8 @@
 								<strong>{{ $message }}</strong>
 							</span>
 							@enderror
-							<p class="text-right"><a href="#" class="text-color">Forgot Password</a></p>
+							<p class="text-right">
+								<a href="{{route('password.request')}}" class="text-color">Forgot Password</a></p>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-6">
@@ -54,7 +55,7 @@
 
 						<div class="form-group">
 							<p>Don't have an account?
-								<a href="{{ url('signup') }}" class="text-color">Create Account</a></p>
+								<a href="{{ url('sign-up') }}" class="text-color">Create Account</a></p>
 						</div>
 					</form>
 				</div>
