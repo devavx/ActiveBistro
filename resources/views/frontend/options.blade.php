@@ -256,7 +256,7 @@
 											</div>
 											<div class="col-12">
 												<input type="radio" id="radio-17" value="-2" name="weekly_progress"/>
-												<label for="radio-17">Lose -2 LB per week</label>
+												<label for="radio-17">Lose 2 LB per week</label>
 											</div>
 										@endif
 									</div>
