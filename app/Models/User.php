@@ -175,17 +175,17 @@ class User extends Authenticatable
 		}
 	}
 
-	public function weeklyProgress (): int
+	public function weeklyProgress (): float
 	{
-		return $this->weekly_progress ?? 0;
+		return $this->weekly_progress ?? 0.0;
 	}
 
 	public function intakeAdditive (): int
 	{
 		if ($this->unit_system == UnitSystem::Imperial) {
-			return (($this->weeklyProgress() * 3500) / 7.0);
+			return (($this->weeklyProgress() * 3500.0) / 7.0);
 		} else {
-			return ((($this->weeklyProgress() / 0.4535) * 3500) / 7.0);
+			return ((($this->weeklyProgress() / 0.45359237) * 3500.0) / 7.0);
 		}
 	}
 
