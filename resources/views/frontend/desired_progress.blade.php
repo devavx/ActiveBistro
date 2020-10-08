@@ -33,21 +33,37 @@
 									<select class="form-control" name="weekly_progress" id="activity_lavel" required>
 										<option value="">Choose</option>
 										@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
-											<option value="0.5">Gain 0.5 KG per week</option>
-											<option value="0.2">Gain 0.2 KG per week</option>
-											<option value="0">Maintain weight</option>
-											<option value="-0.2">Lose 0.2 KG per week</option>
-											<option value="-0.5">Lose 0.5 KG per week</option>
-											<option value="-0.8">Lose 0.8 KG per week</option>
-											<option value="-1">Lose 1 KG per week</option>
+											@switch(auth()->user()->weight_goal)
+												@case(\App\Core\Enums\Common\WeightGoal::Gain)
+												<option value="0.5">Gain 0.5 KG per week</option>
+												<option value="0.2">Gain 0.2 KG per week</option>
+												@break
+												@case(\App\Core\Enums\Common\WeightGoal::Maintain)
+												<option value="0">Maintain weight</option>
+												@break
+												@case(\App\Core\Enums\Common\WeightGoal::Lose)
+												<option value="-0.2">Lose 0.2 KG per week</option>
+												<option value="-0.5">Lose 0.5 KG per week</option>
+												<option value="-0.8">Lose 0.8 KG per week</option>
+												<option value="-1">Lose 1 KG per week</option>
+												@break
+											@endswitch
 										@else
-											<option value="1">Gain 1 LB per week</option>
-											<option value="0.5">Gain 0.5 LB per week</option>
-											<option value="0">Maintain weight</option>
-											<option value="-0.5">Lose 0.5 LB per week</option>
-											<option value="-1">Lose 1 LB per week</option>
-											<option value="-1.5">Lose 1.5 LB per week</option>
-											<option value="-2">Lose 2 LB per week</option>
+											@switch(auth()->user()->weight_goal)
+												@case(\App\Core\Enums\Common\WeightGoal::Gain)
+												<option value="1">Gain 1 LB per week</option>
+												<option value="0.5">Gain 0.5 LB per week</option>
+												@break
+												@case(\App\Core\Enums\Common\WeightGoal::Maintain)
+												<option value="0">Maintain weight</option>
+												@break
+												@case(\App\Core\Enums\Common\WeightGoal::Lose)
+												<option value="-0.5">Lose 0.5 LB per week</option>
+												<option value="-1">Lose 1 LB per week</option>
+												<option value="-1.5">Lose 1.5 LB per week</option>
+												<option value="-2">Lose 2 LB per week</option>
+												@break
+											@endswitch
 										@endif
 									</select>
 								</div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Core\Enums\Common\ActivityLevel;
 use App\Core\Enums\Common\Directories;
 use App\Core\Enums\Common\UnitSystem;
+use App\Core\Enums\Common\WeightGoal;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Time;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -186,5 +187,10 @@ class User extends Authenticatable
 		} else {
 			return ((($this->weeklyProgress() / 0.4535) * 3500) / 7.0);
 		}
+	}
+
+	public function weightGoal (): string
+	{
+		return !empty($this->weight_goal) ? $this->weight_goal : WeightGoal::Maintain;
 	}
 }
