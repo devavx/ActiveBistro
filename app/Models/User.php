@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Enums\Common\ActivityLevel;
 use App\Core\Enums\Common\Directories;
+use App\Core\Enums\Common\UnitSystem;
 use App\Core\Facades\Uploads;
 use App\Core\Primitives\Time;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,7 +21,7 @@ class User extends Authenticatable
 	use SoftDeletes;
 
 	protected $fillable = [
-		'name', 'first_name', 'last_name', 'dob', 'gender', 'phone', 'gender_info', 'role_id', 'email', 'password', 'click_to_verify', 'about', 'user_targert_weight', 'user_weight', 'user_height', 'address', 'profile_image'
+		'name', 'first_name', 'last_name', 'dob', 'gender', 'phone', 'gender_info', 'role_id', 'email', 'password', 'click_to_verify', 'about', 'user_targert_weight', 'user_weight', 'user_height', 'address', 'profile_image', 'weekly_progress'
 	];
 
 	protected $hidden = [
@@ -120,14 +121,18 @@ class User extends Authenticatable
 	public function calories (bool $round = true): float
 	{
 		$level = empty($this->activity_lavel) ? intval($this->activity_lavel) : ActivityLevel::Sedentary;
-		if (!isset($this->activityLevel[$level]))
+		if (!isset($this->activityLevel[$level])) {
 			$multiplier = $this->activityLevel[ActivityLevel::None];
-		else
+		} else {
 			$multiplier = $this->activityLevel[$level];
-		if (!$round)
-			return $this->metabolicRate() * $multiplier;
-		else
-			return round($this->metabolicRate() * $multiplier, 0);
+		}
+		$calories = $this->metabolicRate() * $multiplier;
+		$calories += $this->intakeAdditive();
+		if ($round) {
+			return round($calories, 0);
+		} else {
+			return $calories;
+		}
 	}
 
 	public function proteins (): float
@@ -166,6 +171,20 @@ class User extends Authenticatable
 
 			default:
 				return 2;
+		}
+	}
+
+	public function weeklyProgress (): int
+	{
+		return $this->weekly_progress ?? 0;
+	}
+
+	public function intakeAdditive (): int
+	{
+		if ($this->unit_system == UnitSystem::Imperial) {
+			return (($this->weeklyProgress() * 3500) / 7.0);
+		} else {
+			return ((($this->weeklyProgress() / 0.4535) * 3500) / 7.0);
 		}
 	}
 }

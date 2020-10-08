@@ -6,7 +6,6 @@ use App\Core\Cart\Options;
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
-use App\Http\Requests\TailorPlanRule;
 use App\Models\BottomSection;
 use App\Models\Cart;
 use App\Models\Category;
@@ -56,6 +55,7 @@ class FrontendController extends Controller
 	{
 		$userData = Auth::user();
 		$userData->weight_total = $request->weight_total;
+		$userData->unit_system = $request->weight_total;
 		if ($request->get('weight_total', 'metric') == 'metric') {
 			$userData->user_height = $request->user_height;
 			$userData->user_weight = $request->user_weight;
