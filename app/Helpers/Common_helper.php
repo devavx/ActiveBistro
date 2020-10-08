@@ -120,6 +120,8 @@ function dates (): array
 	$dates = [];
 	$nextWednesday = strtotime('next wednesday');
 	$nextSunday = strtotime('next sunday');
+	$threeDays = Time::toSeconds(3, Time::Days);
+	$fourDays = Time::toSeconds(4, Time::Days);
 	// We have an upcoming Sunday closer than Wednesday.
 	if ($nextSunday < $nextWednesday) {
 		$current = $nextSunday;
@@ -127,7 +129,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $current += (86400 * 4))
+				'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
 			];
 		}
 	} else {
@@ -136,7 +138,7 @@ function dates (): array
 			$dates[] = [
 				'day' => date('D', $current),
 				'date' => date('d', $current),
-				'month' => date('M', $current += (86400 * 4))
+				'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
 			];
 		}
 	}
