@@ -13,21 +13,31 @@
 					<div class="login-form shadow p-5 bg-white">
 						<form method="POST" action="{{ route('password.email') }}">
 							@csrf
-							<h4 class="font-weight-bold text-color">Reset Your Password</h4>
-							<div class="form-group">
-								<label>Please enter the email associated with your account</label>
-								<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-								@error('email')
-								<span class="invalid-feedback" role="alert">
+							@if (session('status'))
+								<h4 class="font-weight-bold text-color">Reset Your Password</h4>
+								<div class="form-group">
+									<label>{{session('status')}}</label>
+								</div>
+								<div class="form-group">
+									<a class="btn btn-info btn-link m-0" href="{{route('index')}}">Click here to go to the homepage</a>
+								</div>
+							@else
+								<h4 class="font-weight-bold text-color">Reset Your Password</h4>
+								<div class="form-group">
+									<label>Please enter the email associated with your account</label>
+									<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+									@error('email')
+									<span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-								@enderror
-							</div>
-							<div class="form-group">
-								<button class="btn btn-info m-0">Submit <i class="fa fa-chevron-right ml-2"></i>
-								</button>
-							</div>
+									@enderror
+								</div>
+								<div class="form-group">
+									<button class="btn btn-info m-0">Submit <i class="fa fa-chevron-right ml-2"></i>
+									</button>
+								</div>
 						</form>
+						@endif
 					</div>
 				</div>
 			</div>

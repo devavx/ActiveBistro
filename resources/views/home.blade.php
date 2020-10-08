@@ -160,12 +160,12 @@
 
 						<div class="form-group">
 							<label>Enter new password</label>
-							<input type="password" class="form-control" name="new_password" id="new_password" placeholder="New Password...">
+							<input type="password" class="form-control" name="new_password" id="new_password" placeholder="New Password..." minlength="8" maxlength="64">
 						</div>
 
 						<div class="form-group">
 							<label>Confirm password</label>
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password...">
+							<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password..." minlength="8" maxlength="64">
 						</div>
 
 						<div class="form-group mb-0">
