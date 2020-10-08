@@ -121,7 +121,7 @@ class User extends Authenticatable
 
 	public function calories (bool $round = true): float
 	{
-		$level = empty($this->activity_lavel) ? intval($this->activity_lavel) : ActivityLevel::Sedentary;
+		$level = !empty($this->activity_lavel) ? intval($this->activity_lavel) : ActivityLevel::Sedentary;
 		if (!isset($this->activityLevel[$level])) {
 			$multiplier = $this->activityLevel[ActivityLevel::None];
 		} else {
