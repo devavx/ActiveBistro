@@ -412,10 +412,10 @@ final class State
 			'total' => $this->total()
 		];
 		if ($this->coupon() != null) {
-			$payload['coupon'] = $this->coupon()->code;
+			$payload['coupon_code'] = $this->coupon()->code;
 			$payload['coupon_id'] = $this->coupon()->getKey();
 		} else {
-			$payload['coupon'] = null;
+			$payload['coupon_code'] = null;
 			$payload['coupon_id'] = null;
 		}
 		$this->cart->update($payload);
