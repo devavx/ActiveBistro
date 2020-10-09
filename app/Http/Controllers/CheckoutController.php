@@ -76,14 +76,14 @@ class CheckoutController extends Controller
 			} catch (InvalidCouponException $e) {
 				return response()->json([
 					'success' => 0,
-					'message' => 'This coupon is either invalid or is expired!',
+					'message' => 'This coupon is either invalid or is expired! exc',
 					'data' => null
 				]);
 			}
 		} else {
 			return response()->json([
 				'success' => 0,
-				'message' => 'This coupon is either invalid or is expired!',
+				'message' => 'This coupon is either invalid or is expired! els',
 				'data' => null
 			]);
 		}
