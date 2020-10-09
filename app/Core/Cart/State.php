@@ -175,6 +175,7 @@ final class State
 
 	protected function loadSnapshot (): void
 	{
+		$this->loadCouponIfExists();
 		$this->loadOptions();
 		$this->cards = $this->cart()->items;
 		$this->loadStats();
@@ -185,8 +186,10 @@ final class State
 
 	protected function loadCouponIfExists (): bool
 	{
-		$coupon = Coupon::query()->where('code', $this->cart->coupon)->where('valid_from', '<=', date('Y-m-d H:i:s'))->where('valid_until', '>', date('Y-m-d H:i:s'))->where('active', true)->first();
-		$this->coupon = $coupon;
+		$coupon = $this->cart()->coupon;
+		if ($coupon != null && $coupon->isValid()) {
+			$this->coupon = $coupon;
+		}
 		return $coupon == null;
 	}
 
@@ -409,15 +412,11 @@ final class State
 			'total' => $this->total()
 		];
 		if ($this->coupon() != null) {
-			$payload = $payload + [
-					'coupon' => $this->coupon()->code,
-					'coupon_id' => $this->coupon()->getKey()
-				];
+			$payload['coupon'] = $this->coupon()->code;
+			$payload['coupon_id'] = $this->coupon()->getKey();
 		} else {
-			$payload = $payload + [
-					'coupon' => null,
-					'coupon_id' => null
-				];
+			$payload['coupon'] = null;
+			$payload['coupon_id'] = null;
 		}
 		$this->cart->update($payload);
 	}
