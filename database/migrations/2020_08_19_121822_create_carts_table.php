@@ -31,6 +31,7 @@ class CreateCartsTable extends Migration
 			$table->json('items');
 			$table->string('coupon', 256)->nullable();
 			$table->unsignedBigInteger('coupon_id')->nullable();
+			$table->double('discount', 8, 2)->default(0.0);
 			$table->double('subTotal', 8, 2)->default(0.0);
 			$table->double('total', 8, 2)->default(0.0);
 			$table->timestamps();
