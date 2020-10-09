@@ -208,6 +208,6 @@ class User extends Authenticatable
 
 	public function canAvailSpecialDiscount (): bool
 	{
-		return $this->orders()->count < 1 && Str::endsWith($this->email, ['ac', 'nhs']);
+		return $this->orders()->count('id') < 1 && Str::endsWith($this->email, ['ac', 'nhs']);
 	}
 }
