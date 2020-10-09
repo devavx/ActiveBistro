@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Cart extends Model
 {
 	protected $fillable = [
-		'user_id', 'items', 'coupon', 'calories', 'fats', 'proteins', 'carbohydrates', 'wantBreakfast', 'wantSnacks', 'weekendMeals', 'snackCount', 'mealsPerDay', 'dietaryRequirement', 'allergies', 'coupon_id', 'discount', 'subTotal', 'total'
+		'user_id', 'items', 'coupon_code', 'calories', 'fats', 'proteins', 'carbohydrates', 'wantBreakfast', 'wantSnacks', 'weekendMeals', 'snackCount', 'mealsPerDay', 'dietaryRequirement', 'allergies', 'coupon_id', 'discount', 'subTotal', 'total'
 	];
 	protected $hidden = [
 		'id', 'created_at', 'updated_at'
