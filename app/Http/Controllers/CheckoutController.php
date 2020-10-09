@@ -71,7 +71,7 @@ class CheckoutController extends Controller
 				return response()->json([
 					'success' => 1,
 					'message' => 'Your coupon code is valid and has been applied!',
-					'data' => null
+					'data' => view('frontend.coupon_frame')->with('coupon', $coupon)->toHtml()
 				]);
 			} catch (InvalidCouponException $e) {
 				return response()->json([

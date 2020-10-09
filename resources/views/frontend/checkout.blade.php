@@ -217,8 +217,8 @@
 						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
 						</p>
 
-						<p>Referred by a friend or got a coupon?
-							<a class="text-color" data-toggle="modal" data-target="#couponModal" href="javascript:void(0);"> Click here.</a>
+						<p>
+							@include('frontend.coupon_frame',['coupon'=>$state->coupon()])
 						</p>
 
 						<p class="text-center">
@@ -380,5 +380,13 @@
 				});
 			});
 		});
+
+		function makeCouponText() {
+
+		};
+
+		function removeCoupon() {
+
+		};
 	</script>
 @endsection
