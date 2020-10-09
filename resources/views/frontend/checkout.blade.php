@@ -388,7 +388,7 @@
 
 		function removeCoupon() {
 			setLoading(true, () => {
-				performDelete({
+				performDeleteWithData({
 					url: '/cart/coupon/',
 					success: (message, data) => {
 						notyf.success(message);

@@ -77,6 +77,33 @@
 		});
 	};
 
+	window.performDeleteWithData = (config) => {
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': '{{csrf_token()}}'
+			},
+			url: config.url,
+			type: 'DELETE',
+			success: (response) => {
+				if (response.success === 1) {
+					config.success(response.message, response.data);
+				} else {
+					config.failed(response.message);
+				}
+			},
+			beforeSend: (xhr, settings) => {
+				if (config.hasOwnProperty('before')) {
+					config.before();
+				}
+			},
+			complete: (xhr, status) => {
+				if (config.hasOwnProperty('complete')) {
+					config.complete();
+				}
+			}
+		});
+	};
+
 	window.performDeleteBulk = (config) => {
 		$.ajax({
 			headers: {
