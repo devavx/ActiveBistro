@@ -31,7 +31,7 @@
 								<div class="form-group">
 									<label for="meals_per_day">Meals per day (not including breakfast or snacks)</label>
 									<select class="form-control" name="meals_per_day" id="meals_per_day">
-										@for($i=1;$i<=6;$i++)
+										@for($i=2;$i<=6;$i++)
 											<option value="{{$i}}" @if(auth()->user()->recommendedMealsPerDay()==$i) selected @endif>{{$i}}</option>
 										@endfor
 									</select>
