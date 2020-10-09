@@ -22,8 +22,8 @@ class Coupon extends Model
 
 	public function isValid (): bool
 	{
-		$begin = strtotime($this->valid_from . '00:00:00');
-		$end = strtotime($this->valid_until . '00:00:00');
+		$begin = strtotime($this->valid_from);
+		$end = strtotime($this->valid_until);
 		$current = time();
 		return $current > $begin && $current <= $end;
 	}
