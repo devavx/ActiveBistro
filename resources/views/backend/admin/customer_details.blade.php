@@ -113,14 +113,6 @@
 											<br>
 											<p class="text-muted">{{ $userRecord->email ?? '-' }}</p>
 										</div>
-										<div class="col-md-4 col-xs-6"><strong>Address</strong>
-											<br>
-											<p class="text-muted">{{ $userRecord->address ?? '-' }}</p>
-										</div>
-										<div class="col-md-4 col-xs-6"><strong>Shipping address</strong>
-											<br>
-											<p class="text-muted">{{ $userRecord->about ?? '-' }}</p>
-										</div>
 										<div class="col-md-4 col-xs-6"><strong>Height</strong>
 											<br>
 											<p class="text-muted">{{ $userRecord->user_height ?? '-' }}</p>
@@ -168,18 +160,6 @@
 											<label class="col-md-12">Phone No</label>
 											<div class="col-md-12">
 												<input type="text" class="form-control form-control-line" name="phone" id="phone" value="{{ $userRecord->phone }}" minlength="8" maxlength="16" required>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-12">Shipping address (Max 255 characters)</label>
-											<div class="col-md-12">
-												<textarea rows="5" name="about" class="form-control form-control-line" minlength="2" maxlength="255">{{ $userRecord->about }}</textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="col-md-12">Address (Max 255 characters)</label>
-											<div class="col-md-12">
-												<textarea rows="5" name="address" class="form-control form-control-line" minlength="2" maxlength="255">{{ $userRecord->address }}</textarea>
 											</div>
 										</div>
 										<div class="form-group">

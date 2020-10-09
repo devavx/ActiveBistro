@@ -32,7 +32,6 @@
 	</h6>
 	<hr>
 @endif
-
 <p>
 	Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
 </p>

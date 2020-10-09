@@ -207,15 +207,6 @@
 							<label>Phone <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="8" maxlength="16">
 						</div>
-
-						<div class="form-group">
-							<label>Address <sup class="text-danger">*</sup></label>
-							<textarea class="form-control" rows="3" name="address" id="address" placeholder="Enter you address..." minlength="2" maxlength="255">{{ Auth::user()->address }}</textarea>
-						</div>
-						<div class="form-group">
-							<label>Shipping Address <sup class="text-danger">*</sup></label>
-							<textarea class="form-control" rows="3" name="about" id="about" placeholder="Enter you Shipping address..." minlength="2" maxlength="255">{{ Auth::user()->about }}</textarea>
-						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-6">
