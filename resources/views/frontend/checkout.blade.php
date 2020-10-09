@@ -9,6 +9,10 @@
         .error {
             color: red;
         }
+
+        p {
+            font-weight: normal !important;
+        }
 	</style>
 @endsection
 @section('content')

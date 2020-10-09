@@ -5,8 +5,7 @@
 <div class="form-group">
 	<div class="custom-control custom-radio">
 		<input type="radio" class="custom-control-input" id="monthly" name="payment_slab" value="monthly" checked>
-		<label class="custom-control-label" for="monthly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay monthly</span>
-			<br>Get <span class="text-color">10%</span> off when you go monthly.</label>
+		<label class="custom-control-label" for="monthly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay monthly</span></label>
 	</div>
 
 	<div class="custom-control custom-radio mt-3">
@@ -34,9 +33,11 @@
 	<hr>
 @endif
 
-<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
+<p>
+	Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
 </p>
-<p>Total after temporary discount(s) expire<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
+<p>
+	Total after temporary discount(s) expire<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
 </p>
 
 <p id="couponFrame">
@@ -51,4 +52,4 @@
 	<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
 	<label class="custom-control-label" for="agree">You have read and agree to our T&C's</label>
 </div>
-<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
+<button type="submit" class="btn btn-info btn-block ml-0 rounded mt-4">Place your order</button>

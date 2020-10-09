@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="{{ asset('css/Lobibox.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/loader_spin.css') }}">
 	<link href="{{ asset('assets/node_modules/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<style type="text/css">
         .error {
             color: red;
@@ -154,7 +155,7 @@
 					<form id="change_password_form">
 						@csrf
 						<div class="form-group">
-							<label>Enter Current password</label>
+							<label>Enter current password</label>
 							<input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password..." minlength="8" maxlength="64">
 						</div>
 
@@ -190,45 +191,78 @@
 					<form method="post" action="{{ route('update_user') }}" id="msform" enctype="multipart/form-data">
 						@csrf
 						<div class="form-group">
-							<label>First Name</label>
+							<label>First Name <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="first_name" value="{{ Auth::user()->first_name }}" required autocomplete="first_name" autofocus minlength="2" maxlength="25">
 						</div>
 						<div class="form-group">
-							<label>Last Name</label>
+							<label>Last Name <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="last_name" value="{{ Auth::user()->last_name }}" required autocomplete="last_name" minlength="2" maxlength="25">
 						</div>
 						<div class="form-group">
-							<label>Email Address</label>
+							<label>Email Address <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('email') is-invalid @enderror" value="{{ Auth::user()->email }}" required autocomplete="email" readonly maxlength="100">
 						</div>
 
 						<div class="form-group">
-							<label>Phone</label>
+							<label>Phone <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="8" maxlength="16">
 						</div>
 
 						<div class="form-group">
-							<label>Address</label>
+							<label>Address <sup class="text-danger">*</sup></label>
 							<textarea class="form-control" rows="3" name="address" id="address" placeholder="Enter you address..." minlength="2" maxlength="255">{{ Auth::user()->address }}</textarea>
 						</div>
-
 						<div class="form-group">
-							<label>Shipping Address</label>
+							<label>Shipping Address <sup class="text-danger">*</sup></label>
 							<textarea class="form-control" rows="3" name="about" id="about" placeholder="Enter you Shipping address..." minlength="2" maxlength="255">{{ Auth::user()->about }}</textarea>
 						</div>
-
 						<div class="form-group">
-							<label>Height</label>
-							<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_height" id="user_height" value="{{ Auth::user()->user_height }}" required>
+							<div class="row">
+								<div class="col-6">
+									<label>Height <sup class="text-danger">*</sup></label>
+									<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_height" id="user_height" value="{{ Auth::user()->user_height }}" required>
+								</div>
+								<div class="col-6">
+									<label>Unit System <sup class="text-danger">*</sup></label>
+									<div class="custom-control custom-switch">
+										<input type="hidden" name="unit_system" value="metric">
+										<input type="checkbox" class="custom-control-input" id="unit_system_switch" value="metric" onchange="handleSwitchChange();">
+										<label class="custom-control-label" for="unit_system_switch" id="unit_system_switch_label">Metric</label>
+									</div>
+								</div>
+							</div>
 						</div>
-
 						<div class="form-group">
-							<label>Weight</label>
-							<input type="number" min="1.0" max="350.0" step="1.0" class="form-control" name="user_weight" id="user_weight" value="{{ Auth::user()->user_weight }}" required>
+							<div class="row">
+								<div class="col-6">
+									<label>Weight <sup class="text-danger">*</sup></label>
+									<input type="number" min="1.0" max="350.0" step="1.0" class="form-control" name="user_weight" id="user_weight" value="{{ Auth::user()->user_weight }}" required>
+								</div>
+								<div class="col-6">
+									<label>Target Weight <sup class="text-danger">*</sup></label>
+									<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_targert_weight" id="user_targert_weight" value="{{ Auth::user()->user_targert_weight }}" required>
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
-							<label>Target Weight</label>
-							<input type="number" min="1.0" max="400.0" step="1.0" class="form-control" name="user_targert_weight" id="user_targert_weight" value="{{ Auth::user()->user_targert_weight }}" required>
+							<label>Activity Level <sup class="text-danger">*</sup></label>
+							<select class="form-control" name="activity_lavel" id="activity_lavel" required>
+								<option value="" selected disabled>Select</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Sedentary}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Sedentary) selected @endif>1 - Sedentary</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Light}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Light) selected @endif>2 - Lightly Active</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Moderate}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Moderate) selected @endif>3 - Moderately Active</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Very}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Very) selected @endif>4 - Very Active</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Extra}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Extra) selected @endif>5 - Extra Active</option>
+								<option value="{{\App\Core\Enums\Common\ActivityLevel::Athlete}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\ActivityLevel::Athlete) selected @endif>6 - Professional Athlete</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Preferred Diet Type <sup class="text-danger">*</sup></label>
+							<select class="form-control" name="diet_type" required>
+								<option value="" selected disabled>Select</option>
+								<option value="{{\App\Core\Enums\Common\DietType::Regular}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\DietType::Regular) selected @endif>Regular</option>
+								<option value="{{\App\Core\Enums\Common\DietType::Ketogenic}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\DietType::Ketogenic) selected @endif>Ketogenic</option>
+							</select>
 						</div>
 						<div class="form-group">
 							<label>Profile Image</label>
@@ -239,7 +273,6 @@
 							</button>
 						</div>
 					</form>
-
 				</div>
 			</div>
 		</div>
@@ -251,6 +284,7 @@
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('assets/node_modules/dropify/dist/js/dropify.min.js') }}"></script>
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('#profile_image').dropify({
@@ -326,5 +360,15 @@
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
+
+		function handleSwitchChange() {
+			if (event.currentTarget.checked) {
+				$('#unit_system_switch_label').html('Imperial');
+				$('input[name=unit_system]').val('imperial');
+			} else {
+				$('#unit_system_switch_label').html('Metric');
+				$('input[name=unit_system]').val('metric');
+			}
+		}
 	</script>
 @endsection

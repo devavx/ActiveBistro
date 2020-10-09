@@ -30,7 +30,7 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Height</label>
-									<input type="number" min="2.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
+									<input type="number" min="1.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
 								</div>
 							</div>
 
@@ -103,7 +103,7 @@
 										<option value="5">5 - Extra Active - Very Hard, Regular
 											Exercise/Training (Or physically demanding job)
 										</option>
-										<option value="professional_athlete">6 - Professional Athlete</option>
+										<option value="6">6 - Professional Athlete</option>
 									</select>
 								</div>
 							</div>

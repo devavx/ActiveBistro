@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Enums\Common\UnitSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,9 +22,24 @@ class UserProfileController extends Controller
 		$userData->address = $request->address;
 		$userData->about = $request->about;
 		$userData->phone = $request->phone;
-		$userData->user_height = $request->user_height;
-		$userData->user_weight = $request->user_weight;
-		$userData->user_targert_weight = $request->user_targert_weight;
+		if ($request->unit_system == UnitSystem::Metric) {
+			$userData->weight_total = UnitSystem::Metric;
+			$userData->unit_system = UnitSystem::Metric;
+		} else {
+			$userData->weight_total = UnitSystem::Imperial;
+			$userData->unit_system = UnitSystem::Imperial;
+		}
+		if ($request->unit_system == UnitSystem::Metric) {
+			$userData->user_height = $request->user_height;
+			$userData->user_weight = $request->user_weight;
+			$userData->user_targert_weight = $request->user_targert_weight;
+		} else {
+			$userData->user_height = $this->imperialToMetricLength($request->user_height);
+			$userData->user_weight = $this->imperialToMetricWeight($request->user_weight);
+			$userData->user_targert_weight = $this->imperialToMetricWeight($request->user_targert_weight);
+		}
+		$userData->diet_type = $request->diet_type;
+		$userData->activity_lavel = $request->activity_lavel;
 		$userData->save();
 		return back()->with('success', 'Details updated successfully!');
 	}
@@ -61,5 +77,15 @@ class UserProfileController extends Controller
 	public function getAllOrder ()
 	{
 		return view('frontend.my_order');
+	}
+
+	protected function imperialToMetricLength ($value)
+	{
+		return round($value * 30.48, 0);
+	}
+
+	protected function imperialToMetricWeight ($value)
+	{
+		return round($value / 2.20462, 2);
 	}
 }
