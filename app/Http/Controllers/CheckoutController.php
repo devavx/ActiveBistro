@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
 use App\Core\Enums\Common\DaysOfWeek;
+use App\Exceptions\InvalidCouponException;
 use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
 use App\Models\Address;
@@ -60,7 +61,32 @@ class CheckoutController extends Controller
 
 	public function validateCoupon (CouponRequest $request): JsonResponse
 	{
-
+		$coupon = $request->coupon();
+		if ($coupon != null) {
+			$state = new State(auth()->user());
+			try {
+				$state->setCoupon($coupon);
+				$state->recalculateStats();
+				$state->update();
+				return response()->json([
+					'success' => 1,
+					'message' => 'Your coupon code is valid and has been applied!',
+					'data' => null
+				]);
+			} catch (InvalidCouponException $e) {
+				return response()->json([
+					'success' => 0,
+					'message' => 'This coupon is either invalid or is expired!',
+					'data' => null
+				]);
+			}
+		} else {
+			return response()->json([
+				'success' => 0,
+				'message' => 'This coupon is either invalid or is expired!',
+				'data' => null
+			]);
+		}
 	}
 
 	public function store (StoreRequest $request): RedirectResponse

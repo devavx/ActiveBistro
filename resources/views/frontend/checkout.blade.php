@@ -243,20 +243,21 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Have a coupon?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				<form>
+				<form id="couponForm">
 					<div class="modal-body">
 						<div class="form-row">
-							<div class="col-md-6 mb-3">
-								<label for="coupon-code">Code</label>
-								<input type="text" class="form-control is-valid" id="coupon-code" required minlength="2" maxlength="50">
+							<div class="col-12">
+								<input type="text" class="form-control" id="coupon-code" required minlength="2" maxlength="50">
 								<div class="valid-feedback" id="validationMessage"></div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Apply</button>
+						<button type="submit" class="btn btn-block btn-info rounded waves-effect waves-light m-0">Apply</button>
 					</div>
 				</form>
 			</div>
@@ -351,32 +352,33 @@
 				duration: 600
 			});
 		}
-
-		validateCoupon = () => {
-			const code = $('#coupon_code').val();
-			setLoading(true, () => {
-				performGet({
-					url: '/cart/replace/' + day + '/' + slab + '/' + mealId + '/' + itemId,
-					success: (message, data) => {
-						notyf.success('Your changes have been successfully saved!');
-						reload();
-					},
-					failed: (message) => {
-
-					},
-					complete: () => {
-						setLoading(false);
-					}
-				});
-			});
-		}
-
-
 	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-
+			$('#couponForm').submit(function (event) {
+				event.preventDefault();
+				setLoading(true, () => {
+					performPut({
+						url: '/cart/coupon/',
+						data: JSON.stringify({
+							coupon: $('#coupon-code').val()
+						}),
+						success: (message, data) => {
+							notyf.success(message);
+						},
+						failed: (message) => {
+							notyf.error(message);
+						},
+						complete: () => {
+							setLoading(false);
+						},
+						before: () => {
+							$('#couponModal').modal('hide');
+						},
+					});
+				});
+			});
 		});
 	</script>
 @endsection

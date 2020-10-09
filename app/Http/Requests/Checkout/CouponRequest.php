@@ -14,7 +14,10 @@ class CouponRequest extends FormRequest
 		];
 	}
 
-	public function coupon (): ?Coupon
+	/**
+	 * @return Coupon|null
+	 */
+	public function coupon ()
 	{
 		if (request('coupon', null) == null) {
 			return null;

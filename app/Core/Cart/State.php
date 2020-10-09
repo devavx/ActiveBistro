@@ -7,6 +7,7 @@ use App\Core\Enums\Common\DietaryRequirement;
 use App\Core\Enums\Common\MealTypes;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
+use App\Exceptions\InvalidCouponException;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\MealPlan;
@@ -94,14 +95,22 @@ final class State
 					}
 				}
 				$plan->total = $plan->total * $plan->quantity;
-				$this->setTotal($this->total() + $plan->total);
+				$this->setSubTotal($this->subTotal() + $plan->total);
 			}
 		}
-		if ($this->discount() > 0) {
+		$this->setTotal($this->subTotal());
+		if ($this->discount() > 0 && $this->total() > 0) {
 			$total = $this->total();
 			$rebate = ($this->discount() / 100.0) * $total;
-			$this->setSubTotal($total);
 			$this->setTotal($total - $rebate);
+		}
+		if ($this->coupon() != null && $this->total() > 0) {
+			$coupon = $this->coupon();
+			if ($coupon->type == Coupon::Flat) {
+				$this->calculateFlatDiscount();
+			} else {
+				$this->calculatePercentDiscount();
+			}
 		}
 	}
 
@@ -189,12 +198,11 @@ final class State
 		]);
 	}
 
-	protected function loadCouponIfExists ()
+	protected function loadCouponIfExists (): bool
 	{
 		$coupon = Coupon::query()->where('code', $this->cart->coupon)->where('valid_from', '<=', date('Y-m-d H:i:s'))->where('valid_until', '>', date('Y-m-d H:i:s'))->where('active', true)->first();
-		if ($coupon != null) {
-
-		}
+		$this->coupon = $coupon;
+		return $coupon == null;
 	}
 
 	protected function createCartIfNotExists (User $user): bool
@@ -376,9 +384,16 @@ final class State
 			'stats' => $this->stats,
 			'cards' => $this->cards,
 		];
-		$this->cart->update([
-			'items' => $state
-		]);
+		if ($this->coupon() != null) {
+			$this->cart->update([
+				'items' => $state,
+				'coupon' => $this->coupon()->code
+			]);
+		} else {
+			$this->cart->update([
+				'items' => $state,
+			]);
+		}
 	}
 
 	public function increaseQuantity (string $day, string $mealPlanKey)
@@ -643,5 +658,41 @@ final class State
 			}
 		}
 		return false;
+	}
+
+	public function setCoupon (Coupon $coupon): void
+	{
+		if ($coupon->isValid())
+			$this->coupon = $coupon;
+		else
+			throw new InvalidCouponException();
+	}
+
+	public function coupon (): ?Coupon
+	{
+		return $this->coupon;
+	}
+
+	protected function calculateFlatDiscount ()
+	{
+		$coupon = $this->coupon();
+		$subTotal = $this->subTotal();
+		if ($coupon->discount > $subTotal) {
+			$this->setTotal(0.0);
+		} else {
+			$this->setTotal($subTotal - $coupon->discount);
+		}
+	}
+
+	protected function calculatePercentDiscount ()
+	{
+		$coupon = $this->coupon();
+		$subTotal = $this->subTotal();
+		$value = ($coupon->discount / 100.0) * $subTotal;
+		if ($value > $subTotal) {
+			$this->setTotal(0.0);
+		} else {
+			$this->setTotal($subTotal - $value);
+		}
 	}
 }
