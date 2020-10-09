@@ -170,32 +170,17 @@ final class State
 			$this->setSubTotal($total);
 			$this->setTotal($total - $rebate);
 		}
-		$state = [
-			'options' => $this->options,
-			'stats' => $this->stats,
-			'cards' => $this->cards,
-		];
-		$this->cart->update([
-			'items' => $state
-		]);
+		$this->update();
 	}
 
 	protected function loadSnapshot (): void
 	{
-		$state = $this->cart->items;
-		$this->options = $state->options ?? $this->createDefaultOptions();
-		$this->cards = $state->cards ?? $this->createBlankCards();
-		$this->stats = $state->stats ?? $this->createBlankStats();
+		$this->loadOptions();
+		$this->cards = $this->cart()->items;
+		$this->loadStats();
 		$this->resetStats();
 		$this->calculateStats();
-		$state = [
-			'options' => $this->options,
-			'stats' => $this->stats,
-			'cards' => $this->cards,
-		];
-		$this->cart->update([
-			'items' => $state
-		]);
+		$this->update();
 	}
 
 	protected function loadCouponIfExists (): bool
@@ -238,6 +223,19 @@ final class State
 		];
 	}
 
+	protected function loadStats (): void
+	{
+		$this->stats = (object)[
+			'carbohydrates' => $this->cart()->carbohydrates,
+			'fats' => $this->cart()->fats,
+			'proteins' => $this->cart()->proteins,
+			'calories' => $this->cart()->calories,
+			'discount' => $this->cart()->discount,
+			'total' => $this->cart()->total,
+			'subTotal' => $this->cart()->subTotal,
+		];
+	}
+
 	protected function createDefaultOptions (Options $options = null): void
 	{
 		if ($options == null) {
@@ -248,8 +246,22 @@ final class State
 			'weekends' => $options->getMealsAtWeekends(),
 			'breakfast' => $options->wantBreakfast(),
 			'snacks' => $options->wantSnacks(),
+			'snackCount' => $options->getSnacksPerDay(),
 			'mealsPerDay' => $options->getMealsPerDay(),
 			'dietary_requirement' => $options->getDietaryRequirement()
+		];
+	}
+
+	protected function loadOptions (): void
+	{
+		$this->options = (object)[
+			'allergies' => $this->cart()->allergies,
+			'weekends' => $this->cart()->weekendMeals,
+			'breakfast' => $this->cart()->wantBreakfast,
+			'snacks' => $this->cart()->wantSnacks,
+			'snackCount' => $this->cart()->snackCount,
+			'mealsPerDay' => $this->cart()->mealsPerDay,
+			'dietary_requirement' => $this->cart()->dietaryRequirement
 		];
 	}
 
@@ -274,7 +286,7 @@ final class State
 		return $this->options->allergies ?? [];
 	}
 
-	public function cards (): object
+	public function cards (): \stdClass
 	{
 		return $this->cards ?? new \stdClass();
 	}
@@ -379,21 +391,35 @@ final class State
 
 	public function update ()
 	{
-		$state = [
-			'options' => $this->options,
-			'stats' => $this->stats,
-			'cards' => $this->cards,
+		$payload = [
+			'calories' => $this->calories(),
+			'fats' => $this->fats(),
+			'proteins' => $this->proteins(),
+			'carbohydrates' => $this->carbohydrates(),
+			'wantBreakfast' => $this->wantBreakfast(),
+			'wantSnacks' => $this->wantSnacks(),
+			'weekendMeals' => $this->weekendMeals(),
+			'snackCount' => $this->snackCount(),
+			'mealsPerDay' => $this->getMealsPerDay(),
+			'dietaryRequirement' => $this->getDietaryRequirement(),
+			'allergies' => $this->allergies(),
+			'items' => $this->cards(),
+			'discount' => $this->discount(),
+			'subTotal' => $this->subTotal(),
+			'total' => $this->total()
 		];
 		if ($this->coupon() != null) {
-			$this->cart->update([
-				'items' => $state,
-				'coupon' => $this->coupon()->code
-			]);
+			$payload = $payload + [
+					'coupon' => $this->coupon()->code,
+					'coupon_id' => $this->coupon()->getKey()
+				];
 		} else {
-			$this->cart->update([
-				'items' => $state,
-			]);
+			$payload = $payload + [
+					'coupon' => null,
+					'coupon_id' => null
+				];
 		}
+		$this->cart->update($payload);
 	}
 
 	public function increaseQuantity (string $day, string $mealPlanKey)
@@ -592,6 +618,16 @@ final class State
 	public function wantSnacks (): bool
 	{
 		return $this->options->snacks ?? false;
+	}
+
+	public function weekendMeals (): bool
+	{
+		return $this->getMealsAtSunday() && $this->getMealsAtSaturday();
+	}
+
+	public function snackCount (): int
+	{
+		return $this->options->snackCount ?? 0;
 	}
 
 	public function getDietaryRequirement (): string

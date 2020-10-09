@@ -36,6 +36,11 @@ final class Options
 	 */
 	protected $dietaryRequirement;
 
+	/**
+	 * @var int
+	 */
+	protected $snacksPerDay;
+
 	public function __construct ()
 	{
 		$this->allergies = [];
@@ -151,6 +156,24 @@ final class Options
 	public function setDietaryRequirement (string $dietaryRequirement): Options
 	{
 		$this->dietaryRequirement = $dietaryRequirement;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSnacksPerDay (): int
+	{
+		return $this->snacksPerDay;
+	}
+
+	/**
+	 * @param int $snacksPerDay
+	 * @return Options
+	 */
+	public function setSnacksPerDay (int $snacksPerDay): Options
+	{
+		$this->snacksPerDay = $snacksPerDay;
 		return $this;
 	}
 }

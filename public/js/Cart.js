@@ -63,7 +63,7 @@ deleteMeal = (day, mealId) => {
 				url: '/cart/quantity/' + day + '/' + mealId + '/delete',
 				success: (message, data) => {
 					notyf.success(message);
-
+					fadeAndRerender(data);
 				},
 				failed: message => {
 

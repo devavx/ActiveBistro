@@ -32,6 +32,9 @@ class OrderNowController extends Controller
 		} else {
 			$options->setMealsAtWeekends((object)[DaysOfWeek::Saturday => false, DaysOfWeek::Sunday => false]);
 		}
+		$options->setWantBreakfast(request('wantBreakfast', 0));
+		$options->setWantSnacks(request('snacksPerDay', 0) > 0);
+		$options->setSnacksPerDay(request('snacksPerDay', 0));
 		$options->setMealsPerDay(request('meals_per_day', 2));
 		$options->setAllergies(request('allergies', []));
 		$options->setDietaryRequirement(request('dietary_requirement', DietaryRequirement::None));
