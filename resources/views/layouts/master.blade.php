@@ -139,7 +139,9 @@
 	</div>
 </nav>
 
-@yield('content')
+<div class="my-class">
+	@yield('content')
+</div>
 
 
 <div class="footer pt-5 pb-5 bg-color">

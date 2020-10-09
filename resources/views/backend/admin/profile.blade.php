@@ -29,27 +29,29 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                                 <li class="breadcrumb-item active">Profile</li>
-                            </ol> 
+                            </ol>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <!-- Row -->
                 <div class="row">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('assets/images/users/5.jpg')}} @endif" class="img-circle" width="150" />
+                                <center class="m-t-30">
+                                    <img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('assets/images/users/5.jpg')}} @endif" class="img-circle" width="150" height="150"/>
                                     <h4 class="card-title m-t-10">{{ Auth::user()->name }}</h4>
                                     <h6 class="card-subtitle">{{ Auth::user()->role->description }}</h6>
-                                   <!--  <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                                    </div> -->
+                                    <!--  <div class="row text-center justify-content-md-center">
+										 <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
+										 <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
+									 </div> -->
                                 </center>
                             </div>
                             <div>
-                                <hr> </div>
+                                <hr>
+                            </div>
                             <div class="card-body"> <small class="text-muted">Email address </small>
                                 <h6>{{ Auth::user()->email ?? 'admin@admin.com' }}</h6> <small class="text-muted p-t-30 db">Phone</small>
                                 <h6>{{ Auth::user()->phone ?? '+91 654 784' }}</h6> <small class="text-muted p-t-30 db">Address</small>
