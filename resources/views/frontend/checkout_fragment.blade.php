@@ -1,0 +1,54 @@
+<div class="form-group">
+	<p>This is a flexible subscription service. You can edit, pause or cancel your plan at any point in time after purchase.</p>
+</div>
+
+<div class="form-group">
+	<div class="custom-control custom-radio">
+		<input type="radio" class="custom-control-input" id="monthly" name="payment_slab" value="monthly" checked>
+		<label class="custom-control-label" for="monthly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay monthly</span>
+			<br>Get <span class="text-color">10%</span> off when you go monthly.</label>
+	</div>
+
+	<div class="custom-control custom-radio mt-3">
+		<input type="radio" class="custom-control-input" id="weekly" name="payment_slab" value="weekly">
+		<label class="custom-control-label" for="weekly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay weekly</span></label>
+	</div>
+</div>
+
+<hr>
+<h6 class="font-weight-bold text-color">Your weekly subscription:</h6>
+@if($state->wantBreakfast()&&$state->wantSnacks())
+	<p>{{$state->getMealsPerDay()}} meal(s), breakfast and {{$state->snackCount()}} snack(s) every week day.</p>
+@elseif($state->wantBreakfast())
+	<p>{{$state->getMealsPerDay()}} meal(s) & breakfast every week day.</p>
+@elseif($state->wantSnacks())
+	<p>{{$state->getMealsPerDay()}} meal(s) & {{$state->snackCount()}} snack(s) every week day.</p>
+@else
+	<p>{{$state->getMealsPerDay()}} meal(s) every week day.</p>
+@endif
+<hr>
+@if(auth()->user()->canAvailSpecialDiscount())
+	<h6>
+		25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; </span>
+	</h6>
+	<hr>
+@endif
+
+<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
+</p>
+<p>Total after temporary discount(s) expire<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
+</p>
+
+<p id="couponFrame">
+	@include('frontend.coupon_frame',['coupon'=>$state->coupon()])
+</p>
+
+<p class="text-center">
+	<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
+</p>
+
+<div class="custom-control custom-checkbox ">
+	<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
+	<label class="custom-control-label" for="agree">You have read and agree to our T&C's</label>
+</div>
+<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>

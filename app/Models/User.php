@@ -204,4 +204,10 @@ class User extends Authenticatable
 	{
 		return !empty($this->weight_goal) ? $this->weight_goal : WeightGoal::Maintain;
 	}
+
+	public function canAvailSpecialDiscount (): bool
+	{
+//		return $this->orders()->count < 1;
+		return false;
+	}
 }

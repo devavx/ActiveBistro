@@ -161,76 +161,9 @@
 
 					</fieldset>
 
-					<fieldset class="px-2">
-						<div class="form-group">
-							<p>This is a flexible subscription service. You can edit, pause or cancel your plan at any point in time after purchase.</p>
-						</div>
-
-						<div class="form-group">
-							<div class="custom-control custom-radio">
-								<input type="radio" class="custom-control-input" id="monthly" name="payment_slab" value="monthly" checked>
-								<label class="custom-control-label" for="monthly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay monthly</span>
-									<br>Get <span class="text-color">10%</span> off when you go monthly.</label>
-							</div>
-
-							<div class="custom-control custom-radio mt-3">
-								<input type="radio" class="custom-control-input" id="weekly" name="payment_slab" value="weekly">
-								<label class="custom-control-label" for="weekly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay weekly</span></label>
-							</div>
-						</div>
-
-						<hr>
-
-						<h6 class="font-weight-bold text-color">Your weekly subscription:</h6>
-						<p>{{$state->getMealsPerDay()}} meals & 1 snack every week day.</p>
-
-						<hr>
-
-						<h6>10% off your first two weeks promo
-							<span class="font-weight-bold text-color float-right">&pound; {{$rebates->weekRebate->calculated}}</span>
-						</h6>
-						<p>Week 1 discount<span class="float-right font-weight-bold">&pound; {{$rebates->firstWeekRebate->calculated}}</span>
-						</p>
-						<p>Week 2 discount<span class="float-right font-weight-bold">&pound; {{$rebates->secondWeekRebate->calculated}}</span>
-						</p>
-
-						<hr>
-						<h6>Delivery cost per week (First delivery 26th July)<span class="font-weight-bold text-color float-right">Free</span>
-						</h6>
-						<hr>
-						@if(isset($rebates->staffRebate))
-							<h6>
-								25% off as extra discount (Students/Staff)<span class="font-weight-bold text-color float-right">&pound; {{$rebates->staffRebate->calculated}}</span>
-							</h6>
-							<hr>
-						@endif
-						@if(isset($rebates->coupon))
-							<h6>
-								{{$rebates->coupon->coupon->discount}}% using coupon {{$rebates->coupon->coupon->code}}
-								<span class="font-weight-bold text-color float-right">&pound; {{$rebates->staffRebate->calculated}}</span>
-							</h6>
-							<hr>
-						@endif
-
-						<p>Total per week<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
-						</p>
-						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
-						</p>
-
-						<p id="couponFrame">
-							@include('frontend.coupon_frame',['coupon'=>$state->coupon()])
-						</p>
-
-						<p class="text-center">
-							<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
-						</p>
-
-						<div class="custom-control custom-checkbox ">
-							<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
-							<label class="custom-control-label" for="agree">You have read and agree to our T&C's</label>
-						</div>
+					<fieldset class="px-2" id="checkoutFrame">
+						@include('frontend.checkout_fragment',['state'=>$state])
 					</fieldset>
-					<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
 				</form>
 			</div>
 		</div>
@@ -364,7 +297,7 @@
 						}),
 						success: (message, data) => {
 							notyf.success(message);
-							makeCouponText(data);
+							reloadFrame(data);
 						},
 						failed: (message) => {
 							notyf.error(message);
@@ -380,8 +313,8 @@
 			});
 		});
 
-		function makeCouponText(data) {
-			$('#couponFrame').html(data);
+		function reloadFrame(data) {
+			fadeAndRerender(data);
 		};
 
 		function removeCoupon() {
@@ -390,7 +323,7 @@
 					url: '/cart/coupon/',
 					success: (message, data) => {
 						notyf.success(message);
-						makeCouponText(data);
+						reloadFrame(data);
 					},
 					failed: (message) => {
 						notyf.error(message);
@@ -401,5 +334,13 @@
 				});
 			});
 		};
+
+		fadeAndRerender = (data) => {
+			const element = $('#checkoutFrame');
+			element.fadeTo('fast', 0.0, function () {
+				element.html(data);
+				element.fadeTo('slow', 1.0);
+			});
+		}
 	</script>
 @endsection

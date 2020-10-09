@@ -33,30 +33,18 @@ class CheckoutController extends Controller
 		$this->provider = new ExpressCheckout();
 	}
 
-	public function index (CouponRequest $request): Renderable
+	public function index (): Renderable
 	{
-		$coupon = $request->coupon();
-		$state = new State(auth()->user());
-		$total = $state->total();
-		$rebates = new \stdClass();
-		$rebates->weekRebate = $this->makeRebateOf($total, 10);
-		$rebates->firstWeekRebate = $this->makeRebateOf($total, 10);
-		$rebates->secondWeekRebate = $this->makeRebateOf($total, 10);
-		if (auth()->user()->click_to_verify == 1) {
-			$rebates->staffRebate = $this->makeRebateOf($total, 25);
+		/**
+		 * @var $user User
+		 */
+		$user = auth()->user();
+		$state = new State($user);
+		if ($user->canAvailSpecialDiscount()) {
+
 		}
-		if ($coupon != null && $coupon->isValid() && $coupon->isUsable()) {
-			$coupon->incrementUsageCount();
-			$rebates->coupon = $this->makeRebateOf($total, $coupon->discount, ['coupon' => $coupon]);
-		}
-		$totalRebate = 0;
-		foreach ($rebates as $key => $rebate) {
-			$totalRebate += $rebate->value;
-		}
-		$state->setDiscount($totalRebate);
-		$state->calculateStats();
 		$postalCodes = PostalCode::active()->get();
-		return view('frontend.checkout')->with('state', $state)->with('rebates', $rebates)->with('postalCodes', $postalCodes);
+		return view('frontend.checkout')->with('state', $state)->with('postalCodes', $postalCodes);
 	}
 
 	public function validateCoupon (CouponRequest $request): JsonResponse
@@ -71,7 +59,7 @@ class CheckoutController extends Controller
 				return response()->json([
 					'success' => 1,
 					'message' => 'Your coupon code is valid and has been applied!',
-					'data' => view('frontend.coupon_frame')->with('coupon', $coupon)->toHtml()
+					'data' => view('frontend.checkout_fragment')->with('state', $state)->toHtml()
 				]);
 			} catch (InvalidCouponException $e) {
 				return response()->json([
@@ -99,7 +87,7 @@ class CheckoutController extends Controller
 			return response()->json([
 				'success' => 1,
 				'message' => 'Applied coupon was removed from cart!',
-				'data' => view('frontend.coupon_frame')->with('coupon', $state->coupon())->toHtml()
+				'data' => view('frontend.checkout_fragment')->with('state', $state)->toHtml()
 			]);
 		} else {
 			return response()->json([
