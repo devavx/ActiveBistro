@@ -61,7 +61,7 @@ Route::prefix('cart')->middleware('auth')->group(static function () {
 
 	Route::prefix('coupon')->group(static function () {
 		Route::put(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'validateCoupon'])->name('cart.coupon.validate');
-		Route::delete(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'validateCoupon'])->name('cart.coupon.remove');
+		Route::delete(Str::Root, [\App\Http\Controllers\CheckoutController::class, 'removeCoupon'])->name('cart.coupon.remove');
 	});
 });
 

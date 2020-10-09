@@ -89,6 +89,27 @@ class CheckoutController extends Controller
 		}
 	}
 
+	public function removeCoupon (): JsonResponse
+	{
+		$state = new State(auth()->user());
+		if ($state->coupon() != null) {
+			$state->setCoupon(null);
+			$state->recalculateStats();
+			$state->update();
+			return response()->json([
+				'success' => 1,
+				'message' => 'Applied coupon was remove from cart!',
+				'data' => view('frontend.coupon_frame')->with('coupon', null)->toHtml()
+			]);
+		} else {
+			return response()->json([
+				'success' => 0,
+				'message' => 'We did\'t find any coupons applied to your cart! ',
+				'data' => null
+			]);
+		}
+	}
+
 	public function store (StoreRequest $request): RedirectResponse
 	{
 		/**

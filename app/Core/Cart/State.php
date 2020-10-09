@@ -695,12 +695,16 @@ final class State
 		return false;
 	}
 
-	public function setCoupon (Coupon $coupon): void
+	public function setCoupon (?Coupon $coupon): void
 	{
-		if ($coupon->isValid())
+		if ($coupon != null) {
+			if ($coupon->isValid())
+				$this->coupon = $coupon;
+			else
+				throw new InvalidCouponException();
+		} else {
 			$this->coupon = $coupon;
-		else
-			throw new InvalidCouponException();
+		}
 	}
 
 	public function coupon (): ?Coupon

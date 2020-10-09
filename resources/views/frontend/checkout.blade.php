@@ -217,7 +217,7 @@
 						<p>(Total after temporary discount(s) expire)<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
 						</p>
 
-						<p>
+						<p id="couponFrame">
 							@include('frontend.coupon_frame',['coupon'=>$state->coupon()])
 						</p>
 
@@ -366,6 +366,7 @@
 						}),
 						success: (message, data) => {
 							notyf.success(message);
+							makeCouponText(data);
 						},
 						failed: (message) => {
 							notyf.error(message);
@@ -381,12 +382,26 @@
 			});
 		});
 
-		function makeCouponText() {
-
+		function makeCouponText(data) {
+			$('#couponFrame').html(data);
 		};
 
 		function removeCoupon() {
-
+			setLoading(true, () => {
+				performDelete({
+					url: '/cart/coupon/',
+					success: (message, data) => {
+						notyf.success(message);
+						makeCouponText(data);
+					},
+					failed: (message) => {
+						notyf.error(message);
+					},
+					complete: () => {
+						setLoading(false);
+					},
+				});
+			});
 		};
 	</script>
 @endsection
