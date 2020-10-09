@@ -15,7 +15,8 @@ class CreateDeliveryDeadlinesTable extends Migration
 	{
 		Schema::create('delivery_deadlines', function (Blueprint $table) {
 			$table->bigIncrements('id');
-			$table->dateTime('deadline')->nullable();
+			$table->time('deadline_sunday')->nullable();
+			$table->time('deadline_wednesday')->nullable();
 			$table->timestamps();
 		});
 	}
