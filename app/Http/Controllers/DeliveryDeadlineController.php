@@ -11,7 +11,8 @@ class DeliveryDeadlineController extends Controller
 		$deadline = DeliveryDeadline::query()->first();
 		if ($deadline == null) {
 			$deadline = DeliveryDeadline::query()->create([
-				'deadline' => date('Y-m-d H:i:s', time() + 86400)
+				'deadline_sunday' => date('H:i:s'),
+				'deadline_wednesday' => date('H:i:s')
 			]);
 		}
 		return view('backend.admin.deadline.edit')->with('deadline', $deadline);
@@ -22,18 +23,20 @@ class DeliveryDeadlineController extends Controller
 		$deadline = DeliveryDeadline::query()->first();
 		if ($deadline == null) {
 			DeliveryDeadline::query()->create([
-				'deadline' => $this->convert(request('deadline'))
+				'deadline_sunday' => $this->convert(request('deadline_sunday')),
+				'deadline_wednesday' => $this->convert(request('deadline_wednesday')),
 			]);
 		} else {
 			$deadline->update([
-				'deadline' => $this->convert(request('deadline'))
+				'deadline_sunday' => $this->convert(request('deadline_sunday')),
+				'deadline_wednesday' => $this->convert(request('deadline_wednesday')),
 			]);
 		}
 		return redirect('admin/delivery_deadline')->with('success', 'Deadline updated successfully!');
 	}
 
-	protected function convert ($dateTime): string
+	protected function convert ($time): string
 	{
-		return date('Y-m-d H:i:s', strtotime($dateTime));
+		return date('H:i:s', strtotime($time));
 	}
 }

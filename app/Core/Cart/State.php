@@ -5,6 +5,7 @@ namespace App\Core\Cart;
 use App\Core\Enums\Common\DaysOfWeek;
 use App\Core\Enums\Common\DietaryRequirement;
 use App\Core\Enums\Common\MealTypes;
+use App\Core\Enums\Common\PaymentSlab;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
 use App\Exceptions\InvalidCouponException;
@@ -222,7 +223,10 @@ final class State
 			'calories' => 0,
 			'total' => 0,
 			'subTotal' => 0,
-			'discount' => 0
+			'discount' => 0,
+			'staffDiscount' => false,
+			'firstDate' => null,
+			'secondDate' => null
 		];
 	}
 
@@ -233,9 +237,12 @@ final class State
 			'fats' => $this->cart()->fats,
 			'proteins' => $this->cart()->proteins,
 			'calories' => $this->cart()->calories,
+			'staffDiscount' => $this->cart()->staffDiscount,
 			'discount' => $this->cart()->discount,
 			'total' => $this->cart()->total,
 			'subTotal' => $this->cart()->subTotal,
+			'firstDate' => $this->cart()->firstDate,
+			'secondDate' => $this->cart()->secondDate,
 		];
 	}
 
@@ -336,7 +343,30 @@ final class State
 
 	public function discount (): float
 	{
-		return $this->stats->discount ?? 0;
+		$discount = 0.0;
+		if ($this->staffDiscount())
+			$discount += 25.0;
+		return $discount;
+	}
+
+	public function paymentSlab (): string
+	{
+		return $this->stats->paymentSlab ?? PaymentSlab::Weekly;
+	}
+
+	public function firstDate (): ?string
+	{
+		return $this->stats->firstDate;
+	}
+
+	public function secondDate (): ?string
+	{
+		return $this->stats->secondDate;
+	}
+
+	public function staffDiscount (): bool
+	{
+		return $this->stats->staffDiscount ?? false;
 	}
 
 	public function setCalories (float $calories): float
@@ -381,6 +411,30 @@ final class State
 		return $this->stats->discount;
 	}
 
+	public function setStaffDiscount (bool $allow): bool
+	{
+		$this->stats->staffDiscount = $allow;
+		return $this->stats->staffDiscount;
+	}
+
+	public function setPaymentSlab (PaymentSlab $paymentSlab)
+	{
+		$this->stats->paymentSlab = $paymentSlab->value;
+		return $this->stats->paymentSlab;
+	}
+
+	public function setFirstDate (string $date): ?string
+	{
+		$this->stats->firstDate = $date;
+		return $this->stats->firstDate;
+	}
+
+	public function setSecondDate (string $date): ?string
+	{
+		$this->stats->secondDate = $date;
+		return $this->stats->secondDate;
+	}
+
 	public function resetStats (): void
 	{
 		$this->createBlankStats();
@@ -409,7 +463,9 @@ final class State
 			'items' => $this->cards(),
 			'discount' => $this->discount(),
 			'subTotal' => $this->subTotal(),
-			'total' => $this->total()
+			'total' => $this->total(),
+			'firstDate' => $this->firstDate(),
+			'secondDate' => $this->secondDate(),
 		];
 		if ($this->coupon() != null) {
 			$payload['coupon_code'] = $this->coupon()->code;

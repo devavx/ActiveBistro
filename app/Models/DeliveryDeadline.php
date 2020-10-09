@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeliveryDeadline extends Model
 {
 	protected $fillable = [
-		'deadline'
+		'deadline_sunday',
+		'deadline_wednesday',
 	];
 }

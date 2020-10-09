@@ -8,6 +8,7 @@ use App\Core\Enums\Common\Directories;
 use App\Core\Enums\Common\UnitSystem;
 use App\Core\Enums\Common\WeightGoal;
 use App\Core\Facades\Uploads;
+use App\Core\Primitives\Str;
 use App\Core\Primitives\Time;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -207,7 +208,6 @@ class User extends Authenticatable
 
 	public function canAvailSpecialDiscount (): bool
 	{
-//		return $this->orders()->count < 1;
-		return false;
+		return $this->orders()->count < 1 && Str::endsWith($this->email, ['ac', 'nhs']);
 	}
 }

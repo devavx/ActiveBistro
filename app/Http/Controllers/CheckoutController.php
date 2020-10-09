@@ -41,8 +41,10 @@ class CheckoutController extends Controller
 		$user = auth()->user();
 		$state = new State($user);
 		if ($user->canAvailSpecialDiscount()) {
-
+			$state->setStaffDiscount(true);
 		}
+		$state->recalculateStats();
+		$state->update();
 		$postalCodes = PostalCode::active()->get();
 		return view('frontend.checkout')->with('state', $state)->with('postalCodes', $postalCodes);
 	}

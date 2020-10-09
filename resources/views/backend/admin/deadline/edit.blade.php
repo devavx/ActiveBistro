@@ -75,10 +75,16 @@
 								<div class="form-body">
 									<hr>
 									<div class="row">
-										<div class="col-md-12">
+										<div class="col-md-6">
 											<div class="form-group">
-												<label>Deadline</label>
-												<input type="datetime-local" name="deadline" id="description" class="form-control" placeholder="Enter name.." value="{{date("Y-m-d\TH:i:s", strtotime($deadline->deadline))}}" required>
+												<label>Sunday (Friday - Max allowed time for new orders)</label>
+												<input type="time" name="deadline_sunday" id="description" class="form-control" placeholder="Enter name.." value="{{date("H:i", strtotime($deadline->deadline_sunday))}}" required>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Wednesday (Monday - Max allowed time for new orders)</label>
+												<input type="time" name="deadline_wednesday" id="description" class="form-control" placeholder="Enter name.." value="{{date("H:i", strtotime($deadline->deadline_wednesday))}}" required>
 											</div>
 										</div>
 									</div>
