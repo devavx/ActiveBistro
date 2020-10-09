@@ -99,7 +99,7 @@ class CheckoutController extends Controller
 			return response()->json([
 				'success' => 1,
 				'message' => 'Applied coupon was removed from cart!',
-				'data' => view('frontend.coupon_frame')->with('coupon', null)->toHtml()
+				'data' => view('frontend.coupon_frame')->with('coupon', $state->coupon())->toHtml()
 			]);
 		} else {
 			return response()->json([
