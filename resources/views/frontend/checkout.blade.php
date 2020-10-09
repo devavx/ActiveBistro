@@ -229,10 +229,8 @@
 							<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
 							<label class="custom-control-label" for="agree">You have read and agree to our T&C's</label>
 						</div>
-
-						<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
-
 					</fieldset>
+					<button type="submit" class="btn btn-info btn-block ml-0 rounded">Place your order</button>
 				</form>
 			</div>
 		</div>
