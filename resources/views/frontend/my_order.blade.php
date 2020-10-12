@@ -51,7 +51,7 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach($pendingOrders as $order)
+						@foreach($activeOrders as $order)
 							<tr>
 								<td class="p-2">#{{$order->id}}</td>
 								<td class="p-2">{{$order->address->stringify()}}</td>
@@ -93,7 +93,50 @@
 						</tr>
 						</thead>
 						<tbody>
-						@foreach($otherOrders as $order)
+						@foreach($completedOrders as $order)
+							<tr>
+								<td class="p-2">#{{$order->id}}</td>
+								<td class="p-2">{{$order->address->stringify()}}</td>
+								<td class="p-2">&pound;{{$order->total}}</td>
+								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
+								<td class="p-2">{{$order->quantity}}</td>
+								<td class="p-2">
+									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
+										<i class="fa fa-eye"></i></button>
+								</td>
+							</tr>
+						@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container mt-5 mb-5">
+		<div class="row">
+			<div class="col-12">
+				<h5 class="font-weight-bold text-color text-center">Pending Orders</h5>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="table-responsive myorder-table">
+					<table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+						<thead>
+						<tr class="bg-color">
+							<th class="p-2 font-weight-bold text-white">Order Id</th>
+							<th class="p-2 font-weight-bold text-white">Address</th>
+							<th class="p-2 font-weight-bold text-white">Total</th>
+							<th class="p-2 font-weight-bold text-white">Payment Slab</th>
+							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
+							<th class="p-2 font-weight-bold text-white">Detail</th>
+						</tr>
+						</thead>
+						<tbody>
+						@foreach($pendingOrders as $order)
 							<tr>
 								<td class="p-2">#{{$order->id}}</td>
 								<td class="p-2">{{$order->address->stringify()}}</td>

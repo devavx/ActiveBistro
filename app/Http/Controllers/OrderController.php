@@ -15,8 +15,9 @@ class OrderController extends Controller
 	public function index (): Renderable
 	{
 		$pendingCollection = Order::query()->where('status', 'pending')->latest()->get();
-		$otherCollection = Order::query()->where('status', 'completed')->latest()->get();
-		return view('frontend.my_order')->with('pendingOrders', $pendingCollection)->with('otherOrders', $otherCollection);
+		$activeCollection = Order::query()->where('status', 'placed')->latest()->get();
+		$completedCollection = Order::query()->where('status', 'completed')->latest()->get();
+		return view('frontend.my_order')->with('pendingOrders', $pendingCollection)->with('completedOrders', $completedCollection)->with('activeOrders', $activeCollection);
 	}
 
 	public function show ($key)
