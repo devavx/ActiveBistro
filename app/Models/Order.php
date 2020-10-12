@@ -12,7 +12,7 @@ class Order extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-		'user_id', 'address_id', 'second_address_id', 'invoice_id', 'payment_slab', 'quantity', 'sub_total', 'total', 'status', 'start_date'
+		'user_id', 'address_id', 'second_address_id', 'invoice_id', 'payment_slab', 'quantity', 'sub_total', 'total', 'status', 'start_date', 'coupon_code'
 	];
 
 	protected static function boot ()
