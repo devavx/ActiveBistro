@@ -24,7 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-	        'name' => 'required|unique:meal_plans',
+	        'name' => 'bail|required',
 	        'images.*' => 'bail|required|image|max:2048',
 	        'item_id.*' => 'bail|required',
 	        'allergy_id.*' => 'bail|required',
