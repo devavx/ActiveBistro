@@ -87,7 +87,7 @@
 		@if(!empty(count($homeData)))
 			<div class="row">
 				<div class="col-12">
-					<h3 class="text-center text-color font-weight-bold">How it Work</h3>
+					<h3 class="text-center text-color font-weight-bold">How It Works</h3>
 				</div>
 			</div>
 			@foreach($homeData as $key => $rows)
@@ -101,7 +101,7 @@
 					@endif
 					<div class="col-lg-6 col-sm-6 col-12">
 						<div class="home1-text mt-5">
-							<h2 class="text-color font-weight-bold">{{ $rows->title }}</h2>
+							<h3 class="text-color font-weight-bold">{{ $rows->title }}</h3>
 							<p>{!! $rows->description !!}</p>
 						</div>
 					</div>

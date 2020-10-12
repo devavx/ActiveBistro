@@ -90,6 +90,11 @@
 							nav: false,
 							loop: true
 						},
+						768: {
+							items: 2,
+							nav: false,
+							loop: true
+						},
 						1000: {
 							items: 3,
 							nav: true

@@ -21,8 +21,8 @@
 							<i class="fa fa-check-square-o  fa-3x" aria-hidden="true"></i>
 						</div>
 						<div class="alert-message text-center">
-							<strong>Success!</strong> Thank you for order.
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+							<strong>Success!</strong>
+							<p>Thank you very much for your order. You’re helping support a new local business! An order confirmation email will be emailed to you shortly with delivery information.</p>
 						</div>
 					</div>
 				</div>

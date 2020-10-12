@@ -114,7 +114,7 @@
 				@else
 					<li class="nav-item">
 						<a class="nav-link text-color" href="@if(Auth::user()->role->name =='admin'){{ url('/admin') }} @else {{ url('/home') }} @endif">
-							<img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ \App\Core\Primitives\Str::ellipsis(Auth::user()->first_name,15) }}</span></a>
+							<img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ \App\Core\Primitives\Str::ellipsis(Auth::user()->name,15) }}</span></a>
 					</li>
 					<li class="nav-item dropdown mt-2">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -161,8 +161,7 @@
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-12">
 						<div class="footer-middel">
-							<h5 class="text-white mb-0">Company</h5>
-							<hr>
+							<h5 class="text-white mb-2">Company</h5>
 							<ul>
 								<li>
 									<a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a>
@@ -171,7 +170,7 @@
 									<a href="{{ url('/privacy_policy') }}"><i class="fa fa-chevron-right mr-2"></i>Privacy Policy</a>
 								</li>
 								<li>
-									<a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Terms of Use</a>
+									<a href="{{ url('/term_condition') }}"><i class="fa fa-chevron-right mr-2"></i>Terms & Conditions</a>
 								</li>
 							</ul>
 						</div>
@@ -179,14 +178,13 @@
 
 					<div class="col-lg-6 col-sm-6 col-12">
 						<div class="footer-middel">
-							<h5 class="text-white mb-0">Support</h5>
-							<hr>
+							<h5 class="text-white mb-2">Support</h5>
 							<ul>
 
 								<li>
 									<a href="{{ url('/contact') }}"><i class="fa fa-chevron-right mr-2"></i>Contact Us</a>
 								</li>
-								<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>FAQ</a></li>
+								<li><a href="{{ url('/faq') }}"><i class="fa fa-chevron-right mr-2"></i>FAQs</a></li>
 
 							</ul>
 						</div>
