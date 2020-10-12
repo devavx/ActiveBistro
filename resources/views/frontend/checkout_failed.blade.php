@@ -22,7 +22,8 @@
 						</div>
 						<div class="alert-message text-center">
 							<strong>Oops!</strong> Something went wrong with the payment.
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+							<p>We suggest you to try again in a while!</p>
+							<a href="{{route('my_order')}}">Go to My orders</a>
 						</div>
 					</div>
 				</div>

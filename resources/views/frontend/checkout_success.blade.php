@@ -23,6 +23,7 @@
 						<div class="alert-message text-center">
 							<strong>Success!</strong>
 							<p>Thank you very much for your order. You’re helping support a new local business! An order confirmation email will be emailed to you shortly with delivery information.</p>
+							<a href="{{route('my_order')}}">Go to My orders</a>
 						</div>
 					</div>
 				</div>
