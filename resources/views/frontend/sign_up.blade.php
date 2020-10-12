@@ -90,7 +90,7 @@
 							<div class="row">
 								<div class="col-lg-6 col-sm-6 col-12">
 									<label>Sex <sup class="text-danger">*</sup>
-										<span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="Refers to your gender."><i class="fa fa-question-circle"></i></span></label>
+										<span class="text-color sex-icon ml-2 " data-toggle="tooltip" title="{{__("strings.gender_info")}}"><i class="fa fa-question-circle"></i></span></label>
 								</div>
 
 								<div class="col-lg-6 col-sm-6 col-12">
