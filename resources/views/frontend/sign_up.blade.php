@@ -65,7 +65,7 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Phone <sup class="text-danger">*</sup></label>
-									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" pattern="^07\d{9}" id="phone" value="{{ old('phone') }}" required autocomplete="phone" minlength="11" maxlength="11">
+									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" pattern="" id="phone" value="{{ old('phone') }}" required autocomplete="phone" minlength="11" maxlength="11">
 								</div>
 								@error('phone')
 								<span class="invalid-feedback" role="alert">
@@ -207,7 +207,7 @@
 				}
 			});
 
-			$('#msform').validate({ // initialize the plugin
+			$('#msform').validate({
 				rules: {
 					first_name: {
 						required: true,
@@ -217,6 +217,7 @@
 					},
 					phone: {
 						required: true,
+						pattern: "^07\\d{9}",
 					},
 					gender: {required: true},
 					email: {
