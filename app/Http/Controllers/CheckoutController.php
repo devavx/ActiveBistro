@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
+use App\Core\Primitives\Arrays;
 use App\Exceptions\InvalidCouponException;
 use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
@@ -111,14 +112,14 @@ class CheckoutController extends Controller
 		$state = new State(auth()->user());
 		$user = auth()->user();
 		$items = $state->items();
-//		if ($state->coupon() != null) {
-//			$items->push([
-//				'name' => 'Discounts',
-//				'price' => ($state->subTotal() - $state->total()) * -1,
-//				'desc' => 'Coupon and other applicable discounts',
-//				'qty' => 1
-//			]);
-//		}
+		if ($state->coupon() != null) {
+			Arrays::push($items, [
+				'name' => 'Discounts',
+				'price' => ($state->subTotal() - $state->total()) * -1,
+				'desc' => 'Coupon and other applicable discounts',
+				'qty' => 1
+			]);
+		}
 		if ($request->containsMultiAddresses()) {
 			$address = $user->addresses()->create($request->addresses()[0]);
 			$secondAddress = $user->addresses()->create($request->addresses()[1]);
