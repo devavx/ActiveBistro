@@ -760,7 +760,7 @@ final class State
 		$subItems = 'Items: ' . $subItems;
 		return [
 			'name' => $item->name,
-//			'price' => $item->total,
+			'price' => $item->total,
 			'desc' => $subItems,
 			'qty' => $item->quantity
 		];
