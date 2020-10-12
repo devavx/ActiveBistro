@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Core\Primitives\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -28,7 +27,7 @@ class Cart extends Model
 	{
 		parent::boot();
 		self::creating(function (Cart $cart) {
-			$cart->invoiceId = strtoupper(str_replace("-", Str::Empty, Str::uuid()->toString()));
+			$cart->invoiceId = strtoupper(substr(md5(microtime()), 0, 7));
 			$cart->items = [];
 			$cart->allergies = [];
 		});
