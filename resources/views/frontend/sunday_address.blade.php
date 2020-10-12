@@ -40,19 +40,19 @@
 	<div id="sunday_address">
 		<div class="form-group">
 			<label>Address Line 1</label>
-			<input type="text" class="form-control" name="address[sunday][address_first_line]" data-parsley-group='["sunday_address","address"]' required minlength="2" maxlength="100" value="{{str_random(8)}}">
+			<input type="text" class="form-control" name="address[sunday][address_first_line]" data-parsley-group='["sunday_address","address"]' required minlength="2" maxlength="100">
 		</div>
 
 		<div class="form-group">
 			<label>Address Line 2</label>
-			<input type="text" class="form-control" name="address[sunday][address_second_line]" data-parsley-group='["sunday_address","address"]' minlength="2" maxlength="100" value="{{str_random(8)}}">
+			<input type="text" class="form-control" name="address[sunday][address_second_line]" data-parsley-group='["sunday_address","address"]' minlength="2" maxlength="100">
 		</div>
 
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label>Town / City</label>
-					<input type="text" class="form-control" name="address[sunday][city]" minlength="1" data-parsley-group='["sunday_address","address"]' maxlength="50" required value="{{str_random(8)}}">
+					<input type="text" class="form-control" name="address[sunday][city]" minlength="1" data-parsley-group='["sunday_address","address"]' maxlength="50" required>
 				</div>
 			</div>
 
@@ -71,7 +71,7 @@
 
 		<div class="form-group">
 			<label>Delivery Notes</label>
-			<textarea class="form-control" rows="3" name="address[sunday][delivery_notes]" data-parsley-group='["sunday_address","address"]'>{{str_random(8)}}</textarea>
+			<textarea class="form-control" rows="3" name="address[sunday][delivery_notes]" data-parsley-group='["sunday_address","address"]'></textarea>
 		</div>
 	</div>
 @endif

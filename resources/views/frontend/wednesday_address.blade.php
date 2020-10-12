@@ -43,18 +43,18 @@
 		</div>
 		<div class="form-group">
 			<label>Address Line 1</label>
-			<input type="text" class="form-control" name="address[wednesday][address_first_line]" data-parsley-group="address" minlength="2" maxlength="100" value="{{str_random(8)}}">
+			<input type="text" class="form-control" name="address[wednesday][address_first_line]" data-parsley-group="address" minlength="2" maxlength="100">
 		</div>
 
 		<div class="form-group">
 			<label>Address Line 2</label>
-			<input type="text" class="form-control" name="address[wednesday][address_second_line]" data-parsley-group="address" minlength="2" maxlength="100" value="{{str_random(8)}}">
+			<input type="text" class="form-control" name="address[wednesday][address_second_line]" data-parsley-group="address" minlength="2" maxlength="100">
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label>Town / City</label>
-					<input type="text" class="form-control" name="address[wednesday][city]" minlength="1" data-parsley-group="address" maxlength="50" value="{{str_random(8)}}">
+					<input type="text" class="form-control" name="address[wednesday][city]" minlength="1" data-parsley-group="address" maxlength="50">
 				</div>
 			</div>
 			<div class="col-lg-6 col-sm-6 col-12">
@@ -71,7 +71,7 @@
 		</div>
 		<div class="form-group">
 			<label>Delivery Notes</label>
-			<textarea class="form-control" rows="3" name="address[wednesday][delivery_notes]" data-parsley-group="address">{{str_random(8)}}</textarea>
+			<textarea class="form-control" rows="3" name="address[wednesday][delivery_notes]" data-parsley-group="address"></textarea>
 		</div>
 	</div>
 @endif
