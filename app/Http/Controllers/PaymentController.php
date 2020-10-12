@@ -75,6 +75,7 @@ class PaymentController extends Controller
 			'quantity' => $items->count(),
 			'sub_total' => $state->subTotal(),
 			'total' => $state->total(),
+			'start_date' => $state->firstDate()
 		]);
 		$items->each(function (\stdClass $meal) use ($order) {
 			$items = collect($meal->items)->where('chosen', true);
