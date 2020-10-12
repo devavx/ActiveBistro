@@ -68,7 +68,7 @@
 
 						<div class="date-selection mb-3">
 							@foreach(dates() as $date)
-								@if($loop->index<7)
+								@if($loop->index<6)
 									<label class="date-label @if($loop->index<=1) dateselectradio @endif" for="radio_{{$date['date']}}">
 										<span>{{$date['day']}}</span>
 										<span class="bigger">{{$date['date']}}</span>
