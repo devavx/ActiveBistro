@@ -61,8 +61,7 @@
 
 						<div class="form-group">
 							<h6 class="mb-1 font-weight-bold text-color">1. Choose your delivery start date</h6>
-							<p>Your food is delivered to your door twice a week every Sunday and Wednesday ensuring
-								freshness.</p>
+							<p>Your food is delivered to your door twice a week every Sunday and Wednesday ensuring freshness.</p>
 						</div>
 
 
