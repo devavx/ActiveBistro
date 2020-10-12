@@ -134,7 +134,7 @@ class CheckoutController extends Controller
 		$state->setSecondDate($request->secondDate()['actual']);
 		$state->update();
 		$payload = [];
-		$payload['items'] = $items;
+		$payload['items'] = $items->toArray();
 		$payload['invoice_id'] = $state->invoice()->id;
 		$payload['invoice_description'] = $state->invoice()->description;
 		$payload['return_url'] = route('payments.completed');
