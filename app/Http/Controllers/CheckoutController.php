@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
-use App\Core\Primitives\Arrays;
 use App\Exceptions\InvalidCouponException;
 use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
