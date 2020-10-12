@@ -32,4 +32,19 @@ class DaysOfWeek extends Enum
 			self::Sunday
 		];
 	}
+
+	/**
+	 * Checks whether the current day of week is same as specified.
+	 * @param DaysOfWeek|string $dayOfWeek
+	 * @return bool
+	 */
+	public static function weekdayIs ($dayOfWeek): bool
+	{
+		if ($dayOfWeek instanceof DaysOfWeek)
+			$assumed = strtotime($dayOfWeek->value);
+		else
+			$assumed = strtotime($dayOfWeek);
+		$today = ('Y-m-d 00:00:00');
+		return $assumed == $today;
+	}
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
+use App\Models\Order;
 use Srmklive\PayPal\Services\ExpressCheckout;
 
 class PaymentController extends Controller
@@ -42,16 +43,50 @@ class PaymentController extends Controller
 
 	public function cancelled ()
 	{
+		$this->makeOrder(new State($this->user()));
 		return redirect()->route('cart.index')->with('success', 'Your transaction was cancelled successfully!');
 	}
 
 	public function confirmed ()
 	{
+		$this->makeOrder(new State($this->user()))->update(['status' => 'placed']);
 		return view('frontend.checkout_success');
 	}
 
 	public function failed ()
 	{
+		$this->makeOrder(new State($this->user()));
 		return view('frontend.checkout_failed');
+	}
+
+	/**
+	 * @param State $state
+	 * @return Order
+	 */
+	protected function makeOrder (State $state): Order
+	{
+		$items = $state->meals();
+		$order = $this->user()->orders()->create([
+			'address_id' => $state->address()->getKey(),
+			'second_address_id' => $state->address()->getKey(),
+			'invoice_id' => $state->invoice()->id,
+			'coupon_code' => $state->coupon() != null ? $state->coupon()->code : null,
+			'payment_slab' => $state->paymentSlab(),
+			'quantity' => $items->count(),
+			'sub_total' => $state->subTotal(),
+			'total' => $state->total(),
+		]);
+		$items->each(function (\stdClass $meal) use ($order) {
+			$items = collect($meal->items)->where('chosen', true);
+			$order->items()->create([
+				'meal_plan_id' => $meal->id,
+				'items' => $items->toArray(),
+				'quantity' => 1,
+				'total' => $items->sum(function (\stdClass $item) {
+					return $item->selling_price ?? 0;
+				})
+			]);
+		});
+		return $order;
 	}
 }

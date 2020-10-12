@@ -14,6 +14,22 @@ class Time
 
 	}
 
+	/**
+	 * Converts a date to human readable string.
+	 *
+	 * @param $date
+	 * @param bool $isTimestamp
+	 * @return false|string
+	 */
+	public static function humanize ($date, bool $isTimestamp = false)
+	{
+		if (!$isTimestamp)
+			$seconds = strtotime($date);
+		else
+			$seconds = $date;
+		return date('jS F Y h:i:s A', $seconds);
+	}
+
 	public static function intervalToAbsoluteValue (\DateInterval $interval): float
 	{
 		return $interval->y . '.' . $interval->m;

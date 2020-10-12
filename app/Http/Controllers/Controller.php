@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -60,5 +61,10 @@ class Controller extends BaseController
 		if (strlen($model < 1))
 			$model = "Record";
 		return __("strings.success_global", ['model' => $model]);
+	}
+
+	protected function user (): ?User
+	{
+		return auth()->user();
 	}
 }

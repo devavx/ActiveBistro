@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="{{ asset('css/loader_spin.css') }}">
 	<link href="{{ asset('assets/node_modules/dropify/dist/css/dropify.min.css') }}" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" type="text/css"/>
 	<style type="text/css">
         .error {
             color: red;
@@ -53,16 +54,6 @@
 						<div class="col-lg-6 col-sm-6 col-12">
 							<label>Phone</label>
 							<p class="text-color">{{ auth()->user()->phone ?? '-'  }}</p>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<label>Address</label>
-							<p class="text-color">{{ auth()->user()->address ?? '-'  }}</p>
-						</div>
-
-						<div class="col-lg-6 col-sm-6 col-12">
-							<label>Shipping Address</label>
-							<p class="text-color">{{ auth()->user()->about ?? '-'  }}</p>
 						</div>
 
 						<div class="col-lg-6 col-sm-6 col-12">
@@ -143,7 +134,7 @@
 						</div>
 					</div>
 
-						<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
+					<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
 				</div>
 			</div>
 
@@ -207,6 +198,11 @@
 							<label>Phone <sup class="text-danger">*</sup></label>
 							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="8" maxlength="16">
 						</div>
+
+						<div class="form-group">
+							<label>Date of Birth <sup class="text-danger">*</sup></label>
+							<input type="text" class="form-control bg-white @error('dob') is-invalid @enderror" name="dob" id="datepicker" value="{{ auth()->user()->dob }}" placeholder="Enter date of birth.." required readonly>
+						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-6">
@@ -251,9 +247,49 @@
 							<label>Preferred Diet Type <sup class="text-danger">*</sup></label>
 							<select class="form-control" name="diet_type" required>
 								<option value="" selected disabled>Select</option>
-								<option value="{{\App\Core\Enums\Common\DietType::Regular}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\DietType::Regular) selected @endif>Regular</option>
-								<option value="{{\App\Core\Enums\Common\DietType::Ketogenic}}" @if(auth()->user()->activity_lavel==\App\Core\Enums\Common\DietType::Ketogenic) selected @endif>Ketogenic</option>
+								<option value="{{\App\Core\Enums\Common\DietType::Regular}}" @if(auth()->user()->diet_type==\App\Core\Enums\Common\DietType::Regular) selected @endif>Regular</option>
+								<option value="{{\App\Core\Enums\Common\DietType::Ketogenic}}" @if(auth()->user()->diet_type==\App\Core\Enums\Common\DietType::Ketogenic) selected @endif>Ketogenic</option>
 							</select>
+						</div>
+						<div class="form-group">
+							<label>Desired Weekly Progress<sup class="text-danger">*</sup></label>
+							<select class="form-control" name="weekly_progress" required>
+								<option value="" disabled selected>Select</option>
+								@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
+									@switch(auth()->user()->weightGoal())
+										@case(\App\Core\Enums\Common\WeightGoal::Gain)
+										<option value="0.5" @if(auth()->user()->weeklyProgress()==0.5) selected @endif>Gain 0.5 KG per week</option>
+										<option value="0.2" @if(auth()->user()->weeklyProgress()==0.2) selected @endif>Gain 0.2 KG per week</option>
+										@break
+										@case(\App\Core\Enums\Common\WeightGoal::Maintain)
+										<option value="0" @if(auth()->user()->weeklyProgress()==0.0) selected @endif>Maintain weight</option>
+										@break
+										@case(\App\Core\Enums\Common\WeightGoal::Lose)
+										<option value="-0.2" @if(auth()->user()->weeklyProgress()==-0.2) selected @endif>Lose 0.2 KG per week</option>
+										<option value="-0.5" @if(auth()->user()->weeklyProgress()==-0.5) selected @endif>Lose 0.5 KG per week</option>
+										<option value="-0.8" @if(auth()->user()->weeklyProgress()==-0.8) selected @endif>Lose 0.8 KG per week</option>
+										<option value="-1" @if(auth()->user()->weeklyProgress()==-1) selected @endif>Lose 1 KG per week</option>
+										@break
+									@endswitch
+								@else
+									@switch(auth()->user()->weightGoal())
+										@case(\App\Core\Enums\Common\WeightGoal::Gain)
+										<option value="1" @if(auth()->user()->weeklyProgress()==1) selected @endif>Gain 1 LB per week</option>
+										<option value="0.5" @if(auth()->user()->weeklyProgress()==0.5) selected @endif>Gain 0.5 LB per week</option>
+										@break
+										@case(\App\Core\Enums\Common\WeightGoal::Maintain)
+										<option value="0" @if(auth()->user()->weeklyProgress()==0.0) selected @endif>Maintain weight</option>
+										@break
+										@case(\App\Core\Enums\Common\WeightGoal::Lose)
+										<option value="-0.5" @if(auth()->user()->weeklyProgress()==-0.5) selected @endif>Lose 0.5 LB per week</option>
+										<option value="-1" @if(auth()->user()->weeklyProgress()==-1) selected @endif>Lose 1 LB per week</option>
+										<option value="-1.5" @if(auth()->user()->weeklyProgress()==-1.5) selected @endif>Lose 1.5 LB per week</option>
+										<option value="-2" @if(auth()->user()->weeklyProgress()==-2) selected @endif>Lose 2 LB per week</option>
+										@break
+									@endswitch
+								@endif
+							</select>
+							<small id="duration"></small>
 						</div>
 						<div class="form-group">
 							<label>Profile Image</label>
@@ -273,11 +309,20 @@
 @section('script')
 	<script src="{{ asset('js/custom.js') }}"></script>
 	<script src="{{ asset('js/Lobibox.js') }}"></script>
+	<script src="{{ asset('assets/node_modules/moment/moment.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script src="{{ asset('assets/node_modules/dropify/dist/js/dropify.min.js') }}"></script>
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			$("#datepicker").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				startDate: '{{date('Y-m-d',0)}}',
+				endDate: '-10y',
+			});
+
 			$('#profile_image').dropify({
 				messages: {
 					default: "Click to choose..."

@@ -11,8 +11,8 @@ class DeliveryDeadlineController extends Controller
 		$deadline = DeliveryDeadline::query()->first();
 		if ($deadline == null) {
 			$deadline = DeliveryDeadline::query()->create([
-				'deadline_sunday' => date('H:i:s'),
-				'deadline_wednesday' => date('H:i:s')
+				'deadline_sunday' => date('H:i:00'),
+				'deadline_wednesday' => date('H:i:00')
 			]);
 		}
 		return view('backend.admin.deadline.edit')->with('deadline', $deadline);
@@ -37,6 +37,6 @@ class DeliveryDeadlineController extends Controller
 
 	protected function convert ($time): string
 	{
-		return date('H:i:s', strtotime($time));
+		return date('H:i:00', strtotime($time));
 	}
 }

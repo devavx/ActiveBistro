@@ -33,7 +33,7 @@
 									<select class="form-control" name="weekly_progress" id="activity_lavel" required onchange="updateDuration(Math.abs(this.value),{{abs(auth()->user()->user_weight-auth()->user()->user_targert_weight)}});">
 										<option value="">Choose</option>
 										@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
-											@switch(auth()->user()->weight_goal)
+											@switch(auth()->user()->weightGoal())
 												@case(\App\Core\Enums\Common\WeightGoal::Gain)
 												<option value="0.5">Gain 0.5 KG per week</option>
 												<option value="0.2">Gain 0.2 KG per week</option>
@@ -49,7 +49,7 @@
 												@break
 											@endswitch
 										@else
-											@switch(auth()->user()->weight_goal)
+											@switch(auth()->user()->weightGoal())
 												@case(\App\Core\Enums\Common\WeightGoal::Gain)
 												<option value="1">Gain 1 LB per week</option>
 												<option value="0.5">Gain 0.5 LB per week</option>

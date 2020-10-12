@@ -1,11 +1,11 @@
 <div class="form-group">
 	<div class="custom-control custom-radio">
-		<input type="radio" class="custom-control-input" id="monthly" name="payment_slab" value="monthly">
+		<input type="radio" class="custom-control-input" id="monthly" name="payment_slab" value="monthly" @if($state->paymentSlab()==\App\Core\Enums\Common\PaymentSlab::Monthly) checked @endif>
 		<label class="custom-control-label" for="monthly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay monthly</span></label>
 	</div>
 
 	<div class="custom-control custom-radio mt-3">
-		<input type="radio" class="custom-control-input" id="weekly" name="payment_slab" value="weekly" checked>
+		<input type="radio" class="custom-control-input" id="weekly" name="payment_slab" value="weekly" @if($state->paymentSlab()==\App\Core\Enums\Common\PaymentSlab::Weekly) checked @endif>
 		<label class="custom-control-label" for="weekly"><span style="font-size: 18px; font-weight: 600;" class="text-color">Pay weekly</span></label>
 	</div>
 </div>
