@@ -48,6 +48,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-6">
+				<div class="form-group row">
+					<label class="control-label text-right col-md-3">Coupon:</label>
+					<div class="col-md-9">
+						<p class="form-control-static"> {{$order->coupon_code}} </p>
+					</div>
+				</div>
+			</div>
 		</div>
 		<h4 class="box-title">Customer Details</h4>
 		<hr class="m-t-0 m-b-40">
