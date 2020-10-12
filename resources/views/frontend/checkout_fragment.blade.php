@@ -10,17 +10,19 @@
 	</div>
 </div>
 
-<hr>
-<h6 class="font-weight-bold text-color">Your weekly subscription:</h6>
-@if($state->wantBreakfast()&&$state->wantSnacks())
-	<p>{{$state->getMealsPerDay()}} meal(s), breakfast and {{$state->snackCount()}} snack(s) every week day.</p>
-@elseif($state->wantBreakfast())
-	<p>{{$state->getMealsPerDay()}} meal(s) & breakfast every week day.</p>
-@elseif($state->wantSnacks())
-	<p>{{$state->getMealsPerDay()}} meal(s) & {{$state->snackCount()}} snack(s) every week day.</p>
-@else
-	<p>{{$state->getMealsPerDay()}} meal(s) every week day.</p>
-@endif
+<div class="d-none">
+	<hr>
+	<h6 class="font-weight-bold text-color">Your weekly subscription:</h6>
+	@if($state->wantBreakfast()&&$state->wantSnacks())
+		<p>{{$state->getMealsPerDay()}} meal(s), breakfast and {{$state->snackCount()}} snack(s) every week day.</p>
+	@elseif($state->wantBreakfast())
+		<p>{{$state->getMealsPerDay()}} meal(s) & breakfast every week day.</p>
+	@elseif($state->wantSnacks())
+		<p>{{$state->getMealsPerDay()}} meal(s) & {{$state->snackCount()}} snack(s) every week day.</p>
+	@else
+		<p>{{$state->getMealsPerDay()}} meal(s) every week day.</p>
+	@endif
+</div>
 <hr>
 @if($state->staffDiscount())
 	<h6>
