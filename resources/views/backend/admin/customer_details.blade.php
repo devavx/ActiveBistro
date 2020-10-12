@@ -68,8 +68,6 @@
 							<h6>{{ $userRecord->email??'-' }}</h6>
 							<small class="text-muted p-t-30 db">Phone</small>
 							<h6>{{ $userRecord->phone??'-' }}</h6>
-							<small class="text-muted p-t-30 db">Address</small>
-							<h6>{{ $userRecord->address??'-' }}</h6>
 						</div>
 					</div>
 				</div>
@@ -130,7 +128,6 @@
 											<p class="text-muted">{{$userRecord->dob}}, {{ $userRecord->age() }} year(s)</p>
 										</div>
 									</div>
-									<hr>
 								</div>
 							</div>
 							<div class="tab-pane" id="settings" role="tabpanel">
