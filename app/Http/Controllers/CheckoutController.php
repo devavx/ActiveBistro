@@ -111,14 +111,6 @@ class CheckoutController extends Controller
 		$state = new State(auth()->user());
 		$user = auth()->user();
 		$items = $state->items();
-//		if ($state->coupon() != null) {
-//			Arrays::push($items, [
-//				'name' => 'Discounts',
-//				'price' => ($state->subTotal() - $state->total()) * -1,
-//				'desc' => 'Coupon and other applicable discounts',
-//				'qty' => 1
-//			]);
-//		}
 		if ($request->containsMultiAddresses()) {
 			$address = $user->addresses()->create($request->addresses()[0]);
 			$secondAddress = $user->addresses()->create($request->addresses()[1]);
@@ -139,8 +131,9 @@ class CheckoutController extends Controller
 		$payload['invoice_description'] = $state->invoice()->description;
 		$payload['return_url'] = route('payments.completed');
 		$payload['cancel_url'] = route('payments.cancelled');
-		$payload['total'] = $state->subTotal();
+		$payload['total'] = $state->total();
 		$response = $this->provider->setExpressCheckout($payload);
+		dd($response);
 		return redirect()->to($response['paypal_link']);
 	}
 
