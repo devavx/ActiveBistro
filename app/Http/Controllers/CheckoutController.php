@@ -110,7 +110,7 @@ class CheckoutController extends Controller
 		 */
 		$state = new State(auth()->user());
 		$user = auth()->user();
-		$items = $state->meals();
+		$items = $state->items();
 //		if ($state->coupon() != null) {
 //			$items->push([
 //				'name' => 'Discounts',
@@ -134,7 +134,7 @@ class CheckoutController extends Controller
 		$state->setSecondDate($request->secondDate()['actual']);
 		$state->update();
 		$payload = [];
-		$payload['items'] = $items->toArray();
+		$payload['items'] = $items;
 		$payload['invoice_id'] = $state->invoice()->id;
 		$payload['invoice_description'] = $state->invoice()->description;
 		$payload['return_url'] = route('payments.completed');
