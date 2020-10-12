@@ -135,14 +135,14 @@ function dates (): array
 		else
 			$prefix = date('Y-m-d');
 		$deadline = strtotime(date($prefix . deadline()->deadline_sunday));
-//		dd(Time::humanize($deadline, true), Time::humanize($current, true));
 		if ($current <= $deadline) {
 			$current = $nextSunday;
 			for ($i = 1; $i <= 7; $i++) {
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
+					'actual' => date('Y-m-d', $current)
 				];
 			}
 		} else {
@@ -151,7 +151,8 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
+					'actual' => date('Y-m-d', $current)
 				];
 			}
 		}
@@ -167,7 +168,8 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
+					'actual' => date('Y-m-d', $current)
 				];
 			}
 		} else {
@@ -176,7 +178,8 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
+					'actual' => date('Y-m-d', $current)
 				];
 			}
 		}

@@ -122,7 +122,8 @@ class CheckoutController extends Controller
 			$state->setAddress($address);
 			$state->setSecondAddress($address);
 		}
-		$dates = dates();
+		$state->setFirstDate($request->firstDate()['actual']);
+		$state->setSecondDate($request->secondDate()['actual']);
 		$state->update();
 		$payload = [];
 		$payload['items'] = $state->items();

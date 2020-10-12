@@ -54,4 +54,16 @@ class StoreRequest extends FormRequest
 			Rule::in(['monthly', 'weekly'])
 		];
 	}
+
+	public function firstDate (): array
+	{
+		$index = intval(request('dates')[0]);
+		return dates()[$index];
+	}
+
+	public function secondDate (): array
+	{
+		$index = intval(request('dates')[0]);
+		return dates()[$index + 1];
+	}
 }
