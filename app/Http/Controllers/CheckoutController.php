@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
-use App\Core\Enums\Common\DaysOfWeek;
 use App\Exceptions\InvalidCouponException;
 use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
@@ -113,68 +112,17 @@ class CheckoutController extends Controller
 		$user = auth()->user();
 		$items = $state->meals();
 		if ($request->containsMultiAddresses()) {
-			$addressCollection = $user->addresses()->createMany($request->addresses())->toArray();
-			$address = $addressCollection[0];
-			$secondAddress = $addressCollection[1];
-			$order = $user->orders()->create([
-				'address_id' => $address->getKey(),
-				'second_address_id' => $secondAddress->getKey(),
-				'invoice_id' => $state->invoice()->id,
-				'coupon_code' => $request->coupon()->code,
-				'payment_slab' => $request->paymentSlab(),
-				'quantity' => $items->count(),
-				'sub_total' => $items->sum(function (\stdClass $meal) {
-					return $meal->total;
-				}),
-				'total' => $items->sum(function (\stdClass $meal) {
-					return $meal->total;
-				}),
-			]);
-			$items->each(function (\stdClass $meal) use ($order) {
-				$items = collect($meal->items)->where('chosen', true);
-				$order->items()->create([
-					'meal_plan_id' => $meal->id,
-					'items' => $items->toArray(),
-					'quantity' => 1,
-					'total' => $items->sum(function (\stdClass $item) {
-						return $item->selling_price ?? 0;
-					})
-				]);
-			});
+			$address = $user->addresses()->create($request->addresses()[0]);
+			$secondAddress = $user->addresses()->create($request->addresses()[1]);
+			$state->setAddress($address);
+			$state->setSecondAddress($secondAddress);
 		} else {
 			$address = $request->address();
-			$address['day'] = DaysOfWeek::Sunday;
-			$sunday = $address;
-			$address['day'] = DaysOfWeek::Wednesday;
-			$wednesday = $address;
-			$sunday = $user->addresses()->create($sunday);
-			$wednesday = $user->addresses()->create($wednesday);
-			$order = $user->orders()->create([
-				'address_id' => $sunday->getKey(),
-				'second_address_id' => $wednesday->getKey(),
-				'invoice_id' => $state->invoice()->id,
-				'coupon_code' => $request->coupon()->code,
-				'payment_slab' => $request->paymentSlab(),
-				'quantity' => $items->count(),
-				'sub_total' => $items->sum(function (\stdClass $meal) {
-					return $meal->total;
-				}),
-				'total' => $items->sum(function (\stdClass $meal) {
-					return $meal->total;
-				}),
-			]);
-			$items->each(function (\stdClass $meal) use ($order) {
-				$items = collect($meal->items)->where('chosen', true);
-				$order->items()->create([
-					'meal_plan_id' => $meal->id,
-					'items' => $items->toArray(),
-					'quantity' => 1,
-					'total' => $items->sum(function (\stdClass $item) {
-						return $item->selling_price ?? 0;
-					})
-				]);
-			});
+			$address = $user->addresses()->create($address);
+			$state->setAddress($address);
+			$state->setSecondAddress($address);
 		}
+		$state->update();
 		$payload = [];
 		$payload['items'] = $state->items();
 		$payload['invoice_id'] = $state->invoice()->id;

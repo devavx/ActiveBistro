@@ -21,6 +21,7 @@ class UserProfileController extends Controller
 		$userData->name = $request->first_name . ' ' . $request->last_name;
 		$userData->address = $request->address;
 		$userData->about = $request->about;
+		$userData->dob = $request->dob;
 		$userData->phone = $request->phone;
 		if ($request->unit_system == UnitSystem::Metric) {
 			$userData->weight_total = UnitSystem::Metric;
@@ -40,6 +41,7 @@ class UserProfileController extends Controller
 		}
 		$userData->diet_type = $request->diet_type;
 		$userData->activity_lavel = $request->activity_lavel;
+		$userData->weekly_progress = $request->weekly_progress;
 		$userData->save();
 		return back()->with('success', 'Details updated successfully!');
 	}

@@ -5,6 +5,8 @@
  */
 
 use App\Core\Primitives\Time;
+use App\Models\DeliveryDeadline;
+use Illuminate\Support\Carbon;
 
 const MaxFilePath = 1024;
 
@@ -106,13 +108,14 @@ function elapsed (): ?string
 	if ($deadline == null) {
 		return 0;
 	} else {
-		return strtotime($deadline->deadline);
+//		return strtotime($deadline->deadline);
+		return \time();
 	}
 }
 
 function deadline ()
 {
-	return \App\Models\DeliveryDeadline::query()->first();
+	return DeliveryDeadline::query()->first();
 }
 
 function dates (): array
@@ -122,24 +125,60 @@ function dates (): array
 	$nextSunday = strtotime('next sunday');
 	$threeDays = Time::toSeconds(3, Time::Days);
 	$fourDays = Time::toSeconds(4, Time::Days);
+	$isFriday = Carbon::now()->isFriday();
+	$isMonday = Carbon::now()->isMonday();
+	$current = \time();
 	// We have an upcoming Sunday closer than Wednesday.
 	if ($nextSunday < $nextWednesday) {
-		$current = $nextSunday;
-		for ($i = 1; $i <= 6; $i++) {
-			$dates[] = [
-				'day' => date('D', $current),
-				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
-			];
+		if (!$isFriday)
+			$prefix = Carbon::now()->previous(Carbon::FRIDAY)->format('Y-m-d');
+		else
+			$prefix = date('Y-m-d');
+		$deadline = strtotime(date($prefix . deadline()->deadline_sunday));
+//		dd(Time::humanize($deadline, true), Time::humanize($current, true));
+		if ($current <= $deadline) {
+			$current = $nextSunday;
+			for ($i = 1; $i <= 6; $i++) {
+				$dates[] = [
+					'day' => date('D', $current),
+					'date' => date('d', $current),
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
+				];
+			}
+		} else {
+			$current = $nextWednesday;
+			for ($i = 1; $i <= 6; $i++) {
+				$dates[] = [
+					'day' => date('D', $current),
+					'date' => date('d', $current),
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
+				];
+			}
 		}
 	} else {
-		$current = $nextWednesday;
-		for ($i = 1; $i <= 6; $i++) {
-			$dates[] = [
-				'day' => date('D', $current),
-				'date' => date('d', $current),
-				'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
-			];
+		if (!$isMonday)
+			$prefix = Carbon::now()->previous(Carbon::MONDAY)->format('Y-m-d');
+		else
+			$prefix = date('Y-m-d');
+		$deadline = strtotime(date($prefix . deadline()->deadline_wednesday));
+		if ($current <= $deadline) {
+			$current = $nextWednesday;
+			for ($i = 1; $i <= 6; $i++) {
+				$dates[] = [
+					'day' => date('D', $current),
+					'date' => date('d', $current),
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays)
+				];
+			}
+		} else {
+			$current = $nextSunday;
+			for ($i = 1; $i <= 6; $i++) {
+				$dates[] = [
+					'day' => date('D', $current),
+					'date' => date('d', $current),
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays)
+				];
+			}
 		}
 	}
 	return $dates;

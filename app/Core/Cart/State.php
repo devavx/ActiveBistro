@@ -9,6 +9,7 @@ use App\Core\Enums\Common\PaymentSlab;
 use App\Core\Primitives\Arrays;
 use App\Core\Primitives\Str;
 use App\Exceptions\InvalidCouponException;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\MealPlan;
@@ -99,19 +100,21 @@ final class State
 				$this->setSubTotal($this->subTotal() + $plan->total);
 			}
 		}
-		$this->setTotal($this->subTotal());
-		if ($this->discount() > 0 && $this->total() > 0) {
-			$total = $this->total();
-			$rebate = ($this->discount() / 100.0) * $total;
-			$this->setTotal($total - $rebate);
-		}
-		if ($this->coupon() != null && $this->total() > 0) {
-			$coupon = $this->coupon();
-			if ($coupon->type == Coupon::Flat) {
-				$this->calculateFlatDiscount();
+		if ($this->subTotal() > 0) {
+			if ($this->coupon() != null) {
+				$coupon = $this->coupon();
+				if ($coupon->type == Coupon::Flat) {
+					$this->calculateFlatDiscount();
+				} else {
+					$this->calculatePercentDiscount();
+				}
+			} elseif ($this->discount() > 0) {
+				$this->calculateAdditionalDiscount();
 			} else {
-				$this->calculatePercentDiscount();
+				$this->setTotal($this->subTotal());
 			}
+		} else {
+			$this->setTotal(0.0);
 		}
 	}
 
@@ -165,11 +168,21 @@ final class State
 				$this->setTotal($this->total() + $plan->total);
 			}
 		}
-		if ($this->discount() > 0) {
-			$total = $this->total();
-			$rebate = ($this->discount() / 100.0) * $total;
-			$this->setSubTotal($total);
-			$this->setTotal($total - $rebate);
+		if ($this->subTotal() > 0) {
+			if ($this->coupon() != null) {
+				$coupon = $this->coupon();
+				if ($coupon->type == Coupon::Flat) {
+					$this->calculateFlatDiscount();
+				} else {
+					$this->calculatePercentDiscount();
+				}
+			} elseif ($this->discount() > 0) {
+				$this->calculateAdditionalDiscount();
+			} else {
+				$this->setTotal($this->subTotal());
+			}
+		} else {
+			$this->setTotal(0.0);
 		}
 		$this->update();
 	}
@@ -221,12 +234,9 @@ final class State
 			'fats' => 0,
 			'proteins' => 0,
 			'calories' => 0,
-			'total' => 0,
-			'subTotal' => 0,
 			'discount' => 0,
-			'staffDiscount' => false,
-			'firstDate' => null,
-			'secondDate' => null
+			'subTotal' => 0,
+			'total' => 0,
 		];
 	}
 
@@ -239,10 +249,8 @@ final class State
 			'calories' => $this->cart()->calories,
 			'staffDiscount' => $this->cart()->staffDiscount,
 			'discount' => $this->cart()->discount,
-			'total' => $this->cart()->total,
 			'subTotal' => $this->cart()->subTotal,
-			'firstDate' => $this->cart()->firstDate,
-			'secondDate' => $this->cart()->secondDate,
+			'total' => $this->cart()->total,
 		];
 	}
 
@@ -258,7 +266,13 @@ final class State
 			'snacks' => $options->wantSnacks(),
 			'snackCount' => $options->getSnacksPerDay(),
 			'mealsPerDay' => $options->getMealsPerDay(),
-			'dietary_requirement' => $options->getDietaryRequirement()
+			'dietary_requirement' => $options->getDietaryRequirement(),
+			'staffDiscount' => false,
+			'paymentSlab' => null,
+			'firstDate' => null,
+			'secondDate' => null,
+			'address' => null,
+			'secondAddress' => null,
 		];
 	}
 
@@ -271,7 +285,13 @@ final class State
 			'snacks' => $this->cart()->wantSnacks,
 			'snackCount' => $this->cart()->snackCount,
 			'mealsPerDay' => $this->cart()->mealsPerDay,
-			'dietary_requirement' => $this->cart()->dietaryRequirement
+			'dietary_requirement' => $this->cart()->dietaryRequirement,
+			'staffDiscount' => $this->cart()->staffDiscount,
+			'paymentSlab' => $this->cart()->paymentSlab,
+			'firstDate' => $this->cart()->firstDate,
+			'secondDate' => $this->cart()->secondDate,
+			'address' => $this->cart()->address,
+			'secondAddress' => $this->cart()->secondAddress,
 		];
 	}
 
@@ -351,22 +371,32 @@ final class State
 
 	public function paymentSlab (): string
 	{
-		return $this->stats->paymentSlab ?? PaymentSlab::Weekly;
+		return $this->options->paymentSlab ?? PaymentSlab::Weekly;
 	}
 
 	public function firstDate (): ?string
 	{
-		return $this->stats->firstDate;
+		return $this->options->firstDate;
 	}
 
 	public function secondDate (): ?string
 	{
-		return $this->stats->secondDate;
+		return $this->options->secondDate;
+	}
+
+	public function address (): ?Address
+	{
+		return $this->options->address;
+	}
+
+	public function secondAddress (): ?Address
+	{
+		return $this->options->secondAddress;
 	}
 
 	public function staffDiscount (): bool
 	{
-		return $this->stats->staffDiscount ?? false;
+		return $this->options->staffDiscount ?? false;
 	}
 
 	public function setCalories (float $calories): float
@@ -413,26 +443,38 @@ final class State
 
 	public function setStaffDiscount (bool $allow): bool
 	{
-		$this->stats->staffDiscount = $allow;
-		return $this->stats->staffDiscount;
+		$this->options->staffDiscount = $allow;
+		return $this->options->staffDiscount;
 	}
 
 	public function setPaymentSlab (PaymentSlab $paymentSlab)
 	{
-		$this->stats->paymentSlab = $paymentSlab->value;
-		return $this->stats->paymentSlab;
+		$this->options->paymentSlab = $paymentSlab->value;
+		return $this->options->paymentSlab;
 	}
 
 	public function setFirstDate (string $date): ?string
 	{
-		$this->stats->firstDate = $date;
-		return $this->stats->firstDate;
+		$this->options->firstDate = $date;
+		return $this->options->firstDate;
 	}
 
 	public function setSecondDate (string $date): ?string
 	{
-		$this->stats->secondDate = $date;
-		return $this->stats->secondDate;
+		$this->options->secondDate = $date;
+		return $this->options->secondDate;
+	}
+
+	public function setAddress (?Address $address): ?Address
+	{
+		$this->options->address = $address;
+		return $this->options->address;
+	}
+
+	public function setSecondAddress (?Address $address): ?Address
+	{
+		$this->options->secondAddress = $address;
+		return $this->options->secondAddress;
 	}
 
 	public function resetStats (): void
@@ -461,11 +503,15 @@ final class State
 			'dietaryRequirement' => $this->getDietaryRequirement(),
 			'allergies' => $this->allergies(),
 			'items' => $this->cards(),
+			'staffDiscount' => $this->staffDiscount(),
 			'discount' => $this->discount(),
 			'subTotal' => $this->subTotal(),
 			'total' => $this->total(),
+			'paymentSlab' => $this->paymentSlab(),
 			'firstDate' => $this->firstDate(),
 			'secondDate' => $this->secondDate(),
+			'address_id' => $this->address() != null ? $this->address()->id : null,
+			'second_address_id' => $this->secondAddress() != null ? $this->secondAddress()->id : null
 		];
 		if ($this->coupon() != null) {
 			$payload['coupon_code'] = $this->coupon()->code;
@@ -722,7 +768,7 @@ final class State
 
 	public function invoice (): \stdClass
 	{
-		$id = strtoupper(substr(md5($this->cart()->getKey()), 0, 10));
+		$id = $this->cart()->invoiceId;
 		$description = "Order_{$id}";
 		return (object)[
 			'id' => $id,
@@ -772,10 +818,12 @@ final class State
 	{
 		$coupon = $this->coupon();
 		$subTotal = $this->subTotal();
-		if ($coupon->discount > $subTotal) {
+		$totalDiscount = ($this->discount() / 100.0) * $subTotal;
+		$totalDiscount += $coupon->discount;
+		if ($totalDiscount > $subTotal) {
 			$this->setTotal(0.0);
 		} else {
-			$this->setTotal($subTotal - $coupon->discount);
+			$this->setTotal($subTotal - $totalDiscount);
 		}
 	}
 
@@ -783,7 +831,23 @@ final class State
 	{
 		$coupon = $this->coupon();
 		$subTotal = $this->subTotal();
-		$value = ($coupon->discount / 100.0) * $subTotal;
+		$totalDiscount = $this->discount();
+		$totalDiscount += $coupon->discount;
+		if ($totalDiscount > 100.0)
+			$totalDiscount = 100.0;
+		$value = ($totalDiscount / 100.0) * $subTotal;
+		if ($value > $subTotal) {
+			$this->setTotal(0.0);
+		} else {
+			$this->setTotal($subTotal - $value);
+		}
+	}
+
+	protected function calculateAdditionalDiscount ()
+	{
+		$subTotal = $this->subTotal();
+		$totalDiscount = $this->discount();
+		$value = ($totalDiscount / 100.0) * $subTotal;
 		if ($value > $subTotal) {
 			$this->setTotal(0.0);
 		} else {

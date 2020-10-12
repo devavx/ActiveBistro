@@ -46,7 +46,9 @@
 						<div class="card-body">
 							<h4 class="card-title">Item Type List</h4>
 							<div class="text-right">
-								<button class="btn btn-primary mr-4"><i class="fa fa-trash mr-2"></i>Delete</button>
+								<button type="button" onclick="confirmDeleteBulk();" class="btn btn-primary mr-4">
+									<i class="fa fa-trash mr-2"></i>Delete
+								</button>
 							</div>
 							@if($message=Session::get('success'))
 								<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -75,7 +77,6 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>#</th>
-
 										<th>Name</th>
 										<th>Status</th>
 										<th>Created At</th>

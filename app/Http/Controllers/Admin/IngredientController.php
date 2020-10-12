@@ -11,7 +11,7 @@ class IngredientController extends Controller
 {
 	public function index ()
 	{
-		$listData = Ingredient::query()->latest()->get();
+		$listData = Ingredient::query()->latest()->orderBy('name')->get();
 		return view('backend/admin/ingredient/index', compact('listData'));
 	}
 
@@ -24,7 +24,7 @@ class IngredientController extends Controller
 	{
 		$res = Ingredient::create($request->all());
 		if ($res) {
-			return redirect('admin/ingredient')->with('success', 'Ingredient Added successfully!');
+			return redirect('admin/ingredient/create')->with('success', 'Ingredient added successfully!');
 		} else {
 			return redirect()->back('errormsg', $this->commonError());
 		}
