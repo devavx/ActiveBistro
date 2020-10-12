@@ -769,7 +769,7 @@ final class State
 	public function invoice (): \stdClass
 	{
 		$id = $this->cart()->invoiceId;
-		$description = "Order_{$id}";
+		$description = "Order_#{$id}";
 		return (object)[
 			'id' => $id,
 			'description' => $description
