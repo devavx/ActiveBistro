@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-lg-4 col-sm-4 col-6">
 				<div class="myordertop mt-3 myordertop-btn">
-					<button class="btn btn-info btn-md m-0">Order Meals</button>
+					<a class="btn btn-info btn-md m-0" href="{{route('order-now.index')}}">Order Meals</a>
 				</div>
 			</div>
 		</div>
