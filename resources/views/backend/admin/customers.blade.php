@@ -50,7 +50,6 @@
 										<th>#</th>
 										<th>Name</th>
 										<th>Email</th>
-										<th>Address</th>
 										<th>Profile Image</th>
 										<th>Created At</th>
 										<th>Action</th>
@@ -68,7 +67,6 @@
 
 												<td>{{ $rows->name ?? '-' }}</td>
 												<td>{{ $rows->email ?? '-' }}</td>
-												<td>{{ \App\Core\Primitives\Str::ellipsis($rows->address ?? '-',25) }}</td>
 												<td>
 													<img src="{{ $rows->profile_image }}" class="img-thumbnail" width="100">
 												</td>
