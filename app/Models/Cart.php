@@ -27,7 +27,7 @@ class Cart extends Model
 	{
 		parent::boot();
 		self::creating(function (Cart $cart) {
-			$cart->invoiceId = strtoupper(substr(md5(microtime()), 0, 7));
+			$cart->invoiceId = strtoupper(substr(md5(microtime()), 0, 10));
 			$cart->items = [];
 			$cart->allergies = [];
 		});
