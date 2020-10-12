@@ -138,7 +138,7 @@ function dates (): array
 //		dd(Time::humanize($deadline, true), Time::humanize($current, true));
 		if ($current <= $deadline) {
 			$current = $nextSunday;
-			for ($i = 1; $i <= 6; $i++) {
+			for ($i = 1; $i <= 7; $i++) {
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
@@ -147,7 +147,7 @@ function dates (): array
 			}
 		} else {
 			$current = $nextWednesday;
-			for ($i = 1; $i <= 6; $i++) {
+			for ($i = 1; $i <= 7; $i++) {
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
@@ -163,7 +163,7 @@ function dates (): array
 		$deadline = strtotime(date($prefix . deadline()->deadline_wednesday));
 		if ($current <= $deadline) {
 			$current = $nextWednesday;
-			for ($i = 1; $i <= 6; $i++) {
+			for ($i = 1; $i <= 7; $i++) {
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
@@ -172,7 +172,7 @@ function dates (): array
 			}
 		} else {
 			$current = $nextSunday;
-			for ($i = 1; $i <= 6; $i++) {
+			for ($i = 1; $i <= 7; $i++) {
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),

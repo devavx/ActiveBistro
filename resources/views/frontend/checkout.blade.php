@@ -68,12 +68,14 @@
 
 						<div class="date-selection mb-3">
 							@foreach(dates() as $date)
-								<label class="date-label @if($loop->index<=1) dateselectradio @endif" for="radio_{{$date['date']}}">
-									<span>{{$date['day']}}</span>
-									<span class="bigger">{{$date['date']}}</span>
-									<span>{{$date['month']}}</span>
-									<input class="hidden" type="checkbox" id="radio_{{$date['date']}}" name="dates[]" value="radio_{{$loop->index}}" @if($loop->index<=1) checked @endif>
-								</label>
+								@if($loop->index<7)
+									<label class="date-label @if($loop->index<=1) dateselectradio @endif" for="radio_{{$date['date']}}">
+										<span>{{$date['day']}}</span>
+										<span class="bigger">{{$date['date']}}</span>
+										<span>{{$date['month']}}</span>
+										<input class="hidden" type="checkbox" id="radio_{{$date['date']}}" name="dates[]" value="{{$loop->index}}" @if($loop->index<=1) checked @endif>
+									</label>
+								@endif
 							@endforeach
 						</div>
 
