@@ -112,7 +112,7 @@ class CheckoutController extends Controller
 		$state = new State(auth()->user());
 		$user = auth()->user();
 		$items = $state->items();
-		if ($state->coupon() != null) {
+		if ($state->coupon() != null || $state->staffDiscount()) {
 			Arrays::push($items, [
 				'name' => 'Discounts',
 				'price' => ($state->subTotal() - $state->total()) * -1,
