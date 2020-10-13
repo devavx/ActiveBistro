@@ -77,12 +77,8 @@
 					<a class="nav-link" href="{{ url('/sign-up') }}">Sign up</a>
 				</li>
 				<li class="nav-item">
-					@auth
-						<a class="nav-link" href="{{route('order-now.index')}}">Order Now</a>
-					@endauth
-					@guest
-						<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
-					@endguest
+					<a class="nav-link" href="{{route('order-now.index')}}">Order Now</a>
+					<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
 				</li>
 
 				@guest
