@@ -76,10 +76,8 @@
 				<li class="nav-item mdblock">
 					<a class="nav-link" href="{{ url('/sign-up') }}">Sign up</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{route('order-now.index')}}">Order Now</a>
-					<a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a>
-				</li>
+				<li><a class="nav-link" href="{{ url('ourmenu') }}">Our Menu</a></li>
+				<li class="nav-item"><a class="nav-link" href="{{route('order-now.index')}}">Order Now</a></li>
 
 				@guest
 					<li class="nav-item">
