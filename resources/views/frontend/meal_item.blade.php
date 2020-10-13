@@ -70,7 +70,7 @@
 						<div class="mealform-right text-right">
 							<a href="javascript:void(0);" class="text-color save-data" onclick="saveData('{{ $plan->uuid }}')"><i class="fa fa-check-square-o"></i></a>
 							<span class="font-weight-bold countnum ml-2 mr-2">/</span>
-							<a href="javascript:void(0);" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
+							<a href="javascript:void(0)" onclick="deleteMeal('{{$key}}','{{$plan->uuid}}');" class="text-danger font-weight-bold"><i class="fa fa-trash"></i></a>
 						</div>
 					</div>
 				</div>
