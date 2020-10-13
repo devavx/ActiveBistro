@@ -65,7 +65,14 @@
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
 									<label>Phone <sup class="text-danger">*</sup></label>
-									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" pattern="[\d+]" value="{{ old('phone') }}" required autocomplete="phone" minlength="11" maxlength="11">
+									<div class="row">
+										<div class="col-3 pr-1">
+											<input type="text" class="form-control bg-white text-center" value="07" readonly disabled>
+										</div>
+										<div class="col-9 pl-0">
+											<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" pattern="[\d+]" value="{{ old('phone') }}" required autocomplete="phone" minlength="9" maxlength="9">
+										</div>
+									</div>
 								</div>
 								@error('phone')
 								<span class="invalid-feedback" role="alert">
@@ -122,7 +129,7 @@
 
 						<div class="form-group">
 							<label>Date of Birth <sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}" placeholder="Enter date of birth..">
+							<input type="text" class="form-control" name="dob" id="datepicker" value="{{ old('dob') }}">
 							@error('dob')
 							<span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -165,6 +172,7 @@
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 	<script>
+		let checked = false;
 
 		$("#datepicker").datepicker({
 			changeMonth: true,
@@ -191,7 +199,25 @@
 			})
 
 			$("#click_to_verify").on('change', function () {
+				checked = this.checked;
 				if (this.checked) {
+					let str = $('#email').val();
+					str = str.split('.').slice(1);
+					const allowedDomains = ['nhs', 'ac'];
+					if ($.inArray(str[0], allowedDomains) !== -1) {
+						setMessage("You qualify for special discount!", 'success');
+						return true;  // FAIL validation when REGEX matches
+					} else {
+						setMessage("Unfortunately, you don\'t qualify for special discount!", "error");
+						return false;   // PASS validation otherwise
+					}
+				} else {
+					setMessage(null, null);
+				}
+			});
+
+			$('#email').keyup(function () {
+				if (checked) {
 					let str = $('#email').val();
 					str = str.split('.').slice(1);
 					const allowedDomains = ['nhs', 'ac'];

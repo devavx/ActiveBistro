@@ -55,11 +55,13 @@
 	<script type="text/javascript" src="{{ asset('js/Cart.js') }}"></script>
 	<script type="text/javascript">
 		function editdata(id) {
+			console.log(id);
 			$("#mealcol__" + id).hide();
 			$("#meal-form__" + id).show();
 		}
 
 		function saveData(id) {
+			console.log(id);
 			$("#meal-form__" + id).hide();
 			$("#mealcol__" + id).show();
 		}
