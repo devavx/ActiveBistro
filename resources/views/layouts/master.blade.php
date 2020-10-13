@@ -114,7 +114,7 @@
 				@else
 					<li class="nav-item">
 						<a class="nav-link text-color" href="@if(Auth::user()->role->name =='admin'){{ url('/admin') }} @else {{ url('/home') }} @endif">
-							<img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ \App\Core\Primitives\Str::ellipsis(Auth::user()->name,15) }}</span></a>
+							<img src="@if(!empty(Auth::user()->profile_image)){{Auth::user()->profile_image}} @else {{ asset('uploads/image/agent.jpg') }} @endif" class="rounded-circle userprofile-img"><span class="ml-2">{{ \App\Core\Primitives\Str::ellipsis(Auth::user()->first_name,15) }}</span></a>
 					</li>
 					<li class="nav-item dropdown mt-2">
 						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
