@@ -141,6 +141,7 @@ class CheckoutController extends Controller
 		$payload['return_url'] = route('payments.completed');
 		$payload['cancel_url'] = route('payments.cancelled');
 		$payload['total'] = $state->total();
+		dd($payload);
 		$response = $this->provider->setExpressCheckout($payload);
 		return redirect()->to($response['paypal_link']);
 	}
