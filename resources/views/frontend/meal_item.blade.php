@@ -5,7 +5,7 @@
 		</div>
 		<div class="card-body p-2 meal__item__count">
 			@foreach($plans as $plan)
-				<h6 style="font-weight: 600;" class="mt-2 @if($plan->allergic==true) text-danger @endif">{{ $plan->name }}(&pound;{{$plan->total}})</h6>
+				<h6 style="font-weight: 600;" class="mt-2 @if($plan->allergic==true) text-danger @endif">{{ $plan->name }}&nbsp;(&pound;{{$plan->total}})</h6>
 				<div class="mealcol" id="mealcol__{{ $plan->uuid }}">
 					<div class="meal-left meal__price">
 						@foreach($plan->items as $item)
