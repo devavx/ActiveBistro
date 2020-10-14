@@ -25,7 +25,7 @@
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Sub Total:</label>
 					<div class="col-md-9">
-						<p class="form-control-static"> {{$order->sub_total}} </p>
+						<p class="form-control-static">&pound; {{$order->sub_total}} </p>
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Total:</label>
 					<div class="col-md-9">
-						<p class="form-control-static"> {{$order->total}} </p>
+						<p class="form-control-static">&pound; {{$order->total}} </p>
 					</div>
 				</div>
 			</div>
@@ -124,24 +124,12 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group row">
-					<label class="control-label text-right col-md-3">City:</label>
+					<label class="control-label text-right col-md-3">City/Town:</label>
 					<div class="col-md-9">
 						<p class="form-control-static"> {{$order->address->city}} </p>
 					</div>
 				</div>
 			</div>
-			<!--/span-->
-			<div class="col-md-6">
-				<div class="form-group row">
-					<label class="control-label text-right col-md-3">State:</label>
-					<div class="col-md-9">
-						<p class="form-control-static"> Gujarat </p>
-					</div>
-				</div>
-			</div>
-			<!--/span-->
-		</div>
-		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Post Code:</label>
@@ -150,7 +138,6 @@
 					</div>
 				</div>
 			</div>
-			<!--/span-->
 		</div>
 		<h4 class="box-title">Items</h4>
 		<hr class="m-t-0 m-b-40">
