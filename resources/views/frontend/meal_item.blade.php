@@ -41,7 +41,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==1)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}} (&pound;{{$item->selling_price}})</option>
 											</div>
 										@endif
 									@endforeach
@@ -50,7 +50,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==2)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}} (&pound;{{$item->selling_price}})</option>
 											</div>
 										@endif
 									@endforeach
@@ -59,7 +59,7 @@
 									@foreach($plan->items as $item)
 										@if($item->pivot->slab==3)
 											<div class="form-group">
-												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}}</option>
+												<option value="{{$item->id}}" data-price="{{$item->selling_price}}" data-name="{{$item->name}}" @if($item->chosen==true) selected @endif>{{$item->name}} (&pound;{{$item->selling_price}})</option>
 											</div>
 										@endif
 									@endforeach
