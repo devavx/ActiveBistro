@@ -152,9 +152,13 @@ final class State
 		 */
 		foreach ($this->cards as $key => $value) {
 			foreach ($value as $plan) {
+				$allergyItems = [];
 				foreach ($plan->allergyList()->toArray() as $allergy) {
 					$plan->allergic = $this->isAllergicTo($allergy['id']);
-					$plan->allergyItems[] = $allergy['name'];
+					$allergyItems[] = $allergy['name'];
+				}
+				if (count($allergyItems) > 0) {
+					$plan->allergyItems = $allergyItems;
 				}
 				foreach ($plan->items as $item) {
 					$item->prepare();
