@@ -59,7 +59,7 @@ class MealPlan extends Model
 		foreach ($allergiesCollection as $item) {
 			$list->push([
 				'id' => $item->id,
-				'name' - $item->name
+				'name' => $item->name
 			]);
 		}
 		return $list;
