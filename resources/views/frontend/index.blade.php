@@ -56,7 +56,7 @@
 													<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started
 														<i class="fa fa-chevron-right ml-2"></i></a>
 												@else
-													<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started
+													<a href="{{ route('order-now.index') }}" class="btn btn-info btn-md">Get Started
 														<i class="fa fa-chevron-right ml-2"></i></a>
 												@endguest
 											</div>
