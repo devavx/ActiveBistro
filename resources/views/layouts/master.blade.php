@@ -28,7 +28,7 @@
 			<div class="mdblock">
 				<li class="nav-item">
 					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',dates()[0]['deadline'])}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
 					@elseif($difference>=43200&&$difference<86400)
 						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
 					@else
@@ -89,7 +89,7 @@
 
 				<li class="nav-item">
 					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',dates()[0]['deadline'])}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
 					@elseif($difference>0&&$difference<86400)
 						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
 					@else
@@ -218,33 +218,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 @include('backend.fragments.scripts')
-<script>
-	let secondsTimer = {{$difference>0&&$difference<=43200?$difference:0}};
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	})
+{{--<script>--}}
+{{--	let secondsTimer = {{$difference>0&&$difference<=43200?$difference:0}};--}}
+{{--	$(function () {--}}
+{{--		$('[data-toggle="tooltip"]').tooltip()--}}
+{{--	})--}}
 
-	$(document).ready(function () {
-		if (secondsTimer > 1) {
-			setInterval(() => {
-				secondsTimer--;
-				const zeroPadding = (value) => {
-					return value < 10 ? "0" + value : value;
-				}
-				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
-				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
-				const second = zeroPadding(parseInt(secondsTimer % 60));
-				setTime(hours + ' Hour(s) ' + minutes + ' Minute(s) ');
-			}, 1000);
-		}
-	});
+{{--	$(document).ready(function () {--}}
+{{--		if (secondsTimer > 1) {--}}
+{{--			setInterval(() => {--}}
+{{--				secondsTimer--;--}}
+{{--				const zeroPadding = (value) => {--}}
+{{--					return value < 10 ? "0" + value : value;--}}
+{{--				}--}}
+{{--				const hours = zeroPadding(Math.floor(secondsTimer / 3600));--}}
+{{--				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));--}}
+{{--				const second = zeroPadding(parseInt(secondsTimer % 60));--}}
+{{--				setTime(hours + ' Hour(s) ' + minutes + ' Minute(s) ');--}}
+{{--			}, 1000);--}}
+{{--		}--}}
+{{--	});--}}
 
-	setTime = time => {
-		$('.timer_span').html(time);
-	}
+{{--	setTime = time => {--}}
+{{--		$('.timer_span').html(time);--}}
+{{--	}--}}
 
 
-</script>
+{{--</script>--}}
 @yield('script')
 </body>
 </html>

@@ -64,7 +64,9 @@
 										@endif
 									@endforeach
 								</select>
-								<span class="text-danger text-right d-none">*Contains Eggs.</span>
+								@if($plan->allergic==true&&isset($plan->allergyList))
+									<span class="text-danger text-right">*Contains {{implode(", ",$plan->alleryList)}}.</span>
+								@endif
 							</form>
 						</div>
 						<div class="mealform-right text-right">

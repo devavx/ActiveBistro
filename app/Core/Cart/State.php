@@ -147,10 +147,14 @@ final class State
 		if (!$this->getMealsAtSaturday()) {
 			$this->cards->saturday = [];
 		}
+		/**
+		 * @var $plan MealPlan
+		 */
 		foreach ($this->cards as $key => $value) {
 			foreach ($value as $plan) {
-				foreach ($plan->allergies->pluck('id')->toArray() as $allergyId) {
-					$plan->allergic = $this->isAllergicTo($allergyId);
+				foreach ($plan->allergies()->get(['id', 'name'])->toArray() as $allergy) {
+					$plan->allergic = $this->isAllergicTo($allergy['id']);
+					$plan->allergyList[] = $allergy['name'];
 				}
 				foreach ($plan->items as $item) {
 					$item->prepare();
