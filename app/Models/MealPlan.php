@@ -52,6 +52,19 @@ class MealPlan extends Model
 		return $this->belongsToMany(Allergy::class, 'meal_plan_allergies');
 	}
 
+	public function allergyList (): Collection
+	{
+		$allergiesCollection = $this->allergies;
+		$list = new Collection();
+		foreach ($allergiesCollection as $item) {
+			$list->push([
+				'id' => $item->id,
+				'name' - $item->name
+			]);
+		}
+		return $list;
+	}
+
 	public function mealItems (): HasMany
 	{
 		return $this->hasMany(MealPlanItem::class);
