@@ -154,7 +154,7 @@ final class State
 			foreach ($value as $plan) {
 				foreach ($plan->allergyList()->toArray() as $allergy) {
 					$plan->allergic = $this->isAllergicTo($allergy['id']);
-					$plan->allergyList[] = $allergy['name'];
+					$plan->allergyItems[] = $allergy['name'];
 				}
 				foreach ($plan->items as $item) {
 					$item->prepare();
