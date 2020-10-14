@@ -134,36 +134,62 @@
 						</div>
 					</div>
 
-					<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
+						<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
 				</div>
 			</div>
 
 			<div class="col-lg-4 col-sm-4 col-12">
-				<div class="change-password p-3 shadow mt-3">
-					<h5 class="font-weight-bold text-color">Change Password</h5>
-					<hr>
+				<div class="row">
+					<div class="col-12">
+						<div class="change-password p-3 shadow mt-3">
+							<h5 class="font-weight-bold text-color">Change Password</h5>
+							<hr>
 
-					<form id="change_password_form">
-						@csrf
-						<div class="form-group">
-							<label>Enter current password</label>
-							<input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password..." minlength="8" maxlength="64">
-						</div>
+							<form id="change_password_form">
+								@csrf
+								<div class="form-group">
+									<label>Enter current password</label>
+									<input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password..." minlength="8" maxlength="64">
+								</div>
 
-						<div class="form-group">
-							<label>Enter new password</label>
-							<input type="password" class="form-control" name="new_password" id="new_password" placeholder="New Password..." minlength="8" maxlength="64">
-						</div>
+								<div class="form-group">
+									<label>Enter new password</label>
+									<input type="password" class="form-control" name="new_password" id="new_password" placeholder="New Password..." minlength="8" maxlength="64">
+								</div>
 
-						<div class="form-group">
-							<label>Confirm password</label>
-							<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password..." minlength="8" maxlength="64">
-						</div>
+								<div class="form-group">
+									<label>Confirm password</label>
+									<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password..." minlength="8" maxlength="64">
+								</div>
 
-						<div class="form-group mb-0">
-							<button type="button" id="change_password_btn" class="btn btn-info ml-0">Change</button>
+								<div class="form-group mb-0">
+									<button type="button" id="change_password_btn" class="btn btn-info ml-0">Change</button>
+								</div>
+							</form>
 						</div>
-					</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="p-3 shadow mt-3">
+							<h5 class="font-weight-bold text-color">Change Email</h5>
+							<hr>
+							<form id="change_email_form">
+								@csrf
+								<div class="form-group">
+									<label>Enter new email</label>
+									<input type="email" class="form-control" id="new_email" name="new_email" placeholder="Enter new email address..." maxlength="100" required>
+								</div>
+								<div class="form-group">
+									<label>Confirm password</label>
+									<input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Please enter your current password..." minlength="8" maxlength="64" required>
+								</div>
+								<div class="form-group mb-0">
+									<button type="button" id="change_email_btn" class="btn btn-info ml-0">Change</button>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -173,7 +199,7 @@
 		<div class="modal-dialog  modal-full-height modal-right" role="document">
 			<div class="modal-content">
 				<div class="modal-header bg-color ">
-					<h5 class="modal-title w-100 text-white">Change Personal Detail</h5>
+					<h5 class="modal-title w-100 text-white">Change Personal Details</h5>
 					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" class="text-white">&times;</span>
 					</button>
@@ -196,7 +222,14 @@
 
 						<div class="form-group">
 							<label>Phone <sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="8" maxlength="16">
+							<div class="row">
+								<div class="col-3 pr-1">
+									<input type="text" class="form-control bg-white text-center" value="07" readonly disabled>
+								</div>
+								<div class="col-9 pl-0">
+									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="9" maxlength="9">
+								</div>
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -384,12 +417,34 @@
 				}
 			});
 
+			$('#change_email_form').validate({ // initialize the plugin
+				rules: {
+					current_password: {
+						required: true,
+						minlength: 8
+					},
+					new_email: {
+						required: true,
+					},
+				},
+				messages: {}
+			});
+
 			$(document).on('click', '#change_password_btn', function () {
 				if (!$("#change_password_form").valid()) { // Not Valid
 					return true;
 				} else {
 					url = "{{ url('/change_password') }}";
 					saveAjaxData('#change_password_form', url, '#change_password_btn')
+				}
+			});
+
+			$(document).on('click', '#change_email_btn', function () {
+				if (!$("#change_email_form").valid()) { // Not Valid
+					return true;
+				} else {
+					url = "{{ url('/change_email') }}";
+					saveAjaxData('#change_email_form', url, '#change_email_btn')
 				}
 			});
 		})

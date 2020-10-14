@@ -14,7 +14,7 @@
 									<a href="javascript:void(0)">
 										{{ $item->name }}
 									</a>
-									<span class="text-color font-weight-bold ml-2">&pound;<span>{{ $item->selling_price }}</span></span>
+
 								</p>
 							@endif
 						@endforeach

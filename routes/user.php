@@ -19,6 +19,7 @@ Route::post('options/save', 'FrontendController@saveOptions')->name('profile_opt
 Route::group(['middleware' => ['auth']], function () {
 	Route::post('/update_user', 'UserProfileController@updateUserDetail')->name('update_user');
 	Route::post('/change_password', 'UserProfileController@updatePassword')->name('update_password');
+	Route::post('/change_email', 'UserProfileController@updateEmail')->name('update_email');
 	Route::get('/my_order', 'OrderController@index')->name('my_order');
 	Route::get('/my_order/show/{key}', 'OrderController@show')->name('my_order.show');
 });

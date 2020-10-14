@@ -76,6 +76,37 @@ class UserProfileController extends Controller
 		return json_encode($result);
 	}
 
+	public function updateEmail (Request $request)
+	{
+		$input = $request->all();
+		$result = array();
+		$rules = [
+			'new_email' => 'required|unique:users,email',
+			'confirm_password' => 'required',
+		];
+		$validator = Validator::make($input, $rules);
+		if ($validator->fails()) {
+			$result['status'] = 'error';
+			$result['message'] = $validator->errors()->first();
+		} else {
+			$user = Auth::user();
+			if ((Hash::check(request('confirm_password'), $user->password)) == false) {
+				$result['status'] = 'error';
+				$result['message'] = 'Your provided password is invalid and can\'t be used to authorize this action!';
+			} else {
+				if ($request->new_email != $user->email) {
+					$user->update(['email' => $request->new_email]);
+					$result['status'] = 'success';
+					$result['message'] = 'Email updated successfully';
+				} else {
+					$result['status'] = 'error';
+					$result['message'] = 'New and current email can\'t be same.';
+				}
+			}
+		}
+		return json_encode($result);
+	}
+
 	public function getAllOrder ()
 	{
 		return view('frontend.my_order');
