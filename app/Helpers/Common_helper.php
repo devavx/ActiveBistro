@@ -142,7 +142,8 @@ function dates (): array
 					'day' => date('D', $current),
 					'date' => date('d', $current),
 					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
-					'actual' => date('Y-m-d', $current)
+					'actual' => date('Y-m-d', $current),
+					'deadline' => $deadline
 				];
 			}
 		} else {
@@ -152,7 +153,8 @@ function dates (): array
 					'day' => date('D', $current),
 					'date' => date('d', $current),
 					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
-					'actual' => date('Y-m-d', $current)
+					'actual' => date('Y-m-d', $current),
+					'deadline' => $deadline
 				];
 			}
 		}
@@ -169,7 +171,8 @@ function dates (): array
 					'day' => date('D', $current),
 					'date' => date('d', $current),
 					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
-					'actual' => date('Y-m-d', $current)
+					'actual' => date('Y-m-d', $current),
+					'deadline' => $deadline
 				];
 			}
 		} else {
@@ -179,10 +182,16 @@ function dates (): array
 					'day' => date('D', $current),
 					'date' => date('d', $current),
 					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
-					'actual' => date('Y-m-d', $current)
+					'actual' => date('Y-m-d', $current),
+					'deadline' => $deadline
 				];
 			}
 		}
 	}
 	return $dates;
+}
+
+function nextDeadline (): int
+{
+	return dates()[0]['deadline'];
 }

@@ -18,7 +18,7 @@
 </head>
 <body>
 @php
-	$elapsed=elapsed();
+	$elapsed=nextDeadline();
 	$current=time();
 	$difference=$elapsed-$current;
 @endphp
