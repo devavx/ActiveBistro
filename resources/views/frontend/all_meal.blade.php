@@ -77,7 +77,7 @@
 
 			var carousels = function () {
 				$(".owl-carousel1").owlCarousel({
-					loop: true,
+					loop: false,
 					center: true,
 					margin: 0,
 					responsiveClass: true,

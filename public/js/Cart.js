@@ -135,7 +135,7 @@ deleteItem = (day, itemId) => {
 rebuildCarousel = () => {
 	$(".owl-carousel1").owlCarousel({
 		center: true,
-		loop: true,
+		loop: false,
 		margin: 0,
 		responsiveClass: true,
 		nav: false,
