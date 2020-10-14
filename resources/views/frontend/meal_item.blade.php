@@ -5,14 +5,14 @@
 		</div>
 		<div class="card-body p-2 meal__item__count">
 			@foreach($plans as $plan)
-				<h6 style="font-weight: 600;" class="mt-2 @if($plan->allergic==true) text-danger @endif">{{ $plan->name }}</h6>
+				<h6 style="font-weight: 600;" class="mt-2 mb-1 @if($plan->allergic==true) text-danger @endif">{{ $plan->name }}</h6>
 				<div class="mealcol" id="mealcol__{{ $plan->uuid }}">
 					<div class="meal-left meal__price">
 						@foreach($plan->items as $item)
 							@if($item->chosen==true)
 								<p class="mb-1 item__price">
 									<a href="javascript:void(0)">
-										<u>{{ $item->name }}</u>
+										{{ $item->name }}
 									</a>
 									<span class="text-color font-weight-bold ml-2">£ <span> {{ $item->selling_price }} </span></span>
 								</p>
