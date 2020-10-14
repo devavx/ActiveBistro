@@ -20,7 +20,7 @@
 @php
 	$elapsed=nextDeadline();
 	$current=time();
-	$difference=$elapsed-$current;
+	$difference=$current-$elapsed;
 @endphp
 <div class="container">
 	<div class="row">
