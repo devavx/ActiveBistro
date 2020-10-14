@@ -28,7 +28,7 @@
 			<div class="mdblock">
 				<li class="nav-item">
 					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',dates()[0]['deadline'])}}</span></span>
 					@elseif($difference>=43200&&$difference<86400)
 						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
 					@else
@@ -89,7 +89,7 @@
 
 				<li class="nav-item">
 					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
+						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',dates()[0]['deadline'])}}</span></span>
 					@elseif($difference>0&&$difference<86400)
 						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
 					@else
