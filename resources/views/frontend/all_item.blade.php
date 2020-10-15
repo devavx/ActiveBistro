@@ -42,11 +42,15 @@
 			<div class="col-lg-9 col-sm-9 col-12">
 				<div class="our-menu-toggle">
 					<ul class="nav nav-pills" role="tablist">
-						@foreach($categories as $category)
-							<li class="nav-item">
-								<a class="nav-link @if($loop->index==0) active @endif" data-toggle="tab" href="#category_{{$category->id}}" role="tab">{{$category->name}}</a>
-							</li>
-						@endforeach
+						<li class="nav-item active">
+							<a class="nav-link active" data-toggle="tab" href="#all-meals" role="tab">All Meals</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#breakfasts" role="tab">Breakfast</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#snacks" role="tab">Snacks</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -106,10 +110,12 @@
 			<div class="col-12">
 				<div class="ourentrees-breakfast mb-5">
 					<div class="tab-content pt-3">
-						@foreach($categories as $category)
-							<div class="tab-pane @if($loop->first) active @endif" id="category_{{$category->id}}" role="tabpanel">
-								<div class="row">
-									@foreach($meals as $meal)
+
+						<!--Begin All Meals-->
+						<div class="tab-pane active" id="all-meals" role="tabpanel">
+							<div class="row">
+								@foreach($meals as $meal)
+									@if(empty($meal->type))
 										<div class="col-lg-3 col-sm-6 col-12">
 											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
 												<div class="menuimgcol">
@@ -154,10 +160,121 @@
 												</div>
 											</div>
 										</div>
-									@endforeach
-								</div>
+									@endif
+								@endforeach
 							</div>
-						@endforeach
+						</div>
+						<!--End All Meals-->
+
+						<!--Begin Breakfasts-->
+						<div class="tab-pane" id="breakfast" role="tabpanel">
+							<div class="row">
+								@foreach($meals as $meal)
+									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Breakfast)
+										<div class="col-lg-3 col-sm-6 col-12">
+											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
+												<div class="menuimgcol">
+													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+														<div class="carousel-inner" role="listbox">
+															@foreach($meal->images as $image)
+																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
+																	<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
+																</div>
+															@endforeach
+														</div>
+
+														<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+															<i class="fa fa-chevron-left"></i>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+															<i class="fa fa-chevron-right"></i>
+															<span class="sr-only">Next</span>
+														</a>
+													</div>
+												</div>
+												<div class="menucoltext p-2">
+													<div class="menucoltextpricebtn">
+														<div class="menucoltextprice">
+															<div class="d-flex">
+																<p class="m-0">
+																	<del>$ {{ $meal->items()->sum('selling_price') }}</del>
+																</p>
+																<h5 class="font-weight-bold m-0 text-color ml-2">
+																	$ {{ $meal->items()->sum('selling_price') }}</h5>
+															</div>
+														</div>
+														<div class="menucoltextbtn">
+															<button type="button" onclick="addItem('{{$day}}',{{$meal->id}});" class="btn btn-info btn-md float-right">
+																Add
+															</button>
+														</div>
+													</div>
+													<h5 class="mb-1 text-color text-center" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">{{ $meal->name }}</h5>
+													<p class="m-0 text-center" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">{{ $meal->name }}</p>
+												</div>
+											</div>
+										</div>
+									@endif
+								@endforeach
+							</div>
+						</div>
+						<!--End Breakfasts-->
+
+						<!--Begin Snacks-->
+						<div class="tab-pane active" id="snacks" role="tabpanel">
+							<div class="row">
+								@foreach($meals as $meal)
+									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Snacks)
+										<div class="col-lg-3 col-sm-6 col-12">
+											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
+												<div class="menuimgcol">
+													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+														<div class="carousel-inner" role="listbox">
+															@foreach($meal->images as $image)
+																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
+																	<img class="img-fluid rounded w-100 d-block" src="{{$image->file}}" alt="First slide">
+																</div>
+															@endforeach
+														</div>
+
+														<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+															<i class="fa fa-chevron-left"></i>
+															<span class="sr-only">Previous</span>
+														</a>
+														<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+															<i class="fa fa-chevron-right"></i>
+															<span class="sr-only">Next</span>
+														</a>
+													</div>
+												</div>
+												<div class="menucoltext p-2">
+													<div class="menucoltextpricebtn">
+														<div class="menucoltextprice">
+															<div class="d-flex">
+																<p class="m-0">
+																	<del>$ {{ $meal->items()->sum('selling_price') }}</del>
+																</p>
+																<h5 class="font-weight-bold m-0 text-color ml-2">
+																	$ {{ $meal->items()->sum('selling_price') }}</h5>
+															</div>
+														</div>
+														<div class="menucoltextbtn">
+															<button type="button" onclick="addItem('{{$day}}',{{$meal->id}});" class="btn btn-info btn-md float-right">
+																Add
+															</button>
+														</div>
+													</div>
+													<h5 class="mb-1 text-color text-center" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">{{ $meal->name }}</h5>
+													<p class="m-0 text-center" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">{{ $meal->name }}</p>
+												</div>
+											</div>
+										</div>
+									@endif
+								@endforeach
+							</div>
+						</div>
+						<!--End Snacks-->
 
 					</div>
 				</div>

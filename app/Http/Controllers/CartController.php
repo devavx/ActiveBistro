@@ -33,9 +33,6 @@ class CartController extends Controller
 			});
 		}
 		$meals = $meals->get();
-		foreach ($meals as $meal) {
-			dd($meal);
-		}
 		return view('frontend.all_item')->with('state', $state)->with('categories', $categories)->with('day', $day)->with('types', $types)->with('chosen', request('type', 'none'))->with('meals', $meals);
 	}
 
