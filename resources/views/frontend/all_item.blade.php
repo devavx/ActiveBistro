@@ -180,7 +180,11 @@
 						<div class="row">
 							<div class="col-lg-6 col-sm-12 col-12">
 								<div class="ourmenu-modal text-center">
-									<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-block">
+									@if($meal->images->count()>0)
+										<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-block">
+									@else
+										<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-none">
+									@endif
 
 									<h5 class="text-color mb-1">{{$meal->name}}</h5>
 									<p style="visibility: hidden;"></p>
