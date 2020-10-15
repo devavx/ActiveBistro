@@ -183,7 +183,7 @@
 									@if($meal->images->count()>0)
 										<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-block">
 									@else
-										<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-none">
+										<img src="" class="img-fluid w-100 rounded d-none">
 									@endif
 
 									<h5 class="text-color mb-1">{{$meal->name}}</h5>
