@@ -112,7 +112,7 @@
 									@foreach($meals as $meal)
 										<div class="col-lg-3 col-sm-6 col-12">
 											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
-												<div class="menuimgcol" >
+												<div class="menuimgcol">
 													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 														<div class="carousel-inner" role="listbox">
 															@foreach($meal->images as $image)
@@ -139,7 +139,7 @@
 																<p class="m-0">
 																	<del>$ {{ $meal->items()->sum('selling_price') }}</del>
 																</p>
-																<h5 class="font-weight-bold m-0 text-color ml-2" >
+																<h5 class="font-weight-bold m-0 text-color ml-2">
 																	$ {{ $meal->items()->sum('selling_price') }}</h5>
 															</div>
 														</div>
@@ -180,7 +180,7 @@
 						<div class="row">
 							<div class="col-lg-6 col-sm-12 col-12">
 								<div class="ourmenu-modal text-center">
-									<img src="https://images.pexels.com/photos/924633/pexels-photo-924633.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-fluid w-100 rounded d-block">
+									<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-block">
 
 									<h5 class="text-color mb-1">{{$meal->name}}</h5>
 									<p style="visibility: hidden;"></p>
@@ -229,61 +229,22 @@
 								</div>
 
 								<h5 class="text-color mb-3 font-weight-bold">Nutritional Facts</h5>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Serving Size(g)
-									<span class="font-weight-bold float-right text-color">10</span></p>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Servings Per Container
-									<span class="font-weight-bold float-right text-color">2</span></p>
-
-								<h6 class="font-weight-bold text-color d-none">Amount Per Serving</h6>
-
 								<p class="mb-1 pb-2 border-bottom">Calories (Kcal)
 									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('calories')}}</span>
 								</p>
-
 								<p class="mb-1 pb-2 border-bottom">Total Fat (Grams)<span class="font-weight-bold float-right text-color">{{$meal->items->sum('fat')}}</span>
 								</p>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Saturated Fat g
-									<span class="font-weight-bold float-right text-color">3.3%</span></p>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Trans Fat g<span class="font-weight-bold float-right text-color">85%</span>
-								</p>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Cholesterol mg
-									<span class="font-weight-bold float-right text-color">8%</span></p>
-
-								<p class="mb-1 pb-2 border-bottom d-none">Sodium mg
-									<span class="font-weight-bold float-right text-color">8%</span></p>
-
 								<p class="mb-1 pb-2 border-bottom">Total Carbohydrates (Grams)
 									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('carbs')}}</span>
 								</p>
 								<p class="mb-1 pb-2 border-bottom">Total Protein (Grams)
 									<span class="font-weight-bold float-right text-color">{{$meal->items->sum('protein')}}</span>
 								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Dietary Fiber g<span class="font-weight-bold float-right text-color">8%</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Sugar g<span class="font-weight-bold float-right text-color">8965</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Protein g<span class="font-weight-bold float-right text-color">{{$meal->items->where('default',true)->sum('protein')}}</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Vitamin-D mcg<span class="font-weight-bold float-right text-color">7%</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Calcium mg<span class="font-weight-bold float-right text-color">9%</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Iron mg<span class="font-weight-bold float-right text-color">11%</span>
-								</p>
-								<p class="mb-1 pb-2 border-bottom d-none">Potassium mcg<span class="font-weight-bold float-right text-color">8%</span>
-								</p>
-
 								<p>* Present Daily values are based on 2,000 calories diet. Your daily values may be higher or lower depending on your calories need.</p>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer p-0 justify-content-left">
-						<a href="{{route('order-now.index')}}" class="btn btn-info btn-md">Order Now<i class="fa fa-chevron-right ml-2"></i></a>
 						<button type="button" class="btn btn-dark btn-md" data-dismiss="modal">Close</button>
 					</div>
 				</div>

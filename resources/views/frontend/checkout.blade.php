@@ -29,7 +29,6 @@
 					</ul>
 
 					<fieldset class="px-2">
-
 						<div class="form-group">
 							<label>Your email address <sup class="text-danger">*</sup></label>
 							<input type="email" class="form-control" value="{{auth()->user()->email}}" readonly>
@@ -63,7 +62,6 @@
 							<h6 class="mb-1 font-weight-bold text-color">1. Choose your delivery start date</h6>
 							<p>Your food is delivered to your door twice a week every Sunday and Wednesday ensuring freshness.</p>
 						</div>
-
 
 						<div class="date-selection mb-3">
 							@foreach(dates() as $date)
