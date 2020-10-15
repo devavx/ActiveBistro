@@ -13,15 +13,15 @@
 			<input type="text" class="form-control" name="address[wednesday][address_second_line]" data-parsley-group="address" minlength="2" maxlength="100" required value="{{$address->address_second_line}}">
 		</div>
 		<div class="row">
-			<div class="col-lg-6 col-sm-6 col-12">
+			<div class="col-lg-4 col-sm-4 col-12">
 				<div class="form-group">
 					<label>Town / City</label>
 					<input type="text" class="form-control" name="address[wednesday][city]" minlength="1" data-parsley-group="address" maxlength="50" required value="{{$address->city}}">
 				</div>
 			</div>
-			<div class="col-lg-6 col-sm-6 col-12">
+			<div class="col-lg-4 col-sm-4 col-12">
 				<div class="form-group">
-					<label>Postcode</label>
+					<label>Post code</label>
 					<select name="address[wednesday][postcode]" id="" class="form-control" data-parsley-group="address">
 						<option value="">Choose...</option>
 						@foreach($postalCodes as $code)
@@ -29,6 +29,20 @@
 						@endforeach
 					</select>
 				</div>
+			</div>
+
+			<div class="col-lg-4 col-sm-4 col-12">
+				<div class="form-group">
+					<label>Dummy Text</label>
+					<input type="text" class="form-control">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-12 col-sm-12 col-12">
+			<div class="form-group">
+				<label>Dummy Text</label>
+				<input type="text" class="form-control">
 			</div>
 		</div>
 		<div class="form-group">

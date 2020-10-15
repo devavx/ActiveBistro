@@ -49,16 +49,16 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-6 col-sm-6 col-12">
+			<div class="col-lg-4 col-sm-4 col-12">
 				<div class="form-group">
 					<label>Town / City</label>
 					<input type="text" class="form-control" name="address[sunday][city]" minlength="1" data-parsley-group='["sunday_address","address"]' maxlength="50" required>
 				</div>
 			</div>
 
-			<div class="col-lg-6 col-sm-6 col-12">
+			<div class="col-lg-4 col-sm-4 col-12">
 				<div class="form-group">
-					<label>Postcode</label>
+					<label>Post code</label>
 					<select name="address[sunday][postcode]" id="" class="form-control" data-parsley-group='["sunday_address","address"]' required>
 						<option value="">Choose...</option>
 						@foreach($postalCodes as $code)
@@ -66,6 +66,20 @@
 						@endforeach
 					</select>
 				</div>
+			</div>
+
+			<div class="col-lg-4 col-sm-4 col-12">
+				<div class="form-group">
+					<label>Dummy Text</label>
+					<input type="text" class="form-control">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-12 col-sm-12 col-12">
+			<div class="form-group">
+				<label>Dummy Text</label>
+				<input type="text" class="form-control">
 			</div>
 		</div>
 
