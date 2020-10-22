@@ -16,7 +16,7 @@
 
 						<h4 class="font-weight-bold text-color">Customer Login</h4>
 						<div class="form-group">
-							<label>Email ID <small class="text-color">Username</small></label>
+							<label>Email</label>
 							<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 							@error('email')
 							<span class="invalid-feedback" role="alert">

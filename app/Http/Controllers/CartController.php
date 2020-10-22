@@ -13,11 +13,15 @@ use Illuminate\Http\JsonResponse;
 
 class CartController extends Controller
 {
-	public function index (): Renderable
+	public function index ()
 	{
-		$state = new State(auth()->user());
-		$allergies = Allergy::query()->where('active', 1)->select(['name', 'id'])->get();
-		return view('frontend.all_meal')->with('state', $state)->with('allergies', $allergies);
+		try {
+			$state = new State(auth()->user());
+			$allergies = Allergy::query()->where('active', 1)->select(['name', 'id'])->get();
+			return view('frontend.all_meal')->with('state', $state)->with('allergies', $allergies);
+		} catch (\Throwable $exception) {
+			return redirect()->route('order-now.index')->with('error', 'Please answer these questions so we can tailor your meal plans!');
+		}
 	}
 
 	public function items ($day = null): Renderable

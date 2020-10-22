@@ -34,19 +34,8 @@
 	@include('frontend.coupon_frame',['coupon'=>$state->coupon()])
 </p>
 <p>
-	Sub total<span class="float-right font-weight-bold">&pound; {{$state->subTotal()}}</span>
+	Sub total<span class="float-right font-weight-bold">&pound;{{sprintf("%.2f",$state->subTotal())}}</span>
 </p>
 <p>
-	Grand total<span class="float-right font-weight-bold">&pound; {{$state->total()}}</span>
+	Grand total<span class="float-right font-weight-bold">&pound;{{sprintf("%.2f",$state->total())}}</span>
 </p>
-
-<p class="text-center">
-	<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
-</p>
-
-<div class="custom-control custom-checkbox ">
-	<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required>
-	<label class="custom-control-label" for="agree">You have read and agree to our
-		<a href="{{url('/term_condition')}}" target="_blank">terms & conditions</a>.</label>
-</div>
-<button type="submit" class="btn btn-info btn-block ml-0 rounded mt-4">Place your order</button>

@@ -11,10 +11,9 @@
 						@foreach($plan->items as $item)
 							@if($item->chosen==true)
 								<p class="mb-1 item__price">
-									<a href="javascript:void(0)">
+									<span class="meal-left" href="javascript:void(0)">
 										{{ $item->name }}
-									</a>
-
+									</span>
 								</p>
 							@endif
 						@endforeach

@@ -100,6 +100,14 @@
 											</div>
 										</div>
 									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="description">Description</label>
+												<textarea name="description" id="description" class="form-control" placeholder="Enter meal description..." minlength="2" maxlength="1000" rows="6" required>{{old('description',$mealplan->description)}}</textarea>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">

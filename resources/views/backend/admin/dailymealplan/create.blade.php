@@ -77,27 +77,21 @@
 							<form action="{{ route('admin.daily-meals.store') }}" method="post" id="add_form" enctype="multipart/form-data">
 								@csrf
 								<div class="form-body">
-									<!--  <h3 class="card-title">Person Info</h3>
-									 <hr>
-									   -->
-
-									<!--/row-->
-									<!-- <h3 class="box-title m-t-40">Address</h3> -->
 									<hr>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Name</label>
-												<input type="text" name="name" id="name" class="form-control" placeholder="Enter meal name...">
+												<input type="text" name="name" id="name" class="form-control" placeholder="Enter meal name..." value="{{old('name')}}" minlength="2" maxlength="50" required>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group">
 												<label>Day of Week</label>
-												<select class="form-control" name="day" id="no_of_days">
+												<select class="form-control" name="day" id="no_of_days" required>
 													<option value="" disabled selected>Choose...</option>
 													@foreach(\App\Core\Enums\Common\DaysOfWeek::getKeys() as $day)
-														<option value="{{ \App\Core\Enums\Common\DaysOfWeek::getValue($day) }}">{{ $day }}</option>
+														<option value="{{ \App\Core\Enums\Common\DaysOfWeek::getValue($day) }}" @if(old('day')==$day) selected @endif>{{ $day }}</option>
 													@endforeach
 												</select>
 											</div>
@@ -108,9 +102,17 @@
 												<select class="form-control" name="type" id="no_of_days">
 													<option value="" selected>Choose...</option>
 													@foreach(\App\Core\Enums\Common\MealTypes::getKeys() as $type)
-														<option value="{{ \App\Core\Enums\Common\MealTypes::getValue($type) }}">{{ $type }}</option>
+														<option value="{{ \App\Core\Enums\Common\MealTypes::getValue($type) }}" @if(old('type')==$type) selected @endif>{{ $type }}</option>
 													@endforeach
 												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="description">Description</label>
+												<textarea name="description" id="description" class="form-control" placeholder="Enter meal description..." minlength="2" maxlength="1000" rows="6" required>{{old('description')}}</textarea>
 											</div>
 										</div>
 									</div>
@@ -121,19 +123,19 @@
 											<div class="col-md-9">
 												<div class="form-group">
 													<label>Item(s)</label>
-													<select class="form-control select2 select2-multiple" id="items_slab_1" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+													<select class="form-control select2 select2-multiple" id="items_slab_1" name="item_id[0][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select" required>
 														<option value="" disabled>Choose...</option>
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													</select>
-													<select class="form-control select2 select2-multiple" id="items_slab_2" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+													<select class="form-control select2 select2-multiple" id="items_slab_2" name="item_id[1][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select" required>
 														<option value="" disabled>Choose...</option>
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
 														@endforeach
 													</select>
-													<select class="form-control select2 select2-multiple" id="items_slab_3" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
+													<select class="form-control select2 select2-multiple" id="items_slab_3" name="item_id[2][]" style="width: 100%" multiple="multiple" data-placeholder="Please Select" required>
 														<option value="" disabled>Choose...</option>
 														@foreach($listData as $rows)
 															<option value="{{ $rows->id }}">{{ $rows->name }}</option>
@@ -167,7 +169,7 @@
 											<select class="form-control select2 select2-multiple" id="items_allergy" name="allergy_id[]" style="width: 100%" multiple="multiple" data-placeholder="Please Select">
 												<option value="" disabled>Choose...</option>
 												@foreach($allergies as $allergy)
-													<option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
+													<option value="{{ $allergy->id }}" @if(in_array($allergy->id,old('allergy_id',[]))) selected @endif>{{ $allergy->name }}</option>
 												@endforeach
 											</select>
 										</div>
@@ -247,6 +249,9 @@
 			$('#add_form').validate({ // initialize the plugin
 				rules: {
 					name: {
+						required: true,
+					},
+					description: {
 						required: true,
 					},
 					// no_of_days: {

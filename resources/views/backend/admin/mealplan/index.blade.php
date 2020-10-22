@@ -77,8 +77,8 @@
 											<label><input type="checkbox" id="check_all" data-tablesaw-checkall><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>#</th>
-
 										<th>Name</th>
+										<th>Description</th>
 										<th>Type</th>
 										<th>Image(s)</th>
 										<th>Status</th>
@@ -97,6 +97,7 @@
 											<td>
 												<button class="btn btn-link" onclick="showDetails('{{$plan->id}}');"> {{\App\Core\Primitives\Str::ellipsis($plan->name,25)}}</button>
 											</td>
+											<td>{{\App\Core\Primitives\Str::ellipsis($plan->description,25)}}</td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>
 												@foreach($plan->images as $image)

@@ -52,16 +52,16 @@ class RegisterController extends Controller
 	{
 		$message = array(
 			'dob.required' => 'The date of birth field is required.',
-			'dob.date' => 'The sex field should be valid.',
+			'dob.date' => 'The date of birth field should be valid.',
 			'gender.required' => 'The sex field is required.',
 
 		);
 		return Validator::make($data, [
 			'first_name' => ['required', 'string', 'max:255'],
 			'last_name' => ['required', 'string', 'max:255'],
-			'phone' => ['required', 'string', 'max:20'],
+			'phone' => ['required', 'string', 'max:11', 'min:11'],
 			'gender' => ['required', 'string', 'max:20'],
-			'dob' => ['required', 'date'],
+			'dob' => ['required', 'date_format:d/m/Y'],
 			'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 			'password' => ['required', 'string', 'min:8'],
 		], $message);

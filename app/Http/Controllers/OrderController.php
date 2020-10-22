@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Enums\Common\OrderStatus;
 use App\Models\Order;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -14,9 +15,9 @@ class OrderController extends Controller
 
 	public function index (): Renderable
 	{
-		$pendingCollection = $this->user()->orders()->where('status', 'pending')->latest()->get();
-		$activeCollection = $this->user()->orders()->where('status', 'placed')->latest()->get();
-		$completedCollection = $this->user()->orders()->where('status', 'completed')->latest()->get();
+		$pendingCollection = $this->user()->orders()->whereIn('status', [OrderStatus::Pending])->latest()->get();
+		$activeCollection = $this->user()->orders()->whereIn('status', [OrderStatus::Dispatched, OrderStatus::Placed, OrderStatus::Received])->latest()->get();
+		$completedCollection = $this->user()->orders()->whereIn('status', [OrderStatus::Delivered])->latest()->get();
 		return view('frontend.my_order')->with('pendingOrders', $pendingCollection)->with('completedOrders', $completedCollection)->with('activeOrders', $activeCollection);
 	}
 

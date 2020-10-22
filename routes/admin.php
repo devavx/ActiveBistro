@@ -37,6 +37,8 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::get('/orders/show/{key}', 'Admin\OrderController@show')->name('orders.show');
 	Route::get('orders/delete/{key}', 'Admin\OrderController@delete')->name('orders.delete');
 	Route::delete('orders/delete', 'Admin\OrderController@deleteBulk')->name('orders.delete');
+	Route::put('orders/{key}/{status}', 'Admin\OrderController@updateStatus');
+	Route::get('orders/export', 'Admin\OrderController@export')->name('orders.export');
 
 	// HomeSettingController URI
 	Route::get('/home_setting/delete/{id}', 'Admin\HomeSettingController@delete')->name('home_setting.delete');
@@ -91,7 +93,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::resource('/delivery_deadline', 'DeliveryDeadlineController');
 	Route::resource('/sliders', 'SliderSettingController')->except('destroy');
 	Route::resource('/category', 'CategoryController');
-	Route::resource('/item_type', 'ItemTypeController');
+	Route::resource('/item_type', 'ItemTypeController')->except('destroy');
 	Route::resource('/home_setting', 'Admin\HomeSettingController')->except('destroy');
 
 	/*
@@ -169,4 +171,5 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin', 'verified'], '
 	Route::delete('sliders/delete', 'SliderSettingController@deleteBulk');
 	Route::delete('home_setting/delete', 'Admin\HomeSettingController@deleteBulk');
 	Route::delete('items/delete', 'ItemController@deleteBulk');
+	Route::delete('item_type/delete', 'ItemTypeController@deleteBulk');
 });

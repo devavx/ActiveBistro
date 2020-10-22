@@ -77,10 +77,9 @@
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
 										<th>#</th>
-
+										<th>Category</th>
 										<th>Title</th>
 										<th>Description</th>
-										<th>Category</th>
 										<th>Mini FAQ</th>
 										<th>Status</th>
 										<th>Created At</th>
@@ -94,12 +93,10 @@
 												<td>
 													<label><input type="checkbox" name="delete_target" value="{{$rows->id}}"><span class="sr-only"> Select Row </span></label>
 												</td>
-
 												<td>{{$loop->index+1}}</td>
-
+												<td> {{ $rows->category()->exists() ? \App\Core\Primitives\Str::ellipsis($rows->category->title,25):'-'}}</td>
 												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_title ?? '-',25)}}</td>
 												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->faq_description ?? '-',25)}}</td>
-												<td> {{ $rows->category()->exists() ? \App\Core\Primitives\Str::ellipsis($rows->category->title,25):'-'}}</td>
 												<td>{{$rows->mini_faq==true?'Yes':'No'}}</td>
 												@if($rows->active)
 													<td>

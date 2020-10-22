@@ -4,13 +4,15 @@ namespace App\Http\Requests\MealPlans\Daily;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest {
+class UpdateRequest extends FormRequest
+{
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
 	 */
-	public function authorize () {
+	public function authorize ()
+	{
 		return true;
 	}
 
@@ -19,9 +21,11 @@ class UpdateRequest extends FormRequest {
 	 *
 	 * @return array
 	 */
-	public function rules () {
+	public function rules ()
+	{
 		return [
-			'name' => 'required',
+			'name' => 'bail|required',
+			'description' => 'bail|required',
 			'images.*' => 'bail|sometimes|image|max:2048',
 			'item_id.*' => 'bail|required',
 			'allergy_id.*' => 'bail|required',

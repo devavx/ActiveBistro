@@ -76,10 +76,9 @@
 										<th scope="col" class="border">
 											<label><input type="checkbox" data-tablesaw-checkall id="check_all"><span class="sr-only"> Check All</span></label>
 										</th>
-
 										<th>#</th>
-
 										<th>Name</th>
+										<th>Description</th>
 										<th>Day</th>
 										<th>Type</th>
 										<th>Image(s)</th>
@@ -99,6 +98,7 @@
 											<td>
 												<button class="btn btn-link" onclick="showDetails('{{$plan->id}}');"> {{\App\Core\Primitives\Str::placeholder($plan->name)}}</button>
 											</td>
+											<td>{{\App\Core\Primitives\Str::ellipsis($plan->description,25)}}</td>
 											<td> {{\App\Core\Enums\Common\DaysOfWeek::getKey($plan->day)}}</td>
 											<td> {{!empty($plan->type)?\App\Core\Enums\Common\MealTypes::getKey($plan->type):\App\Core\Primitives\Str::Empty}}</td>
 											<td>

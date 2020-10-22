@@ -13,6 +13,10 @@
         p {
             font-weight: normal !important;
         }
+
+        li.parsley-required {
+            font-size: 12px !important;
+        }
 	</style>
 @endsection
 @section('content')
@@ -29,35 +33,6 @@
 					</ul>
 
 					<fieldset class="px-2">
-						<div class="form-group">
-							<label>Your email address <sup class="text-danger">*</sup></label>
-							<input type="email" class="form-control" value="{{auth()->user()->email}}" readonly>
-						</div>
-
-						<div class="form-group">
-							<label>First Name <sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control" value="{{auth()->user()->first_name}}" readonly>
-						</div>
-
-						<div class="form-group">
-							<label>Last Name <sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control" value="{{auth()->user()->last_name}}" readonly>
-						</div>
-
-						<div class="form-group">
-							<label>Contact number (used for delivery notifications)
-								<sup class="text-danger">*</sup></label>
-							<input type="text" class="form-control" value="{{auth()->user()->phone}}" readonly>
-						</div>
-
-						<button type="button" class="btn btn-info btn-block ml-0 next rounded">Sign up</button>
-						<p class="text-center"><a href="login.html" class="text-color">Already have an Account?
-								Login</a>
-						</p>
-					</fieldset>
-
-					<fieldset class="px-2">
-
 						<div class="form-group">
 							<h6 class="mb-1 font-weight-bold text-color">1. Choose your delivery start date</h6>
 							<p>Your food is delivered to your door twice a week every Sunday and Wednesday ensuring freshness.</p>
@@ -93,9 +68,38 @@
 						<button type="button" class="btn btn-info btn-block ml-0 next rounded" data-group="address">Checkout</button>
 
 					</fieldset>
-
-					<fieldset class="px-2" id="checkoutFrame">
-						@include('frontend.checkout_fragment',['state'=>$state])
+					<fieldset class="px-2">
+						<div class="form-group">
+							<h6 class="mb-1 font-weight-bold text-color">3. Confirm your order details</h6>
+						</div>
+						@foreach($state->items() as $item)
+							<h6>{{$item['name']}}
+								<span class="font-weight-bold text-color float-right">&pound;{{sprintf("%.2f",$item['price'])}}</span>
+							</h6>
+						@endforeach
+						<div class="form-group border p-2 round-lg shadow-sm">
+							<span id="sundayAddress"></span>
+							<br>
+							<small>Sunday deliveries address</small>
+						</div>
+						<div class="form-group border p-2 round-lg shadow-sm">
+							<span id="wednesdayAddress"></span>
+							<br>
+							<small>Wednesday deliveries address</small>
+						</div>
+						<div id="checkoutFrame">
+							@include('frontend.checkout_fragment',['state'=>$state])
+						</div>
+						<p class="text-center">
+							<a href="{{route('cart.index')}}" class="btn border btn-block ml-0">Change your order</a>
+						</p>
+						<div class="custom-control custom-checkbox ">
+							<input type="checkbox" class="custom-control-input" id="agree" name="agreement" required data-parsley-required-message="Please confirm you have read and accept our Terms & Conditions.">
+							<label class="custom-control-label" for="agree">I confirm having read, understood and agreed to the
+								<a href="{{url('/term_condition')}}" target="_blank" class="text-color">Terms & Conditions</a> and
+								<a href="{{url('/privacy_policy')}}" target="_blank" class="text-color"> Privacy Policy.</a></label>
+						</div>
+						<button type="submit" class="btn btn-info btn-block ml-0 rounded mt-4">Place your order</button>
 					</fieldset>
 				</form>
 			</div>
@@ -140,10 +144,9 @@
 
 	<script>
 		let current_fs, next_fs, previous_fs, opacity;
+		let sunday = null, wednesday = null;
 
 		$(document).ready(function () {
-			$(".next:first").trigger('click');
-
 			@if($state->secondAddress()==null)
 			$('#wednesday_address').hide();
 			@endif
@@ -277,6 +280,17 @@
 				element.html(data);
 				element.fadeTo('slow', 1.0);
 			});
+		}
+
+		makeSundayAddress = () => {
+			const al1 = $('#sunday_al1').val();
+			const al2 = $('#sunday_al2').val();
+			const town = $('#sunday_town').val();
+			const postcode = $('#sunday_postcode').val();
+			const areacode = $('#sunday_areacode').val();
+			const phone = $('#sunday_areacode').val();
+			const address = `${al1 ?? ''} ${al2 ?? ''}, ${town ?? ''}, ${postcode ?? ''}${areacode ?? ''} [${phone ?? ""}]`;
+			$('#sundayAddress').text(address);
 		}
 	</script>
 @endsection

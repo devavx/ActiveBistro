@@ -43,21 +43,21 @@
 						<thead>
 						<tr class="bg-color">
 							<th class="p-2 font-weight-bold text-white">Order Id</th>
+							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
 							<th class="p-2 font-weight-bold text-white">Address</th>
 							<th class="p-2 font-weight-bold text-white">Total</th>
-							<th class="p-2 font-weight-bold text-white">Payment Slab</th>
-							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
-							<th class="p-2 font-weight-bold text-white">Detail</th>
+							<th class="p-2 font-weight-bold text-white">Status</th>
+							<th class="p-2 font-weight-bold text-white">View Details</th>
 						</tr>
 						</thead>
 						<tbody>
 						@foreach($activeOrders as $order)
 							<tr>
-								<td class="p-2">#{{$order->id}}</td>
+								<td class="p-2">#{{$order->invoice_id}}</td>
+								<td class="p-2">{{$order->quantity}}</td>
 								<td class="p-2">{{$order->address->stringify()}}</td>
 								<td class="p-2">&pound;{{$order->total}}</td>
-								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
-								<td class="p-2">{{$order->quantity}}</td>
+								<td class="p-2">{{\App\Core\Enums\Common\OrderStatus::getKey($order->status)}}</td>
 								<td class="p-2">
 									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
 										<i class="fa fa-eye"></i></button>
@@ -85,21 +85,21 @@
 						<thead>
 						<tr class="bg-color">
 							<th class="p-2 font-weight-bold text-white">Order Id</th>
+							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
 							<th class="p-2 font-weight-bold text-white">Address</th>
 							<th class="p-2 font-weight-bold text-white">Total</th>
-							<th class="p-2 font-weight-bold text-white">Payment Slab</th>
-							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
-							<th class="p-2 font-weight-bold text-white">Detail</th>
+							<th class="p-2 font-weight-bold text-white">Status</th>
+							<th class="p-2 font-weight-bold text-white">View Details</th>
 						</tr>
 						</thead>
 						<tbody>
 						@foreach($completedOrders as $order)
 							<tr>
-								<td class="p-2">#{{$order->id}}</td>
+								<td class="p-2">#{{$order->invoice_id}}</td>
+								<td class="p-2">{{$order->quantity}}</td>
 								<td class="p-2">{{$order->address->stringify()}}</td>
 								<td class="p-2">&pound;{{$order->total}}</td>
-								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
-								<td class="p-2">{{$order->quantity}}</td>
+								<td class="p-2">{{\App\Core\Enums\Common\OrderStatus::getKey($order->status)}}</td>
 								<td class="p-2">
 									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
 										<i class="fa fa-eye"></i></button>
@@ -128,21 +128,21 @@
 						<thead>
 						<tr class="bg-color">
 							<th class="p-2 font-weight-bold text-white">Order Id</th>
+							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
 							<th class="p-2 font-weight-bold text-white">Address</th>
 							<th class="p-2 font-weight-bold text-white">Total</th>
-							<th class="p-2 font-weight-bold text-white">Payment Slab</th>
-							<th class="p-2 font-weight-bold text-white">No. of Meals</th>
-							<th class="p-2 font-weight-bold text-white">Detail</th>
+							<th class="p-2 font-weight-bold text-white">Status</th>
+							<th class="p-2 font-weight-bold text-white">View Details</th>
 						</tr>
 						</thead>
 						<tbody>
 						@foreach($pendingOrders as $order)
 							<tr>
-								<td class="p-2">#{{$order->id}}</td>
+								<td class="p-2">#{{$order->invoice_id}}</td>
+								<td class="p-2">{{$order->quantity}}</td>
 								<td class="p-2">{{$order->address->stringify()}}</td>
 								<td class="p-2">&pound;{{$order->total}}</td>
-								<td class="p-2">{{ucfirst($order->payment_slab)}}</td>
-								<td class="p-2">{{$order->quantity}}</td>
+								<td class="p-2">{{\App\Core\Enums\Common\OrderStatus::getKey($order->status)}}</td>
 								<td class="p-2">
 									<button title="View details" class="btn btn-link text-color" onclick="showDetails('{{$order->id}}');">
 										<i class="fa fa-eye"></i></button>

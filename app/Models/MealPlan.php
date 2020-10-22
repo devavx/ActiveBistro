@@ -15,7 +15,7 @@ class MealPlan extends Model
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $fillable = ['name', 'day', 'launched', 'active', 'type'];
+	protected $fillable = ['name', 'day', 'launched', 'active', 'type', 'description'];
 	protected $casts = [
 		'launched' => 'bool', 'active' => 'bool'
 	];
@@ -36,6 +36,15 @@ class MealPlan extends Model
 	public function items (): BelongsToMany
 	{
 		return $this->belongsToMany(Item::class, 'meal_plan_items')->withPivot('meal_plan_id', 'item_id', 'slab', 'default');
+	}
+
+	public function readableItems (): Collection
+	{
+		$items = $this->items()->where('default', true)->get(['name', 'long_description'])->collect();
+		$items->transform(function (Item $item) {
+			return sprintf("%s[%s]", $item->name, $item->long_description ?? 'N/A');
+		});
+		return $items;
 	}
 
 	public function ingredients (): Collection

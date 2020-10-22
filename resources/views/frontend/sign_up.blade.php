@@ -8,8 +8,9 @@
             display: block !important;
         }
 
-        .error {
-            color: red;
+        label.error {
+            font-size: 80%;
+            font-weight: 400;
         }
 
         .ti-angle-right:before {
@@ -22,7 +23,6 @@
 	</style>
 @endsection
 @section('content')
-
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
@@ -35,7 +35,49 @@
 						<li id="payment"><strong>Checkout</strong></li>
 					</ul>
 					<fieldset class="paddingrl">
-
+						<div class="form-group">
+							<label>Email <sup class="text-danger">*</sup></label>
+							<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
+							@error('email')
+							<span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+							@enderror
+						</div>
+						<div class="row">
+							<div class="col-lg-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label>Password <sup class="text-danger">*</sup></label>
+									<input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="" required autocomplete="password" minlength="8" maxlength="64">
+									<small id="password-strength" class="text-color"></small>
+								</div>
+								@error('password')
+								<span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+								@enderror
+							</div>
+							<div class="col-lg-6 col-sm-6 col-12">
+								<div class="form-group">
+									<label>Confirm Password <sup class="text-danger">*</sup></label>
+									<input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" id="password_confirmation" value="" required autocomplete="password" minlength="8" maxlength="64">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-sm-12 col-12">
+								<div class="form-group">
+									<label>Phone <sup class="text-danger">*</sup></label>
+									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{ old('phone') }}" required autocomplete="phone" minlength="11" maxlength="11">
+									<small>A phone number is required for delivery purposes only.</small>
+								</div>
+								@error('phone')
+								<span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+								@enderror
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-lg-6 col-sm-6 col-12">
 								<div class="form-group">
@@ -62,36 +104,7 @@
 								@enderror
 							</div>
 
-							<div class="col-lg-6 col-sm-6 col-12">
-								<div class="form-group">
-									<label>Phone <sup class="text-danger">*</sup></label>
-									<div class="row">
-										<div class="col-3 pr-1">
-											<input type="text" class="form-control bg-white text-center" value="07" readonly disabled>
-										</div>
-										<div class="col-9 pl-0">
-											<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" pattern="[\d+]" value="{{ old('phone') }}" required autocomplete="phone" minlength="9" maxlength="9">
-										</div>
-									</div>
-								</div>
-								@error('phone')
-								<span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-								@enderror
-							</div>
 
-							<div class="col-lg-6 col-sm-6 col-12">
-								<div class="form-group">
-									<label>Password <sup class="text-danger">*</sup></label>
-									<input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="{{ old('password') }}" required autocomplete="password" minlength="8" maxlength="64">
-								</div>
-								@error('password')
-								<span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-								@enderror
-							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
@@ -136,25 +149,6 @@
                                     </span>
 							@enderror
 						</div>
-
-						<div class="form-group">
-							<label>Email <sup class="text-danger">*</sup></label>
-							<input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" maxlength="100">
-							<small id="emailMessage"></small>
-							<p><small>.ac or .nhs email addresses are eligible</small></p>
-							@error('email')
-							<span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-							@enderror
-						</div>
-						<div class="form-group">
-							<label class="mb-0 text-color font-weight-bold">25% Discounts to Student/Staff or NHS Employee</label>
-							<div class="custom-control custom-checkbox ">
-								<input type="checkbox" class="custom-control-input" id="click_to_verify" name="click_to_verify">
-								<label class="custom-control-label" for="click_to_verify">Verify</label>
-							</div>
-						</div>
 						<div class="form-group">
 							<a href="{{ url('/sign-in') }}" class="btn btn-dark rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Login</a>
 							<button type="submit" id="register_btn" class="btn btn-info float-right rounded btn-md">Next
@@ -165,20 +159,28 @@
 			</div>
 		</div>
 	</div>
-
 @endsection
 @section('script')
 	<script src="{{ asset('assets/node_modules/moment/moment.js') }}"></script>
 	<script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 	<script>
+		const strength = {
+			0: "Very bad",
+			1: "Bad",
+			2: "Weak",
+			3: "Good",
+			4: "Strong"
+		}
 		let checked = false;
 
 		$("#datepicker").datepicker({
 			changeMonth: true,
 			changeYear: true,
 			startDate: '{{date('Y-m-d',0)}}',
-			endDate: '-10y',
+			endDate: '-18y',
+			format: 'dd/mm/yyyy'
 		});
 
 		$(function () {
@@ -194,9 +196,30 @@
 			});
 		});
 		$(document).ready(function () {
+			var password = document.getElementById('password');
+			var text = document.getElementById('password-strength');
+			password.addEventListener('input', function () {
+				var val = password.value;
+				if (val != null && val.length >= 8) {
+					var result = zxcvbn(val);
+					if (val !== "") {
+						text.innerHTML = "Strength: " + strength[result.score];
+					} else {
+						text.innerHTML = "";
+					}
+				} else {
+					text.innerHTML = "";
+				}
+			});
+
 			$("#msform").on("submit", function () {
 				return true;
 			})
+
+			$('#phone').inputmask({
+				mask: "99999999999",
+				removeMaskOnSubmit: true,
+			});
 
 			$("#click_to_verify").on('change', function () {
 				checked = this.checked;
@@ -254,8 +277,18 @@
 						required: true,
 						minlength: 8,
 					},
+					password_confirmation: {
+						required: true,
+						minlength: 8,
+						equalTo: password
+					},
 					click_to_verify: true,
 				},
+				messages: {
+					password_confirmation: {
+						equalTo: "Passwords do not match!",
+					}
+				}
 			});
 
 			$(document).on('click', '#register_btn', function () {
@@ -276,5 +309,9 @@
 				$('#emailMessage').addClass('d-none').removeClass('text-success').html("");
 			}
 		}
+
+		$('#password').keyup(function () {
+
+		});
 	</script>
 @endsection

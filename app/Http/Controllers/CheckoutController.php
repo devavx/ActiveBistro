@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Cart\State;
 use App\Core\Primitives\Arrays;
+use App\Exceptions\EmptyCartCheckoutException;
 use App\Exceptions\InvalidCouponException;
 use App\Http\Requests\Checkout\CouponRequest;
 use App\Http\Requests\Checkout\StoreRequest;
@@ -11,7 +12,6 @@ use App\Models\Address;
 use App\Models\Order;
 use App\Models\PostalCode;
 use App\Models\User;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -33,20 +33,29 @@ class CheckoutController extends Controller
 		$this->provider = new ExpressCheckout();
 	}
 
-	public function index (): Renderable
+	public function index ()
 	{
-		/**
-		 * @var $user User
-		 */
-		$user = auth()->user();
-		$state = new State($user);
-		if ($user->canAvailSpecialDiscount()) {
-			$state->setStaffDiscount(true);
+		try {
+			/**
+			 * @var $user User
+			 */
+			$user = auth()->user();
+			$state = new State($user);
+			if ($state->itemCount() < 1) {
+				throw new EmptyCartCheckoutException();
+			}
+			if ($user->canAvailSpecialDiscount()) {
+				$state->setStaffDiscount(true);
+			}
+			$state->recalculateStats();
+			$state->update();
+			$postalCodes = PostalCode::active()->get();
+			return view('frontend.checkout')->with('state', $state)->with('postalCodes', $postalCodes);
+		} catch (EmptyCartCheckoutException $exception) {
+			return redirect()->route('cart.index')->with('error', $exception->getMessage());
+		} catch (\Throwable $exception) {
+			return redirect()->route('order-now.index')->with('error', 'Please answer these questions so we can tailor your meal plans!');
 		}
-		$state->recalculateStats();
-		$state->update();
-		$postalCodes = PostalCode::active()->get();
-		return view('frontend.checkout')->with('state', $state)->with('postalCodes', $postalCodes);
 	}
 
 	public function validateCoupon (CouponRequest $request): JsonResponse
@@ -66,14 +75,14 @@ class CheckoutController extends Controller
 			} catch (InvalidCouponException $e) {
 				return response()->json([
 					'success' => 0,
-					'message' => 'This coupon is either invalid or is expired! exc',
+					'message' => 'This coupon is either invalid or is expired!',
 					'data' => null
 				]);
 			}
 		} else {
 			return response()->json([
 				'success' => 0,
-				'message' => 'This coupon is either invalid or is expired! els',
+				'message' => 'This coupon is either invalid or is expired!',
 				'data' => null
 			]);
 		}
@@ -141,9 +150,9 @@ class CheckoutController extends Controller
 		$payload['return_url'] = route('payments.completed');
 		$payload['cancel_url'] = route('payments.cancelled');
 		$payload['total'] = $state->total();
-		$response = $this->provider->setExpressCheckout($payload);
+		$response = $this->provider->addOptions(['SOLUTIONTYPE' => 'Sole', 'LANDINGPAGE' => 'Billing', 'USERSELECTEDFUNDINGSOURCE' => 'CreditCard',])->setExpressCheckout($payload);
 		if ($response['paypal_link'] == null) {
-			dd($payload, $response);
+			return redirect()->route('cart.index')->with('error', 'We encountered an error while preparing checkout details. Please try again later!');
 		} else {
 			return redirect()->to($response['paypal_link']);
 		}

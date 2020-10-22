@@ -218,7 +218,15 @@ class FrontendController extends Controller
 
 	protected function imperialToMetricLength ($value)
 	{
-		return round($value * 30.48, 0);
+		if (is_array($value)) {
+			$feet = $value['feet'] ?? 1.0;
+			$inch = $value['inch'] ?? 0.0;
+			$centimetres = $feet * 30.48;
+			$centimetres += $inch * 2.54;
+			return round($centimetres, 0);
+		} else {
+			return round($value * 30.48, 0);
+		}
 	}
 
 	protected function imperialToMetricWeight ($value)

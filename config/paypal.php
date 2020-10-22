@@ -2,9 +2,9 @@
 return [
 	'mode' => 'sandbox',
 	'sandbox' => [
-		'username' => "sb-xtoh53190706_api1.business.example.com",
-		'password' => "Y254KMHR7YVMUSAR",
-		'secret' => "AQgZci6y7P6ovJ.PjpC2gjudKlMvAq1OMljHKSmhzgI.QeyPK5pA2hOT",
+		'username' => "sb-rxepj3196827_api1.business.example.com",
+		'password' => "PU6G6ZJ445HVKKRQ",
+		'secret' => "AsLY2Drwwl7PaKj570g8-cOvjcdeA6d4iOYrkwgeTUeQO5P-9F9O5skV",
 		'certificate' => '',
 		'app_id' => 'ActiveBistro',
 	],

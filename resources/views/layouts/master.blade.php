@@ -14,27 +14,30 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 	<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,800;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 	@yield('css')
+	<style>
+        label.error {
+            font-size: 80% !important;
+            font-weight: 400 !important;
+        }
+
+        .error {
+            color: #333333 !important;
+        }
+	</style>
 </head>
 <body>
 @php
-	$elapsed=nextDeadline();
+	$deadline=nextDeadline();
 	$current=time();
-	$difference=$current-$elapsed;
+	$difference=$deadline-$current;
 @endphp
 <div class="container">
 	<div class="row">
 		<div class="col-12">
-			<div class="mdblock">
-				<li class="nav-item">
-					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
-					@elseif($difference>=43200&&$difference<86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
-					@else
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
-					@endif
-				</li>
+			<div class="mdblock pb-2 pt-3">
+				@include('frontend.deadline_counter')
 			</div>
 		</div>
 	</div>
@@ -42,7 +45,7 @@
 
 <hr class="mt-1 mb-0 mdblock">
 
-<nav class="navbar navbar-expand-lg navbar-dark shadow">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
 	<div class="container">
 		<a class="navbar-brand" href="{{ url('') }}"><img src="{{ asset('uploads/image/logo.png') }}"></a>
 
@@ -87,15 +90,7 @@
 					</li>
 				@endguest
 
-				<li class="nav-item">
-					@if($difference>=86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{date('d F',$elapsed)}}</span></span>
-					@elseif($difference>0&&$difference<86400)
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">{{\App\Core\Primitives\Time::toDuration($difference)}}</span></span>
-					@else
-						<span class="header-time-slot nav-link text-color text-center border rounded-lg"><b>Delivery Deadline:</b> <span class="timer_span">Delivered</span></span>
-					@endif
-				</li>
+				@include('frontend.deadline_counter')
 
 			</ul>
 			<ul class="navbar-nav ml-auto">
@@ -119,7 +114,7 @@
 							@if(Auth::user()->role->name=='admin')
 								<a class="dropdown-item" href="{{ url('admin') }}">My Admin</a>
 							@else
-								<a class="dropdown-item" href="{{ url('my_order') }}">My Order</a>
+								<a class="dropdown-item" href="{{ url('my_order') }}">My Orders</a>
 								<a class="dropdown-item" href="{{ url('/home') }}">My Profile</a>
 							@endif
 							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -159,7 +154,7 @@
 						<div class="footer-middel">
 							<h5 class="text-white mb-2">Company</h5>
 							<ul>
-								<li>
+								<li class="d-none">
 									<a href="{{ url('/about') }}"><i class="fa fa-chevron-right mr-2"></i>About Us</a>
 								</li>
 								<li>
@@ -217,34 +212,33 @@
 <script type="text/javascript" src="{{ asset('assets/js/custom.js') }} "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="{{asset("assets/js/inputmask.min.js")}}"></script>
 @include('backend.fragments.scripts')
-{{--<script>--}}
-{{--	let secondsTimer = {{$difference>0&&$difference<=43200?$difference:0}};--}}
-{{--	$(function () {--}}
-{{--		$('[data-toggle="tooltip"]').tooltip()--}}
-{{--	})--}}
+<script>
+	let secondsTimer = {{$difference>0&&$difference<=43200?$difference:0}};
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 
-{{--	$(document).ready(function () {--}}
-{{--		if (secondsTimer > 1) {--}}
-{{--			setInterval(() => {--}}
-{{--				secondsTimer--;--}}
-{{--				const zeroPadding = (value) => {--}}
-{{--					return value < 10 ? "0" + value : value;--}}
-{{--				}--}}
-{{--				const hours = zeroPadding(Math.floor(secondsTimer / 3600));--}}
-{{--				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));--}}
-{{--				const second = zeroPadding(parseInt(secondsTimer % 60));--}}
-{{--				setTime(hours + ' Hour(s) ' + minutes + ' Minute(s) ');--}}
-{{--			}, 1000);--}}
-{{--		}--}}
-{{--	});--}}
+	$(document).ready(function () {
+		if (secondsTimer > 1) {
+			setInterval(() => {
+				secondsTimer--;
+				const zeroPadding = (value) => {
+					return value < 10 ? "0" + value : value;
+				}
+				const hours = zeroPadding(Math.floor(secondsTimer / 3600));
+				const minutes = zeroPadding(Math.floor(secondsTimer / 60 % 60));
+				const second = zeroPadding(parseInt(secondsTimer % 60));
+				setTime(hours + ' Hour(s) ' + minutes + ' Minute(s) ');
+			}, 1000);
+		}
+	});
 
-{{--	setTime = time => {--}}
-{{--		$('.timer_span').html(time);--}}
-{{--	}--}}
-
-
-{{--</script>--}}
+	setTime = time => {
+		$('.timer_span').html(time);
+	}
+</script>
 @yield('script')
 </body>
 </html>

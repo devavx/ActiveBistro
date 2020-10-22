@@ -77,7 +77,7 @@
 									<select class="form-control" name="diet_type" id="activity_lavel" required>
 										<option value="">Choose</option>
 										<option value="regular">Regular</option>
-										<option value="ketogenic">Ketogenic</option>
+{{--										<option value="ketogenic">Ketogenic</option>--}}
 									</select>
 								</div>
 							</div>

@@ -78,7 +78,7 @@
 										</th>
 										<th>#</th>
 										<th>Name</th>
-										<th>Short Description</th>
+										<th>Full Ingredients</th>
 										<th>Protein</th>
 										<th>Calories</th>
 										<th>Carbohydrates</th>
@@ -101,7 +101,7 @@
 												<td>
 													<button class="btn btn-link" onclick="showDetails('{{$rows->id}}');"> {{\App\Core\Primitives\Str::ellipsis($rows->name,25)}}</button>
 												</td>
-												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->short_description ?? '-',25)}}</td>
+												<td> {{ \App\Core\Primitives\Str::ellipsis($rows->long_description ?? '-',25)}}</td>
 												<td> {{ $rows->protein ?? '-'}}</td>
 												<td> {{ $rows->calories ?? '-'}}</td>
 												<td> {{ $rows->carbs ?? '-'}}</td>

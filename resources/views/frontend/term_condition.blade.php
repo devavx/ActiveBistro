@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="pricay-policy p-3 border">
-					<h4 class="text-color font-weight-bold">Term & Conditions</h4>
+					<h4 class="text-color font-weight-bold">Terms & Conditions</h4>
 					@if($tnc!=null)
 						{!! $tnc->description !!}
 					@else

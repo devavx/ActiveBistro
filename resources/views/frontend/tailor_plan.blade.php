@@ -13,7 +13,6 @@
 	</style>
 @endsection
 @section('content')
-
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
@@ -28,9 +27,24 @@
 					<fieldset class="paddingrl">
 						<div class="row">
 							<div class="col-lg-6 col-sm-6 col-12">
-								<div class="form-group">
+								<div class="form-group" id="height_metric">
 									<label>Height</label>
-									<input type="number" min="1.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height....">
+									<input type="number" min="1.0" max="400.0" step="0.1" class="form-control" name="user_height" id="user_height" placeholder="Enter your current height...">
+									<small class="text-color">Centimetres</small>
+								</div>
+								<div class="form-group" id="height_imperial">
+									<label>Height</label>
+									<div class="row no-gutters">
+										<div class="col-6">
+											<input type="number" min="1.00" max="15.00" step="0.1" class="form-control" name="user_height[feet]" id="user_height" placeholder="Feet">
+										</div>
+										<div class="col-1 text-center my-auto text-color">
+											&amp;
+										</div>
+										<div class="col-5">
+											<input type="number" min="0.00" max="12.00" step="0.1" class="form-control" name="user_height[inch]" placeholder="inches">
+										</div>
+									</div>
 								</div>
 							</div>
 
@@ -46,6 +60,7 @@
 								<div class="form-group">
 									<label>Current weight</label>
 									<input type="number" min="1.0" max="350.0" step="0.1" class="form-control" name="user_weight" id="user_weight" placeholder="Enter your current weight...." onchange="updateWeightGoals('current',this.value);">
+									<small class="unit_system_weight text-color">Kilograms</small>
 								</div>
 							</div>
 
@@ -53,6 +68,7 @@
 								<div class="form-group">
 									<label>Target weight</label>
 									<input type="number" min="1.0" step="0.1" max="350.0" class="form-control" name="user_targert_weight" id="user_targert_weight" placeholder="Enter your target weight...." onchange="updateWeightGoals('target',this.value);">
+									<small class="unit_system_weight text-color">Kilograms</small>
 								</div>
 							</div>
 						</div>
@@ -60,7 +76,7 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
-									<label>Weight goal (Select)</label>
+									<label>Weight goal</label>
 									<br>
 
 									<div class="custom-control custom-radio custom-control-inline">
@@ -113,9 +129,7 @@
 							<div class="col-12">
 								<div class="form-group text-right">
 									<p>
-										<a href="javascript:void(0);" class="font-weight-bold text-color">Skip for
-											now</a>
-										<!-- <a href="process3.html" class="font-weight-bold text-color">Skip for now</a> -->
+										<a href="{{route('order-now.index')}}" class="font-weight-bold text-color">Skip for now</a>
 									</p>
 								</div>
 							</div>
@@ -123,10 +137,8 @@
 
 
 						<div class="form-group">
-							<!-- <a href="process1.html" type="button" class="btn btn-dark  rounded btn-md"><i class="fa fa-chevron-left mr-2"></i>Back</a> -->
-							<!-- <a href="process3.html" class="btn btn-info  float-right rounded btn-md">Next <i class="fa fa-chevron-right ml-2"></i></a> -->
-							<button type="submit" id="register_btn" class="btn btn-info  float-right rounded btn-md">
-								Next <i class="fa fa-chevron-right ml-2"></i></button>
+							<button type="submit" id="register_btn" class="btn btn-info  float-right rounded btn-md">Next
+								<i class="fa fa-chevron-right ml-2"></i></button>
 						</div>
 
 					</fieldset>
@@ -145,6 +157,25 @@
 			target: 0
 		}
 		$(document).ready(function () {
+			// $('#user_height').inputmask({
+			// 	mask: "Foot 999 Inch 999",
+			// 	removeMaskOnSubmit: true,
+			// });
+			$('#height_imperial').hide();
+
+			$("input[name=unit_system]").on('change', function () {
+				$("input[name=user_height],input[name=user_weight],input[name=user_targert_weight]").val("");
+				if (this.checked) {
+					$('#height_imperial').hide();
+					$('#height_metric').show();
+					$('.unit_system_weight').text('Kilograms');
+				} else {
+					$('#height_metric').hide();
+					$('#height_imperial').show();
+					$('.unit_system_weight').text('Pounds');
+				}
+			});
+
 			$('div.toggle').addClass('w-100').addClass('rounded-0');
 
 			$('#msform').validate({ // initialize the plugin

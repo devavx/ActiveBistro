@@ -15,10 +15,6 @@
         .menuimgcol:hover .carousel-control-prev, .menuimgcol:hover .carousel-control-next {
             display: block;
         }
-
-        .menuimgcol .carousel .carousel-item img {
-            height: 307px;
-        }
 	</style>
 @endsection
 @section('content')
@@ -37,13 +33,40 @@
 		</div>
 	</div>
 
+	<div class="bg-color p-2 mt-3">
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-12">
+
+					<div class="row">
+
+						<div class="col-lg-12 col-sm-12 col-12">
+
+							<h5 class="text-white pt-3 font-weight-bold">Select from our menu</h5>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
 	<div class="container mt-3">
 		<div class="row">
 			<div class="col-lg-9 col-sm-9 col-12">
 				<div class="our-menu-toggle">
 					<ul class="nav nav-pills" role="tablist">
 						<li class="nav-item active">
-							<a class="nav-link active" data-toggle="tab" href="#all-meals" role="tab">All Meals</a>
+							<a class="nav-link active" data-toggle="tab" href="#all-meals" role="tab">Entrées</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" data-toggle="tab" href="#breakfasts" role="tab">Breakfast</a>
@@ -58,8 +81,9 @@
 			<div class="col-lg-3 col-sm-3 col-12">
 				<form id="filter_form">
 					<div class="form-group mb-0">
+						<label for="type" class="font-weight-bold">Dietary Filter</label>
 						<select class="form-control" name="type" id="type" onchange="handleFilterChanged(this.value);">
-							<option value="none" selected>Dietary Filter</option>
+							<option value="none" selected>None</option>
 							@foreach($types as $type)
 								<option value="{{ $type->id }}" @if($chosen==$type->id) selected @endif>{{ $type->name }}</option>
 							@endforeach
@@ -73,6 +97,7 @@
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-lg-4 col-sm-4 col-12">
+				<h5 class="text-color font-weight-bold">Average Daily Macros</h5>
 				<table class="table table-striped table-bordered w-100">
 					<tr>
 						<th class="p-2">Calories</th>
@@ -104,8 +129,7 @@
 		</div>
 	</div>
 
-	<div class="container-fluid mt-3">
-
+	<div class="container mt-3">
 		<div class="row">
 			<div class="col-12">
 				<div class="ourentrees-breakfast mb-5">
@@ -119,7 +143,7 @@
 										<div class="col-lg-3 col-sm-6 col-12">
 											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
 												<div class="menuimgcol">
-													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+													<div id="carousel-{{$meal->id}}" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 														<div class="carousel-inner" role="listbox">
 															@foreach($meal->images as $image)
 																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
@@ -128,11 +152,11 @@
 															@endforeach
 														</div>
 
-														<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+														<a class="carousel-control-prev" href="#carousel-{{$meal->id}}" role="button" data-slide="prev">
 															<i class="fa fa-chevron-left"></i>
 															<span class="sr-only">Previous</span>
 														</a>
-														<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+														<a class="carousel-control-next" href="#carousel-{{$meal->id}}" role="button" data-slide="next">
 															<i class="fa fa-chevron-right"></i>
 															<span class="sr-only">Next</span>
 														</a>
@@ -143,10 +167,9 @@
 														<div class="menucoltextprice">
 															<div class="d-flex">
 																<p class="m-0">
-																	<del>$ {{ $meal->items()->sum('selling_price') }}</del>
+																	<del>&pound;{{ $meal->items()->sum('actual_price') }}</del>
 																</p>
-																<h5 class="font-weight-bold m-0 text-color ml-2">
-																	$ {{ $meal->items()->sum('selling_price') }}</h5>
+																<h5 class="font-weight-bold m-0 text-color ml-2">&pound;{{ $meal->items()->sum('selling_price') }}</h5>
 															</div>
 														</div>
 														<div class="menucoltextbtn">
@@ -167,14 +190,14 @@
 						<!--End All Meals-->
 
 						<!--Begin Breakfasts-->
-						<div class="tab-pane" id="breakfast" role="tabpanel">
+						<div class="tab-pane fade" id="breakfasts" role="tabpanel">
 							<div class="row">
 								@foreach($meals as $meal)
 									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Breakfast)
 										<div class="col-lg-3 col-sm-6 col-12">
 											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
 												<div class="menuimgcol">
-													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+													<div id="carousel-{{$meal->id}}" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 														<div class="carousel-inner" role="listbox">
 															@foreach($meal->images as $image)
 																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
@@ -183,11 +206,11 @@
 															@endforeach
 														</div>
 
-														<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+														<a class="carousel-control-prev" href="#carousel-{{$meal->id}}" role="button" data-slide="prev">
 															<i class="fa fa-chevron-left"></i>
 															<span class="sr-only">Previous</span>
 														</a>
-														<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+														<a class="carousel-control-next" href="#carousel-{{$meal->id}}" role="button" data-slide="next">
 															<i class="fa fa-chevron-right"></i>
 															<span class="sr-only">Next</span>
 														</a>
@@ -222,14 +245,14 @@
 						<!--End Breakfasts-->
 
 						<!--Begin Snacks-->
-						<div class="tab-pane active" id="snacks" role="tabpanel">
+						<div class="tab-pane fade" id="snacks" role="tabpanel">
 							<div class="row">
 								@foreach($meals as $meal)
 									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Snacks)
 										<div class="col-lg-3 col-sm-6 col-12">
 											<div class="menucol rounded mt-3 shadow pb-3" style="cursor: pointer;">
 												<div class="menuimgcol">
-													<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
+													<div id="carousel-{{$meal->id}}" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
 														<div class="carousel-inner" role="listbox">
 															@foreach($meal->images as $image)
 																<div class="carousel-item @if($loop->index==0) {{'active'}} @endif">
@@ -238,11 +261,11 @@
 															@endforeach
 														</div>
 
-														<a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+														<a class="carousel-control-prev" href="#carousel-{{$meal->id}}" role="button" data-slide="prev">
 															<i class="fa fa-chevron-left"></i>
 															<span class="sr-only">Previous</span>
 														</a>
-														<a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+														<a class="carousel-control-next" href="#carousel-{{$meal->id}}" role="button" data-slide="next">
 															<i class="fa fa-chevron-right"></i>
 															<span class="sr-only">Next</span>
 														</a>

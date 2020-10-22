@@ -42,7 +42,7 @@
 								<!--First slide-->
 								@if(!empty(count($listData)))
 									@foreach($listData as $key => $rows)
-										<div class="carousel-item @if($key==0) active @endif">
+										<div class="carousel-item shadow-lg @if($key==0) active @endif">
 											@if($rows->thumbnail_type == 'video/mp4')
 												<video class="video-fluid" autoplay loop muted>
 													<source src="{{ $rows->thumbnail }}" type="video/mp4"/>
@@ -50,7 +50,7 @@
 											@else
 												<img class="d-block w-100" src="{{ $rows->thumbnail }}" alt="First slide" style="height: 502px;">
 											@endif
-											<div class="top-banner-text">
+											<div class="top-banner-text shadow-lg" style="backdrop-filter: blur(8px); background-color: #ffffff9c!important;">
 												<h4>Delicious. <br> Affordable. <br> Delivered.</h4>
 												@guest
 													<a href="{{ url('/sign-in') }}" class="btn btn-info btn-md">Get Started
@@ -91,28 +91,53 @@
 				</div>
 			</div>
 			@foreach($homeData as $key => $rows)
-				<div class="row">
-					@if ($key % 2 == 0)
-						<div class="col-lg-6 col-sm-6 col-12 aa">
-							<div class="home1-img mt-5">
-								<img src="{{ $rows->thumbnail }}" class="">
+				@if($loop->index==1)
+					<div class="row reverse1row">
+						@if ($key % 2 == 0)
+							<div class="col-lg-6 col-sm-6 col-12 aa">
+								<div class="home1-img mt-5">
+									<img src="{{ $rows->thumbnail }}" class="">
+								</div>
+							</div>
+						@endif
+						<div class="col-lg-6 col-sm-6 col-12">
+							<div class="home1-text mt-5">
+								<h3 class="text-color font-weight-bold">{{ $rows->title }}</h3>
+								<p>{!! $rows->description !!}</p>
 							</div>
 						</div>
-					@endif
-					<div class="col-lg-6 col-sm-6 col-12">
-						<div class="home1-text mt-5">
-							<h3 class="text-color font-weight-bold">{{ $rows->title }}</h3>
-							<p>{!! $rows->description !!}</p>
-						</div>
+						@if ($key % 2 != 0 )
+							<div class="col-lg-6 col-sm-6 col-12 xxxxx">
+								<div class="home1-img mt-5">
+									<img src="{{ $rows->thumbnail }}" class="">
+								</div>
+							</div>
+						@endif
 					</div>
-					@if ($key % 2 != 0 )
-						<div class="col-lg-6 col-sm-6 col-12 xxxxx">
-							<div class="home1-img mt-5">
-								<img src="{{ $rows->thumbnail }}" class="">
+				@else
+					<div class="row">
+						@if ($key % 2 == 0)
+							<div class="col-lg-6 col-sm-6 col-12 aa">
+								<div class="home1-img mt-5">
+									<img src="{{ $rows->thumbnail }}" class="">
+								</div>
+							</div>
+						@endif
+						<div class="col-lg-6 col-sm-6 col-12">
+							<div class="home1-text mt-5">
+								<h3 class="text-color font-weight-bold">{{ $rows->title }}</h3>
+								<p>{!! $rows->description !!}</p>
 							</div>
 						</div>
-					@endif
-				</div>
+						@if ($key % 2 != 0 )
+							<div class="col-lg-6 col-sm-6 col-12 xxxxx">
+								<div class="home1-img mt-5">
+									<img src="{{ $rows->thumbnail }}" class="">
+								</div>
+							</div>
+						@endif
+					</div>
+				@endif
 			@endforeach
 		@endif
 	</div>

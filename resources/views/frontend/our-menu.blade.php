@@ -14,7 +14,8 @@
 						<h1 class="font-weight-bold text-color">MENU</h1>
 					</div>
 					<div class="menu-date border p-2">
-						<p class="text-center mb-0 text-color">Week on <br> Sep <br> <span>10</span></p>
+						<p class="text-center mb-0 text-color">Deliveries on <br> {{dates()[0]['day']}} <br>
+							<span>{{dates()[0]['date']}}</span><br><span>{{dates()[0]['month']}}</span></p>
 					</div>
 
 				</div>
@@ -28,9 +29,14 @@
 			<div class="col-lg-7 col-sm-6 col-12">
 				<div class="our-menu-toggle">
 					<ul class="nav nav-pills" role="tablist">
-
+						<li class="nav-item active">
+							<a class="nav-link active" data-toggle="tab" href="#all-meals" role="tab">All Meals</a>
+						</li>
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#meals" role="tab">Meals</a>
+							<a class="nav-link" data-toggle="tab" href="#breakfasts" role="tab">Breakfast</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#snacks" role="tab">Snacks</a>
 						</li>
 					</ul>
 				</div>
@@ -39,8 +45,9 @@
 			<div class="col-lg-3 col-sm-3 col-12">
 				<form action="{{route('ourmenu')}}" id="filter_form">
 					<div class="form-group mb-0">
+						<label for="type" class="font-weight-bold">Dietary Filter</label>
 						<select class="form-control" name="type" id="type" onchange="handleFilterChanged();">
-							<option value="none" selected>Dietary Filter</option>
+							<option value="none" selected>None</option>
 							@foreach($types as $type)
 								<option value="{{ $type->id }}" @if($chosen==$type->id) selected @endif>{{ $type->name }}</option>
 							@endforeach
@@ -61,24 +68,86 @@
 				<div class="ourentrees-breakfast mb-5">
 					<div class="tab-content pt-3">
 
-						<div class="tab-pane active" id="entrees" role="tabpanel">
+						<div class="tab-pane active" id="all-meals" role="tabpanel">
 							<div class="row">
 								@foreach($meals as $meal)
-									<div class="col-lg-3 col-sm-4 col-12">
-										<div class="menucol rounded mt-3 shadow pb-3" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">
-											<div class="menuimgcol">
-												<img src="{{$meal->images->first()->file}}" class="img-fluid rounded w-100 d-block">
-												<div class="menu-col-text rounded">
-													<a href="#">View + Detail</a>
+									@if(empty($meal->type))
+										<div class="col-lg-3 col-sm-4 col-12">
+											<div class="menucol rounded mt-3 shadow pb-3" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">
+												<div class="menuimgcol">
+													@if($meal->images->count()>0)
+														<img src="{{$meal->images->first()->file}}" class="img-fluid rounded w-100 d-block">
+													@else
+														<img src="" class="img-fluid rounded w-100 d-none">
+													@endif
+													<div class="menu-col-text rounded">
+														<a href="#">View Details</a>
+													</div>
+												</div>
+
+												<div class="menucoltext text-center p-2">
+													<h5 class="mb-1 text-color">{{$meal->name}}</h5>
+													<p class="m-0" style="visibility: hidden;"></p>
 												</div>
 											</div>
+										</div>
+									@endif
+								@endforeach
+							</div>
+						</div>
 
-											<div class="menucoltext text-center p-2">
-												<h5 class="mb-1 text-color">{{$meal->name}}</h5>
-												<p class="m-0" style="visibility: hidden;"></p>
+						<div class="tab-pane fade" id="breakfasts" role="tabpanel">
+							<div class="row">
+								@foreach($meals as $meal)
+									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Breakfast)
+										<div class="col-lg-3 col-sm-4 col-12">
+											<div class="menucol rounded mt-3 shadow pb-3" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">
+												<div class="menuimgcol">
+													@if($meal->images->count()>0)
+														<img src="{{$meal->images->first()->file}}" class="img-fluid rounded w-100 d-block">
+													@else
+														<img src="" class="img-fluid rounded w-100 d-none">
+													@endif
+													<div class="menu-col-text rounded">
+														<a href="#">View Details</a>
+													</div>
+												</div>
+
+												<div class="menucoltext text-center p-2">
+													<h5 class="mb-1 text-color">{{$meal->name}}</h5>
+													<p class="m-0" style="visibility: hidden;"></p>
+												</div>
 											</div>
 										</div>
-									</div>
+									@endif
+								@endforeach
+							</div>
+						</div>
+
+						<div class="tab-pane fade" id="snacks" role="tabpanel">
+							<div class="row">
+								@foreach($meals as $meal)
+									@if(!empty($meal->type)&&$meal->type==\App\Core\Enums\Common\MealTypes::Snacks)
+										<div class="col-lg-3 col-sm-4 col-12">
+											<div class="menucol rounded mt-3 shadow pb-3" data-toggle="modal" data-target="#meal_details_{{$meal->id}}">
+												<div class="menuimgcol">
+													@if($meal->images->count()>0)
+														<img src="{{$meal->images->first()->file}}" class="img-fluid rounded w-100 d-block">
+													@else
+														<img src="" class="img-fluid rounded w-100 d-none">
+													@endif
+													<div class="menu-col-text rounded">
+														<a href="#">View Details</a>
+													</div>
+												</div>
+
+												<div class="menucoltext text-center p-2">
+													<h5 class="mb-1 text-color">{{$meal->name}}</h5>
+													<p class="m-0" style="visibility: hidden;"></p>
+												</div>
+											</div>
+										</div>
+									@endif
 								@endforeach
 							</div>
 						</div>
@@ -102,21 +171,33 @@
 						<div class="row">
 							<div class="col-lg-6 col-sm-12 col-12">
 								<div class="ourmenu-modal text-center">
-									<img src="{{$meal->images->first()->file}}" class="img-fluid w-100 rounded d-block">
+									@if($meal->images->count()>0)
+										<img src="{{$meal->images->first()->file}}" class="img-fluid rounded w-100 d-block">
+									@else
+										<img src="" class="img-fluid rounded w-100 d-none">
+									@endif
 
-									<h5 class="text-color mb-1">{{$meal->name}}</h5>
+									<h5 class="text-color mb-1 d-none">{{$meal->name}}</h5>
 									<p style="visibility: hidden;"></p>
 
 									<ul class="nav nav-pills justify-content-center" role="tablist">
-										<li class="nav-item active">
-											<a class="nav-link" data-toggle="tab" href="#tab-ingredients" role="tab">Ingredients</a>
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" href="#meal-{{$meal->id}}-description" role="tab">Description</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" href="#meal-{{$meal->id}}-ingredients" role="tab">Ingredients</a>
 										</li>
 									</ul>
 
 
 									<div class="tab-content pt-3">
-										<div class="tab-pane active" id="tab-ingredients" role="tabpanel">
-											<p>{{implode(", ",$meal->ingredients()->unique('id')->pluck('name')->toArray())}}</p>
+										<div class="tab-pane active" id="meal-{{$meal->id}}-description" role="tabpanel">
+											<p>{{$meal->description}}</p>
+										</div>
+										<div class="tab-pane" id="meal-{{$meal->id}}-ingredients" role="tabpanel">
+											@foreach($meal->readableItems() as $item)
+												<p>{{$item}}</p>
+											@endforeach
 										</div>
 									</div>
 								</div>

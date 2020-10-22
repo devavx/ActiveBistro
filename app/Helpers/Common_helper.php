@@ -141,9 +141,9 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
 					'actual' => date('Y-m-d', $current),
-					'deadline' => $deadline
+					'deadline' => $current,
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
 				];
 			}
 		} else {
@@ -152,9 +152,9 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
 					'actual' => date('Y-m-d', $current),
-					'deadline' => $deadline
+					'deadline' => $current,
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
 				];
 			}
 		}
@@ -170,9 +170,9 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
 					'actual' => date('Y-m-d', $current),
-					'deadline' => $deadline
+					'deadline' => $current,
+					'month' => date('M', $i % 2 == 0 ? $current += $threeDays : $current += $fourDays),
 				];
 			}
 		} else {
@@ -181,9 +181,9 @@ function dates (): array
 				$dates[] = [
 					'day' => date('D', $current),
 					'date' => date('d', $current),
-					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
 					'actual' => date('Y-m-d', $current),
-					'deadline' => $deadline
+					'deadline' => $current,
+					'month' => date('M', $i % 2 == 0 ? $current += $fourDays : $current += $threeDays),
 				];
 			}
 		}

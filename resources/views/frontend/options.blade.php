@@ -17,6 +17,37 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-sm-10 col-12 mx-auto">
+				<div class="mt-5">
+					@if($message=Session::get('success'))
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
+							<strong> {{$message}}</strong>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					@endif
+
+					@if($errormessage=Session::get('error'))
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<strong> {{$errormessage}}</strong>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					@endif
+					@if(count($errors) > 0 )
+						<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<ul class="p-0 m-0" style="list-style: none;">
+								@foreach($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
+				</div>
 				<form id="msform" class="shadow p-3 mt-5 mb-5" action="{{route('order-now.store')}}" method="POST">
 					@csrf
 					<ul id="progressbar">
@@ -38,16 +69,15 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-info next float-right rounded btn-md">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
-
+						<button type="button" class="m-0 btn btn-info next float-right rounded btn-md">Next<i class="fa fa-chevron-right ml-2"></i>
+						</button>
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio0">
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
-									<label>Would you like breakfasts in your plan?</label>
+									<label>Would you like breakfast in your plan?</label>
 									<br>
 
 									<div class="row switch-field">
@@ -66,8 +96,9 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="breakfastNext">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+						<button type="button" class="m-0 btn btn-info next float-right rounded btn-md d-none" id="breakfastNext">Next<i class="fa fa-chevron-right ml-2"></i>
+						</button>
+						<button type="button" class="m-0 btn btn-info float-right rounded btn-md" onclick="resetQuestions();">Reset</button>
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio2">
@@ -104,8 +135,9 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="snacksNext">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+						<button type="button" class="m-0 btn btn-info next float-right rounded btn-md d-none" id="snacksNext">Next<i class="fa fa-chevron-right ml-2"></i>
+						</button>
+						<button type="button" class="m-0 btn btn-info float-right rounded btn-md" onclick="resetQuestions();">Reset</button>
 					</fieldset>
 
 
@@ -113,7 +145,7 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
-									<label>Meals at weekends?</label>
+									<label>Meals on weekends?</label>
 									<br>
 
 									<div class="row switch-field">
@@ -132,8 +164,9 @@
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="weekendsNext">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+						<button type="button" class="m-0 btn btn-info next float-right rounded btn-md d-none" id="weekendsNext">Next<i class="fa fa-chevron-right ml-2"></i>
+						</button>
+						<button type="button" class="m-0 btn btn-info float-right rounded btn-md" onclick="resetQuestions();">Reset</button>
 					</fieldset>
 
 					<fieldset class="paddingrl" id="allergiesRadio4">
@@ -167,9 +200,9 @@
 								</div>
 							</div>
 						</div>
-
-						<button type="button" class="btn btn-info next float-right rounded btn-md d-none" id="allergiesNext">Next
-							<i class="fa fa-chevron-right ml-2"></i></button>
+						<button type="button" class="m-0 btn btn-info next float-right rounded btn-md d-none" id="allergiesNext">Next<i class="fa fa-chevron-right ml-2"></i>
+						</button>
+						<button type="button" class="m-0 mr-1 btn btn-info float-right rounded btn-md" onclick="resetQuestions();">Reset</button>
 					</fieldset>
 
 
@@ -188,8 +221,8 @@
 							</div>
 						</div>
 
-						<button type="submit" class="next btn btn-info float-right rounded btn-md">Next
-							<i class="fa fa-chevron-right ml-2"></i>
+						<button type="submit" class="m-0 next btn btn-info float-right rounded btn-md">Next<i class="fa fa-chevron-right ml-2"></i>
+							<button type="button" class="m-0 mr-1 btn btn-info float-right rounded btn-md" onclick="resetQuestions();">Reset</button>
 						</button>
 					</fieldset>
 				</form>
@@ -240,5 +273,28 @@
 				$('#weekendsNext').trigger('click');
 			});
 		});
+
+		function resetQuestions() {
+			bootbox.confirm({
+				title: 'Are your sure?',
+				message: "This will reset all options!",
+				centerVertical: true,
+				buttons: {
+					confirm: {
+						label: 'Yes',
+						className: 'btn-info'
+					},
+					cancel: {
+						label: 'No',
+						className: 'btn-grey'
+					}
+				},
+				callback: function (result) {
+					if (result) {
+						window.location.href = "/order-now";
+					}
+				}
+			});
+		}
 	</script>
 @endsection

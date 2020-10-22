@@ -18,7 +18,6 @@ class DailyMealPlanController extends Controller
 	public function index (): Renderable
 	{
 		$plans = MealPlan::query()->whereNotNull('day')->latest()->get();
-		$abc = $plans;
 		return view('backend.admin.dailymealplan.index')->with('plans', $plans);
 	}
 
@@ -71,7 +70,7 @@ class DailyMealPlanController extends Controller
 		if ($plan != null) {
 			return redirect()->route('admin.daily-meals.index')->with('success', 'Meal plan added successfully!');
 		} else {
-			return redirect()->back('errormsg', 'Something Went Wrong!');
+			return redirect()->back('errormsg', 'Something Went Wrong!')->withInput(request()->all());
 		}
 	}
 

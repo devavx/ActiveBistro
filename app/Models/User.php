@@ -8,7 +8,6 @@ use App\Core\Enums\Common\Directories;
 use App\Core\Enums\Common\UnitSystem;
 use App\Core\Enums\Common\WeightGoal;
 use App\Core\Facades\Uploads;
-use App\Core\Primitives\Str;
 use App\Core\Primitives\Time;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -203,11 +202,41 @@ class User extends Authenticatable
 
 	public function weightGoal (): string
 	{
-		return !empty($this->weight_goal) ? $this->weight_goal : WeightGoal::Maintain;
+		return $this->calculatedWeightGoal();
+	}
+
+	public function calculatedWeightGoal (): string
+	{
+		$current = !empty($this->user_weight) ? $this->user_weight : 0;
+		$target = !empty($this->user_targert_weight) ? $this->user_targert_weight : 0;
+		if ($current > $target) {
+			return WeightGoal::Lose;
+		} elseif ($current < $target) {
+			return WeightGoal::Gain;
+		} else {
+			return WeightGoal::Maintain;
+		}
 	}
 
 	public function canAvailSpecialDiscount (): bool
 	{
-		return $this->orders()->count('id') < 1 && Str::endsWith($this->email, ['ac', 'nhs']);
+//		return $this->orders()->count('id') < 1 && Str::endsWith($this->email, ['ac', 'nhs']);
+		return false;
+	}
+
+	public function isProfileIncomplete (): bool
+	{
+		$fields = [
+			'user_height',
+			'user_weight',
+			'user_targert_weight',
+			'activity_lavel',
+		];
+		foreach ($fields as $field) {
+			if (empty($this->$field)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

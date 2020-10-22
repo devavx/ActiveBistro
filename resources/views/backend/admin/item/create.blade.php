@@ -100,16 +100,16 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-6">
+										<div class="col-md-6 d-none">
 											<div class="form-group">
 												<label>Short Description*</label>
 												<input type="text" name="short_description" id="short_description" class="form-control" placeholder="Enter short description.." minlength="2" maxlength="255" required>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-12">
 											<div class="form-group">
-												<label>Description*</label>
-												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter description.." minlength="2" maxlength="1000" required>
+												<label>Full Ingredients*</label>
+												<input type="text" name="long_description" id="long_description" class="form-control" placeholder="Enter full ingredients & composition..." minlength="2" maxlength="1000" required>
 											</div>
 										</div>
 									</div>

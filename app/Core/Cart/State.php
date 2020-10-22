@@ -644,6 +644,7 @@ final class State
 		}
 		$item = MealPlan::query()->with('items')->whereKey($itemId)->first();
 		$item->prepare();
+		$item->day = $day;
 		$items[] = $item;
 		$this->cards->$day = $items;
 		$this->recalculateStats();
@@ -742,6 +743,15 @@ final class State
 	public function getDietaryRequirement (): string
 	{
 		return $this->options->dietary_requirement ?? DietaryRequirement::None;
+	}
+
+	public function itemCount (): int
+	{
+		$count = 0;
+		foreach ($this->cards() as $key => $value) {
+			$count += count($value);
+		}
+		return $count;
 	}
 
 	public function items (callable $callback = null): array

@@ -22,6 +22,7 @@ class UpdateRequest extends FormRequest {
 	public function rules () {
 		return [
 			'name' => 'required',
+			'description' => 'required',
 			'images.*' => 'bail|sometimes|image|max:2048',
 			'item_id.*' => 'bail|required',
 			'allergy_id.*' => 'bail|required',

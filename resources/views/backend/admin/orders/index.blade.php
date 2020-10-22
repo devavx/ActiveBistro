@@ -47,6 +47,9 @@
 						<div class="card-body">
 							<h4 class="card-title">Orders List</h4>
 							<div class="text-right">
+								<a class="btn btn-secondary mr-4" href="{{route('admin.orders.export')}}">
+									Export
+								</a>
 								<button class="btn btn-primary mr-4" type="button" onclick="confirmDeleteBulk();">
 									<i class="fa fa-trash mr-2"></i>Delete
 								</button>
@@ -77,13 +80,11 @@
 										</th>
 										<th>#</th>
 										<th>OrderId</th>
-										<th>Customer Name</th>
-										<th>Status</th>
-										<th>Address</th>
-										<th>Total</th>
-										<th>Payment Slab</th>
+										<th>Customer</th>
 										<th>No Of Meals</th>
-										<th>Created At</th>
+										<th>Total</th>
+										<th>Status</th>
+										<th>Placed</th>
 										<th>Action</th>
 									</tr>
 									</thead>
@@ -95,15 +96,19 @@
 											</td>
 											<td>{{$loop->index+1}}</td>
 											<td>
-												<button class="btn btn-link" onclick="showDetails('{{$order->id}}');"> #{{$order->id}}</button>
+												<button class="btn btn-link" onclick="showDetails('{{$order->id}}');"> #{{$order->invoice_id}}</button>
 											</td>
 											<td>{{$order->user->name}}</td>
-											<td> {{ucfirst($order->status)}}</td>
-											<td> {{\App\Core\Primitives\Str::ellipsis($order->address->stringify(),25)}}</td>
-											<td> {{$order->total}}</td>
-											<td> {{ucfirst($order->payment_slab)}}</td>
-											<td> {{$order->quantity}}</td>
-											<td> {{$order->created_at}}</td>
+											<td>{{$order->quantity}}</td>
+											<td>&pound;{{sprintf("%.2f",$order->total)}}</td>
+											<td>
+												<select name="" id="" class="form-control" onchange="updateOrderStatus(this.value,'{{$order->id}}');">
+													@foreach(\App\Core\Enums\Common\OrderStatus::toArray() as $key=>$value)
+														<option value="{{$value}}" @if($value==$order->status) selected @endif>{{$key}}</option>
+													@endforeach
+												</select>
+											</td>
+											<td>{{date('d M g:i A',strtotime($order->created_at))}}</td>
 											<td style="text-align: center; ">
 												<a class="remove" href="javascript:void(0)" onclick="confirmDelete({{ $order->id }})" title="Remove"><i class="fas fa-trash text-danger"></i></a>
 											</td>
@@ -145,15 +150,6 @@
 
 	<script src="{{ asset('assets/node_modules/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-
-
 	<script src="{{ asset('assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 
 	<script src="{{ asset('js/custom.js') }}"></script>
@@ -165,26 +161,7 @@
 			})
 			$('#example23').DataTable({
 				dom: 'Bfrtip',
-				buttons: [
-					{
-						extend: 'csvHtml5',
-						exportOptions: {
-							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-						}
-					},
-					{
-						extend: 'excelHtml5',
-						exportOptions: {
-							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-						}
-					},
-					{
-						extend: 'pdfHtml5',
-						exportOptions: {
-							columns: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-						}
-					},
-				]
+				buttons: []
 			});
 			$('.buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 		}
@@ -223,6 +200,32 @@
 				});
 			});
 		};
+
+		function updateOrderStatus(status, key) {
+			// setLoading(true, () => {
+			performPut({
+				url: `/admin/orders/${key}/${status}`,
+				success: (message, data) => {
+					Lobibox.notify('success', {
+						position: 'top right',
+						msg: message
+					});
+				},
+				failed: message => {
+					Lobibox.notify('error', {
+						position: 'top right',
+						msg: message
+					});
+				},
+				before: () => {
+					setLoading(true);
+				},
+				complete: () => {
+					setLoading(false);
+				}
+			})
+			// })
+		}
 
 	</script>
 @endsection

@@ -15,6 +15,16 @@
 @section('content')
 	<div class="container mt-3 mb-5">
 		<div class="row">
+			<div class="col-12">
+				@if(auth()->user()->isProfileIncomplete())
+					<div class="alert alert-warning shadow-sm" role="alert">
+						<strong>Your profile details are incomplete. Please update them to view your recommended macronutrients and tailored meals.</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				@endif
+			</div>
 			<div class="col-lg-8 col-sm-8 col-12">
 				<div class="myprofiledetail mt-3 shadow p-3">
 					@if($message=Session::get('success'))
@@ -34,6 +44,7 @@
 							</button>
 						</div>
 					@endif
+
 					<h5 class="font-weight-bold text-color">Personal Details</h5>
 					<hr>
 					<div class="row">
@@ -86,6 +97,14 @@
 							<p class="text-color">{{ \App\Core\Enums\Common\DietType::getKey(auth()->user()->diet_type) }}</p>
 						</div>
 						<div class="col-lg-6 col-sm-6 col-12">
+							<label>Gender</label>
+							<p class="text-color">{{ ucfirst(auth()->user()->gender) }}</p>
+						</div>
+						<div class="col-lg-6 col-sm-6 col-12">
+							<label>Gender Info</label>
+							<p class="text-color">{{ \App\Core\Primitives\Str::placeholder(auth()->user()->gender_info,'-') }}</p>
+						</div>
+						<div class="col-lg-6 col-sm-6 col-12">
 							<h6 class="text-color font-weight-bold">Recommended</h6>
 							@php
 								$userGender = Auth::user()->gender ?? 'male';
@@ -134,7 +153,7 @@
 						</div>
 					</div>
 
-						<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
+					<button class="btn btn-info ml-0" data-toggle="modal" data-target="#changedetail">Change Information</button>
 				</div>
 			</div>
 
@@ -222,14 +241,7 @@
 
 						<div class="form-group">
 							<label>Phone <sup class="text-danger">*</sup></label>
-							<div class="row">
-								<div class="col-3 pr-1">
-									<input type="text" class="form-control bg-white text-center" value="07" readonly disabled>
-								</div>
-								<div class="col-9 pl-0">
-									<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="9" maxlength="9">
-								</div>
-							</div>
+							<input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" required autocomplete="phone" value="{{ Auth::user()->phone }}" minlength="11" maxlength="11">
 						</div>
 
 						<div class="form-group">
@@ -281,18 +293,17 @@
 							<select class="form-control" name="diet_type" required>
 								<option value="" selected disabled>Select</option>
 								<option value="{{\App\Core\Enums\Common\DietType::Regular}}" @if(auth()->user()->diet_type==\App\Core\Enums\Common\DietType::Regular) selected @endif>Regular</option>
-								<option value="{{\App\Core\Enums\Common\DietType::Ketogenic}}" @if(auth()->user()->diet_type==\App\Core\Enums\Common\DietType::Ketogenic) selected @endif>Ketogenic</option>
+								{{--								<option value="{{\App\Core\Enums\Common\DietType::Ketogenic}}" @if(auth()->user()->diet_type==\App\Core\Enums\Common\DietType::Ketogenic) selected @endif>Ketogenic</option>--}}
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Desired Weekly Progress<sup class="text-danger">*</sup></label>
 							<select class="form-control" name="weekly_progress" required>
-								<option value="" disabled selected>Select</option>
 								@if(auth()->user()->unit_system==\App\Core\Enums\Common\UnitSystem::Metric)
 									@switch(auth()->user()->weightGoal())
 										@case(\App\Core\Enums\Common\WeightGoal::Gain)
-										<option value="0.5" @if(auth()->user()->weeklyProgress()==0.5) selected @endif>Gain 0.5 KG per week</option>
 										<option value="0.2" @if(auth()->user()->weeklyProgress()==0.2) selected @endif>Gain 0.2 KG per week</option>
+										<option value="0.5" @if(auth()->user()->weeklyProgress()==0.5) selected @endif>Gain 0.5 KG per week</option>
 										@break
 										@case(\App\Core\Enums\Common\WeightGoal::Maintain)
 										<option value="0" @if(auth()->user()->weeklyProgress()==0.0) selected @endif>Maintain weight</option>
@@ -307,8 +318,8 @@
 								@else
 									@switch(auth()->user()->weightGoal())
 										@case(\App\Core\Enums\Common\WeightGoal::Gain)
-										<option value="1" @if(auth()->user()->weeklyProgress()==1) selected @endif>Gain 1 LB per week</option>
 										<option value="0.5" @if(auth()->user()->weeklyProgress()==0.5) selected @endif>Gain 0.5 LB per week</option>
+										<option value="1" @if(auth()->user()->weeklyProgress()==1) selected @endif>Gain 1 LB per week</option>
 										@break
 										@case(\App\Core\Enums\Common\WeightGoal::Maintain)
 										<option value="0" @if(auth()->user()->weeklyProgress()==0.0) selected @endif>Maintain weight</option>
@@ -353,8 +364,14 @@
 				changeMonth: true,
 				changeYear: true,
 				startDate: '{{date('Y-m-d',0)}}',
-				endDate: '-10y',
+				endDate: '-18y',
 			});
+
+			// $('#phone').inputmask({
+			// 	mask: "07999999999",
+			// 	removeMaskOnSubmit: true,
+			// 	// autoUnmask: true,
+			// });
 
 			$('#profile_image').dropify({
 				messages: {

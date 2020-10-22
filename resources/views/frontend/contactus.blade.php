@@ -6,7 +6,7 @@
 @section('content') 
 	<div class="container mb-5">
 		<div class="row">
-			<div class="col-lg-8 col-sm-12 col-12">
+			<div class="col-lg-8 col-sm-12 col-12 d-none">
 				<h4 class="font-weight-bold text-color mt-5">Contact Us</h4>
 
 				<div class="row">
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-sm-12 col-12">
+			<div class="col-lg-8 col-sm-12 col-12 mx-auto">
 				<div class="card bg-color mt-5">
 					<div class="card-body">
 						<h6 class="font-weight-bold text-white mb-0">Email ID</h6>
@@ -67,16 +67,7 @@
 						<p class="text-white"> {{ @$recordData->address ?? 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.' }}</p>
 
 						<hr>
-						<!-- <p class="text-white"></p> -->
-						
-						<!-- <h5 class="text-white">Alternatively call our customer service team on--</h5> -->
-
 						<div class="text-white" id="description___1" style="color: white !important"> {!! $recordData->description !!}</div>
-						<!-- <p class="text-white mb-1">Suturday 9am to 4pm</p>
-						<p class="text-white mb-1">Sunday 10am to 2pm</p>
-
-						<p class="text-white mb-1">Please note we are closed on bank holidays.</p>
- -->
 					</div>
 				</div>
 			</div>

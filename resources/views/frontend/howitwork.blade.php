@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="howitworks mt-5 mb-5">
-					<h3 class="font-weight-bold text-color text-center">How its Works?!</h3>
+					<h3 class="font-weight-bold text-color text-center">How its Works</h3>
 					<ul class="timeline">
 						@foreach($items as $item)
 							@if($loop->index%2==0)

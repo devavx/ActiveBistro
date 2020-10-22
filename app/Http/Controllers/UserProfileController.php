@@ -46,6 +46,11 @@ class UserProfileController extends Controller
 		return back()->with('success', 'Details updated successfully!');
 	}
 
+	protected function calculateWeightGoal ()
+	{
+
+	}
+
 	public function updatePassword (Request $request)
 	{
 		$input = $request->all();

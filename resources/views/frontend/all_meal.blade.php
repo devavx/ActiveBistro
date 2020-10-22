@@ -45,6 +45,22 @@
 			</div>
 		</div>
 	</div>
+
+	@if($errormessage=Session::get('error'))
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-12">
+					<div class="alert alert-danger alert-dismissible fade show shadow-sm animate__animated animate__headShake animate_delay-4s" role="alert">
+						<strong> {{$errormessage}}</strong>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	@endif
+
 	<div id="main_container">
 		@include('frontend.main_container',['state'=>$state])
 	</div>
@@ -78,6 +94,8 @@
 			var carousels = function () {
 				$(".owl-carousel1").owlCarousel({
 					loop: false,
+					animateIn: 'linear',
+					animateOut: 'linear',
 					center: true,
 					margin: 0,
 					responsiveClass: true,

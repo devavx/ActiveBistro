@@ -25,7 +25,7 @@
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Sub Total:</label>
 					<div class="col-md-9">
-						<p class="form-control-static">&pound; {{$order->sub_total}} </p>
+						<p class="form-control-static">&pound;{{$order->sub_total}} </p>
 					</div>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Total:</label>
 					<div class="col-md-9">
-						<p class="form-control-static">&pound; {{$order->total}} </p>
+						<p class="form-control-static">&pound;{{$order->total}} </p>
 					</div>
 				</div>
 			</div>
@@ -89,7 +89,6 @@
 					</div>
 				</div>
 			</div>
-			<!--/span-->
 			<div class="col-md-6">
 				<div class="form-group row">
 					<label class="control-label text-right col-md-3">Date of Birth:</label>
@@ -98,9 +97,8 @@
 					</div>
 				</div>
 			</div>
-			<!--/span-->
 		</div>
-		<!--/row-->
+
 		<h4 class="box-title">Address Details</h4>
 		<hr class="m-t-0 m-b-40">
 		<div class="row">
@@ -139,6 +137,16 @@
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group row">
+					<label class="control-label text-right col-md-3">Phone</label>
+					<div class="col-md-9">
+						<p class="form-control-static"> {{$order->address->phone}} </p>
+					</div>
+				</div>
+			</div>
+		</div>
 		<h4 class="box-title">Items</h4>
 		<hr class="m-t-0 m-b-40">
 		<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -162,7 +170,7 @@
 						@endforeach
 					</td>
 					<td> {{$item->quantity}}</td>
-					<td> {{$item->total}}</td>
+					<td> &pound;{{$item->total}}</td>
 				</tr>
 			@endforeach
 			</tbody>
